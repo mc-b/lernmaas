@@ -1,7 +1,7 @@
 LernMAAS
 ========
 
-![](https://assets.ubuntu.com/v1/b03d95a1-maas.io-how-it-works.svg)
+![](images/howitworks.png)
 
 Quelle: [MAAS How its works](https://maas.io/how-it-works)
 
@@ -85,7 +85,7 @@ Nach der Installation steht die Maschine unter Pods zur Verfügung und es lassen
 Maschinen Life Cycle
 --------------------
 
-![](https://res.cloudinary.com/canonical/image/fetch/f_auto,q_auto,fl_sanitize,w_706,h_1324/https://assets.ubuntu.com/v1/b2cec06d-maas.io-node-lifecycle.svg)
+![](images/lifecycle.png)
 
 Quelle: [MAAS How its works](https://maas.io/how-it-works)
 
