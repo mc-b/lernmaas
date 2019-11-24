@@ -21,8 +21,9 @@ Nach dem Aufsetzen kann der URL des Juju UIs und dessen Password angezeigt werde
 
 Wir wollen 8 VMs mit dem Apache Web Server aufsetzen. Dafür ist wie folgt vorzugehen:
 
-* Aufruf des [MAAS UI](http://localhost:5240/MAAS) und anlegen des Pools `web`.
-* Anlegen der VMs, dazu brauchen wir zuerst die Ids der Pods (HW mit KVM) und die des Pools
+Aufruf des [MAAS UI](http://localhost:5240/MAAS) und anlegen des Pools `web`.
+
+Anlegen der VMs, dazu brauchen wir zuerst die Ids der Pods (HW mit KVM) und die des Pools
 
     POD=$(maas $PROFILE pods read | jq '.[] | select (.name=="<name>") | .id')
     POOL=$(maas ${PROFILE} resource-pools read | jq '.[] | select (.name=="web") | .id')
