@@ -31,16 +31,15 @@ Für eine detailierte Installation, siehe [MAAS](MAAS/) oder [Bare Metal to Kube
 
 ### Master
  
-* Mittels Download von [Ubuntu](https://ubuntu.com/download/desktop) als Desktop aufsetzen. Dabei genügt die minimale Version.
-* Fixe IP-Adresse vergeben, z.B. über Einstellungen
-* Software Update durchführen und MAAS Installieren
+Mittels Download von [Ubuntu](https://ubuntu.com/download/desktop) als Desktop aufsetzen. Dabei genügt die minimale Version. 
 
+Fixe IP-Adresse vergeben, z.B. über Einstellungen, Software Update durchführen und MAAS Installieren
 
     sudo add-apt-repository ppa:maas/stable -y  
     sudo apt update
     sudo apt upgrade -y
     sudo apt install -y maas jq 
-    
+
 MAAS Admin User erstellen 
 
     sudo maas init --admin-username ubuntu --admin-password password --admin-email xx.yy@zz.ch
