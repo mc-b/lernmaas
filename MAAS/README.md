@@ -66,28 +66,6 @@ Custom Box hinzufügen
 
     maas $profile boot-resources create name=custom/$imagedisplayname architecture=amd64/generic content=@$tgzfilepath    
     
-### Customising 
-
-**Installationsscript**
-
-Datei `/etc/maas/preseeds/curtin_userdata_ubuntu` erstellen und folgendes eintragen:
-
-    #cloud-config
-    debconf_selections:
-     maas: |
-      {{for line in str(curtin_preseed).splitlines()}}
-      {{line}}
-      {{endfor}}
-    #
-    late_commands:
-      maas: [wget, '--no-proxy', {{node_disable_pxe_url|escape.json}}, '--post-data', {{node_disable_pxe_data|escape.json}}, '-O', '/dev/null']
-      10_git: ["curtin", "in-target", "--", "sh", "-c", "apt-get -y install git curl wget"]
-      20_git: ["curtin", "in-target", "--", "sh", "-c", "git clone https://github.com/mc-b/lernkube /home/ubuntu/lernkube && chown -R 1000:1000 /home/ubuntu/lernkube"]
-      30_git: ["curtin", "in-target", "--", "sh", "-x", "/home/ubuntu/lernkube/scripts/docker.sh"]
-
-Beim Deployen von Ubuntu Images wird zusätzlich das Projekt `lernkube` geclont und Docker installiert. 
-Die `maas` Befehle sind notwendig, dass die VM richtig beendet wird und sauber rebooted.
- 
 ***
 ## Installation KVM Hosts 
 
@@ -186,23 +164,11 @@ Optional kann ein Disk Pool eingerichtet werden. Standardmässig sollte dieser s
     --disk size=5 \
     --os-variant=debian8  --graphic vnc
 
-*** 
-## MAAS CLI
+### Links
 
-Die MAAS Kommandline eignet sich um mehrere VMs zu erstellen.
+* [Ubuntu MAAS 2.2 Wake on LAN Driver Patch](https://github.com/yosefrow/MAAS-WoL-driver)
+* [Bridge KVM](https://askubuntu.com/questions/1054350/netplan-bridge-for-kvm-on-ubuntu-server-18-04-with-static-ips)
+* [Static IP Ubuntu 18](https://linuxconfig.org/how-to-configure-static-ip-address-on-ubuntu-18-04-bionic-beaver-linux)
+* [broadcast-dhcp-discover](https://nmap.org/nsedoc/scripts/broadcast-dhcp-discover.html)
+* [Setup Default Network](http://blog.programster.org/kvm-missing-default-network)
 
-Einloggen:
-
-    maas login ubuntu http://localhost:5240/MAAS/api/2.0
-    
-Den API Key findet man im MAAS UI unter `ubuntu`.
-
-Ids der Pods finden, diese brauchen wir um VMs zu erstellen. "tbz5-01pod" durch Pod Name ersetzen.
-
-    maas ubuntu pods read | jq '.[] | select (.name=="tbz5-01pod") | .name, .id'
-
-Mit diesen Informationen können wir die VMs erstellen
-
-    for x in {01..08} ; do maas ubuntu pod compose 1 memory=1024 cpu=1 pool=0 hostname=m300-${x} ; done           
-    
-Tip: werden vorher im MAAS UI mehrere Pools erstellt, können die VMs über diese selektioniert werden.
