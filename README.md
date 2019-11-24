@@ -102,9 +102,9 @@ Jede von MAAS verwaltete Maschine durchläuft einen Lebenszyklus - von der Regis
 
 Neue VMs lassen sich über die [MAAS Weboberfläche](http://localhost:5240) oder via [MAAS CLI](MAAS/CLI.md) erstellen.
 
-Über die Weboberfläche sind `Pods` (die Bare Metal Maschinen mit KVM) und anschliessend `Compose` aufzurufen.
+Über die Weboberfläche ist `Pods` (Bare Metal Maschinen mit KVM) und anschliessend `Compose` aufzurufen.
 
-Die Maschinen erscheinen dann als `Ready` und es kann via [MAAS Weboberfläche](http://localhost:5240) mittels `Deploy` Ubuntu darauf installiert werden. 
+Nach der Initialisierung der VM erscheinen diese als `Ready` und es kann mittels `Deploy` Ubuntu installiert werden.
 
 Eine Installation weiterer Software ist in MAAS nicht vorgesehen, bzw. lässt sich nur durch [Anpassen](MAAS/Customising.md) von MAAS erreichen.
 
