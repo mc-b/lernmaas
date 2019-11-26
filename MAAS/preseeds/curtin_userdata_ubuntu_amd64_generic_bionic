@@ -9,4 +9,5 @@ late_commands:
   maas: [wget, '--no-proxy', {{node_disable_pxe_url|escape.json}}, '--post-data', {{node_disable_pxe_data|escape.json}}, '-O', '/dev/null']
   10_git: ["curtin", "in-target", "--", "sh", "-c", "apt-get -y install git curl wget"]
   20_git: ["curtin", "in-target", "--", "sh", "-c", "git clone https://github.com/mc-b/lernmaas /home/ubuntu/lernmaas && chown -R 1000:1000 /home/ubuntu/lernmaas"]
+  30_run: ["curtin", "in-target", "--", "sh", "-c", "cd /home/ubuntu/lernmaas/MAAS/preseeds/ubuntu/bionic && sh -x install.sh"]
   
