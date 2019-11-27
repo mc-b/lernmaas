@@ -23,5 +23,5 @@ elif    [ ${HOST} = "k8smaster" ]
 then
         bash scripts/docker.sh
         bash scripts/k8sbase.sh
-        bash scripts/k8smaster.sh
+        # bash scripts/k8smaster.sh # muss nach dem Reboot erfolgen
 fi
