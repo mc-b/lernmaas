@@ -9,4 +9,4 @@
     sudo dpkg -i docker-ce_18.06.1~ce~3-0~ubuntu_amd64.deb
     rm -f docker-ce_18.06.1~ce~3-0~ubuntu_amd64.deb
     
-    sudo usermod -aG docker ubuntu
+    # sudo usermod -aG docker 1000
