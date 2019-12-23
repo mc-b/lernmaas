@@ -5,9 +5,9 @@
 #
 
 # einfache Installation von Service wie z.B. apache
-apache=91_nfs.cfg 92_apache.cfg
+apache=nfs.sh apache.sh
 
 # Docker und Kubernetes Varianten
-docker=91_nfs.cfg 92_docker.cfg
-k3s=91_nfs.cfg 95_k3s.cfg
-openshift=91_docker.cfg 95_openshift.cfg
+docker=nfs.sh docker.sh
+k3s=nfs.sh k3s.sh
+openshift=docker.sh openshift.sh
