@@ -9,5 +9,5 @@ late_commands:
   maas: [wget, '--no-proxy', {{node_disable_pxe_url|escape.json}}, '--post-data', {{node_disable_pxe_data|escape.json}}, '-O', '/dev/null']
   10_git: ["curtin", "in-target", "--", "sh", "-c", "apt-get -y install git curl wget"]
   20_git: ["curtin", "in-target", "--", "sh", "-c", "git clone https://github.com/mc-b/lernmaas /opt/lernmaas"]
-  30_run: ["curtin", "in-target", "--", "sh", "-c", "cd /opt/lernmaas/MAAS && sh -x preseeds/cloud-init.sh"]
+  30_run: ["curtin", "in-target", "--", "sh", "-c", "cp /opt/lernmaas/MAAS/cloud.cfg.d/* /etc/cloud/cloud.cfg.d/"]
   
