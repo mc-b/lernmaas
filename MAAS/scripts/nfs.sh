@@ -2,8 +2,8 @@
 #   
 #   Installiert nfs und mountet Server Folders
 #
-# SERVER_IP=$(sudo cloud-init query v1.subplatform | cut -d: -f2 | cut -d/ -f3)
-SERVER_IP=192.168.2.10
+SERVER_IP=$(sudo cat /var/lib/cloud/instance/datasource | cut -d: -f3 | cut -d/ -f3)
+# SERVER_IP=192.168.2.10
 
 sudo apt install -y nfs-common
 
