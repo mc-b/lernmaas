@@ -10,4 +10,3 @@ late_commands:
   10_git: ["curtin", "in-target", "--", "sh", "-c", "apt-get -y install git curl wget"]
   20_git: ["curtin", "in-target", "--", "sh", "-c", "git clone https://github.com/mc-b/lernmaas /opt/lernmaas"]
   30_run: ["curtin", "in-target", "--", "sh", "-c", "cp /opt/lernmaas/MAAS/cloud.cfg.d/* /etc/cloud/cloud.cfg.d/"]
-  
