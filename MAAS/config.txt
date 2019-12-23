@@ -5,7 +5,7 @@
 #
 
 # einfache Installation von Service wie z.B. apache
-apache=92_apache.cfg
+apache=91_nfs.cfg 92_apache.cfg
 
 # Docker und Kubernetes Varianten
 docker=91_nfs.cfg 92_docker.cfg
