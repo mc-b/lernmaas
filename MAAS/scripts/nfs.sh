@@ -17,3 +17,10 @@ sudo mount -t nfs ${SERVER_IP}:/data/storage /home/ubuntu/data
 sudo mkdir -p /home/ubuntu/data/$(hostname) && chown ubuntu:ubuntu /home/ubuntu/data/$(hostname)
 sudo umount /home/ubuntu/data
 sudo mount -t nfs ${SERVER_IP}:/data/storage/$(hostname) /home/ubuntu/data
+
+# update /etc/fstab for reboots
+cat <<%EOF% | sudo tee -a /etc/fstab
+${SERVER_IP}:/data/config               /home/ubuntu/config     nfs defaults    0 10
+${SERVER_IP}:/data/templates            /home/ubuntu/templates  nfs defaults    0 11
+${SERVER_IP}:/data/storage/$(hostname)  /home/ubuntu/data       nfs defaults    0 12
+%EOF%
