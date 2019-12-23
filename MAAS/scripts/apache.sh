@@ -1,5 +1,8 @@
-#cloud-config
-# Installiert den Apache Web Server
+#!/bin/bash
+#   
+#   Installiert den Apache Web Server
 #
-packages:
- - apache2
+
+set -o xtrace
+
+sudo apt install -y apache2
