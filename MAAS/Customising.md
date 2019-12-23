@@ -42,3 +42,11 @@ Die `maas` Befehle sind notwendig, dass die VM richtig beendet wird und sauber r
 * [Customising MAAS](https://ubuntu.com/blog/customising-maas-installs)
 * [Customising MAAS installs](http://mattjarvis.org.uk/post/customising-maas/)
 * [Custom partitioning with Maas and Curtin](http://caribou.kamikamamak.com/2015/06/26/custom-partitioning-with-maas-and-curtin-2/)
+
+
+    cat <<%EOF% >cloud-init_userdata_ubuntu
+    #cloud-config
+    
+    packages:
+     - apache2
+    %EOF%
