@@ -21,15 +21,19 @@ Installation NFS
     
 Shared Folder anlegen
 
-    sudo mkdir -p /data
-    sudo chown nobody:nogroup /data
-    sudo chmod 777 /data
+    sudo mkdir -p /data /data/storage /data/config /data/templates
+    sudo chown -R ubuntu:ubuntu /data
+    sudo chmod 777 /data/storage
     
 Zugriff für Subnetze (192.168.2.0 = eigenes Subnets, 10.244.0.0 = Kubernetes/flannel) freischalten
     
     cat <<%EOF% >>/etc/exports
-    /data 192.168.2.0/24(rw,sync,no_subtree_check)
-    /data 10.244.0.0/16(rw,sync,no_subtree_check)
+    # Storage RW
+    /data/storage 192.168.2.0/24(rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=1000)
+    # Templates RO
+    /data/templates 192.168.2.0/24(ro,sync,no_subtree_check)
+    # Config RO
+    /data/config 192.168.2.0/24(ro,sync,no_subtree_check)
     %EOF%
      
     sudo exportfs -a
