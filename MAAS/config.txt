@@ -8,6 +8,6 @@
 apache=92_apache.cfg
 
 # Docker und Kubernetes Varianten
-docker=92_docker.cfg
-k3s=95_k3s.cfg
+docker=91_nfs.cfg 92_docker.cfg
+k3s=91_nfs.cfg 95_k3s.cfg
 openshift=91_docker.cfg 95_openshift.cfg
