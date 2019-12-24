@@ -12,13 +12,7 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown ubuntu:ubuntu $HOME/.kube/config
 
 # this for loop waits until kubectl can access the api server that kubeadm has created
-for i in {1..150}; do # timeout for 5 minutes
-   sudo kubectl get po &> /dev/null
-   if [ $? -ne 1 ]; then
-      break
-  fi
-  sleep 2
-done
+sleep 120
 
 # Pods auf Master Node erlauben
 sudo kubectl taint nodes --all node-role.kubernetes.io/master-
