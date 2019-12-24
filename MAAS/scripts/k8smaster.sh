@@ -25,8 +25,7 @@ sudo kubectl taint nodes --all node-role.kubernetes.io/master-
 
 # Internes Pods Netzwerk (mit: --iface enp0s8, weil vagrant bei Hostonly Adapters gleiche IP vergibt)
 sudo sysctl net.bridge.bridge-nf-call-iptables=1
-sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/k8s-manifests/kube-flannel-rbac.yml
-sudo kubectl apply -f https://raw.githubusercontent.com/mc-b/lernmaas/master/MAAS/addons/kube-flannel.yaml
+sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml
 
 # Install ingress bare metal, https://kubernetes.github.io/ingress-nginx/deploy/
 sudo kubectl apply -f https://raw.githubusercontent.com/mc-b/lernkube/master/addons/ingress-mandatory.yaml
