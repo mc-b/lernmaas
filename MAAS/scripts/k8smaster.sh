@@ -7,12 +7,12 @@ sudo swapoff -a
 
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address  $(hostname -I | cut -d ' ' -f 1) 
 
-mkdir -p $HOME/.kube
+sudo mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown ubuntu:ubuntu $HOME/.kube/config
 
 # aus Kompatilitaet zur Vagrant Installation
-mkdir -p /home/vagrant/.kube
+sudo mkdir -p /home/vagrant/.kube
 sudo cp -i /etc/kubernetes/admin.conf /home/vagrant/.kube/config
 sudo chown -R ubuntu:ubuntu /home/vagrant
 
