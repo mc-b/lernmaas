@@ -21,13 +21,13 @@ for i in {1..150}; do # timeout for 5 minutes
 done
 
 # Pods auf Master Node erlauben
-kubectl taint nodes --all node-role.kubernetes.io/master-
+sudo kubectl taint nodes --all node-role.kubernetes.io/master-
 
 # Internes Pods Netzwerk (mit: --iface enp0s8, weil vagrant bei Hostonly Adapters gleiche IP vergibt)
-sysctl net.bridge.bridge-nf-call-iptables=1
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/k8s-manifests/kube-flannel-rbac.yml
-kubectl apply -f https://raw.githubusercontent.com/mc-b/lernmaas/master/MAAS/addons/kube-flannel.yaml
+sudo sysctl net.bridge.bridge-nf-call-iptables=1
+sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/k8s-manifests/kube-flannel-rbac.yml
+sudo kubectl apply -f https://raw.githubusercontent.com/mc-b/lernmaas/master/MAAS/addons/kube-flannel.yaml
 
 # Install ingress bare metal, https://kubernetes.github.io/ingress-nginx/deploy/
-kubectl apply -f https://raw.githubusercontent.com/mc-b/lernkube/master/addons/ingress-mandatory.yaml
-kubectl apply -f https://raw.githubusercontent.com/mc-b/lernkube/master/addons/service-nodeport.yaml
+sudo kubectl apply -f https://raw.githubusercontent.com/mc-b/lernkube/master/addons/ingress-mandatory.yaml
+sudo kubectl apply -f https://raw.githubusercontent.com/mc-b/lernkube/master/addons/service-nodeport.yaml

@@ -2,7 +2,7 @@
 #
 #	Kubernetes Basis Installation
 #
-VERSION=1.15.1-00
+VERSION=1.16.1-00
 
 set -o xtrace
 
