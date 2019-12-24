@@ -10,5 +10,5 @@ apache=nfs.sh apache.sh
 # Docker und Kubernetes Varianten
 docker=nfs.sh docker.sh
 k3s=nfs.sh k3s.sh
-k8s=nfs.sh k8sbase.sh k8smaster.sh k8saddons.sh
+k8smaster=nfs.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh
 openshift=docker.sh openshift.sh
