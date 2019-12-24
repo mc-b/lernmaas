@@ -13,7 +13,7 @@ sudo chown ubuntu:ubuntu $HOME/.kube/config
 
 # this for loop waits until kubectl can access the api server that kubeadm has created
 for i in {1..150}; do # timeout for 5 minutes
-   kubectl get po &> /dev/null
+   sudo kubectl get po &> /dev/null
    if [ $? -ne 1 ]; then
       break
   fi
