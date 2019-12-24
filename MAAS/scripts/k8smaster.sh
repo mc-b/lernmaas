@@ -11,6 +11,11 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown ubuntu:ubuntu $HOME/.kube/config
 
+# aus Kompatilitaet zur Vagrant Installation
+mkdir -p /home/vagrant/.kube
+sudo cp -i /etc/kubernetes/admin.conf /home/vagrant/.kube/config
+sudo chown -R ubuntu:ubuntu /home/vagrant
+
 # this for loop waits until kubectl can access the api server that kubeadm has created
 sleep 120
 
