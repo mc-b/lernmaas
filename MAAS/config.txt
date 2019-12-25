@@ -4,14 +4,26 @@
 #   Entscheided welche Module nach /etc/cloud/cloud.cfg.d/ kopiert werden um sie nachher von cloud-init ausfuehren zu lassen
 #
 
+#####
 # einfache Installation von Service wie z.B. apache
 apache=nfs.sh apache.sh
 
-# Docker und Kubernetes Varianten
+#####
+# Docker und Kubernetes Varianten - Master
 docker=nfs.sh docker.sh
 k3s=nfs.sh k3s.sh
 k8smaster=nfs.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh
 openshift=docker.sh openshift.sh
+# Worker
+k8sworker=nfs.sh docker.sh k8sbase.sh k8sjoin.sh
 
-# Kubernetes erweitert um github.com/mc-b Repositories
-k8sduk=nfs.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh duk.sh
+#####
+# Digicomp Kurse - siehe entsprechendes Repository https://github.com/mc-b 
+k8smasterduk=nfs.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh misegr.sh duk.sh
+k8siotein=nfs.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh misegr.sh duk.sh mlg.sh iot.kafka.sh
+k8scdi=nfs.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh misegr.sh duk.sh cdi.sh
+k8smisegr=nfs.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh duk.sh misegr.sh
+k8smlg=nfs.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh mlg.sh
+# Spezialumgebungen fuer Demos uns Referate
+k8smasterdukdemo=nfs.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh misegr.sh duk.sh mlg.sh duk-demo.sh
+
