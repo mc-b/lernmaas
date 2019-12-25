@@ -1,7 +1,7 @@
 #
 #   Konfigurationsstring pro HOSTNAME.
 #
-#   Entscheided welche Module nach /etc/cloud/cloud.cfg.d/ kopiert werden um sie nachher von cloud-init ausfuehren zu lassen
+#   Entscheidet welche Module nach /etc/cloud/cloud.cfg.d/ kopiert werden um sie nachher von cloud-init ausfuehren zu lassen
 #
 
 #####
