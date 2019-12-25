@@ -11,14 +11,20 @@ sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address
 sudo mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown -R ubuntu:ubuntu $HOME/.kube
-
+         
 # aus Kompatilitaet zur Vagrant Installation
 sudo mkdir -p /home/vagrant/.kube
 sudo cp -i /etc/kubernetes/admin.conf /home/vagrant/.kube/config
 sudo chown -R ubuntu:ubuntu /home/vagrant
 
 # this for loop waits until kubectl can access the api server that kubeadm has created
-sleep 120
+for i in {1..150}; do # timeout for 5 minutes
+   kubectl get pods &> /dev/null
+   if [ $? -ne 1 ]; then
+      break
+  fi
+  sleep 2
+done
 
 # Pods auf Master Node erlauben
 kubectl taint nodes --all node-role.kubernetes.io/master-
@@ -27,6 +33,15 @@ kubectl taint nodes --all node-role.kubernetes.io/master-
 sudo sysctl net.bridge.bridge-nf-call-iptables=1
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml
 
-# Install ingress bare metal, https://kubernetes.github.io/ingress-nginx/deploy/
-kubectl apply -f https://raw.githubusercontent.com/mc-b/lernkube/master/addons/ingress-mandatory.yaml
-kubectl apply -f https://raw.githubusercontent.com/mc-b/lernkube/master/addons/service-nodeport.yaml
+# Verzeichnis fuer Persistent Volume
+if [ -d $HOME/data ]
+then 
+    sudo ln -s $HOME/data /data
+else
+    sudo mkdir /data
+    sudo chown ubuntu:ubuntu /data
+    sudo chmod 777 /data
+fi   
+# Standard Persistent Volume und Claim
+kubectl apply -f https://raw.githubusercontent.com/mc-b/lernkube/master/data/DataVolume.yaml
+
