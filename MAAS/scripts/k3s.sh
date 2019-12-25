@@ -3,8 +3,6 @@
 #   Installiert Rancher k3s
 #
 
-set -o xtrace
-
 curl -sfL https://get.k3s.io | sh -
 
 # ubuntu User als Admin zulassen

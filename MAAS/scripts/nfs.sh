@@ -3,11 +3,8 @@
 #   Installiert nfs und mountet Server Folders
 #
 SERVER_IP=$(sudo cat /var/lib/cloud/instance/datasource | cut -d: -f3 | cut -d/ -f3)
-# SERVER_IP=192.168.2.10
 
 sudo apt install -y nfs-common
-
-set -o xtrace
 
 sudo mkdir -p /home/ubuntu/data /home/ubuntu/templates /home/ubuntu/config
 sudo chown -R ubuntu:ubuntu /home/ubuntu/data /home/ubuntu/templates /home/ubuntu/config
