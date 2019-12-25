@@ -6,4 +6,4 @@
 git clone https://github.com/mc-b/cdi
 
 cd cdi
-bash scripts/install.sh
+bash -x scripts/install.sh

@@ -6,4 +6,4 @@
 git clone https://github.com/mc-b/duk
 
 cd duk
-bash scripts/install.sh
+bash -x scripts/install.sh

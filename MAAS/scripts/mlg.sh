@@ -6,4 +6,4 @@
 git clone https://github.com/mc-b/mlg
 
 cd mlg
-bash scripts/install.sh
+bash -x scripts/install.sh

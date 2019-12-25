@@ -6,4 +6,4 @@
 git clone https://github.com/mc-b/iot.kafka.git
 
 cd iot.kafka
-bash scripts/install.sh
+bash -x scripts/install.sh
