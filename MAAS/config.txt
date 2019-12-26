@@ -33,4 +33,4 @@ k8smasterdukdemo=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons
 
 #####
 # Informatik Module
-m300=nfs.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh duk.sh ufw.sh
+m300=nfs.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh duk.sh ufw.sh tbz-deployer.sh
