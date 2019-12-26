@@ -14,10 +14,12 @@ cat <<%EOF% >/home/ubuntu/data/html/index.html
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Testseite</title>
+<title>Testseite $(hostname)</title>
 </head>
 <body>
-<h1>Testseite</h1>
+<h1>Testseite $(hostname)</h1>
 </body>
 </html>
 %EOF%
+
+sudo chmod -R g=u,o=u /home/ubuntu/data/html

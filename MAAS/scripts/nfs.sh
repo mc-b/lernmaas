@@ -8,10 +8,11 @@ sudo apt install -y nfs-common
 
 sudo mkdir -p /home/ubuntu/data /home/ubuntu/templates /home/ubuntu/config
 sudo chown -R ubuntu:ubuntu /home/ubuntu/data /home/ubuntu/templates /home/ubuntu/config
+sudo chmod 777 /home/ubuntu/data
 sudo mount -t nfs ${SERVER_IP}:/data/config /home/ubuntu/config
 sudo mount -t nfs ${SERVER_IP}:/data/templates /home/ubuntu/templates
 sudo mount -t nfs ${SERVER_IP}:/data/storage /home/ubuntu/data
-sudo mkdir -p /home/ubuntu/data/$(hostname) && chown ubuntu:ubuntu /home/ubuntu/data/$(hostname)
+sudo mkdir -p /home/ubuntu/data/$(hostname) && chown ubuntu:ubuntu /home/ubuntu/data/$(hostname) && chmod 777 /home/ubuntu/data/$(hostname)
 sudo umount /home/ubuntu/data
 sudo mount -t nfs ${SERVER_IP}:/data/storage/$(hostname) /home/ubuntu/data
 

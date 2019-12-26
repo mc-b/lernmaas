@@ -5,13 +5,13 @@
 sudo apt-get install -y samba
 
 # /home/ubuntu/data allgemein Freigeben
-cat <<%EOF% >>/etc/samba/smb.conf
+cat <<%EOF% | sudo tee -a /etc/samba/smb.conf
 [global]
 workgroup = smb
 security = user
 map to guest = Bad Password
 
-[public]
+[data]
 path = /home/ubuntu/data 
 public = yes
 writable = yes
