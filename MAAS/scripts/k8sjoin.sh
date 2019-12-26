@@ -2,8 +2,6 @@
 #
 #	Kubernetes Join Worker
 #
-sudo swapoff -a
-
 HOST=$(hostname | cut -d- -f 1 | sed -e 's/worker/master/g')
 NO=$(hostname | cut -d- -f 2)
 HOSTNAME=${HOST}-${NO}

@@ -3,7 +3,6 @@
 #   Kubernetes Master Installation
 #
 HOME=/home/ubuntu
-sudo swapoff -a
 
 sudo kubeadm config images pull
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address  $(hostname -I | cut -d ' ' -f 1) 
