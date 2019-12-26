@@ -9,7 +9,7 @@ sudo apt install -y apache2
 mkdir -p /home/ubuntu/data/html
 sudo ln -s /home/ubuntu/data/html /var/www/html/user
 
-cat <%EOF% >/home/ubuntu/data/html/index.html
+cat <<%EOF% >/home/ubuntu/data/html/index.html
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
