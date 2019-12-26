@@ -28,8 +28,8 @@ sudo mkdir -p /home/ubuntu/data/${HOSTNAME} && chown ubuntu:ubuntu /home/ubuntu/
 sudo umount /home/ubuntu/data
 sudo mount -t nfs ${SERVER_IP}:/data/storage/${HOSTNAME} /home/ubuntu/data
 
-# CleanUp alte Join Dateien von Kubernetes
-sudo rm -f /home/ubuntu/data/join-*.sh
+# CleanUp alte Join Datei von Kubernetes
+sudo rm -f /home/ubuntu/data/join-$(hostname).sh
 
 # update /etc/fstab for reboots
 cat <<%EOF% | sudo tee -a /etc/fstab
