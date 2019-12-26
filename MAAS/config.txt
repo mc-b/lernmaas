@@ -6,7 +6,7 @@
 
 #####
 # einfache Installation von Service wie z.B. apache
-apache=nfs.sh apache.sh
+apache=nfs.sh apache.sh samba.sh wireguard.sh ufw.sh
 
 #####
 # Docker und Kubernetes Varianten - Master
