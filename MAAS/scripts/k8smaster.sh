@@ -45,3 +45,7 @@ fi
 # Standard Persistent Volume und Claim
 kubectl apply -f https://raw.githubusercontent.com/mc-b/lernkube/master/data/DataVolume.yaml
 
+# Join Command fuer Worker Nodes
+sudo kubeadm token create --print-join-command >/data/join-$(hostname).sh
+
+

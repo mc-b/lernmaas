@@ -2,6 +2,8 @@
 #   
 #   Installiert den Firewall um die verschiedenen Server voneinnander abzusichern
 #
+#   ACHTUNG: bei Aenderungen Port 6443 Kubernetes offnen lassen
+#
 sudo apt install -y ufw
 
 SERVER_IP=$(sudo cat /var/lib/cloud/instance/datasource | cut -d: -f3 | cut -d/ -f3)
