@@ -5,7 +5,15 @@
 HOME=/home/ubuntu
 
 sudo kubeadm config images pull
-sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address  $(hostname -I | cut -d ' ' -f 1) 
+
+# wenn WireGuard installiert - Wireguard IP als K8s IP verwenden
+ADDR=$(ifconfig wg0 | grep inet | cut '-d ' -f 10)
+if [ $? -eq 0 ]
+then
+        sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address ${ADDR} --apiserver-cert-extra-sans $(hostname -I | cut -d ' ' -f 1)
+else
+        sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+fi
 
 sudo mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
