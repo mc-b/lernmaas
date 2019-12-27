@@ -9,7 +9,7 @@ sudo systemctl restart apache2
 
 sudo cp /opt/lernmaas/MAAS/cgi-bin/* /usr/lib/cgi-bin/
 
-CLUSTER=$(kubectl --kubeconfig /home/vagrant/.kube/config config view -o=jsonpath='{ .clusters[0].cluster.server }' | sed -e 's/https:/http:/' -e "s/6443//g")
+CLUSTER=$(kubectl --kubeconfig /home/vagrant/.kube/config config view -o=jsonpath='{ .clusters[0].cluster.server }' | sed -e 's/https:/http:/' -e "s/:6443//g")
 
 cat <<%EOF% | sudo tee /var/www/html/index.html
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -55,19 +55,19 @@ cat <<%EOF% | sudo tee /var/www/html/index.html
                     <!--  Services -->
                     <div id="Services" class="tab-pane fade in active">
                         <br/>
-                         <iframe frameborder="0" scrolling="no" width="100%" height="3200px" onload="scroll(0,0);" src="${CLUSTER}cgi-bin/services">
+                         <iframe frameborder="0" scrolling="no" width="100%" height="3200px" onload="scroll(0,0);" src="${CLUSTER}/cgi-bin/services">
                          </iframe>
                     </div>
                     <!--  Pods -->
                     <div id="Pods" class="tab-pane fade">
                         <br/>
-                         <iframe frameborder="0" scrolling="no" width="100%" height="3200px" onload="scroll(0,0);" src="${CLUSTER}cgi-bin/pods">
+                         <iframe frameborder="0" scrolling="no" width="100%" height="3200px" onload="scroll(0,0);" src="${CLUSTER}/cgi-bin/pods">
                          </iframe>
                     </div>
                     <!--  Cluster Info -->
                     <div id="Cluster" class="tab-pane fade">
                         <br/>
-                         <iframe frameborder="0" scrolling="no" width="100%" height="3200px" onload="scroll(0,0);" src="${CLUSTER}cgi-bin/cluster">
+                         <iframe frameborder="0" scrolling="no" width="100%" height="3200px" onload="scroll(0,0);" src="${CLUSTER}/cgi-bin/cluster">
                          </iframe>
                     </div>                    
                 </div>                    
