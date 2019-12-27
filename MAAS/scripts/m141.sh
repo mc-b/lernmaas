@@ -10,6 +10,6 @@ kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/mysql/mysql.y
 kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/mysql/adminer.yaml
 
 # Notebook fuer BeakerX ablegen
-mkdir -p /home/beakerx
+mkdir -p /data/beakerx
 wget https://raw.githubusercontent.com/tbz-k8s/vertiefungsarbeit/master/01_01_Einfu%CC%88hrung_LP.ipynb -O /data/beakerx/M141_Einfuehrung.jpnb
 
