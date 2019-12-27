@@ -4,7 +4,7 @@
 #
 #   Der TBZ-Deployer ermoeglicht fuer jeden Lehrenden einer Klasse mehrere Container in einem Namespace zu starten.
 #
-#   Der TBZ-Deployer basiert auf einer Vertiefungsarbeit Arbeit an der TBZ HF von Niklaus Liechti - https://github.com/nliechti/tbz_hf_va
+#   Der TBZ-Deployer basiert auf einer Vertiefungsarbeit an der TBZ HF von Niklaus Liechti - https://github.com/nliechti/tbz_hf_va
 #
 
 cat <<%EOF% | kubectl apply -f -

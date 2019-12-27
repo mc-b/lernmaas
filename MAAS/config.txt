@@ -4,21 +4,21 @@
 #   Entscheidet welche Module nach /etc/cloud/cloud.cfg.d/ kopiert werden um sie nachher von cloud-init ausfuehren zu lassen
 #
 
-#####
-# einfache Installation von Service wie z.B. apache
-apache=nfs.sh wireguard.sh apache.sh samba.sh ufw.sh
+############################
+# Informatik Module
+#
+# Datenbanksystem in Betrieb nehmen
+m141=nfs.sh docker.sh k8sbase.sh k8smaster.sh k8swebui.sh m141.sh samba.sh 
+# Internet Server in Betrieb nehmen
+m239=nfs.sh wireguard.sh apache.sh samba.sh ufw.sh
+# Plattformuebergreifende Services 
+m300=nfs.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh duk.sh k8swebui.sh
 
-#####
-# Docker und Kubernetes Varianten - Master
-docker=nfs.sh wireguard.sh docker.sh
-k3s=nfs.sh wireguard.sh k3s.sh
-openshift=nfs.sh wireguard.sh docker.sh openshift.sh
+# Allgemeine Kubernetes Umgebung - nicht Modul gebunden. Mit TBZ Deployer
+m000master=nfs.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh tbz-deployer.sh
+m000worker=nfs.sh docker.sh k8sbase.sh k8sjoin.sh
 
-# Master und Worker k8smaster-xx und k8sworker-xx-y. xx = Umgebung, y = Worker Node Count
-k8smaster=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh
-k8sworker=nfs.sh wireguard.sh docker.sh k8sbase.sh k8sjoin.sh
-
-#####
+############################
 # Digicomp Kurse - siehe entsprechendes Repository https://github.com/mc-b 
 k8smasterduk=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh misegr.sh duk.sh
 k8sworkerduk=nfs.sh wireguard.sh docker.sh k8sbase.sh k8sjoin.sh
@@ -31,10 +31,12 @@ k8smlg=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8sweb
 # Spezialumgebungen fuer Demos uns Referate
 k8smasterdukdemo=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh misegr.sh duk.sh mlg.sh duk-demo.sh
 
-#####
-# Informatik Module
-m300=nfs.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh duk.sh k8swebui.sh
+############################
+# Docker und Kubernetes Varianten - Master
+docker=nfs.sh wireguard.sh docker.sh
+k3s=nfs.sh wireguard.sh k3s.sh
+openshift=nfs.sh wireguard.sh docker.sh openshift.sh
 
-# Allgemeine Kubernetes Umgebung - nicht Modul gebunden. Mit TBZ Deployer
-m000master=nfs.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh tbz-deployer.sh
-m000worker=nfs.sh docker.sh k8sbase.sh k8sjoin.sh
+# Master und Worker k8smaster-xx und k8sworker-xx-y. xx = Umgebung, y = Worker Node Count
+k8smaster=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh
+k8sworker=nfs.sh wireguard.sh docker.sh k8sbase.sh k8sjoin.sh
