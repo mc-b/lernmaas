@@ -12,7 +12,7 @@ if [ $? -eq 0 ]
 then
         sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address ${ADDR} --apiserver-cert-extra-sans $(hostname -I | cut -d ' ' -f 1)
 else
-        sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+        sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address $(hostname -I | cut -d ' ' -f 1)
 fi
 
 sudo mkdir -p $HOME/.kube
