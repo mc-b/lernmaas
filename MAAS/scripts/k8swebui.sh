@@ -17,7 +17,7 @@ cat <<%EOF% | sudo tee /var/www/html/index.html
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>$(hostname) Simple Web UI</title>
+<title>$(hostname) Web UI</title>
 <link rel="shortcut icon" href="https://kubernetes.io/images/favicon.png">
 <meta charset="utf-8" content="">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,7 +34,7 @@ cat <<%EOF% | sudo tee /var/www/html/index.html
 
 <body>
     <div class="container">
-        <h1 class="center">$(hostname) Simple Web UI</h1>
+        <h1 class="center">$(hostname) Web UI</h1>
         <form class="navbar-form navbar-left" method="POST" action="">
             <div class="form-group">
                 <!-- Tabs -->
