@@ -21,3 +21,5 @@ then
         docker load -i ${image}
     done
 fi
+
+docker image ls
