@@ -3,5 +3,21 @@
 #   Installiert Docker-CE
 #
 
+####
+# Installation Docker 
 sudo apt install -y docker.io
 sudo usermod -aG docker ubuntu 
+
+####
+# Abhandlung Container Cache
+
+# Worker Node - Hostname vom Master verwenden
+HOST=$(hostname | cut -d- -f 1 | sed -e 's/worker/master/g')
+
+if  [ -d /data/templates/cr-cache/${HOST} ]
+then
+    for image in /data/templates/cr-cache/${HOST}/*.tar
+    do
+        docker load -i ${image}
+    done
+fi
