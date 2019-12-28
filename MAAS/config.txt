@@ -17,8 +17,8 @@ m300=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui
 m242=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh modtec.sh
 
 # Allgemeine Kubernetes Umgebung - nicht Modul gebunden. Mit TBZ Deployer
-m000master=nfs.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh tbz-deployer.sh
-m000worker=nfs.sh docker.sh k8sbase.sh k8sjoin.sh
+m000master=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh tbz-deployer.sh
+m000worker=nfs.sh wireguard.sh docker.sh k8sbase.sh k8sjoin.sh
 
 ############################
 # Digicomp Kurse - siehe entsprechendes Repository https://github.com/mc-b 
