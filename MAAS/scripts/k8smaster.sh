@@ -4,7 +4,8 @@
 #
 HOME=/home/ubuntu
 
-sudo kubeadm config images pull
+# obsolet durch Container Cache
+# sudo kubeadm config images pull
 
 # wenn WireGuard installiert - Wireguard IP als K8s IP verwenden
 ADDR=$(ifconfig wg0 | grep inet | cut '-d ' -f 10)
