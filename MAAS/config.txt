@@ -8,11 +8,13 @@
 # Informatik Module
 #
 # Datenbanksystem in Betrieb nehmen
-m141=nfs.sh docker.sh k8sbase.sh k8smaster.sh k8swebui.sh m141.sh samba.sh 
+m141=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8swebui.sh m141.sh samba.sh 
 # Internet Server in Betrieb nehmen
-m239=nfs.sh apache.sh samba.sh ufw.sh
+m239=nfs.sh wireguard.sh apache.sh samba.sh ufw.sh
 # Plattformuebergreifende Services 
-m300=nfs.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh duk.sh
+m300=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh duk.sh
+# Microprozessor programmieren
+m242=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh modtec.sh
 
 # Allgemeine Kubernetes Umgebung - nicht Modul gebunden. Mit TBZ Deployer
 m000master=nfs.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh tbz-deployer.sh
