@@ -7,8 +7,8 @@ sudo apt install -y apache2 jq
 sudo a2enmod cgi
 sudo systemctl restart apache2
 
-sudo chmod +x /opt/lernmaas/MAAS/cgi-bin/*
-sudo cp /opt/lernmaas/MAAS/cgi-bin/* /usr/lib/cgi-bin/
+sudo chmod +x /opt/lernmaas/cgi-bin/*
+sudo cp /opt/lernmaas/cgi-bin/* /usr/lib/cgi-bin/
 
 CLUSTER=$(kubectl --kubeconfig /home/vagrant/.kube/config config view -o=jsonpath='{ .clusters[0].cluster.server }' | sed -e 's/https:/http:/' -e "s/:6443//g")
 
