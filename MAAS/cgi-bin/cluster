@@ -46,6 +46,10 @@ awk '{ printf("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>\
     <pre>
 $(kubectl --kubeconfig /home/vagrant/.kube/config config view)
     </pre>
+    <h3>System-Info (Uptime, Disk, Memory)</h3>
+    <pre>$(uptime)</pre>
+    <pre>$(df -h /)</pre>
+    <pre>$(free -m)</pre>    
     
 </body>
 </html>
