@@ -21,14 +21,21 @@ m000master=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh tb
 m000worker=nfs.sh wireguard.sh docker.sh k8sbase.sh k8sjoin.sh
 
 ############################
-# Digicomp Kurse - siehe entsprechendes Repository https://github.com/mc-b 
-k8smasterduk=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh misegr.sh duk.sh
-k8sworkerduk=nfs.sh wireguard.sh docker.sh k8sbase.sh k8sjoin.sh
-
-k8siotein=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh misegr.sh duk.sh mlg.sh iot.kafka.sh
-k8scdi=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh misegr.sh duk.sh cdi.sh
-k8smisegr=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh duk.sh misegr.sh
-k8smlg=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh mlg.sh
+# Digicomp Kurse  
+#
+# Docker und Kubernetes – Uebersicht und Einsatz - https://github.com/mc-b/duk  
+dukmaster=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh misegr.sh duk.sh
+dukworker=nfs.sh wireguard.sh docker.sh k8sbase.sh k8sjoin.sh
+# Internet der Dinge im Einsatz - https://github.com/mc-b/iotkitv3
+iotein=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh misegr.sh duk.sh mlg.sh iot.kafka.sh
+# DevOps Engineering Practices & Tools (CDI) - https://github.com/mc-b/cdi
+cdi=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh misegr.sh duk.sh cdi.sh
+# Microservices-Grundlagen - https://github.com/mc-b/misegr 
+misegr=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh duk.sh misegr.sh
+# Machine Learning Grundlagen - https://github.com/mc-b/mlg
+mlg=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh mlg.sh
+# IoT, Microservices, Machine Learning und DevOps – Moderne architektur-relevante Methoden und Technologien - https://github.com/mc-b/modtec
+modtec=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh duk.sh mlg.sh modtec.sh
 
 # Spezialumgebungen fuer Demos uns Referate
 k8smasterdukdemo=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh misegr.sh duk.sh mlg.sh duk-demo.sh
