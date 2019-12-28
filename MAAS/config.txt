@@ -14,7 +14,7 @@ m239=nfs.sh wireguard.sh apache.sh samba.sh ufw.sh
 # Plattformuebergreifende Services 
 m300=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh duk.sh
 # Microprozessor programmieren
-m242=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh modtec.sh
+m242=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh duk.sh mlg.sh modtec.sh
 
 # Allgemeine Kubernetes Umgebung - nicht Modul gebunden. Mit TBZ Deployer
 m000master=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh tbz-deployer.sh
