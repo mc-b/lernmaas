@@ -24,8 +24,9 @@ kubectl apply -f https://raw.githubusercontent.com/mc-b/misegr/master/bpmn/camun
 
 wget https://raw.githubusercontent.com/mc-b/misegr/master/bpmn/RechnungStep3.bpmn -O data/RechnungStep3.bpmn
 
+sleep 10
 for i in {1..150}; do # timeout for 5 minutes
-   curl -k https://localhost:30443/camunda &> /dev/null
+   curl -k https://localhost:30443/engine-rest/deployment &> /dev/null
    if [ $? -eq 0 ]; then
       break
   fi
