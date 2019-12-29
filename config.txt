@@ -38,7 +38,7 @@ mlg=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.
 modtec=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh duk.sh mlg.sh modtec.sh
 
 # Spezialumgebungen fuer Demos uns Referate
-dukdemo=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh misegr.sh duk.sh mlg.sh duk-demo.sh
+dukdemo=nfs.sh wireguard.sh docker.sh k8sbase.sh k8smaster.sh k8saddons.sh k8swebui.sh misegr.sh duk.sh mlg.sh duk-demo.sh cdi.sh modtec.sh
 
 ############################
 # Docker und Kubernetes Varianten - zu Test und Demozwecken
