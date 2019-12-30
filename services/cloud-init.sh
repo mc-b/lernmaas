@@ -41,10 +41,10 @@ done
 [ "${config_services_nfs}" == "true" ] && { bash -x services/nfs.sh; }
 
 # Wireguard
-[ "${config_services_wireguard}" != "" ] && { bash -x services/wireguard.sh ${HOST} ${config_services_wireguard}; }
+[ "${config_services_wireguard}" != "" ] && { bash -x services/wireguard.sh ${config_services_wireguard} ${HOST}; }
 
 # Zusaetzliche SSH Keys
-[ "${config_services_ssh}" != "" ] && { bash -x services/sshkeys.sh ${HOST} ${config_services_ssh}; }
+[ "${config_services_ssh}" != "" ] && { bash -x services/sshkeys.sh ${config_services_ssh} ${HOST}; }
 
 # Docker
 [ "${config_services_docker}" == "true" ] && { bash -x services/docker.sh; }
