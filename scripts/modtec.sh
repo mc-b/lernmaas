@@ -3,6 +3,7 @@
 #   Repository https://github.com/mc-b/modtec - Moderne und Architekturrelevante Architekturen
 #
 
+
 # IoT Umgebung
 kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/iot/mosquitto.yaml
 kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/iot/nodered.yaml
@@ -22,6 +23,7 @@ kubectl apply -f https://raw.githubusercontent.com/mc-b/iot.kafka/master/iot-kaf
 sudo docker pull camunda/camunda-bpm-platform
 kubectl apply -f https://raw.githubusercontent.com/mc-b/misegr/master/bpmn/camunda.yaml
 
+cd $HOME
 wget https://raw.githubusercontent.com/mc-b/misegr/master/bpmn/RechnungStep3.bpmn -O data/RechnungStep3.bpmn
 
 sleep 10
