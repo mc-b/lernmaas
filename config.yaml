@@ -72,8 +72,8 @@ m239:
     samba: true
     firewall: true
   scripts: apache.sh
-  repositories:  
-  
+  repositories: 
+   
 # Modul 242: Mikroprozessoranwendung realisieren
 m242:
   vm:  
@@ -89,8 +89,8 @@ m242:
     samba: false
     firewall: false
   scripts: modtec.sh
-  repositories: https://github.com/mc-b/duk,https://github.com/mc-b/mlg
- 
+  repositories: https://github.com/mc-b/duk,https://github.com/mc-b/mlg 
+  
 # Modul 300: Plattformuebergreifende Dienste in ein Netzwerk integrieren
 m300:
   vm:  
@@ -110,4 +110,172 @@ m300:
   
 ######### Digicomp Kurse siehe https://github.com/mc-b ######### 
 
+# Docker und Kubernetes – Uebersicht und Einsatz - https://github.com/mc-b/duk
+dukmaster:
+  vm:  
+    storage: 32
+    memory:  7680
+    cores: 2
+  services:
+    nfs: true
+    docker: true
+    k8s: master
+    wireguard: use
+    ssh: use
+    samba: false
+    firewall: false
+  scripts: 
+  repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk  
+dukworker:  
+  vm:  
+    storage: 32
+    memory:  7680
+    cores: 2
+  services:
+    nfs: true
+    docker: true
+    k8s: worker
+    wireguard: use
+    ssh: use
+    samba: false
+    firewall: false
+  scripts: 
+  repositories:  
   
+# Internet der Dinge im Einsatz - https://github.com/mc-b/iotkitv3
+iotein:
+  vm:  
+    storage: 32
+    memory:  7680
+    cores: 2
+  services:
+    nfs: true
+    docker: true
+    k8s: master
+    wireguard: use
+    ssh: use
+    samba: false
+    firewall: false
+  scripts: 
+  repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk,https://github.com/mc-b/mlg,https://github.com/mc-b/iot.kafka
+
+# DevOps Engineering Practices & Tools (CDI) - https://github.com/mc-b/cdi
+cdi:
+  vm:  
+    storage: 32
+    memory:  7680
+    cores: 2
+  services:
+    nfs: true
+    docker: true
+    k8s: master
+    wireguard: use
+    ssh: use
+    samba: false
+    firewall: false
+  scripts: 
+  repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk,https://github.com/mc-b/cdi 
+  
+# Microservices-Grundlagen - https://github.com/mc-b/misegr 
+misegr:
+  vm:  
+    storage: 32
+    memory:  7680
+    cores: 2
+  services:
+    nfs: true
+    docker: true
+    k8s: master
+    wireguard: use
+    ssh: use
+    samba: false
+    firewall: false
+  scripts: 
+  repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk   
+   
+# Machine Learning Grundlagen - https://github.com/mc-b/mlg
+mlg:
+  vm:  
+    storage: 32
+    memory:  7680
+    cores: 2
+  services:
+    nfs: true
+    docker: true
+    k8s: master
+    wireguard: use
+    ssh: use
+    samba: false
+    firewall: false
+  scripts: 
+  repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk,https://github.com/mc-b/mlg 
+    
+# IoT, Microservices, Machine Learning und DevOps – Moderne architektur-relevante Methoden und Technologien - https://github.com/mc-b/modtec
+modtec:
+  vm:  
+    storage: 32
+    memory:  7680
+    cores: 4
+  services:
+    nfs: true
+    docker: true
+    k8s: master
+    wireguard: use
+    ssh: use
+    samba: false
+    firewall: false
+  scripts: modtec.sh
+  repositories: https://github.com/mc-b/duk,https://github.com/mc-b/mlg  
+  
+# Spezialumgebungen fuer Demos uns Referate
+dukdemo:
+  vm:  
+    storage: 32
+    memory:  16384
+    cores: 4
+  services:
+    nfs: true
+    docker: true
+    k8s: master
+    wireguard: use
+    ssh: use
+    samba: false
+    firewall: false
+  scripts: modtec.sh
+  repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk,https://github.com/mc-b/mlg,https://github.com/mc-b/cdi,https://github.com/mc-b/duk-demo  
+
+######### Docker und Kubernetes Varianten - zu Test und Demozwecken #########
+
+# einfache Docker Umgebung
+docker:
+  vm:  
+    storage: 8
+    memory:  3584
+    cores: 2
+  services:
+    nfs: true
+    docker: true
+    k8s: 
+    wireguard: use
+    ssh: use
+    samba: false
+    firewall: false
+  scripts: 
+  repositories: 
+
+# Lightweight Kubernetes - https://k3s.io/
+docker:
+  vm:  
+    storage: 8
+    memory:  2048
+    cores: 2
+  services:
+    nfs: true
+    docker: false
+    k8s: 
+    wireguard: use
+    ssh: use
+    samba: false
+    firewall: false
+  scripts: k3s.sh
+  repositories:  
