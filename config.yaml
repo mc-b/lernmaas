@@ -1,0 +1,76 @@
+#
+# Zentrale Konfigurationsdatei wird von cloud-init und allen Helper-Scripts verwendet 
+#
+# Definiert u.a. welche Scripts und wie die einzelnen VMs aufgebaut sind (Memory, Storage, CPU Cores)
+# 
+
+######### Informatik Module siehe https://cf.ict-berufsbildung.ch/modules.php?name=Mbk&a=20100&noheader=1&clang=de #########
+
+# Modul 141: Datenbanksystem in Betrieb nehmen
+m141:
+  vm:  
+    storage: 32
+    memory:  3584
+    cores: 2
+  services:
+    nfs: true
+    docker: true
+    k8s: master
+    wireguard: use
+    ssh: use
+    samba: true
+    firewall: false
+  scripts: "m141.sh"
+  repositories: 
+  
+# Modul 239: Internet Server in Betrieb nehmen  
+m239:
+  vm:  
+    storage: 8
+    memory:  2048
+    cores: 2
+  services:
+    nfs: true
+    docker: false
+    k8s: 
+    wireguard: use
+    ssh: use
+    samba: true
+    firewall: true
+  scripts: "apache.sh"
+  repositories:  
+  
+# Modul 242: Mikroprozessoranwendung realisieren
+m242:
+  vm:  
+    storage: 32
+    memory:  7680
+    cores: 4
+  services:
+    nfs: true
+    docker: true
+    k8s: master
+    wireguard: use
+    ssh: use
+    samba: false
+    firewall: false
+  scripts: "modtec.sh"
+  repositories:  
+ 
+# Modul 300: Plattformuebergreifende Dienste in ein Netzwerk integrieren
+m300:
+  vm:  
+    storage: 32
+    memory:  6144
+    cores: 2
+  services:
+    nfs: true
+    docker: true
+    k8s: master
+    wireguard: use
+    ssh: use
+    samba: false
+    firewall: false
+  scripts: 
+  repositories: "https://github.com/mc-b/misegr.git, https://github.com/mc-b/duk.git"
+  
