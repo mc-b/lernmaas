@@ -85,3 +85,4 @@ done
 
 [ "${config_services_firewall}" == "true" ] && { bash -x services/ufw.sh; }
 
+exit 0

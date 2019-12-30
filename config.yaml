@@ -89,7 +89,7 @@ m242:
     samba: false
     firewall: false
   scripts: modtec.sh
-  repositories: https://github.com/mc-b/duk.git,https://github.com/mc-b/mlg.git 
+  repositories: https://github.com/mc-b/duk,https://github.com/mc-b/mlg
  
 # Modul 300: Plattformuebergreifende Dienste in ein Netzwerk integrieren
 m300:
@@ -106,5 +106,8 @@ m300:
     samba: false
     firewall: false
   scripts: 
-  repositories: https://github.com/mc-b/misegr.git,https://github.com/mc-b/duk.git
+  repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk
+  
+######### Digicomp Kurse siehe https://github.com/mc-b ######### 
+
   
