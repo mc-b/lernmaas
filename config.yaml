@@ -37,7 +37,7 @@ m239:
     ssh: use
     samba: true
     firewall: true
-  scripts: "apache.sh"
+  scripts: "apache.sh samba.sh"
   repositories:  
   
 # Modul 242: Mikroprozessoranwendung realisieren

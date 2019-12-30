@@ -2,7 +2,7 @@
 #
 #   Zentraler Script wird von cloud-init aufgerufen.
 #   
-#   Installiert anhand lernmaas/config.yaml die VMs.
+#   Installiert anhand lernmaas/config.yaml Software in die VMs.
 #
 #   Zuerst werden die Services durchlaufen und dann die zusaetzlichen Scripts
 #
@@ -21,7 +21,7 @@ function parse_yaml
       for (i in vname) {if (i > indent) {delete vname[i]}}
       if (length($3) > 0) {
          vn=""; for (i=0; i<indent; i++) {vn=(vn)(vname[i])("_")}
-         printf("%s%s%s=\"%s\"\n", "'$prefix'",vn, $2, $3);
+         printf("%s%s%s=%s\n", "'$prefix'",vn, $2, $3);
       }
    }'
 }
@@ -38,16 +38,16 @@ done
 ################### Services ###################
 
 # NFS Abhandlung
-[ "${config_services_nfs}" -eq "true" ] && { bash -x services/nfs.sh; }
+[ "${config_services_nfs}" == "true" ] && { bash -x services/nfs.sh; }
 
 # Wireguard
-[ "${config_services_wireguard}" -eq "true" ] && { bash -x services/wireguard.sh ${HOST} ${config_wireguard}; }
+[ "${config_services_wireguard}" == "true" ] && { bash -x services/wireguard.sh ${HOST} ${config_wireguard}; }
 
 # Docker
-[ "${config_services_docker}" -eq "true" ] && { bash -x services/docker.sh; }
+[ "${config_services_docker}" == "true" ] && { bash -x services/docker.sh; }
 
 # Kubernetes
-if [ "${config_services_k8s" -eq "master" ] 
+if [ "${config_services_k8s}" == "master" ] 
 then
     bash -x services/k8sbase.sh
     bash -x services/k8smaster.sh
@@ -55,14 +55,14 @@ then
     bash -x services/k8swebui.sh
 fi
 
-if [ "${config_services_k8s" -eq "worker" ] 
+if [ "${config_services_k8s}" = "worker" ] 
 then
     bash -x services/k8sbase.sh
     bash -x services/k8sjoin.sh
 fi
 
 # Samba
-[ "${config_services_samba}" -eq "true" ] && { bash -x services/samba.sh; }
+[ "${config_services_samba}" == "true" ] && { bash -x services/samba.sh; }
 
 ################### Repositories ###################
 
@@ -77,5 +77,5 @@ done
 
 ################### Firewall ###################
 
-[ "${config_services_firewall}" -eq "true" ] && { bash -x services/ufw.sh; }
+[ "${config_services_firewall}" == "true" ] && { bash -x services/ufw.sh; }
 
