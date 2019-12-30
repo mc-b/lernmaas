@@ -58,7 +58,7 @@ then
     bash -x services/k8swebui.sh
 fi
 
-if [ "${config_services_k8s}" = "worker" ] 
+if [ "${config_services_k8s}" == "worker" ] 
 then
     bash -x services/k8sbase.sh
     bash -x services/k8sjoin.sh
