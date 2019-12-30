@@ -69,11 +69,14 @@ fi
 
 ################### Repositories ###################
 
-[ "${config_repositories}" != "" ] && { bash -x services/repositories.sh ${config_repositories}; }
+for repo in $(echo ${config_repositories} | tr ',' ' ')
+do
+    bash -x services/repository.sh ${repo}
+done
 
 ################### Scripts ###################
 
-for script in ${config_scripts}
+for script in $(echo ${config_scripts} | tr ',' ' ')
 do
     bash -x scripts/${script}
 done

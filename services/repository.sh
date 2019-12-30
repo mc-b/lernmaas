@@ -9,6 +9,6 @@ repo=$(basename $1)
 
 if  [ -d ${repo} ]
 then
-cd ${repo}
+    cd ${repo}
     bash -x scripts/install.sh
 fi
