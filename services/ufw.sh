@@ -24,8 +24,8 @@ done
 # WireGuard von SSH bis Kubernetes und WireGuard selber, ohne SSH!
 if [ -f "/home/ubuntu/config/wireguard/$(hostname).conf" ]
 then
-    IP=$(dig +short $(cat config/wireguard/$(hostname).conf | grep Endpoint | cut -d= -f2 | cut -d: -f1 ))
-    RANGE=$(cat config/wireguard/$(hostname).conf | grep AllowedIPs | cut -d= -f2)
+    IP=$(dig +short $(cat /home/ubuntu/config/wireguard/$(hostname).conf | grep Endpoint | cut -d= -f2 | cut -d: -f1 ))
+    RANGE=$(cat /home/ubuntu/config/wireguard/$(hostname).conf | grep AllowedIPs | cut -d= -f2)
     sudo ufw allow from ${IP}    to any port 51820:51899 proto udp
     sudo ufw allow from ${RANGE} to any port 22:32767 proto tcp
     sudo ufw allow from ${RANGE} to any port 22:32767 proto udp
