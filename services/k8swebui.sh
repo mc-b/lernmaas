@@ -3,7 +3,7 @@
 #   Stellt ein einfaches Web UI zu Kubernetes zur Verfuegung
 #
 
-sudo apt install -y apache2 jq
+sudo apt install -y apache2 jq markdown
 sudo a2enmod cgi
 sudo systemctl restart apache2
 
@@ -39,7 +39,8 @@ cat <<%EOF% | sudo tee /var/www/html/index.html
             <div class="form-group">
                 <!-- Tabs -->
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#Services">Services</a></li>
+                    <li class="active"><a data-toggle="tab" href="#Intro">Intro</a></li>
+                    <li><a data-toggle="tab" href="#Services">Services</a></li>
                     <li><a data-toggle="tab" href="#Pods">Pods</a></li>
                     <li><a data-toggle="tab" href="#Cluster">Cluster-Info</a></li>
                     <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
@@ -53,8 +54,12 @@ cat <<%EOF% | sudo tee /var/www/html/index.html
                 </ul>
 
                 <div class="tab-content">
+                    <!--  Intro -->
+                    <div id="Intro" class="tab-pane fade in active">
+                        $(markdown $1)
+                    </div>                
                     <!--  Services -->
-                    <div id="Services" class="tab-pane fade in active">
+                    <div id="Services" class="tab-pane fade">
                         <br/>
                          <iframe frameborder="0" scrolling="no" width="100%" height="3200px" onload="scroll(0,0);" src="${CLUSTER}/cgi-bin/services">
                          </iframe>

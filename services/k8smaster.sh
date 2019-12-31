@@ -42,16 +42,7 @@ kubectl taint nodes --all node-role.kubernetes.io/master-
 # Internes Pods Netzwerk (mit: --iface enp0s8, weil vagrant bei Hostonly Adapters gleiche IP vergibt)
 sudo sysctl net.bridge.bridge-nf-call-iptables=1
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml
-
-# Verzeichnis fuer Persistent Volume
-if [ -d $HOME/data ]
-then 
-    sudo ln -s $HOME/data /data
-else
-    sudo mkdir /data
-    sudo chown ubuntu:ubuntu /data
-    sudo chmod 777 /data
-fi   
+  
 # Standard Persistent Volume und Claim
 kubectl apply -f https://raw.githubusercontent.com/mc-b/lernkube/master/data/DataVolume.yaml
 

@@ -37,8 +37,16 @@ done
 
 ################### Services ###################
 
-# NFS Abhandlung
-[ "${config_services_nfs}" == "true" ] && { bash -x services/nfs.sh; }
+# NFS Abhandlung - wenn ohne NFS gearbeitet wird data etc. Verzeichnis anlegen
+if [ "${config_services_nfs}" == "true" ] 
+then
+    bash -x services/nfs.sh
+else
+    mkdir -p config templates data
+fi
+
+# Sicherstellen, dass /data fuer Kubernetes existiert      
+sudo ln -s $HOME/data /data 
 
 # Wireguard
 [ "${config_services_wireguard}" != "" ] && { bash -x services/wireguard.sh ${config_services_wireguard} ${HOST}; }
@@ -55,7 +63,7 @@ then
     bash -x services/k8sbase.sh
     bash -x services/k8smaster.sh
     bash -x services/k8saddons.sh
-    bash -x services/k8swebui.sh
+    [ -f doc/${HOST}.md ] && { bash -x services/k8swebui.sh doc/${HOST}.md; } || { bash -x services/k8swebui.sh doc/intro.md; } 
 fi
 
 if [ "${config_services_k8s}" == "worker" ] 
