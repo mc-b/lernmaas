@@ -84,7 +84,21 @@ cat <<%EOF% | sudo tee /var/www/html/index.html
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
                     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"
                     type="text/javascript"></script>
-
+                 <script>
+                // strip / bei Wechsel Port
+                document.addEventListener('click', function(event) {
+                  var target = event.target;
+                  if (target.tagName.toLowerCase() == 'a')
+                  {
+                      var port = target.getAttribute('href').match(/^:(\d+)(.*)/);
+                      if (port)
+                      {
+                         target.href = port[2];
+                         target.port = port[1];
+                      }
+                  }
+                }, false);
+                </script>
             </div>
         </form>
     </div>
