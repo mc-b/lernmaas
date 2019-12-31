@@ -25,3 +25,9 @@ Inhalt und Beispiele
     * Prüfen der Codequalität
 * [Continuous Delivery Pipeline mit Docker und Kubernetes](https://github.com/mc-b/cdi/tree/master/07-CD/)
     * Deployment der Artefakte aus der Pipeline als Container
+    
+## GitHub Repositories
+
+* [Zur VM](https://github.com/mc-b/cdi)
+* [Docker und Kubernetes](https://github.com/mc-b/duk)
+    
