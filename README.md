@@ -114,6 +114,8 @@ Definiert welche Scripts, getrennt durch `,` nach den Services ausgeführt werde
 
 Ein Beispiel ist z.B. die Installation des Apache Web Servers [apache.sh](scripts/apache.sh).
 
+Die Scripts werden als User `ubuntu` in dessen HOME Verzeichnis ausgeführt. 
+
 #### Repositories
 
 Wie beim Projekt [lernkube](https://github.com/mc-b/lernkube) können weitere Repositories angegeben werden.
@@ -121,4 +123,6 @@ Wie beim Projekt [lernkube](https://github.com/mc-b/lernkube) können weitere Re
 Diese werden in das Verzeichnis $HOME geklont und anschliessend, falls vorhanden, deren Script `scripts/install.sh` ausgeführt.
 
 Ein Beispiel ist z.B. das [Modul 122](https://github.com/tbz-it/M122/blob/master/scripts/install.sh) welche zusätzliche Software in die VM installiert.
+
+Das install.sh Script wird im geklonten Verzeichnis als User `ubuntu` ausgeführt.
  
