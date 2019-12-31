@@ -1,7 +1,7 @@
 LernMAAS
 ========
 
-![](images/howitworks.png)
+![](doc/images/howitworks.png)
 
 Quelle: [MAAS How its works](https://maas.io/how-it-works)
 
@@ -11,88 +11,25 @@ MAAS / IAAS Umgebung um Cluster von VMs oder Kubernetes auszusetzen
 
 [MAAS](https://maas.io/how-it-works) steht für Self-Service-Remote-Installation von Windows, CentOS, ESXi und Ubuntu auf realen Servern. Es verwandelt das Rechenzentrum in eine Bare-Metal-Cloud.
 
-In Zukunft soll das Shellscript [clusteradm](https://github.com/mc-b/lernkube/blob/master/clusteradm.md) durch die [MAAS](https://maas.io/) Lösung ersetzt bzw. ergänzt werden. Damit soll eine Umgebung mit mehreren [lernkube](https://github.com/mc-b/lernkube)-Clustern einfach erstellt, gewartet und überwacht werden.
-
-Das ist u.a. wichtig wenn pro Modul oder Unterrichtsraum ein eigener Cluster zur Verfügung steht. 
-
-Lehrbeauftragte und Dozenten sollen via Web Oberfläche, einfach [lernkube](https://github.com/mc-b/lernkube)-Cluster erstellen, warten und überwachen können.
-
 Voraussetzungen
 ---------------
 
 * Ein Netzwerk mit direkter Verbindung ins Internet aber ohne DHCP Server. Informationen zu Gateway und DNS Server.
 * Ein handelsüblicher PC laut Anforderungen des [MAAS](https://maas.io/docs/maas-requirements) Projektes, als Master.
-* Eine oder mehrere PCs mit 32 GB RAM, 256 GB HD und wenn möglich mit [BMC](https://de.wikipedia.org/wiki/Baseboard_Management_Controller) Unterstützung. Diese dienen als Virtualisierungs-Server.
+* Eine oder mehrere PCs mit mindestens 32 GB RAM, 512 GB HD und wenn möglich mit [BMC](https://de.wikipedia.org/wiki/Baseboard_Management_Controller) Unterstützung. Diese dienen als Virtualisierungs-Server.
+* Alle Nodes sollten mit mindestens einem 1 GB LAN verbunden sein.
+* Optional: ein Gateway Server im Internet um via VPN ([WireGuard](https://www.wireguard.com/)) auf die VMs von aussen zuzugreifen. 
 
 Installation
 ------------
 
-Für eine detailierte Installation, siehe [MAAS](MAAS/) oder [Bare Metal to Kubernetes-as-a-Service - Part 1](https://www.2stacks.net/blog/bare-metal-to-kubernetes-part-1/).
-
-### Master
- 
-Mittels Download von [Ubuntu](https://ubuntu.com/download/desktop) als Desktop aufsetzen. Dabei genügt die minimale Version. 
-
-Fixe IP-Adresse vergeben, z.B. über Einstellungen, Software Update durchführen und MAAS Installieren
-
-    sudo add-apt-repository ppa:maas/stable -y  
-    sudo apt update
-    sudo apt upgrade -y
-    sudo apt install -y maas jq 
-
-MAAS Admin User erstellen 
-
-    sudo maas init --admin-username ubuntu --admin-password password --admin-email xx.yy@zz.ch
-    
-SSH-Key erstellen, den brauchen wir nachher
-
-    ssh-keygen    
-
-Browser starten und UI von MAAS aufrufen [http://localhost:5240](http://localhost:5240)
-
-* SSH-Key, von vorher `cat ~/.ssh/id_rsa.pub`  eintragen
-* DNS Server eintragen. 
-* Bei Subnets DHCP Server aktivieren auf z.B. 172.16.17.x, Gateway IP: 172.16.17.1 und DNS Server eintragen
-
-**Server frisch starten, ansonsten werden die Änderungen nicht übernommen.**
-
-* Images syncen  
-
-**Tip**: vino auf dem Master installieren, damit ist der GUI via VNC erreichbar.
-
-### Worker Nodes   
-
-Die Worker Nodes sind so zu Konfigurieren, dass sie via Netzwerk (PXE Boot) booten.
-
-Anschliessend sind die zwei Installationsroutingen durchzuführen. 
-
-- - -
-
-[![](https://img.youtube.com/vi/jj1M-YyCgD4/0.jpg)](https://www.youtube.com/watch?v=jj1M-YyCgD4)
-
-MAAS Enlistment 
-
----
-
-[![](https://img.youtube.com/vi/k-9VHZg_qoo/0.jpg)](https://www.youtube.com/watch?v=k-9VHZg_qoo)
-
-MAAS Commission 
-
-- - -
-
-Die neue Maschine anklicken und rechts oben mittels `Take action` -> Deploy die Software deployen (Ubuntu 18.04). Um auf der Maschine nachher virtuelle Maschinen erstellen zu können ist die Checkbox `Register as MAAS KVM host` zu aktivieren.
-
-Nach der Installation steht die Maschine unter Pods zur Verfügung und es lassen sich neue virtuelle Maschinen darauf erstellen (Compose).
-
-**Tips** 
-* Normale PCs haben keine Unterstützung für [BMC](https://de.wikipedia.org/wiki/Baseboard_Management_Controller) deshalb muss der `Power type` auf `Manuel` eingestellt werden. Sollte das nicht funktionieren, zuerst bei `Configuration` unter `Power type`  IPMI und eine Pseudo IP und MAC Adresse eingeben und nachher auf `Manuel` wechseln.
-* PCs mittels `Lock` vor unbeabsichtigtem Ändern schützen.
-
+* [MAAS Master und Worker Nodes](doc/MAAS/Install.md)
+* Gateway - siehe [WireGuard](https://www.wireguard.com/)
 
 Maschinen Life Cycle
 --------------------
 
-![](images/lifecycle.png)
+![](doc/images/lifecycle.png)
 
 Quelle: [MAAS How its works](https://maas.io/how-it-works)
 
@@ -100,17 +37,88 @@ Quelle: [MAAS How its works](https://maas.io/how-it-works)
 
 Jede von MAAS verwaltete Maschine durchläuft einen Lebenszyklus - von der Registrierung (New), der Inventarisierung und Einrichtung von Firmware (Ready) oder anderen hardwarespezifischen Elementen (Commissioning). Anschließend erfolgt die Bereitstellung (Deploy) um sie schliesslich zurück in den Ruhestand (Ready) zu entlassen.
 
-Neue VMs lassen sich über die [MAAS Weboberfläche](http://localhost:5240) oder via [MAAS CLI](MAAS/CLI.md) erstellen.
+Neue VMs lassen sich über die [MAAS Weboberfläche](http://localhost:5240) oder via [MAAS CLI](doc/MAAS/CLI.md) erstellen.
 
 Über die Weboberfläche ist `Pods` (Bare Metal Maschinen mit KVM) und anschliessend `Compose` aufzurufen.
 
 Nach der Initialisierung der VM erscheinen diese als `Ready` und es kann mittels `Deploy` Ubuntu installiert werden.
 
-Eine Installation weiterer Software ist in MAAS nicht vorgesehen, bzw. lässt sich nur durch [Anpassen](MAAS/Customising.md) von MAAS erreichen.
+Welche Software auf die VM installiert wird, bestimmt die Datei [config.yaml](https://github.com/mc-b/lernmaas/blob/master/config.yaml) anhand des Hostnamens.
 
-Als Alternative kann [Juju](Juju/) verwendet werden. Damit lassen sich Kubernetes Cluster oder mehrere VMs mit Software, z.B. 24 VMs mit Apache, installieren.
-    
-## Links
+Der Hostname ist wie folgt aufgebaut XXX-YY-Z
+* XXX = Modul oder Kursname laut Eintrag in [config.yaml](https://github.com/mc-b/lernmaas/blob/master/config.yaml)
+* YY  = fortlaufende Nummer um mehrere VMs pro Modul zur Verfügung zu stellen
+* Z   = optionaler Suffix wird nicht ausgewertet. Kann z.B. die Klasse sein
 
-* [Bare Metal to Kubernetes-as-a-Service - Part 1](https://www.2stacks.net/blog/bare-metal-to-kubernetes-part-1/)
-* [MAAS Blog Übersicht](https://ubuntu.com/blog/tag/maas)
+Beispiele
+* m122-01-st17d - Modul 122, Maschine 01, Klasse st17d
+* m122-01 - Modul 122, Maschine 01 nicht Klassengebunden
+* dukmaster-01, dukworker-01-1, dukworker-01-2 - Kubernetes Master und zwei Worker Nodes 
+* m000master-01, m000worker-01-1, ..., m000worker-01-5 - Kubernetes Master und fünf Worker Nodes
+
+Konfigurationsdatei [config.yaml](https://github.com/mc-b/lernmaas/blob/master/config.yaml)
+-------------------
+
+    m242:
+      vm:  
+        storage: 32
+        memory:  7680
+        cores: 4
+      services:
+        nfs: true
+        docker: true
+        k8s: master
+        wireguard: use
+        ssh: use
+        samba: false
+        firewall: false
+      scripts: modtec.sh
+      repositories: https://github.com/mc-b/duk,https://github.com/mc-b/mlg 
+
+Beispieleintrag aus [config.yaml](https://github.com/mc-b/lernmaas/blob/master/config.yaml)
+- - -
+
+[config.yaml](https://github.com/mc-b/lernmaas/blob/master/config.yaml) ist die zentrale Konfigurationsdatei für lernmaas.
+
+In ihr stehen Defaulteinträge für VMs und welche Services und Software in die VMs installiert werden sollen.
+
+#### VM
+
+Definiert Standardgrössen für die VM. Wird durch [helper Scripts](helper/) ausgewertet.
+
+* **storage** - Disk in GB
+* **memory** - RAM in MB
+* **cores** - Anzahl der CPU Cores
+
+
+#### Services
+
+Neben der Möglichkeit eigene Scripts oder Repositories, analog [lernkube](https://github.com/mc-b/lernkube) einzubinden, stehen eine Anzahl von Services zur Verfügung.
+
+Die Services können pro VM in der Datei [config.yaml](https://github.com/mc-b/lernmaas/blob/master/config.yaml) aktiviert werden.
+
+Es stehen folgende Services zur Verfügung:
+* **nfs** - `true` = es werden $HOME/data, $HOME/template $HOME/config auf den MAAS Server weitergeleitet, bzw. gemountet.
+* **wireguard** - `use` = ist einen Datei $HOME/config/wireguard/$HOSTNAME vorhanden wird diese als Konfigurationsdatei für WireGuard verwendet. Bei Kubernetes wird zusätzlich als 1. IP nicht die interne IP sondern die von WireGuard verwendet.
+* **ssh** - `generate` = erstellt eine SSH-Key pro VM, fügt den Public Key `.ssh/authorized_keys` an und kopiert den Private Key nach data/.ssh/. für den Zugriff von aussen.
+* **samba** - `true` = installiert die CIFS Freigabe Samba und gibt $HOME/data allgemein frei.
+* **firewall** - `true` = installiert `ufw` als Firewall mit Standardeinstellungen
+* **docker** - `true` = installiert Docker in der VM
+* **k8s** - `master` = installiert einen Kubernetes Master, `worker` = installiert einen Kubernetes Worker und joint diesen mit dem Kubernetes Master.
+
+Details und die Services selber findet man im Verzeichnis [services](services/).
+
+#### Scripts
+
+Definiert welche Scripts, getrennt durch `,` nach den Services ausgeführt werden sollen.
+
+Ein Beispiel ist z.B. die Installation des Apache Web Servers [apache.sh](scripts/apache.sh).
+
+#### Repositories
+
+Wie beim Projekt [lernkube](https://github.com/mc-b/lernkube) können weitere Repositories angegeben werden.
+
+Diese werden in das Verzeichnis $HOME geklont und anschliessend, falls vorhanden, deren Script `scripts/install.sh` ausgeführt.
+
+Ein Beispiel ist z.B. das [Modul 122](https://github.com/tbz-it/M122/blob/master/scripts/install.sh) welche zusätzliche Software in die VM installiert.
+ 
