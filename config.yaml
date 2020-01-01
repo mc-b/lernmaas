@@ -13,6 +13,7 @@ m000master:
     storage: 32
     memory:  3584
     cores: 2
+    count: 1
   services:
     nfs: true
     docker: true
@@ -29,6 +30,7 @@ m000worker:
     storage: 32
     memory:  3584
     cores: 2
+    count: 5
   services:
     nfs: true
     docker: true
@@ -46,6 +48,7 @@ m122:
     storage: 8
     memory:  2048
     cores: 2
+    count: 2
   services:
     nfs: true
     docker: false
@@ -63,6 +66,7 @@ m141:
     storage: 32
     memory:  3584
     cores: 2
+    count: 6
   services:
     nfs: true
     docker: true
@@ -80,6 +84,7 @@ m239:
     storage: 8
     memory:  2048
     cores: 2
+    count: 24
   services:
     nfs: true
     docker: false
@@ -97,6 +102,7 @@ m242:
     storage: 32
     memory:  7680
     cores: 4
+    count: 6
   services:
     nfs: true
     docker: true
@@ -114,6 +120,7 @@ m300:
     storage: 32
     memory:  6144
     cores: 2
+    count: 6
   services:
     nfs: true
     docker: true
@@ -133,6 +140,7 @@ dukmaster:
     storage: 32
     memory:  7680
     cores: 2
+    count: 1
   services:
     nfs: true
     docker: true
@@ -148,6 +156,7 @@ dukworker:
     storage: 32
     memory:  7680
     cores: 2
+    count: 5
   services:
     nfs: true
     docker: true
@@ -165,6 +174,7 @@ iotein:
     storage: 32
     memory:  7680
     cores: 2
+    count: 6
   services:
     nfs: true
     docker: true
@@ -182,6 +192,7 @@ cdi:
     storage: 32
     memory:  7680
     cores: 2
+    count: 6
   services:
     nfs: true
     docker: true
@@ -199,6 +210,7 @@ misegr:
     storage: 32
     memory:  7680
     cores: 2
+    count: 6
   services:
     nfs: true
     docker: true
@@ -216,6 +228,7 @@ mlg:
     storage: 32
     memory:  7680
     cores: 2
+    count: 6
   services:
     nfs: true
     docker: true
@@ -233,6 +246,7 @@ modtec:
     storage: 32
     memory:  7680
     cores: 4
+    count: 6
   services:
     nfs: true
     docker: true
@@ -250,6 +264,7 @@ dukdemo:
     storage: 32
     memory:  16384
     cores: 4
+    count: 1
   services:
     nfs: true
     docker: true
@@ -269,6 +284,7 @@ docker:
     storage: 8
     memory:  3584
     cores: 2
+    count: 1
   services:
     nfs: true
     docker: true
@@ -286,6 +302,7 @@ k3s:
     storage: 8
     memory:  2048
     cores: 2
+    count: 1
   services:
     nfs: true
     docker: false
