@@ -1,6 +1,11 @@
 Hilfsscripts
 ============
 
+Um die Scripts auszuführen, muss:
+* das MAAS CLI installiert sein
+* ein login in den MAAS Master stattgefunden haben
+* die Umgebungsvariable PROFILE (= MAAS User) gesetzt sein.
+
 ccopy.sh
 --------
 
@@ -24,3 +29,17 @@ Die VMs sind anschliessend im Zustand `Ready` und können via MAAS Oberfläche d
 Der Aufruf von `makevms.sh` ist wie folgt:
 
     makevms.sh <config.yaml> <Modul> <Anzahl VMs> <Suffix>
+    
+tocsv.sh
+--------
+
+Exportiert VM Hostname und IP-Adresse ins CSV Format, z.B. um es mit Excel weiterverarbeiten zu können.
+
+Hostname und IP-Adresse werden aus einem Resource Pool von MAAS Master geholt.
+
+Der Aufruf von `tocsv.sh` ist wie folgt:
+
+    tocsv <Resource Pool MAAS>
+    
+    
+    

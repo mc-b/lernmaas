@@ -1,7 +1,6 @@
 #!/bin/bash
 #
-#   Erstellt ein Script um die VM auf dem MAAS Server zu Erstellen
-#   
+#   Erstellt fuer ein Modul VMs auf den KVM Hosts.
 #
 
 [ $# -lt 2 ] && { echo makevms config modul anzahl suffix; exit 1; }
