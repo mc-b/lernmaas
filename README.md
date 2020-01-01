@@ -25,6 +25,7 @@ Installation
 
 * [MAAS Master und Worker Nodes](doc/MAAS/Install.md)
 * Gateway - siehe [WireGuard](https://www.wireguard.com/)
+* [Hilfsscripts](helper/)
 
 Maschinen Life Cycle
 --------------------

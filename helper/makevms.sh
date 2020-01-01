@@ -1,0 +1,77 @@
+#!/bin/bash
+#
+#   Erstellt ein Script um die VM auf dem MAAS Server zu Erstellen
+#   
+#
+
+[ $# -lt 2 ] && { echo makevms config modul anzahl suffix; exit 1; }
+
+# einfacher YAML Parser von https://stackoverflow.com/questions/5014632/how-can-i-parse-a-yaml-file-from-a-linux-shell-script
+function parse_yaml 
+{
+   local prefix=$2
+   local s='[[:space:]]*' w='[a-zA-Z0-9_]*' fs=$(echo @|tr @ '\034')
+   sed -ne "s|^\($s\):|\1|" \
+        -e "s|^\($s\)\($w\)$s:$s[\"']\(.*\)[\"']$s\$|\1$fs\2$fs\3|p" \
+        -e "s|^\($s\)\($w\)$s:$s\(.*\)$s\$|\1$fs\2$fs\3|p"  $1 |
+   awk -F$fs '{
+      indent = length($1)/2;
+      vname[indent] = $2;
+      for (i in vname) {if (i > indent) {delete vname[i]}}
+      if (length($3) > 0) {
+         vn=""; for (i=0; i<indent; i++) {vn=(vn)(vname[i])("_")}
+         printf("%s%s%s=%s\n", "'$prefix'",vn, $2, $3);
+      }
+   }'
+}
+
+################### Argumente Auswerten ###################
+
+if  [ -f $1 ]
+then
+
+# config.yaml parsen und als config_xxxx Umgebungsvariablen setzen
+for e in $(eval parse_yaml $1 | grep "^$2" | sed "s/^$2/config/")
+do
+    export $e
+done
+fi
+
+[ $# -gt 2 ] && [ $3 -ne 0 ] && COUNT=$3 || COUNT=${config_vm_count}
+[ "$4" != "" ] && POOLNAME="$2-$4" || POOLNAME="$2"
+
+################### MAAS Interaktion ###################
+
+PODS=$(maas $PROFILE pods read | jq '.[] | .name' | wc -l)
+POOL=$(maas $PROFILE resource-pools read | jq ".[] | select (.name==\"${POOLNAME}\") | .id")
+
+if [ "${POOL}" == "" ]
+then
+    maas $PROFILE resource-pools create name=${POOLNAME}
+    POOL=$(maas $PROFILE resource-pools read | jq ".[] | select (.name==\"${POOLNAME}\") | .id")
+    if [ "${POOL}" == "" ]
+    then
+        echo "Error: kann Resource Pool nicht erstellen"
+        exit 1
+    fi
+fi
+
+VMCOUNT=$((${COUNT} / ${PODS}))
+[ $VMCOUNT -eq 0 ] && VMCOUNT=1
+
+
+counter=1
+for pod in $(maas $PROFILE pods read | jq '.[] | .id')
+do
+    c=${VMCOUNT}
+    while   [ ${c} -gt 0 ]
+    do
+        c=$((${c} - 1))
+        [ ${counter} -lt 10 ] && HOSTNAME=$2-0${counter} || HOSTNAME=$2-${counter}
+        [ "$4" != "" ] && HOSTNAME=${HOSTNAME}-$4
+        echo maas $PROFILE pod compose ${pod} memory=${config_vm_memory} cores=${config_vm_cores} storage=${config_vm_storage} pool=${POOL} hostname=${HOSTNAME}
+        maas $PROFILE pod compose ${pod} memory=${config_vm_memory} cores=${config_vm_cores} storage=${config_vm_storage} pool=${POOL} hostname=${HOSTNAME}
+        counter=$((${counter} + 1))
+    done
+
+done
