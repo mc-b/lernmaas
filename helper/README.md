@@ -41,5 +41,26 @@ Der Aufruf von `tocsv.sh` ist wie folgt:
 
     tocsv <Resource Pool MAAS>
     
+makekeys.sh
+-----------
+
+Erzeugt die WireGuard Keys für den Gateway.
+
+    makekeys.sh <EndPoint> <Port> <Resource Pool>  
     
+Nach dem Aufruf der Scripts wird eine Anleitung für die weiteren Schritte ausgegeben, z.B. 
+
+    Key Generierung erfolgreich
+    ---------------------------
+    
+    wg0.conf            - WireGuard Konfigurationsdatei fuer Gateway
+    wg0-template.conf   - WireGuard Template fuer Clients. Vervollstandigen mit IP-Adresse und Private-Key. Ablegen zu den Unterlagen
+    wg0.csv             - Liste der Clients. Zum Bearbeiten mit Excel und Eintragen der Lernenden
+    <Pool>.html         - HTML Seite mit Servern und Clients zum Ablegen auf dem Gateway
+    
+    WireGuard Interface auf dem Gateway aktiveren:
+    systemctl enable wg-quick@wg0.service
+    systemctl start wg-quick@wg0.service
+
+   
     
