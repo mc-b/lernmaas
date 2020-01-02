@@ -175,10 +175,11 @@ cat <<%EOF%
     Key Generierung erfolgreich
     ---------------------------
     
-    ${WG0}      - WireGuard Konfigurationsdatei fuer Gateway
-    ${TEMPLATE} - WireGuard Template fuer Clients. Vervollstandigen mit IP-Adresse und Private-Key. Ablegen zu den Unterlagen
-    ${CSV}      - Liste der Clients. Zum Bearbeiten mit Excel und Eintragen der Lernenden
-    ${INDEX}    - HTML Seite mit Servern und Clients zum Ablegen auf dem Gateway
+    ${WG0}          - WireGuard Konfigurationsdatei fuer Gateway
+    ${TEMPLATE}     - WireGuard Template fuer Clients. Vervollstandigen mit IP-Adresse und Private-Key. Ablegen zu den Unterlagen
+    ${CSV}          - Liste der Clients. Zum Bearbeiten mit Excel und Eintragen der Lernenden
+    ${INDEX}        - HTML Seite mit Servern und Clients zum Ablegen auf dem Gateway
+    HOSTNAME.conf   - Konfigurationsdateien fuer die VMs. In Verzeichnis /data/config/wireguard kopieren.
     
     
     WireGuard Interface auf dem Gateway aktiveren:
