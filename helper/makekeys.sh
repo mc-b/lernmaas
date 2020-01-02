@@ -24,8 +24,8 @@ cat <<%EOF% >${WG0}
 [Interface]
 Address = 192.168.${NET}.1
 ListenPort = ${PORT}
-PostUp = sysctl -w net.ipv4.ip_forward=1
-PreDown = sysctl -w net.ipv4.ip_forward=0
+# PostUp = sysctl -w net.ipv4.ip_forward=1
+# PreDown = sysctl -w net.ipv4.ip_forward=0
 PrivateKey = ${SERVER_KEY}
 %EOF%
 
