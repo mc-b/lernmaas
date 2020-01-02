@@ -92,7 +92,7 @@ m239:
     wireguard: use
     ssh: use
     samba: true
-    firewall: true
+    firewall: false
   scripts: apache.sh
   repositories: 
    
