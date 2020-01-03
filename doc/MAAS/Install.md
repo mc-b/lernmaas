@@ -12,7 +12,7 @@ Fixe IP-Adresse vergeben, z.B. über Einstellungen, Software Update durchführen
     sudo add-apt-repository ppa:maas/stable -y  
     sudo apt update
     sudo apt upgrade -y
-    sudo apt install -y maas jq 
+    sudo apt install -y maas jq markdown nmap traceroute
 
 MAAS Admin User erstellen 
 
@@ -59,13 +59,13 @@ Zugriff für Subnetze (192.168.2.0 = eigenes Subnets, 10.244.0.0 = Kubernetes/fl
     # /etc/exports: the access control list for filesystems which may be exported
     #               to NFS clients.  See exports(5).
     # Storage RW
-    /data/storage 192.168.2.0/24(rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=1000)
+    /data/storage 172.16.17.0/24(rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=1000)
     /data/storage 10.244.0.0/16(rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=1000)
     # Templates RO
-    /data/templates 192.168.2.0/24(ro,sync,no_subtree_check)
+    /data/templates 172.16.17.0/24(ro,sync,no_subtree_check)
     /data/templates 10.244.0.0/16(ro,sync,no_subtree_check)
     # Config RO
-    /data/config 192.168.178.0/24(ro,sync,no_subtree_check)
+    /data/config 172.16.17.0/24(ro,sync,no_subtree_check)
     /data/config 10.244.0.0/16(ro,sync,no_subtree_check)
     %EOF%
      

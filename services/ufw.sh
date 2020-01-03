@@ -13,7 +13,7 @@ sudo ufw allow from ${SERVER_IP} to any port 22:32767 proto tcp
 sudo ufw allow from ${SERVER_IP} to any port 22:32767 proto udp
 
 # Lokale Netzwerke ab SSH bis Kubernetes ohne 32188 (Docker und Kubernetes CLI)
-for NETWORK in 192.168.2.0/24 192.168.8.0/24 
+for NETWORK in 192.168.2.0/24 192.168.3.0/24 192.168.8.0/24 172.16.17.0/24
 do
     sudo ufw allow from ${NETWORK} to any port    22:32187 proto tcp
     sudo ufw allow from ${NETWORK} to any port 32189:32767 proto tcp
