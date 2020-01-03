@@ -12,7 +12,7 @@ kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/compiler/mbed
 # Messaging Umgebung
 kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/kafka/zookeeper.yaml
 kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/kafka/kafka.yaml
-kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/kafka/mqtt-kafka-bridge.yaml
+# kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/kafka/mqtt-kafka-bridge.yaml
 
 # Kafka Streams
 kubectl apply -f https://raw.githubusercontent.com/mc-b/iot.kafka/master/iot-kafka-alert.yaml
