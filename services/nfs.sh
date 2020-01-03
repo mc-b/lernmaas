@@ -33,7 +33,6 @@ sudo rm -f /home/ubuntu/data/join-$(hostname).sh
 
 # update /etc/fstab for reboots
 cat <<%EOF% | sudo tee -a /etc/fstab
-${SERVER_IP}:/data/config               /home/ubuntu/config     nfs defaults    0 10
 ${SERVER_IP}:/data/templates            /home/ubuntu/templates  nfs defaults    0 11
 ${SERVER_IP}:/data/storage/${HOSTNAME}  /home/ubuntu/data       nfs defaults    0 12
 %EOF%

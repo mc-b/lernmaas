@@ -93,4 +93,9 @@ done
 
 [ "${config_services_firewall}" == "true" ] && { bash -x services/ufw.sh; }
 
+################### unmount ../config Verzeichnis - aus Sicherheitsgruenden ###################
+
+sudo umount /home/ubuntu/config
+rmdir /home/ubuntu/config
+
 exit 0
