@@ -282,7 +282,7 @@ dukdemo:
 cascpm:
   vm:  
     storage: 20
-    memory:  4096
+    memory:  3840
     cores: 2
     count: 16
   services:
