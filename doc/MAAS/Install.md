@@ -49,7 +49,7 @@ Installation NFS
     
 Shared Folder anlegen
 
-    sudo mkdir -p /data /data/storage /data/config /data/templates /data/config/wireguard /data/templates/cr-cache
+    sudo mkdir -p /data /data/storage /data/config /data/templates /data/config/wireguard /data/config/ssh /data/templates/cr-cache
     sudo chown -R ubuntu:ubuntu /data
     sudo chmod 777 /data/storage
     
