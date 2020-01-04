@@ -276,6 +276,26 @@ dukdemo:
   scripts: modtec.sh
   repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk,https://github.com/mc-b/mlg,https://github.com/mc-b/cdi,https://github.com/mc-b/duk-demo  
 
+######### HSLU Kurse - https://www.hslu.ch/de-ch/hochschule-luzern/weiterbildung/cas/ ######### 
+
+# CAS Cloud and Platform Manager - https://www.hslu.ch/de-ch/informatik/weiterbildung/networking-and-innovative-technologies/cas-cloud/
+cascpm:
+  vm:  
+    storage: 20
+    memory:  4096
+    cores: 2
+    count: 16
+  services:
+    nfs: true
+    docker: true
+    k8s: master
+    wireguard: use
+    ssh: use
+    samba: false
+    firewall: false
+  scripts: modtec.sh
+  repositories: https://github.com/mc-b/duk,https://github.com/mc-b/mlg 
+
 ######### Docker und Kubernetes Varianten - zu Test und Demozwecken #########
 
 # einfache Docker Umgebung
