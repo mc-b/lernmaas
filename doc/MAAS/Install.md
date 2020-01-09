@@ -12,15 +12,25 @@ Fixe IP-Adresse vergeben, z.B. über Einstellungen, Software Update durchführen
     sudo add-apt-repository ppa:maas/stable -y  
     sudo apt update
     sudo apt upgrade -y
-    sudo apt install -y maas jq markdown nmap traceroute
+    sudo apt install -y maas jq markdown nmap traceroute wsmancli git curl wget
 
-MAAS Admin User erstellen 
+MAAS Admin User erstellen und Profilnamen `ubuntu` als Umgebungvariable setzen
 
     sudo maas init --admin-username ubuntu --admin-password password --admin-email xx.yy@zz.ch
+    cat <<%EOF% >>$HOME/.bashrc
+    PROFILE=ubuntu
+    %EOF%
     
 SSH-Key erstellen, den brauchen wir nachher
 
     ssh-keygen    
+    
+IP4 Forward permanent einrichten:
+
+    sysctl -w  net.ipv4.ip_forward=1
+    sudo vi /etc/sysctl.conf
+
+**Hinweis** auf den Installierten KVM Server kann IP4 Forward deaktiviert werden, bringt Geschwindigkeit.
 
 Browser starten und UI von MAAS aufrufen [http://localhost:5240](http://localhost:5240)
 
@@ -55,22 +65,24 @@ Shared Folder anlegen
     
 Zugriff für Subnetze (192.168.2.0 = eigenes Subnets, 10.244.0.0 = Kubernetes/flannel) freischalten
     
-    cat <<%EOF% >>/etc/exports
+    cat <<%EOF% | sudo tee /etc/exports
     # /etc/exports: the access control list for filesystems which may be exported
     #               to NFS clients.  See exports(5).
     # Storage RW
-    /data/storage 172.16.17.0/24(rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=1000)
+    /data/storage 172.18.0/16(rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=1000)
     /data/storage 10.244.0.0/16(rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=1000)
     # Templates RO
-    /data/templates 172.16.17.0/24(ro,sync,no_subtree_check)
+    /data/templates 172.18.0/16(ro,sync,no_subtree_check)
     /data/templates 10.244.0.0/16(ro,sync,no_subtree_check)
     # Config RO
-    /data/config 172.16.17.0/24(ro,sync,no_subtree_check)
+    /data/config 172.18.0/16(ro,sync,no_subtree_check)
     /data/config 10.244.0.0/16(ro,sync,no_subtree_check)
     %EOF%
      
     sudo exportfs -a
     sudo systemctl restart nfs-kernel-server
+    
+**Hinweis** nach erfolgter Installation jeweils einer auf Kubernetes basierten Umgebung lohnt es sich mittels `ccopy` die Container Images nach `/data/template/cr-cache/<Module>` zu exportieren. Dann müssen bei erneuter Installation nicht mehr alle Container Images über das Internet geholt werden, sondern nur aus dem internen Netz von `cr-cache`.      
 
 #### Konfiguration
 
@@ -82,10 +94,12 @@ Für die automatische Installation von Software auf die VMs wird eine Kombinatio
 
 [lernmaas](https://github.com/mc-b/lernmaas) stellt eine Preseed Datei zur Verfügung, welche auf den MAAS Master kopiert werden muss. Diese Preseed Datei clont lernmaas und kopiert die Cloud Init Initialisierungsdatei [cloud.cfg.d/99_lernmaas.cfg](https://raw.githubusercontent.com/mc-b/lernmaas/master/cloud.cfg.d/99_lernmaas.cfg) auf die VM. Diese Datei, bzw. [services/cloud-init.sh](https://github.com/mc-b/lernmaas/blob/master/services/cloud-init.sh) installiert die eigentliche Software mittels dem Cloud-Init Prozess.
 
-Preseed Datei kopieren:
+Preseed Datei und Hilfsscripts kopieren:
    
     git clone https://github.com/mc-b/lernmaas.git
     sudo cp lernmaas/preseeds/* /etc/maas/preseeds/
+    sudo chmod +x lernmaas/helper/*
+    sudo cp lernmaas/helper /usr/local/bin/
 
 Ab der nächsten Installation einer VM mit Ubuntu wird jetzt [services/cloud-init.sh](https://github.com/mc-b/lernmaas/blob/master/services/cloud-init.sh) durchlaufen. 
 

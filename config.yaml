@@ -42,6 +42,24 @@ m000worker:
   scripts: 
   repositories:   
 
+# Modul 100: Daten charakterisieren, aufbereiten und auswerten (Inhalte von Thomas)
+m100:
+  vm:  
+    storage: 8
+    memory:  2048
+    cores: 2
+    count: 2
+  services:
+    nfs: true
+    docker: false
+    k8s: 
+    wireguard: use
+    ssh: generate
+    samba: true
+    firewall: false
+  scripts: 
+  repositories: 
+
 # Modul 122: Automatisieren mit Skripten  
 m122:
   vm:  
@@ -70,13 +88,31 @@ m141:
   services:
     nfs: true
     docker: true
-    k8s: master
+    k8s: minimal
     wireguard: use
     ssh: use
     samba: true
     firewall: false
   scripts: m141.sh
   repositories: 
+  
+# Modul 183: Applikationssicherheit implementieren (Kubernetes und Webgoat)
+m183:
+  vm:  
+    storage: 8
+    memory:  3584
+    cores: 2
+    count: 6
+  services:
+    nfs: true
+    docker: true
+    k8s: minimal
+    wireguard: use
+    ssh: use
+    samba: false
+    firewall: false
+  scripts: 
+  repositories:
   
 # Modul 239: Internet Server in Betrieb nehmen  
 m239:
@@ -114,6 +150,24 @@ m242:
   scripts: modtec.sh
   repositories: https://github.com/mc-b/duk,https://github.com/mc-b/mlg 
   
+# Modul 254 Geschäftsprozesse beschreiben (Kubernetes mit misegr/bpmn Umgebung)
+m254:
+  vm:  
+    storage: 8
+    memory:  3584
+    cores: 2
+    count: 6
+  services:
+    nfs: true
+    docker: true
+    k8s: minimal
+    wireguard: use
+    ssh: use
+    samba: false
+    firewall: false
+  scripts: 
+  repositories:
+  
 # Modul 300: Plattformuebergreifende Dienste in ein Netzwerk integrieren
 m300:
   vm:  
@@ -132,6 +186,24 @@ m300:
   scripts: 
   repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk
   
+# Modul 426 Software mit agilen Methoden entwickeln (duk/devops Umgebung - gogs, kanboard, jenkins, duk/compiler - make, maven, mbed-cli) 
+m426:
+  vm:  
+    storage: 8
+    memory:  3584
+    cores: 2
+    count: 6
+  services:
+    nfs: true
+    docker: true
+    k8s: minimal
+    wireguard: use
+    ssh: use
+    samba: false
+    firewall: false
+  scripts: 
+  repositories:
+    
 ######### Digicomp Kurse siehe https://github.com/mc-b ######### 
 
 # Docker und Kubernetes – Uebersicht und Einsatz - https://github.com/mc-b/duk
