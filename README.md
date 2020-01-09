@@ -57,6 +57,7 @@ Beispiele
 * m122-01       - Modul 122, Maschine 01 nicht Klassengebunden
 * m141-01-ap17a - Datenbanksystem in Betrieb nehmen (Beispiel mit Jupypter Notebooks)
 * m183-01-wup18 - Applikationssicherheit implementieren (Kubernetes und Webgoat)
+* m226-01       - Objektorientiert implementieren (Kubernetes mit 24 x BeakerX, in K8s Namespace, Umgebung)
 * m239-01-st17a - Internet Server in Betrieb nehmen (VM mit Installiertem Apache Web Server und Samba Zugriff, Webseiten auf $HOME/data)
 * m242-01-bistX - Mikroprozessoranwendung realisieren (Gruppenserver mit NodeRED, MQTT Server etc.)
 * m254-01       - Geschäftsprozesse beschreiben (Kubernetes mit misegr/bpmn Umgebung, Frontend, Camunda, Backend) zu Demonstrationzwecken
