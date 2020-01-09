@@ -3,7 +3,7 @@
 #   Erstellt wg0.conf und die Keys fuer WireGuard Server und Clients
 #
 
-[ $# -lt 3 ] && { echo makekeys endpoint port pool; exit 1; }
+[ $# -lt 3 ] && { echo createkeys endpoint port pool; exit 1; }
 
 ### Argumente
 ENDPOINT=$1:$2

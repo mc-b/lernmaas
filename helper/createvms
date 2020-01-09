@@ -3,7 +3,7 @@
 #   Erstellt fuer ein Modul VMs auf den KVM Hosts.
 #
 
-[ $# -lt 2 ] && { echo makevms config modul anzahl suffix; exit 1; }
+[ $# -lt 2 ] && { echo createvms config modul anzahl suffix; exit 1; }
 
 # einfacher YAML Parser von https://stackoverflow.com/questions/5014632/how-can-i-parse-a-yaml-file-from-a-linux-shell-script
 function parse_yaml 
