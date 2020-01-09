@@ -26,7 +26,7 @@ Erstellt einen Resource Pool und darin die Anzahl VMs anhand der [config.yaml](.
 
 Die VMs sind anschliessend im Zustand `Ready` und können via MAAS Oberfläche deployt werden.
 
-Der Aufruf von `makevms` ist wie folgt:
+Der Aufruf von `createvms` ist wie folgt:
 
     createvms <config.yaml> <Modul> <Anzahl VMs> <Suffix>
     
@@ -48,7 +48,7 @@ createkeys
 
 Erzeugt die WireGuard Keys für den Gateway.
 
-    makekeys <EndPoint> <Port> <Resource Pool>  
+    createkeys <EndPoint> <Port> <Resource Pool>  
     
 Nach dem Aufruf der Scripts wird eine Anleitung für die weiteren Schritte ausgegeben, z.B. 
 
