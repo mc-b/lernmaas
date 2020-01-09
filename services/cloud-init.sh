@@ -58,6 +58,13 @@ sudo ln -s $HOME/data /data
 [ "${config_services_docker}" == "true" ] && { bash -x services/docker.sh; }
 
 # Kubernetes
+if [ "${config_services_k8s}" == "minimal" ] 
+then
+    bash -x services/k8sbase.sh
+    bash -x services/k8smaster.sh
+    [ -f doc/${HOST}.md ] && { bash -x services/k8swebui.sh doc/${HOST}.md; } || { bash -x services/k8swebui.sh doc/intro.md; } 
+fi
+
 if [ "${config_services_k8s}" == "master" ] 
 then
     bash -x services/k8sbase.sh
