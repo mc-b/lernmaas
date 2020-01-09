@@ -63,7 +63,7 @@ counter=1
 for pod in $(maas $PROFILE pods read | jq '.[] | .id')
 do
     c=${VMCOUNT}
-    while   [ ${c} -gt 0 ]
+    while   [ ${c} -gt 0 ] && [ ${counter} -le ${COUNT} ]
     do
         c=$((${c} - 1))
         [ ${counter} -lt 10 ] && HOSTNAME=$2-0${counter} || HOSTNAME=$2-${counter}
