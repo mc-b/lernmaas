@@ -114,6 +114,24 @@ m183:
   scripts: 
   repositories:
   
+# Modul 226: Objektorientiert implementieren (Kubernetes mit 24 x BeakerX gestartet)
+m226:
+  vm:  
+    storage: 32
+    memory:  7680
+    cores: 4
+    count: 1
+  services:
+    nfs: true
+    docker: true
+    k8s: minimal
+    wireguard: use
+    ssh: use
+    samba: true
+    firewall: false
+  scripts: 
+  repositories:
+    
 # Modul 239: Internet Server in Betrieb nehmen  
 m239:
   vm:  
