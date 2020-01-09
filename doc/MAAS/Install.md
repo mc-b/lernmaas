@@ -133,6 +133,7 @@ Nach der Installation steht die Maschine unter Pods zur Verfügung und es lassen
 
 **Tips** 
 * Normale PCs haben keine Unterstützung für [BMC](https://de.wikipedia.org/wiki/Baseboard_Management_Controller) deshalb muss der `Power type` auf `Manuel` eingestellt werden. Sollte das nicht funktionieren, zuerst bei `Configuration` unter `Power type`  IPMI und eine Pseudo IP und MAC Adresse eingeben und nachher auf `Manuel` wechseln.
+* TBZ PCs haben integriertes Intel AMT. Power On, `Ctrl-P`, Default Password `admin` durch internes Ersetzen, IP Einstellungen vornehmen (ich verwende fixe IP ist mehr Aufwand aber nachher einfacher und **TCP Aktivieren**. Probieren mit `http://IP-Adresse:16992`. Vorsicht das AMT UI verwendet fix den US Tastaturlayout.
 * PCs mittels `Lock` vor unbeabsichtigtem Ändern schützen.
   
 ## Links
