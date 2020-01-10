@@ -371,20 +371,19 @@ dukdemo:
 # CAS Cloud and Platform Manager - https://www.hslu.ch/de-ch/informatik/weiterbildung/networking-and-innovative-technologies/cas-cloud/
 cascpm:
   vm:  
-    storage: 20
+    storage: 16
     memory:  3840
     cores: 2
-    count: 16
   services:
     nfs: true
     docker: true
     k8s: master
     wireguard: use
-    ssh: use
+    ssh: generate
     samba: false
     firewall: false
   scripts: modtec.sh
-  repositories: https://github.com/mc-b/duk,https://github.com/mc-b/mlg 
+  repositories: https://github.com/mc-b/duk 
 
 ######### Docker und Kubernetes Varianten - zu Test und Demozwecken #########
 

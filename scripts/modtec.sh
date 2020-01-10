@@ -3,21 +3,26 @@
 #   Repository https://github.com/mc-b/modtec - Moderne und Architekturrelevante Architekturen
 #
 
+# IoT Umgebung (werden als Teil einer Uebung gestartet)
+# kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/iot/mosquitto.yaml
+# kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/iot/nodered.yaml
 
-# IoT Umgebung
-kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/iot/mosquitto.yaml
-kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/iot/nodered.yaml
-kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/compiler/mbed-cli.yaml
-
-# Messaging Umgebung
+# Messaging Umgebung (MQTT - Kafka Bridget neu mit Node-RED)
 kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/kafka/zookeeper.yaml
 kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/kafka/kafka.yaml
 # kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/kafka/mqtt-kafka-bridge.yaml
 
-# Kafka Streams
-kubectl apply -f https://raw.githubusercontent.com/mc-b/iot.kafka/master/iot-kafka-alert.yaml
-kubectl apply -f https://raw.githubusercontent.com/mc-b/iot.kafka/master/iot-kafka-consumer.yaml
-kubectl apply -f https://raw.githubusercontent.com/mc-b/iot.kafka/master/iot-kafka-pipe.yaml
+# Kafka Streams (werden als Teil einer Uebung gestartet)
+# kubectl apply -f https://raw.githubusercontent.com/mc-b/iot.kafka/master/iot-kafka-alert.yaml
+# kubectl apply -f https://raw.githubusercontent.com/mc-b/iot.kafka/master/iot-kafka-consumer.yaml
+# kubectl apply -f https://raw.githubusercontent.com/mc-b/iot.kafka/master/iot-kafka-pipe.yaml
+
+# SSH Key fuer Zugriff auf VM freigeben, bzw. via http://<IP>/data/id_rsa zugreifbar machen
+sudo apt install -y putty-tools
+sudo ln -s $HOME/data /var/www/html/data
+cp $HOME/data/.ssh/id_rsa $HOME/data/
+puttygen $HOME/.ssh/id_rsa -o $HOME/data/id_rsa.ppk
+chmod 644 $HOME/data/id_rsa $HOME/data/id_rsa.ppk
 
 # BPMN Umgebung und Upload BPMN Prozess
 sudo docker pull camunda/camunda-bpm-platform
