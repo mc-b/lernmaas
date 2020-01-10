@@ -17,12 +17,10 @@ kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/kafka/kafka.y
 # kubectl apply -f https://raw.githubusercontent.com/mc-b/iot.kafka/master/iot-kafka-consumer.yaml
 # kubectl apply -f https://raw.githubusercontent.com/mc-b/iot.kafka/master/iot-kafka-pipe.yaml
 
-# SSH Key fuer Zugriff auf VM freigeben, bzw. via http://<IP>/data/id_rsa zugreifbar machen
-sudo apt install -y putty-tools
+# SSH Key fuer Zugriff auf VM freigeben, bzw. via http://<IP>/data/.ssh/id_rsa zugreifbar machen
 sudo ln -s $HOME/data /var/www/html/data
-cp $HOME/data/.ssh/id_rsa $HOME/data/
-puttygen $HOME/.ssh/id_rsa -o $HOME/data/id_rsa.ppk
-chmod 644 $HOME/data/id_rsa $HOME/data/id_rsa.ppk
+sudo chmod 755 $HOME/data/.ssh
+chmod 644 $HOME/data/.ssh/id_rsa $HOME/data/.ssh/id_rsa.ppk
 
 # BPMN Umgebung und Upload BPMN Prozess
 sudo docker pull camunda/camunda-bpm-platform

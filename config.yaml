@@ -371,7 +371,7 @@ dukdemo:
 # CAS Cloud and Platform Manager - https://www.hslu.ch/de-ch/informatik/weiterbildung/networking-and-innovative-technologies/cas-cloud/
 cascpm:
   vm:  
-    storage: 16
+    storage: 12
     memory:  3840
     cores: 2
   services:
