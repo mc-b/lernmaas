@@ -81,7 +81,7 @@ m122:
 # Modul 141: Datenbanksystem in Betrieb nehmen
 m141:
   vm:  
-    storage: 32
+    storage: 24
     memory:  3584
     cores: 2
     count: 6
@@ -117,7 +117,7 @@ m183:
 # Modul 226: Objektorientiert implementieren (Kubernetes mit 24 x BeakerX gestartet)
 m226:
   vm:  
-    storage: 32
+    storage: 24
     memory:  7680
     cores: 4
     count: 1
@@ -153,7 +153,7 @@ m239:
 # Modul 242: Mikroprozessoranwendung realisieren
 m242:
   vm:  
-    storage: 32
+    storage: 16
     memory:  7680
     cores: 4
     count: 6
@@ -189,7 +189,7 @@ m254:
 # Modul 300: Plattformuebergreifende Dienste in ein Netzwerk integrieren
 m300:
   vm:  
-    storage: 32
+    storage: 16
     memory:  6144
     cores: 2
     count: 6
@@ -227,8 +227,8 @@ m426:
 # Docker und Kubernetes – Uebersicht und Einsatz - https://github.com/mc-b/duk
 dukmaster:
   vm:  
-    storage: 32
-    memory:  7680
+    storage: 12
+    memory:  3584
     cores: 2
     count: 1
   services:
@@ -243,8 +243,8 @@ dukmaster:
   repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk  
 dukworker:  
   vm:  
-    storage: 32
-    memory:  7680
+    storage: 12
+    memory:  3584
     cores: 2
     count: 5
   services:
@@ -261,8 +261,8 @@ dukworker:
 # Internet der Dinge im Einsatz - https://github.com/mc-b/iotkitv3
 iotein:
   vm:  
-    storage: 32
-    memory:  7680
+    storage: 12
+    memory:  3584
     cores: 2
     count: 6
   services:
@@ -279,8 +279,8 @@ iotein:
 # DevOps Engineering Practices & Tools (CDI) - https://github.com/mc-b/cdi
 cdi:
   vm:  
-    storage: 32
-    memory:  7680
+    storage: 12
+    memory:  3584
     cores: 2
     count: 6
   services:
@@ -297,8 +297,8 @@ cdi:
 # Microservices-Grundlagen - https://github.com/mc-b/misegr 
 misegr:
   vm:  
-    storage: 32
-    memory:  7680
+    storage: 12
+    memory:  3584
     cores: 2
     count: 6
   services:
@@ -315,8 +315,8 @@ misegr:
 # Machine Learning Grundlagen - https://github.com/mc-b/mlg
 mlg:
   vm:  
-    storage: 32
-    memory:  7680
+    storage: 12
+    memory:  3584
     cores: 2
     count: 6
   services:
@@ -333,8 +333,8 @@ mlg:
 # IoT, Microservices, Machine Learning und DevOps – Moderne architektur-relevante Methoden und Technologien - https://github.com/mc-b/modtec
 modtec:
   vm:  
-    storage: 32
-    memory:  7680
+    storage: 12
+    memory:  3584
     cores: 4
     count: 6
   services:
