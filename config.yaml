@@ -166,7 +166,7 @@ m242:
     samba: false
     firewall: false
   scripts: modtec.sh
-  repositories: https://github.com/mc-b/duk,https://github.com/mc-b/mlg 
+  repositories: https://github.com/mc-b/duk
   
 # Modul 254 Geschäftsprozesse beschreiben (Kubernetes mit misegr/bpmn Umgebung)
 m254:
@@ -261,7 +261,7 @@ dukworker:
 # Internet der Dinge im Einsatz - https://github.com/mc-b/iotkitv3
 iotein:
   vm:  
-    storage: 12
+    storage: 16
     memory:  3584
     cores: 2
     count: 6
@@ -333,7 +333,7 @@ mlg:
 # IoT, Microservices, Machine Learning und DevOps – Moderne architektur-relevante Methoden und Technologien - https://github.com/mc-b/modtec
 modtec:
   vm:  
-    storage: 12
+    storage: 16
     memory:  3584
     cores: 4
     count: 6
@@ -346,7 +346,7 @@ modtec:
     samba: false
     firewall: false
   scripts: modtec.sh
-  repositories: https://github.com/mc-b/duk,https://github.com/mc-b/mlg  
+  repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk,https://github.com/mc-b/mlg  
   
 # Spezialumgebungen fuer Demos uns Referate
 dukdemo:
@@ -383,7 +383,7 @@ cascpm:
     samba: false
     firewall: false
   scripts: modtec.sh
-  repositories: https://github.com/mc-b/duk 
+  repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk 
 
 ######### Docker und Kubernetes Varianten - zu Test und Demozwecken #########
 
