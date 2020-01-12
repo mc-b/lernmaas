@@ -153,7 +153,7 @@ m239:
 # Modul 242: Mikroprozessoranwendung realisieren
 m242:
   vm:  
-    storage: 12
+    storage: 16
     memory:  3840
     cores: 2
     count: 24
