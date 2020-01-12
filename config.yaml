@@ -153,10 +153,10 @@ m239:
 # Modul 242: Mikroprozessoranwendung realisieren
 m242:
   vm:  
-    storage: 16
-    memory:  7680
-    cores: 4
-    count: 6
+    storage: 12
+    memory:  3840
+    cores: 2
+    count: 24
   services:
     nfs: true
     docker: true
