@@ -383,7 +383,7 @@ cascpm:
     samba: false
     firewall: false
   scripts: modtec.sh
-  repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk 
+  repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk,https://github.com/mc-b/mlg   
 
 ######### Docker und Kubernetes Varianten - zu Test und Demozwecken #########
 
