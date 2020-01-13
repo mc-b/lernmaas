@@ -153,7 +153,7 @@ m239:
 # Modul 242: Mikroprozessoranwendung realisieren
 m242:
   vm:  
-    storage: 16
+    storage: 18
     memory:  3840
     cores: 2
     count: 24
@@ -261,7 +261,7 @@ dukworker:
 # Internet der Dinge im Einsatz - https://github.com/mc-b/iotkitv3
 iotein:
   vm:  
-    storage: 16
+    storage: 18
     memory:  3584
     cores: 2
     count: 6
@@ -333,7 +333,7 @@ mlg:
 # IoT, Microservices, Machine Learning und DevOps – Moderne architektur-relevante Methoden und Technologien - https://github.com/mc-b/modtec
 modtec:
   vm:  
-    storage: 16
+    storage: 18
     memory:  3584
     cores: 4
     count: 6
