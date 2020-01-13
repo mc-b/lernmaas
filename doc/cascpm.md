@@ -42,6 +42,7 @@ Der private SSH Key ist auf dem installierten Server als Datei [id_rsa](/data/.s
 **Plattformen**
 
 * [Workflow](https://github.com/mc-b/IoTKitV3/tree/master/workflow/)
+* [Edge Computing](https://github.com/mc-b/IoTKitV3/tree/master/edge/)
 * [Built with Mbed](https://www.mbed.com/built-with-mbed/)
 
 ## Links
