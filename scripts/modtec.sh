@@ -3,19 +3,19 @@
 #   Repository https://github.com/mc-b/modtec - Moderne und Architekturrelevante Architekturen
 #
 
-# IoT Umgebung (werden als Teil einer Uebung gestartet)
+# IoT Umgebung 
 kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/iot/mosquitto.yaml
 kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/iot/nodered.yaml
 
-# Messaging Umgebung (MQTT - Kafka Bridget neu mit Node-RED)
+# Messaging Umgebung (MQTT - Kafka Bridge neu mit Node-RED)
 kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/kafka/zookeeper.yaml
 kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/kafka/kafka.yaml
 # kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/kafka/mqtt-kafka-bridge.yaml
 
-# Kafka Streams (werden als Teil einer Uebung gestartet)
-# kubectl apply -f https://raw.githubusercontent.com/mc-b/iot.kafka/master/iot-kafka-alert.yaml
-# kubectl apply -f https://raw.githubusercontent.com/mc-b/iot.kafka/master/iot-kafka-consumer.yaml
-# kubectl apply -f https://raw.githubusercontent.com/mc-b/iot.kafka/master/iot-kafka-pipe.yaml
+# Kafka Streams 
+kubectl apply -f https://raw.githubusercontent.com/mc-b/iot.kafka/master/iot-kafka-alert.yaml
+kubectl apply -f https://raw.githubusercontent.com/mc-b/iot.kafka/master/iot-kafka-consumer.yaml
+kubectl apply -f https://raw.githubusercontent.com/mc-b/iot.kafka/master/iot-kafka-pipe.yaml
 
 # SSH Key fuer Zugriff auf VM freigeben, bzw. via http://<IP>/data/.ssh/id_rsa zugreifbar machen
 sudo ln -s $HOME/data /var/www/html/data
