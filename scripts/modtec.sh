@@ -5,7 +5,7 @@
 
 # IoT Umgebung 
 kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/iot/mosquitto.yaml
-kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/iot/nodered.yaml
+kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/iot/nodered-kafka.yaml
 
 # Messaging Umgebung (MQTT - Kafka Bridge neu mit Node-RED)
 kubectl apply -f https://raw.githubusercontent.com/mc-b/duk/master/kafka/zookeeper.yaml
