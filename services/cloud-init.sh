@@ -84,7 +84,7 @@ then
     bash -x services/k3s.sh
 fi
 
-if [ "${config_services_k8s}" == "ranger" ] 
+if [ "${config_services_k8s}" == "rancher" ] 
 then
     bash -x services/k8sranger.sh
 fi
