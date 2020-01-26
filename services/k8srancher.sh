@@ -2,4 +2,7 @@
 #
 #   Kubernetes Rancher Installation
 #
-sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher
+
+git clone https://github.com/rancher/quickstart.git
+cd quickstart/vagrant
+sudo bash -x scripts/configure_rancher_server.sh admin 1.5.1 ""
