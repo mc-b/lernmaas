@@ -86,7 +86,7 @@ fi
 
 if [ "${config_services_k8s}" == "rancher" ] 
 then
-    bash -x services/k8srancher.sh
+    bash -x services/rancher.sh
 fi
 
 # Samba
