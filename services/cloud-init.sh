@@ -79,6 +79,11 @@ then
     bash -x services/k8sjoin.sh
 fi
 
+if [ "${config_services_k8s}" == "k3s" ] 
+then
+    bash -x services/k3s.sh
+fi
+
 # Samba
 [ "${config_services_samba}" == "true" ] && { bash -x services/samba.sh; }
 
