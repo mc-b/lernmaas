@@ -422,3 +422,22 @@ k3s:
     firewall: false
   scripts:
   repositories:  
+
+# Ranger Kubernetes - https://rancher.com/
+rancher:
+  vm:  
+    storage: 18
+    memory:  4096
+    cores: 2
+    count: 1
+  services:
+    nfs: true
+    docker: true
+    k8s: rancher
+    wireguard: use
+    ssh: use
+    samba: false
+    firewall: false
+  scripts:
+  repositories: 
+     
