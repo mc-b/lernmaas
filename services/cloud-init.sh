@@ -89,6 +89,11 @@ then
     bash -x services/rancher.sh
 fi
 
+if [ "${config_services_k8s}" == "openshift" ] 
+then
+    bash -x services/openshift.sh
+fi
+
 # Samba
 [ "${config_services_samba}" == "true" ] && { bash -x services/samba.sh; }
 

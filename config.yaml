@@ -440,4 +440,22 @@ rancher:
     firewall: false
   scripts:
   repositories: 
+  
+# OpenShift Kubernetes - https://openshift.com/
+openshift:
+  vm:  
+    storage: 18
+    memory:  6144
+    cores: 2
+    count: 1
+  services:
+    nfs: true
+    docker: true
+    k8s: openshift
+    wireguard: use
+    ssh: use
+    samba: false
+    firewall: false
+  scripts:
+  repositories:   
      
