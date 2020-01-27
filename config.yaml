@@ -342,7 +342,7 @@ modtec:
     docker: true
     k8s: master
     wireguard: use
-    ssh: use
+    ssh: generate
     samba: false
     firewall: false
   scripts: modtec.sh
@@ -399,7 +399,7 @@ docker:
     docker: true
     k8s: 
     wireguard: use
-    ssh: use
+    ssh: generate
     samba: false
     firewall: false
   scripts: 
@@ -417,7 +417,7 @@ k3s:
     docker: false
     k8s: k3s
     wireguard: use
-    ssh: use
+    ssh: generate
     samba: false
     firewall: false
   scripts:
@@ -435,7 +435,7 @@ rancher:
     docker: true
     k8s: rancher
     wireguard: use
-    ssh: use
+    ssh: generate
     samba: false
     firewall: false
   scripts:
@@ -453,7 +453,7 @@ openshift:
     docker: true
     k8s: openshift
     wireguard: use
-    ssh: use
+    ssh: generate
     samba: false
     firewall: false
   scripts:
