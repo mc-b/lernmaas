@@ -22,3 +22,7 @@ sudo systemctl restart docker
 
 # OpenShift starten (Hostname = WireGuard IP)
 oc cluster up --public-hostname=$(hostname -I | cut -d" " -f2)
+
+# Restart weil redirect auf 127.0.0.1 aktiv
+oc cluster down
+oc cluster up --public-hostname=$(hostname -I | cut -d" " -f2)
