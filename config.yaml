@@ -10,7 +10,7 @@
 # Allgemeine Kubernetes Umgebung - nicht Modul gebunden. Mit TBZ Deployer
 m000master:
   vm:  
-    storage: 32
+    storage: 12
     memory:  3584
     cores: 2
     count: 1
@@ -27,7 +27,7 @@ m000master:
   
 m000worker:
   vm:  
-    storage: 32
+    storage: 12
     memory:  3584
     cores: 2
     count: 5

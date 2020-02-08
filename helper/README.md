@@ -32,6 +32,20 @@ Der Aufruf von `createvms` ist wie folgt:
     
 **ACHTUNG**: die Anzahl VMs muss kleiner der Anzahl Pods oder durch die Anzahl Pods teilbar sein. Z.B. bei 6 Pods können 1 - 6, 12, 18, 24 etc. VMs erstellt werden.    
     
+createk8svms
+------------
+
+Erstellt einen oder mehrere Kubernetes Cluster. Die Anzahl bestimmt dabei die Anzahl Cluster und nicht die Anzahl VMs.
+
+Es wird zuerst auf dem ersten KVM-Pod die Anzahl Master erstellt und anschliessend auf jedem weiteren KVM-Pod ein Worker. 
+
+In der [config.yaml](../config.yaml) müssen die Einträge für master (z.B. m000master) und Worker (z.B. m000worker) vorhanden sind. Diese werden separat ausgewertet, d.h. dem Master kann z.B. weniger RAM zugewiesen werden als dem Worker oder umgekehrt.
+
+Der Aufruf von `createvms` ist wie folgt:
+
+    createk8svms <config.yaml> <Modul> <Anzahl Cluster> <Suffix>   
+
+   
 tocsv
 --------
 
