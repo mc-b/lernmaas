@@ -69,13 +69,13 @@ Zugriff für Subnetze (192.168.2.0 = eigenes Subnets, 10.244.0.0 = Kubernetes/fl
     # /etc/exports: the access control list for filesystems which may be exported
     #               to NFS clients.  See exports(5).
     # Storage RW
-    /data/storage 172.18.0/16(rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=1000)
+    /data/storage 172.18.0.0/16(rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=1000)
     /data/storage 10.244.0.0/16(rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=1000)
     # Templates RO
-    /data/templates 172.18.0/16(ro,sync,no_subtree_check)
+    /data/templates 172.18.0.0/16(ro,sync,no_subtree_check)
     /data/templates 10.244.0.0/16(ro,sync,no_subtree_check)
     # Config RO
-    /data/config 172.18.0/16(ro,sync,no_subtree_check)
+    /data/config 172.18.0.0/16(ro,sync,no_subtree_check)
     /data/config 10.244.0.0/16(ro,sync,no_subtree_check)
     %EOF%
      
@@ -85,6 +85,8 @@ Zugriff für Subnetze (192.168.2.0 = eigenes Subnets, 10.244.0.0 = Kubernetes/fl
 **Hinweis** nach erfolgter Installation jeweils einer auf Kubernetes basierten Umgebung lohnt es sich mittels `ccopy` die Container Images nach `/data/template/cr-cache/<Module>` zu exportieren. Dann müssen bei erneuter Installation nicht mehr alle Container Images über das Internet geholt werden, sondern nur aus dem internen Netz von `cr-cache`.      
 
 #### Konfiguration
+
+**ACHTUNG** Preseed Datei erst nach der Installation der Worker Nodes nach `/etc/maas/preseeds/` kopieren. Ansonsten werden die Worker Nodes nicht sauber als KVM host installiert, bzw. die Installationsroutine läuft endlos.
 
 Für die automatische Installation von Software auf die VMs wird eine Kombination von [MAAS Preseed](Customising.md) und [Cloud Init](https://cloudinit.readthedocs.io/en/latest/) verwendet.
 
