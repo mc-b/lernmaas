@@ -144,7 +144,7 @@ m239:
     docker: false
     k8s: 
     wireguard: use
-    ssh: use
+    ssh: generate
     samba: true
     firewall: false
   scripts: apache.sh
