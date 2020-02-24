@@ -64,7 +64,7 @@ m100:
 m122:
   vm:  
     storage: 8
-    memory:  2048
+    memory:  1024
     cores: 2
     count: 2
   services:
