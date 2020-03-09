@@ -4,7 +4,7 @@
 #
 
 # Putty Key Software
-sudo apt install -y putty-tools unix2dos
+sudo apt install -y putty-tools 
 
 # eigenen SSH Key fuer VM generieren und Privaten Schluessel im Data Verzeichnis verfuegbar machen
 if  [ "$1" == "generate" ]
@@ -16,7 +16,6 @@ then
     chmod 700 data/.ssh
     cp .ssh/id_rsa data/.ssh
     puttygen .ssh/id_rsa -o .ssh/id_rsa.ppk
-    unix2dos .ssh/id_rsa.ppk
     cp .ssh/id_rsa .ssh/id_rsa.ppk data/.ssh/
 fi   
 
