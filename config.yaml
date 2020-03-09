@@ -160,13 +160,13 @@ m242:
   services:
     nfs: true
     docker: true
-    k8s: master
+    k8s: 
     wireguard: use
-    ssh: use
+    ssh: generate
     samba: false
     firewall: false
-  scripts: modtec.sh
-  repositories: https://github.com/mc-b/duk
+  scripts: apache.sh
+  repositories: 
   
 # Modul 254 Geschäftsprozesse beschreiben (Kubernetes mit misegr/bpmn Umgebung)
 m254:
