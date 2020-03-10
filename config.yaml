@@ -351,7 +351,7 @@ modtec:
 # Spezialumgebungen fuer Demos uns Referate
 dukdemo:
   vm:  
-    storage: 18
+    storage: 24
     memory:  7680
     cores: 4
     count: 1
