@@ -351,8 +351,8 @@ modtec:
 # Spezialumgebungen fuer Demos uns Referate
 dukdemo:
   vm:  
-    storage: 32
-    memory:  16384
+    storage: 18
+    memory:  7680
     cores: 4
     count: 1
   services:
@@ -360,11 +360,11 @@ dukdemo:
     docker: true
     k8s: master
     wireguard: use
-    ssh: use
+    ssh: generate
     samba: false
     firewall: false
-  scripts: modtec.sh
-  repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk,https://github.com/mc-b/mlg,https://github.com/mc-b/cdi,https://github.com/mc-b/duk-demo  
+  scripts: 
+  repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk,https://github.com/mc-b/duk-demo  
 
 ######### HSLU Kurse - https://www.hslu.ch/de-ch/hochschule-luzern/weiterbildung/cas/ ######### 
 
