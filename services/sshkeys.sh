@@ -4,7 +4,7 @@
 #
 
 # Putty Key Software
-sudo apt install -y putty-tools 
+sudo apt install -y putty-tools pwgen
 
 # eigenen SSH Key fuer VM generieren und Privaten Schluessel im Data Verzeichnis verfuegbar machen
 if  [ "$1" == "generate" ]
@@ -16,7 +16,15 @@ then
     chmod 700 data/.ssh
     cp .ssh/id_rsa data/.ssh
     puttygen .ssh/id_rsa -o .ssh/id_rsa.ppk
-    cp .ssh/id_rsa .ssh/id_rsa.ppk data/.ssh/
+    
+    # Password auch setzen um einloggen ohne Zertifikat zu ermoeglichen 
+    pwgen 8 1 >.ssh/passwd
+    sudo chpasswd <<<ubuntu:$(cat .ssh/passwd)
+    sudo sed -i -e 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+    sudo systemctl restart sshd
+
+    cp .ssh/id_rsa .ssh/id_rsa.ppk .ssh/passwd data/.ssh/
+    
 fi   
 
 # Vorbereiteten Key fuer diese Umgebung verwenden, zuerst hostname dann HOST.pub pruefen
