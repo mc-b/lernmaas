@@ -20,7 +20,7 @@ then
     # Password auch setzen um einloggen ohne Zertifikat zu ermoeglichen 
     pwgen 8 1 >.ssh/passwd
     sudo chpasswd <<<ubuntu:$(cat .ssh/passwd)
-    sudo sed -i -e 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+    sudo sed -i -e 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
     sudo systemctl restart sshd
 
     cp .ssh/id_rsa .ssh/id_rsa.ppk .ssh/passwd data/.ssh/
