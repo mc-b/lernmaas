@@ -190,15 +190,15 @@ m254:
 m300:
   vm:  
     storage: 16
-    memory:  6144
+    memory:  3584
     cores: 2
-    count: 6
+    count: 20
   services:
     nfs: true
     docker: true
-    k8s: master
+    k8s: minimal
     wireguard: use
-    ssh: use
+    ssh: generate
     samba: false
     firewall: false
   scripts: 
