@@ -38,6 +38,13 @@ then
     then
         cat "/home/ubuntu/config/ssh/${HOST}.pub" >>.ssh/authorized_keys
     fi
+fi
+
+# ssh Tunnel erlaubt?
+cd $HOME
+if [ -f "/home/ubuntu/config/ssh/$(hostname)_tunnel.pub" ]
+then
+    cp "/home/ubuntu/config/ssh/$(hostname)_tunnel.pub" .ssh/ssh_tunnel.pub
 fi    
     
             
