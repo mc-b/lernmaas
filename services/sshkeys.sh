@@ -42,9 +42,9 @@ fi
 
 # ssh Tunnel erlaubt?
 cd $HOME
-if [ -f "/home/ubuntu/config/ssh/$(hostname)_tunnel.pub" ]
+if [ -f "/home/ubuntu/config/ssh/$(HOST)_tunnel" ]
 then
-    cp "/home/ubuntu/config/ssh/$(hostname)_tunnel.pub" .ssh/ssh_tunnel.pub
+    cp "/home/ubuntu/config/ssh/$(HOST)_tunnel" .ssh/ssh_tunnel
 fi    
     
             
