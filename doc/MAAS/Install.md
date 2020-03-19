@@ -18,7 +18,7 @@ MAAS Admin User erstellen und Profilnamen `ubuntu` als Umgebungvariable setzen
 
     sudo maas init --admin-username ubuntu --admin-password password --admin-email xx.yy@zz.ch
     cat <<%EOF% >>$HOME/.bashrc
-    PROFILE=ubuntu
+    export PROFILE=ubuntu
     %EOF%
     
 SSH-Key erstellen, den brauchen wir nachher
@@ -43,6 +43,18 @@ Browser starten und UI von MAAS aufrufen [http://localhost:5240](http://localhos
 * Images syncen  
 
 **Tip**: vino auf dem Master installieren, damit ist der GUI via VNC erreichbar.
+
+**MAAS Login und Tests**
+
+Einlogen für CLI Access
+
+    maas login ${PROFILE} http://localhost:5240/MAAS/api/2.0
+    
+Erstelle Maschinen anzeigen:
+
+    maas $PROFILE machines read
+    
+Wenn eine Fehlermeldung kommt ist das MAAS CLI Einsatzbereit.        
 
 #### Gemeinsame Datenablage
 
