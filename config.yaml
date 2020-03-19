@@ -202,7 +202,7 @@ m300:
     samba: false
     firewall: false
   scripts: 
-  repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk
+  repositories: 
   
 # Modul 426 Software mit agilen Methoden entwickeln (duk/devops Umgebung - gogs, kanboard, jenkins, duk/compiler - make, maven, mbed-cli) 
 m426:
