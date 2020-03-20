@@ -154,7 +154,7 @@ m239:
 m242:
   vm:  
     storage: 18
-    memory:  3840
+    memory:  1984
     cores: 2
     count: 24
   services:
