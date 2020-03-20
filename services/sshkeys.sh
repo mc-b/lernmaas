@@ -45,6 +45,7 @@ cd $HOME
 if [ -f "/home/ubuntu/config/ssh/${HOST}_tunnel" ]
 then
     cp "/home/ubuntu/config/ssh/${HOST}_tunnel" .ssh/ssh_tunnel
+    chmod 600 .ssh/ssh_tunnel
 fi    
     
             
