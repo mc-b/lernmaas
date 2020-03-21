@@ -42,7 +42,7 @@ AllowedIPs = 192.168.${NET}.0/24
 
 # This is for if you're behind a NAT and
 # want the connection to be kept alive.
-PersistentKeepalive = 25
+# PersistentKeepalive = 25
 %EOF%
 
 ### VMs im MAAS Resource Pool
