@@ -52,6 +52,13 @@ Aufruf des Dashboards mittels [http://localhost:8001/api/v1/namespaces/kubernete
 Übungen
 -------
 
+### Microservices
+
+* [Edge Side Include (ESI)](:32188/notebooks/work/demo/Microservices-ESI.ipynb)
+* [REST (Synchron)](:32188/notebooks/work/demo/Microservices-REST.ipynb)
+* [Messaging (Asynchrone)](:32188/notebooks/work/demo/Microservices-Messaging.ipynb)
+* [BPMN Workflow](:32188/notebooks/work/demo/Microservices-BPMN.ipynb)
+
 ### Docker
 
 * [03-1 Funktionaler Überblick](:32188/notebooks/work/03-1-Docker.ipynb)
