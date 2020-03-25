@@ -271,7 +271,7 @@ dukdocker:
     ssh: generate
     samba: false
     firewall: false
-  scripts: 
+  scripts: apache.sh
   repositories:   
   
 # Internet der Dinge im Einsatz - https://github.com/mc-b/iotkitv3
