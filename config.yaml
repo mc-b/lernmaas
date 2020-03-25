@@ -227,36 +227,52 @@ m426:
 # Docker und Kubernetes – Uebersicht und Einsatz - https://github.com/mc-b/duk
 dukmaster:
   vm:  
-    storage: 12
-    memory:  3584
-    cores: 2
+    storage: 18
+    memory:  5888
+    cores: 4
     count: 1
   services:
     nfs: true
     docker: true
     k8s: master
     wireguard: use
-    ssh: use
+    ssh: generate
     samba: false
     firewall: false
   scripts: 
   repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk  
 dukworker:  
-  vm:  
-    storage: 12
-    memory:  3584
-    cores: 2
+  vm: 
+    storage: 18
+    memory:  5888
+    cores: 4
     count: 5
   services:
     nfs: true
     docker: true
     k8s: worker
     wireguard: use
-    ssh: use
+    ssh: generate
     samba: false
     firewall: false
   scripts: 
   repositories:  
+dukdocker:  
+  vm: 
+    storage: 8
+    memory:  3584
+    cores: 2
+    count: 5
+  services:
+    nfs: true
+    docker: true
+    k8s: 
+    wireguard: use
+    ssh: generate
+    samba: false
+    firewall: false
+  scripts: 
+  repositories:   
   
 # Internet der Dinge im Einsatz - https://github.com/mc-b/iotkitv3
 iotein:

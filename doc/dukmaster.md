@@ -1,30 +1,83 @@
 # [Docker und Kubernetes – Übersicht und Einsatz ](https://www.digicomp.ch/trends/docker-trainings/docker-und-kubernetes-uebersicht-und-einsatz)
 
-## Jupyter Notebooks
+Zugriff auf den Server
+----------------------
+
+### User / Password
+
+Der User ist `ubuntu`, dass Password steht in der Datei [/data/.ssh/passwd](/data/.ssh/passwd).
+
+Einloggen mittels
+
+    ssh ubuntu@[IP Adresse]
+
+### SSH
+
+Auf der Server kann mittels [ssh](https://wiki.ubuntuusers.de/SSH/) zugegriffen werden.
+
+Der private SSH Key ist auf dem Installierten Server unter [/data/.ssh/id_rsa](/data/.ssh/id_rsa) zu finden. Downloaden und dann wie folgt auf den Server einloggen:
+
+    ssh -i id_rsa ubuntu@[IP Adresse]
+    
+**Hinweis**: Windows User verwenden [Putty](https://www.putty.org/) und den [Putty Key /data/.ssh/id_rsa.ppk](/data/.ssh/id_rsa.ppk). 
+
+### Kubernetes CLI
+
+Nachdem der Zugriff via SSH eingerichtet wurde, kann die Kubernetes Konfigurationsdatei `.kube/config` vom Server auf den lokalen Notebook/PC kopiert werden.
+
+    scp -i id_rsa ubuntu@[IP Adresse]:.kube/config .
+    
+**Hinweis**: Windows User können zum kopieren [WinSCP](https://winscp.net/eng/docs/lang:de) verwenden.
+
+Anschliessend brauchen wir noch das `kubectl` CLI, dann können wir von der [Kubernetes Site](https://kubernetes.io/de/docs/tasks/tools/install-kubectl/#installation-der-kubectl-anwendung-mit-curl) downloaden.
+
+Die Pods können dann wie folgt angezeigt werden:
+
+    kubectl --kubeconfig config get pods --all-namespaces
+
+### Dashboard
+
+Für den Zugriff auf das Dashboard benötigen wir den Zugriffstoken des `admin` Users und müssen einen Port zum lokalen Notebook/PC weiterleiten.
+
+Ausgabe des Token
+
+    kubectl --kubeconfig config -n kubernetes-dashboard describe secret
+    
+Weiterleitung des API Ports von Kubernetes zum lokalen Notebook/PC
+
+    kubectl --kubeconfig config proxy
+    
+Aufruf des Dashboards mittels [http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/](http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/)            
+
+Übungen
+-------
 
 ### Docker
 
-* [Funktionaler Überblick](:32188/notebooks/work/03-1-Docker.ipynb)
-* [Einfaches Image-Management](:32188/notebooks/work/03-2-Docker.ipynb)
-* [Betrieb und Management von Docker-Containern](:32188/notebooks/work/03-3-Docker.ipynb)
-* [Dedizierte Docker Image-Stände bauen und verwalte](:32188/notebooks/work/03-4-Docker.ipynb)
-* [Container Security](:32188/notebooks/work/04-1-ContainerSecurity.ipynb)
-* [Insecure Registry](:32188/notebooks/work/05-1-Registry.ipynb)
+* [03-1 Funktionaler Überblick](:32188/notebooks/work/03-1-Docker.ipynb)
+* [03-2 Einfaches Image-Management](:32188/notebooks/work/03-2-Docker.ipynb)
+* [03-3 Betrieb und Management von Docker-Containern](:32188/notebooks/work/03-3-Docker.ipynb)
+* [03-3 Dedizierte Docker Image-Stände bauen und verwalte](:32188/notebooks/work/03-4-Docker.ipynb)
+* [04-1 Container Security](:32188/notebooks/work/04-1-ContainerSecurity.ipynb)
+* [05-1 Insecure Registry](:32188/notebooks/work/05-1-Registry.ipynb)
 
 ### Kubernetes
 
-* [kubectl-CLI und Basis Ressourcen](:32188/notebooks/work/09-1-kubectl.ipynb)
-* [kubectl-CLI und Basis Ressourcen (YAML Variante)](:32188/notebooks/work/09-2-YAML.ipynb)
-* [Verteilung / ReplicaSet](:32188/notebooks/work/09-3-ReplicaSet.ipynb)
-* [Rolling Update](:32188/notebooks/work/9-4-Deployment.ipynb)
-* [Blue/Green Deployments](:32188/notebooks/work/09-4-Deployment-BlueGreen.ipynb)
-* [Canary Deploment](:32188/notebooks/work/09-4-Deployment-Canary.ipynb)
-* [Persistent Volumes und Claims](:32188/notebooks/work/09-5-hostPath.ipynb)
-* [Volume Sharing von Containern](:32188/notebooks/work/09-6-Volume.ipynb)
-* [Secrets](:32188/notebooks/work/09-7-Secrets.ipynb)
-* [ConfigMaps](:32188/notebooks/work/09-8-ConfigMap.ipynb)
+* [09-1 kubectl-CLI und Basis Ressourcen](:32188/notebooks/work/09-1-kubectl.ipynb)
+* [09-2 kubectl-CLI und Basis Ressourcen (YAML Variante)](:32188/notebooks/work/09-2-YAML.ipynb)
+* [09-3 Verteilung / ReplicaSet](:32188/notebooks/work/09-3-ReplicaSet.ipynb)
+* [09-4 Rolling Update](:32188/notebooks/work/09-4-Deployment.ipynb)
+* [09-4 Blue/Green Deployments](:32188/notebooks/work/09-4-Deployment-BlueGreen.ipynb)
+* [09-4 Canary Deploment](:32188/notebooks/work/09-4-Deployment-Canary.ipynb)
+* [09-5 Persistent Volumes und Claims](:32188/notebooks/work/09-5-hostPath.ipynb)
+* [09-6 Volume Sharing von Containern](:32188/notebooks/work/09-6-Volume.ipynb)
+* [09-7 Secrets](:32188/notebooks/work/09-7-Secrets.ipynb)
+* [09-8 ConfigMaps](:32188/notebooks/work/09-8-ConfigMap.ipynb)
+* [09-9 Liveness-, Readiness- und Startup-Tests](:32188/notebooks/work/09-9-Tests.ipynb)
+* [09-10 Init Container](:32188/notebooks/work/09-10-Init.ipynb)
 
-## Weitere Beispiele
+Weitere Beispiele
+-----------------
 
 * [Internet der Dinge](https://github.com/mc-b/duk/iot)
 * [OS Ticket](https://github.com/mc-b/duk/osticket)
