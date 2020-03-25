@@ -37,17 +37,15 @@ Die Pods können dann wie folgt angezeigt werden:
 
 ### Dashboard
 
-Für den Zugriff auf das Dashboard benötigen wir den Zugriffstoken des `admin` Users und müssen einen Port zum lokalen Notebook/PC weiterleiten.
-
-Ausgabe des Token
-
-    kubectl --kubeconfig config -n kubernetes-dashboard describe secret
+Für den Zugriff auf das Dashboard benötigen wir einen Zugriffstoken und müssen den Kubernetes API-Port zum lokalen Notebook/PC weiterleiten.
     
 Weiterleitung des API Ports von Kubernetes zum lokalen Notebook/PC
 
     kubectl --kubeconfig config proxy
     
-Aufruf des Dashboards mittels [http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/](http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/)            
+Aufruf des Dashboards mittels [http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/](http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/). 
+
+Der Token ist auf dem Tab **Cluster-Info** ersichtlich.           
 
 Übungen
 -------
