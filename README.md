@@ -14,7 +14,7 @@ MAAS / IAAS Umgebung um Cluster von VMs oder Kubernetes auszusetzen
 Voraussetzungen
 ---------------
 
-* Ein Netzwerk mit direkter Verbindung ins Internet aber ohne DHCP Server. Informationen zu Gateway und DNS Server.
+* Ein Netzwerk mit direkter Verbindung ins Internet aber ohne DHCP Server. Informationen zu Gateway IP und DNS Servern.
 * Ein handelsüblicher PC laut Anforderungen des [MAAS](https://maas.io/docs/maas-requirements) Projektes, als Master.
 * Eine oder mehrere PCs mit mindestens 32 GB RAM, 512 GB HD und wenn möglich mit [BMC](https://de.wikipedia.org/wiki/Baseboard_Management_Controller) Unterstützung. Diese dienen als Virtualisierungs-Server.
 * Alle Nodes sollten mit mindestens einem 1 GB LAN verbunden sein.
@@ -24,7 +24,8 @@ Installation
 ------------
 
 * [MAAS Master und Worker Nodes](doc/MAAS/Install.md)
-* Gateway - siehe [WireGuard](https://www.wireguard.com/)
+* [Gateway Server](doc/MAAS/Gateway.md)
+* [Einbinden der Clients und Portweiterleitung](doc/MAAS/GatewayClient.md).
 * [Hilfsscripts](helper/)
 
 Maschinen Life Cycle
