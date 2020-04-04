@@ -196,7 +196,7 @@ m300:
   services:
     nfs: true
     docker: true
-    k8s: minimal
+    k8s: master
     wireguard: use
     ssh: generate
     samba: false
