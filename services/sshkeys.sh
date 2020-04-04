@@ -22,12 +22,8 @@ then
     sudo chpasswd <<<ubuntu:$(cat .ssh/passwd)
     sudo sed -i -e 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
     sudo systemctl restart sshd
-    
-    # bei Kubernetes .kube/config kopieren
-    [ -f .kube/config ] && { cp .kube/config data/.ssh; chmod 644 data/.ssh/config; }
 
     cp .ssh/id_rsa .ssh/id_rsa.ppk .ssh/passwd data/.ssh/
-    
 fi   
 
 # Vorbereiteten Key fuer diese Umgebung verwenden, zuerst hostname dann HOST.pub pruefen
