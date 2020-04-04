@@ -115,8 +115,9 @@ Erstellen der produktiven VMs
     cd lernmaas
     createvms config.yaml m242 20 st17a
     
-Verlinken der produktiven VMs mit den Dummy VMs Konfigurationen
+Verlinken der produktiven VMs mit den Dummy VMs Konfigurationen, hier das 1. VPN mit dem MAAS Resource Pool `m242-st17a`
 
+    cd /data/config/wireguard
     linkkeys 1 m242-st17a
 
 
