@@ -76,7 +76,7 @@ cat <<%EOF% | sudo tee /var/www/html/index.html
                         <p>Der Token ist auf dem Tab <strong>Cluster-Info</strong> ersichtlich. </p>
                            
                         <h3>Weave Scope</h3>
-                        <p><a href="https://www.weave.works/oss/scope/">Weave Scope</a> visualisisert die Beziehungen zwischen den Ressourcen eines Kubernetes Clusters. </p>
+                        <p><a href="https://www.weave.works/oss/scope/">Weave Scope</a> visualisiert die Beziehungen zwischen den Ressourcen eines Kubernetes Clusters. </p>
                         <p><a href="https://www.weave.works/oss/scope/">Weave Scope</a> ist Standardmässig installiert und kann nach dem weiterleiten des Ports über <a href="http://localhost:4040">localhost:4040</a> angesprochen werden.</p>
                         <p>Weiterleitung des Weave Scope Ports zum lokalen Notebook/PC</p>
                         <pre><code>kubectl --kubeconfig config port-forward -n weave deployment/weave-scope-app 4040                        </code></pre>
