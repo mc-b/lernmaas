@@ -41,6 +41,7 @@ cat <<%EOF% | sudo tee /var/www/html/index.html
                 <!-- Tabs -->
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#Intro">Intro</a></li>
+                    <li><a data-toggle="tab" href="#Accessing">Accessing</a></li>
                     <li><a data-toggle="tab" href="#Services">Services</a></li>
                     <li><a data-toggle="tab" href="#Pods">Pods</a></li>
                     <li><a data-toggle="tab" href="#Cluster">Cluster-Info</a></li>
@@ -58,7 +59,41 @@ cat <<%EOF% | sudo tee /var/www/html/index.html
                     <!--  Intro -->
                     <div id="Intro" class="tab-pane fade in active">
                         $(markdown $1)
-                    </div>                
+                    </div>    
+                    <!--  Access -->
+                    <div id="Accessing" class="tab-pane fade">
+                        <h3>Kubernetes CLI</h3>
+                        <p>Nachdem der Zugriff via SSH eingerichtet wurde, kann die Kubernetes Konfigurationsdatei <code>.kube/config</code> vom Server auf den lokalen Notebook/PC kopiert werden.</p>
+                        <pre><code>scp -i id_rsa ubuntu@[IP Adresse]:.kube/config .                        </code></pre>
+                        <p><strong>Hinweis</strong>: Windows User können zum kopieren <a href="https://winscp.net/eng/docs/lang:de">WinSCP</a> verwenden.</p>
+                        <p>Anschliessend brauchen wir noch das <code>kubectl</code> CLI, dann können wir von der <a href="https://kubernetes.io/de/docs/tasks/tools/install-kubectl/#installation-der-kubectl-anwendung-mit-curl">Kubernetes Site</a> downloaden.</p>
+                        <p>Die Pods können dann wie folgt angezeigt werden:</p>
+                        <pre><code>kubectl --kubeconfig config get pods --all-namespaces</code></pre>
+                        
+                        <h3>Dashboard</h3>
+                        <p>Für den Zugriff auf das Dashboard benötigen wir einen Zugriffstoken und müssen den Kubernetes API-Port zum lokalen Notebook/PC weiterleiten.</p>
+                        <p>Weiterleitung des API Ports von Kubernetes zum lokalen Notebook/PC</p>
+                        <pre><code>kubectl --kubeconfig config proxy                        </code></pre>
+                        <p>Aufruf des Dashboards mittels <a href="http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/">http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/</a>. </p>
+                        <p>Der Token ist auf dem Tab <strong>Cluster-Info</strong> ersichtlich. </p>
+                           
+                        <h3>Weave Scope</h3>
+                        <p><a href="https://www.weave.works/oss/scope/">Weave Scope</a> visualisisert die Beziehungen zwischen den Ressourcen eines Kubernetes Clusters. </p>
+                        <p><a href="https://www.weave.works/oss/scope/">Weave Scope</a> ist Standardmässig installiert und kann nach dem weiterleiten des Ports über <a href="http://localhost:4040">localhost:4040</a> angesprochen werden.</p>
+                        <p>Weiterleitung des Weave Scope Ports zum lokalen Notebook/PC</p>
+                        <pre><code>kubectl --kubeconfig config port-forward -n weave deployment/weave-scope-app 4040                        </code></pre>
+                        
+                        <h3>Services-Ports auf dem lokalen Notebook weiterleiten</h3>
+                        <p>Mit <a href="https://kubefwd.com/">kubefwd</a> werden Kubernetes-Dienste, die in einem Remotecluster ausgeführt werden, an eine lokale Workstation weitergeleitet, wodurch die Entwicklung von Anwendungen erleichtert wird, die mit anderen Services kommunizieren.</p>
+                        
+                        <p>Anwendung</p>
+                        <ul><li>Letzten Release von <a href="https://github.com/txn2/kubefwd/releases">kubefwd</a> downloaden</li>
+                        <li>Consolen Fenster als Administrator starten, bzw. bei Linux  voranstellen</li>
+                        <li>Alle Services der  Kubernetes Namespace zum Notebook weiterleiten und  Datei nachführen</li></ul>
+                        
+                        <pre><code>kubefwd --kubeconfig config services                        </code></pre>
+                                                
+                    </div>                                
                     <!--  Services -->
                     <div id="Services" class="tab-pane fade">
                         <br/>
