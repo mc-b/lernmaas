@@ -25,6 +25,7 @@ sudo mkdir -p /home/vagrant/.kube
 sudo cp -i /etc/kubernetes/admin.conf /home/vagrant/.kube/config
 sudo chown -R ubuntu:ubuntu /home/vagrant
 # oeffnen fuer Web UI
+sudo rm -f /home/ubuntu/data/.ssh/config
 sudo cp -i /etc/kubernetes/admin.conf /home/ubuntu/data/.ssh/config
 sudo chmod 644 /home/vagrant/.kube/config /home/ubuntu/data/.ssh/config
 
