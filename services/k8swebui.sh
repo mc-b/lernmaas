@@ -83,7 +83,7 @@ cat <<%EOF% | sudo tee /var/www/html/index.html
                         <p>Weiterleitung des Weave Scope Ports zum lokalen Notebook/PC</p>
                         <pre><code>kubectl --kubeconfig config port-forward -n weave deployment/weave-scope-app 4040                        </code></pre>
                         
-                        <h3>Services-Ports auf dem lokalen Notebook weiterleiten</h3>
+                        <h3>Service-Ports auf den lokalen Notebook weiterleiten</h3>
                         <p>Mit <a href="https://kubefwd.com/">kubefwd</a> werden Kubernetes-Dienste, die in einem Remotecluster ausgeführt werden, an eine lokale Workstation weitergeleitet, wodurch die Entwicklung von Anwendungen erleichtert wird, die mit anderen Services kommunizieren.</p>
                         
                         <p>Anwendung</p>
