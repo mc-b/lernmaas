@@ -63,10 +63,8 @@ cat <<%EOF% | sudo tee /var/www/html/index.html
                     <!--  Access -->
                     <div id="Accessing" class="tab-pane fade">
                         <h3>Kubernetes CLI</h3>
-                        <p>Nachdem der Zugriff via SSH eingerichtet wurde, kann die Kubernetes Konfigurationsdatei <code>.kube/config</code> vom Server auf den lokalen Notebook/PC kopiert werden.</p>
-                        <pre><code>scp -i id_rsa ubuntu@[IP Adresse]:.kube/config .                        </code></pre>
-                        <p><strong>Hinweis</strong>: Windows User können zum kopieren <a href="https://winscp.net/eng/docs/lang:de">WinSCP</a> verwenden.</p>
-                        <p>Anschliessend brauchen wir noch das <code>kubectl</code> CLI, dann können wir von der <a href="https://kubernetes.io/de/docs/tasks/tools/install-kubectl/#installation-der-kubectl-anwendung-mit-curl">Kubernetes Site</a> downloaden.</p>
+                        <p>Die Kubernetes Konfigurationsdatei von <a href="/data/.ssh/config">hier</a> downloaden.</p> 
+                        <p>Anschliessend das <code>kubectl</code> CLI, von der <a href="https://kubernetes.io/de/docs/tasks/tools/install-kubectl/#installation-der-kubectl-anwendung-mit-curl">Kubernetes Site</a> downloaden.</p>
                         <p>Die Pods können dann wie folgt angezeigt werden:</p>
                         <pre><code>kubectl --kubeconfig config get pods --all-namespaces</code></pre>
                         
