@@ -87,9 +87,9 @@ cat <<%EOF% | sudo tee /var/www/html/index.html
                         <p>Mit <a href="https://kubefwd.com/">kubefwd</a> werden Kubernetes-Dienste, die in einem Remotecluster ausgeführt werden, an eine lokale Workstation weitergeleitet, wodurch die Entwicklung von Anwendungen erleichtert wird, die mit anderen Services kommunizieren.</p>
                         
                         <p>Anwendung</p>
-                        <ul><li>Letzten Release von <a href="https://github.com/txn2/kubefwd/releases">kubefwd</a> downloaden</li>
+                        <ul><li>Programm von <a href="https://github.com/txn2/kubefwd/releases">kubefwd</a> downloaden</li>
                         <li>Consolen Fenster als Administrator starten, bzw. bei Linux <code>sudo</code> voranstellen</li>
-                        <li>Alle Services der <code>default</code> Kubernetes Namespace zum Notebook weiterleiten und  Datei nachführen</li></ul>
+                        <li>Alle Services der <code>default</code> Kubernetes Namespace zum Notebook weiterleiten und <code>hosts</code> Datei nachführen</li></ul>
                         
                         <pre><code>kubefwd --kubeconfig config services                        </code></pre>
                                                 
