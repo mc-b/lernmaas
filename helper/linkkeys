@@ -1,0 +1,20 @@
+#!/bin/bash
+#
+#   Verlinkt bestehende Keys mit den VM in einem MAAS Resource Pool
+#
+#   Die Keys muessen in $HOME/.wg1, $HOME/.wg2 etc. Verzeichnissen abgelegt sein.
+#
+
+[ $# -lt 2 ] && { echo linkkeys port pool; exit 1; }
+
+### Argumente
+PORT=$HOME/.wg$1
+POOL=$2
+counter=1
+
+### VMs im MAAS Resource Pool
+
+for host in $(maas $PROFILE machines read | jq -r ".[] | select (.pool.name==\"${POOL}\") | .hostname" | sort)
+do
+    ln ${PORT}/server-$(printf "%02d" ${counter}).conf ${host}.conf
+done

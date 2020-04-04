@@ -78,5 +78,48 @@ Nach dem Aufruf der Scripts wird eine Anleitung für die weiteren Schritte ausge
     systemctl enable wg-quick@wg0.service
     systemctl start wg-quick@wg0.service
 
-   
+linkkeys
+--------
+
+Verlinkt die VMs in einem MAAS Resource Pool mit vorhandenen Keys. 
+
+Ist dann sinnvoll wenn nicht immer neue Keys erzeugt werden sollen, sondern bestehende wiederverwendet.
+
+Der Aufruf von `linkkeys` ist wie folgt:
+
+    linkkeys <VPN-Nr> <Modul> 
+
+**Beispiel**
+
+Wir erstellen pro MAAS Server 4 VPNs hinterlegen diese im Gateway und verwenden diese jeweils wieder.
+
+Erstellen von 20 Dummy VMs 
+
+    cd lernmaas
+    createvms config.yaml server 20
+
+Einmaliges erstellen der Keys für 4 VPNs mit jeweils 20 VMs u
+
+    for i in 1 2 3 4
+    do
+            mkdir .wg$i
+            cd .wg$i
+            createkeys gateway.northeurope.cloudapp.azure.com 5182$i server
+            cd ..
+    done
+
+Ablegen der Keys, Templates etc. siehe [Gateway VPN](https://github.com/mc-b/lernmaas/blob/master/doc/MAAS/Gateway.md#gateway-server---vpn)
+
+Erstellen der produktiven VMs
+
+    cd lernmaas
+    createvms config.yaml m242 20 st17a
+    
+Verlinken der produktiven VMs mit den Dummy VMs Konfigurationen
+
+    linkkeys 1 m242-st17a
+
+
+**ACHTUNG:** alte Verlinkungen müssen manuell gelöscht werden, ansonsten kann es zu Doppelspurigkeiten kommen.
+
     
