@@ -4,10 +4,9 @@ Server für manuelle Installation Kubernetes.
 
 Docker ist bereits installiert.
 
-Zugriff auf den Server
-----------------------
+### Zugriff auf den Server
 
-### User / Password
+**User / Password**
 
 Der User ist `ubuntu`, dass Password steht in der Datei [/data/.ssh/passwd](/data/.ssh/passwd).
 
@@ -15,7 +14,7 @@ Einloggen mittels
 
     ssh ubuntu@[IP Adresse]
 
-### SSH
+**SSH**
 
 Auf der Server kann mittels [ssh](https://wiki.ubuntuusers.de/SSH/) zugegriffen werden.
 
