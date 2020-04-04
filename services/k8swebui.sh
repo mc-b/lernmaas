@@ -88,8 +88,8 @@ cat <<%EOF% | sudo tee /var/www/html/index.html
                         
                         <p>Anwendung</p>
                         <ul><li>Letzten Release von <a href="https://github.com/txn2/kubefwd/releases">kubefwd</a> downloaden</li>
-                        <li>Consolen Fenster als Administrator starten, bzw. bei Linux  voranstellen</li>
-                        <li>Alle Services der  Kubernetes Namespace zum Notebook weiterleiten und  Datei nachführen</li></ul>
+                        <li>Consolen Fenster als Administrator starten, bzw. bei Linux <code>sudo</code> voranstellen</li>
+                        <li>Alle Services der <code>default</code> Kubernetes Namespace zum Notebook weiterleiten und  Datei nachführen</li></ul>
                         
                         <pre><code>kubefwd --kubeconfig config services                        </code></pre>
                                                 
