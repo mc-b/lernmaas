@@ -21,32 +21,6 @@ Der private SSH Key ist auf dem Installierten Server unter [/data/.ssh/id_rsa](/
     
 **Hinweis**: Windows User verwenden [Putty](https://www.putty.org/) und den [Putty Key /data/.ssh/id_rsa.ppk](/data/.ssh/id_rsa.ppk). 
 
-### Kubernetes CLI
-
-Nachdem der Zugriff via SSH eingerichtet wurde, kann die Kubernetes Konfigurationsdatei `.kube/config` vom Server auf den lokalen Notebook/PC kopiert werden.
-
-    scp -i id_rsa ubuntu@[IP Adresse]:.kube/config .
-    
-**Hinweis**: Windows User können zum kopieren [WinSCP](https://winscp.net/eng/docs/lang:de) verwenden.
-
-Anschliessend brauchen wir noch das `kubectl` CLI, dann können wir von der [Kubernetes Site](https://kubernetes.io/de/docs/tasks/tools/install-kubectl/#installation-der-kubectl-anwendung-mit-curl) downloaden.
-
-Die Pods können dann wie folgt angezeigt werden:
-
-    kubectl --kubeconfig config get pods --all-namespaces
-
-### Dashboard
-
-Für den Zugriff auf das Dashboard benötigen wir einen Zugriffstoken und müssen den Kubernetes API-Port zum lokalen Notebook/PC weiterleiten.
-    
-Weiterleitung des API Ports von Kubernetes zum lokalen Notebook/PC
-
-    kubectl --kubeconfig config proxy
-    
-Aufruf des Dashboards mittels [http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/](http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/). 
-
-Der Token ist auf dem Tab **Cluster-Info** ersichtlich.           
-
 Übungen
 -------
 
