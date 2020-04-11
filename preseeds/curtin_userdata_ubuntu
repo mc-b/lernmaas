@@ -10,3 +10,8 @@ late_commands:
   10_git: ["curtin", "in-target", "--", "sh", "-c", "apt-get -y install git curl wget jq markdown nmap traceroute"]
   20_git: ["curtin", "in-target", "--", "sh", "-c", "git clone https://github.com/mc-b/lernmaas /opt/lernmaas"]
   30_run: ["curtin", "in-target", "--", "sh", "-c", "cp /opt/lernmaas/cloud.cfg.d/* /etc/cloud/cloud.cfg.d/"]
+  40_rep: ["curtin", "in-target", "--", "sh", "-c", "/bin/echo {{node.pool.description}} >/opt/lernmaas/repositories"]
+  50_rep: ["curtin", "in-target", "--", "sh", "-c", "/bin/echo {{node.description}} >>/opt/lernmaas/repositories"]
+  60_vwg: ["curtin", "in-target", "--", "sh", "-c", "/bin/echo {{node.zone.description}} >/opt/lernmaas/wireguard"]
+  70_tag: ["curtin", "in-target", "--", "sh", "-c", "/bin/echo {{node.tag_names()}} >/opt/lernmaas/tags"]
+   
