@@ -3,17 +3,18 @@
 #   Erstellt wg0.conf und die Keys fuer WireGuard Server und Clients
 #
 
-[ $# -lt 2 ] && { echo createaz endpoint port; exit 1; }
+[ $# -lt 2 ] && { echo createaz endpoint subnet; exit 1; }
 
 ### Argumente
-ENDPOINT=$1:$2
-PORT=$2
-NET=$((${PORT} - 51820))
-WG0="wg$((${PORT} - 51820)).conf"
-TAR="wg$((${PORT} - 51820)).tgz"
-CLN="wg$((${PORT} - 51820))-client.conf"
-TEMPLATE="wg$((${PORT} - 51820))-template.conf"
-CSV="wg$((${PORT} - 51820)).csv"
+NET=$2
+PORT=$((${NET} + 51820))
+ENDPOINT=$1:${PORT}
+
+WG0="wg${NET}.conf"
+TAR="wg${NET}.tgz"
+CLN="wg${NET}-client.conf"
+TEMPLATE="wg${NET}-template.conf"
+CSV="wg${NET}.csv"
 ZONE="192-168-${NET}-0"
 counter=11
 
