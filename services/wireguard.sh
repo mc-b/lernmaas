@@ -23,8 +23,7 @@ then
     export NO=$(hostname | cut -d- -f 2)
     if [ "${NO}" != "" ]
     then
-        cd /home/ubuntu
-        sed 's/ /\n/g' wireguard | base64 -d | tar xzf - ${NO}.conf
+        sed 's/ /\n/g' wireguard | base64 -d | sudo tar xzf - ${NO}.conf
         if  [ -f "${NO}.conf" ]
         then
             sudo mv ${NO}.conf /etc/wireguard/wg0.conf
