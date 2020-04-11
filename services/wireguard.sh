@@ -17,13 +17,14 @@ then
     sudo systemctl start wg-quick@wg0.service
  
 # Aktivierung durch MAAS AZ    
-elif [ -f "/opt/lernmaas/wireguard" ]
+elif [ -f wireguard ]
 then
 
     export NO=$(hostname | cut -d- -f 2)
     if [ "${NO}" != "" ]
     then
-        sed 's/ /\n/g' /opt/lernmaas/wireguard | base64 -d | tar xzf - ${NO}.conf
+        cd /home/ubuntu
+        sed 's/ /\n/g' wireguard | base64 -d | tar xzf - ${NO}.conf
         if  [ -f "${NO}.conf" ]
         then
             sudo mv ${NO}.conf /etc/wireguard/wg0.conf
