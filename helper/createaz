@@ -8,12 +8,13 @@
 ### Argumente
 ENDPOINT=$1:$2
 PORT=$2
-NET=$((${PORT} - 51810))
+NET=$((${PORT} - 51820))
 WG0="wg$((${PORT} - 51820)).conf"
 TAR="wg$((${PORT} - 51820)).tgz"
 CLN="wg$((${PORT} - 51820))-client.conf"
 TEMPLATE="wg$((${PORT} - 51820))-template.conf"
 CSV="wg$((${PORT} - 51820)).csv"
+ZONE="192-168-${NET}-0"
 counter=11
 
 # Server Keys
@@ -85,6 +86,16 @@ AllowedIPs = 192.168.${NET}.${counter}
 done
 
 tar czf ${TAR} ??.conf && rm ??.conf && mv 100.conf ${CLN}
+
+### AZ mit Konfigurationsdateien abfuellen
+
+Z=$(maas $PROFILE zones read | jq ".[] | select (.name==\"${ZONE}\") | .id")
+ZDATA=$(base
+
+if [ "${Z}" != "" ]
+then
+    maas $PROFILE zone update ${ZONE} description=$(base64 ${TAR})
+fi
 
 cat <<%EOF% 
 
