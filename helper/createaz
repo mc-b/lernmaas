@@ -91,11 +91,10 @@ tar czf ${TAR} ??.conf && rm ??.conf && mv 100.conf ${CLN}
 ### AZ mit Konfigurationsdateien abfuellen
 
 Z=$(maas $PROFILE zones read | jq ".[] | select (.name==\"${ZONE}\") | .id")
-ZDATA=$(base
 
 if [ "${Z}" != "" ]
 then
-    maas $PROFILE zone update ${ZONE} description=$(base64 ${TAR})
+    maas $PROFILE zone update ${ZONE} description="$(base64 ${TAR})"
 fi
 
 cat <<%EOF% 
