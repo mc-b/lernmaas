@@ -104,6 +104,15 @@ do
     bash -x services/repository.sh ${repo}
 done
 
+# Repositories aus Description von Node oder Resource Pool
+if [ -f repositories ]
+then
+    for repo in $(cat repositories)
+    do
+        bash -x services/repository.sh ${repo}
+    done
+fi    
+
 ################### Scripts ###################
 
 for script in $(echo ${config_scripts} | tr ',' ' ')
