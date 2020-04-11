@@ -110,8 +110,8 @@ cat <<%EOF%
     
     
     WireGuard Interface auf dem Gateway aktiveren:
-    systemctl enable wg-quick@wg$((${PORT} - 51820)).service
-    systemctl start wg-quick@wg$((${PORT} - 51820)).service
+    systemctl enable wg-quick@wg${NET}.service
+    systemctl start wg-quick@wg${NET}.service
 
 %EOF%
 
