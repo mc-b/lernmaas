@@ -6,19 +6,6 @@ Um die Scripts auszuführen, muss:
 * ein login in den MAAS Master stattgefunden haben
 * die Umgebungsvariable PROFILE (= MAAS User) gesetzt sein.
 
-ccopy
------
-
-`ccopy` exportiert die Container Images von einer laufenden Docker und/oder Kubernetes Umgebung nach `/data/templates/cr-cache/<Modul>` auf den MAAS Master.
-
-`lernmaas` bzw. das Script [docker](../services/docker) verwendet diese exportieren Container Images und importiert diese, bevor der erste Container gestartet wird.
-
-Das führt zu einem massiven Zeitgewinn, weil die Container Images nicht mehr über das Internet geholt werden müssen. Bei Kubernetes sind das alleine ca. 2 GB pro VM.
-
-Der Aufruf von `ccopy` ist wie folgt:
-
-    bash ccopy <Name Modul ohne -01> <IP-Adresse VM>
-
 createvms
 ---------
 
@@ -28,41 +15,24 @@ Die VMs sind anschliessend im Zustand `Ready` und können via MAAS Oberfläche d
 
 Der Aufruf von `createvms` ist wie folgt:
 
-    createvms <config.yaml> <Modul> <Anzahl VMs> <Suffix>
+    cd lernmaas
+    createvms <config.yaml> <Modul> <Anzahl VMs> <Suffix> <Offset>
     
-**ACHTUNG**: die Anzahl VMs muss kleiner der Anzahl Pods oder durch die Anzahl Pods teilbar sein. Z.B. bei 6 Pods können 1 - 6, 12, 18, 24 etc. VMs erstellt werden.    
+Argumente:
+* `config.yaml` - Datei. Alternativ kann auch eine andere Datei angegeben werden.
+* `Modul` - Modulname, muss in `config.yaml` vorkommen
+* `Anzahl VMs` - Anzahl der VMs die erstellt werden sollen. Die Anzahl muss durch die Anzahl KVM Maschinen teilbar sein. Die VMs werden gleichmässig auf die KVM Maschinen verteilt.
+* `Suffix` - Optionaler freier Suffix, kann z.B. das Klassenkürzel oder das Datum des Kurses sein.
+* `Offset` - Optionaler Versatz. Wird hier eine Zahl angegeben, werden die VMs ab diesem aufgezählt, z.B. bei 6 bekommt die erste VM die Bezeichnung <Modul>-06-<Suffix>.
     
-createk8svms
-------------
-
-Erstellt einen oder mehrere Kubernetes Cluster. Die Anzahl bestimmt dabei die Anzahl Cluster und nicht die Anzahl VMs.
-
-Es wird zuerst auf dem ersten KVM-Pod die Anzahl Master erstellt und anschliessend auf jedem weiteren KVM-Pod ein Worker. 
-
-In der [config.yaml](../config.yaml) müssen die Einträge für master (z.B. m000master) und Worker (z.B. m000worker) vorhanden sind. Diese werden separat ausgewertet, d.h. dem Master kann z.B. weniger RAM zugewiesen werden als dem Worker oder umgekehrt.
-
-Der Aufruf von `createvms` ist wie folgt:
-
-    createk8svms <config.yaml> <Modul> <Anzahl Cluster> <Suffix>   
-
-   
-tocsv
---------
-
-Exportiert VM Hostname und IP-Adresse ins CSV Format, z.B. um es mit Excel weiterverarbeiten zu können.
-
-Hostname und IP-Adresse werden aus einem Resource Pool von MAAS Master geholt.
-
-Der Aufruf von `tocsv` ist wie folgt:
-
-    tocsv <Resource Pool MAAS>
+**ACHTUNG**: die Anzahl VMs muss kleiner der Anzahl KVM Maschinen oder durch die Anzahl KVM Maschinen teilbar sein. Z.B. bei 6 Pods können 1 - 6, 12, 18, 24 etc. VMs erstellt werden.    
     
-createkeys
------------
+createkeys (deprecated - besser updateaz verwenden)
+----------
 
 Erzeugt die WireGuard Keys für den Gateway.
 
-    createkeys <EndPoint> <Port> <Resource Pool>  
+    createkeys <EndPoint> <SubNet> <Resource Pool>  
     
 Nach dem Aufruf der Scripts wird eine Anleitung für die weiteren Schritte ausgegeben, z.B. 
 
@@ -78,49 +48,80 @@ Nach dem Aufruf der Scripts wird eine Anleitung für die weiteren Schritte ausge
     systemctl enable wg-quick@wg0.service
     systemctl start wg-quick@wg0.service
 
-linkkeys
+updateaz
 --------
 
-Verlinkt die VMs in einem MAAS Resource Pool mit vorhandenen Keys. 
+Ergänzt die [AZs](https://maas.io/docs/availability-zones) (Availability zones) von MAAS mit WireGuard Keys.
 
-Ist dann sinnvoll wenn nicht immer neue Keys erzeugt werden sollen, sondern bestehende wiederverwendet.
+Zuerst müssen die [AZs](https://maas.io/docs/availability-zones) manuell (es gibt kein Befehle create für AZs im MAAS CLI) erstellt werden. 
 
-Der Aufruf von `linkkeys` ist wie folgt:
+Die Namensgebung ist dabei wie folgt:
 
-    linkkeys <VPN-Nr> <Modul> 
+* 192-168-<Subnet>-0
 
-**Beispiel**
+Anschliessend können die WireGuard Keys, wie bei `createkeys`, erstellt werden. Diese werden dann im Feld `Description`, als TAR Datei - Base64 codiert, der AZ abgestellt.
 
-Wir erstellen pro MAAS Server 4 VPNs hinterlegen diese im Gateway und verwenden diese jeweils wieder.
 
-Erstellen von 20 Dummy VMs 
+Der Aufruf von `updateaz` ist wie folgt:
 
-    cd lernmaas
-    createvms config.yaml server 20
-
-Einmaliges erstellen der Keys für 4 VPNs mit jeweils 20 VMs u
-
-    for i in 1 2 3 4
-    do
-            mkdir .wg$i
-            cd .wg$i
-            createkeys gateway.northeurope.cloudapp.azure.com 5182$i server
-            cd ..
-    done
-
-Ablegen der Keys, Templates etc. siehe [Gateway VPN](https://github.com/mc-b/lernmaas/blob/master/doc/MAAS/Gateway.md#gateway-server---vpn)
-
-Erstellen der produktiven VMs
-
-    cd lernmaas
-    createvms config.yaml m242 20 st17a
+    updateaz <EndPoint> <SubNet>
     
-Verlinken der produktiven VMs mit den Dummy VMs Konfigurationen, hier das 1. VPN mit dem MAAS Resource Pool `m242-st17a`
+Nach dem Aufruf der Scripts wird eine Anleitung für die weiteren Schritte ausgegeben, z.B. 
 
-    cd /data/config/wireguard
-    linkkeys 1 m242-st17a
+    Key Generierung erfolgreich
+    ---------------------------
+    
+    wg11.conf           - WireGuard Konfigurationsdatei fuer Gateway
+    wg11-template.conf  - WireGuard Template fuer Clients. Vervollstandigen mit IP-Adresse und Private-Key. Ablegen zu den Unterlagen
+    wg11.csv            - Liste der Clients. Zum Bearbeiten mit Excel und Eintragen der Lernenden
+    wg11.tgz            - Konfigurationsdateien fuer die VMs und Clients.
+    
+    WireGuard Interface auf dem Gateway aktiveren:
+    systemctl enable wg-quick@wg11.service
+    systemctl start wg-quick@wg11.service
 
+In der Datei `wg11.tgz` befinden sich die WireGuard Konfigurationsdateien nummeriert von `01.conf` - `99.conf`. 
 
-**ACHTUNG:** alte Verlinkungen müssen manuell gelöscht werden, ansonsten kann es zu Doppelspurigkeiten kommen.
+Für die Zuordnung muss der Name der [VM](https://maas.io/docs/machine-overview) in der zweiten Stelle eine Nummer 01 - 99 enthalten und die VM einer der [AZs](https://maas.io/docs/availability-zones) zugeordnet sein. Die Zuordnung
+der VMs zu einer AZ geht am einfachsten im [MAAS UI](http://localhost:5240).     
+    
+createk8svms
+------------
+
+Erstellt einen oder mehrere Kubernetes Cluster. Die Anzahl bestimmt dabei die Anzahl Cluster und nicht die Anzahl VMs.
+
+Es wird zuerst auf dem ersten KVM-Pod die Anzahl Master erstellt und anschliessend auf jedem weiteren KVM-Pod ein Worker. 
+
+In der [config.yaml](../config.yaml) müssen die Einträge für master (z.B. m000master) und Worker (z.B. m000worker) vorhanden sind. Diese werden separat ausgewertet, d.h. dem Master kann z.B. weniger RAM zugewiesen werden als dem Worker oder umgekehrt.
+
+Der Aufruf von `createvms` ist wie folgt:
+
+    createk8svms <config.yaml> <Modul> <Anzahl Cluster> <Suffix>   
+
+ccopy
+-----
+
+`ccopy` exportiert die Container Images von einer laufenden Docker und/oder Kubernetes Umgebung nach `/data/templates/cr-cache/<Modul>` auf den MAAS Master.
+
+`lernmaas` bzw. das Script [docker](../services/docker) verwendet diese exportieren Container Images und importiert diese, bevor der erste Container gestartet wird.
+
+Das führt zu einem massiven Zeitgewinn, weil die Container Images nicht mehr über das Internet geholt werden müssen. Bei Kubernetes sind das alleine ca. 2 GB pro VM.
+
+Der Aufruf von `ccopy` ist wie folgt:
+
+    bash ccopy <Name Modul ohne -01> <IP-Adresse VM>
+       
+tocsv (deprecated - besser updateaz verwenden)
+-----
+
+Exportiert VM Hostname und IP-Adresse ins CSV Format, z.B. um es mit Excel weiterverarbeiten zu können.
+
+Hostname und IP-Adresse werden aus einem Resource Pool von MAAS Master geholt.
+
+Der Aufruf von `tocsv` ist wie folgt:
+
+    tocsv <Resource Pool MAAS>
+
+  
 
     

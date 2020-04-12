@@ -38,6 +38,7 @@ fi
 
 [ $# -gt 2 ] && [ $3 -ne 0 ] && COUNT=$3 || COUNT=${config_vm_count}
 [ "$4" != "" ] && POOLNAME="$2-$4" || POOLNAME="$2"
+[ "$5" != "" ] && OFFSET=$5 || OFFSET=0
 
 ################### MAAS Interaktion ###################
 
@@ -66,7 +67,7 @@ do
     while   [ ${c} -gt 0 ] && [ ${counter} -le ${COUNT} ]
     do
         c=$((${c} - 1))
-        [ ${counter} -lt 10 ] && HOSTNAME=$2-0${counter} || HOSTNAME=$2-${counter}
+        [ ${counter} -lt 10 ] && HOSTNAME=$2-0$((${counter} + ${OFFSET})) || HOSTNAME=$2-$((${counter} + ${OFFSET}))
         [ "$4" != "" ] && HOSTNAME=${HOSTNAME}-$4
         echo maas $PROFILE pod compose ${pod} memory=${config_vm_memory} cores=${config_vm_cores} storage=${config_vm_storage} pool=${POOL} hostname=${HOSTNAME}
         maas $PROFILE pod compose ${pod} memory=${config_vm_memory} cores=${config_vm_cores} storage=${config_vm_storage} pool=${POOL} hostname=${HOSTNAME}

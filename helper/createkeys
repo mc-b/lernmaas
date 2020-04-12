@@ -3,16 +3,17 @@
 #   Erstellt wg0.conf und die Keys fuer WireGuard Server und Clients
 #
 
-[ $# -lt 3 ] && { echo createkeys endpoint port pool; exit 1; }
+[ $# -lt 3 ] && { echo createkeys endpoint subnet pool; exit 1; }
 
 ### Argumente
-ENDPOINT=$1:$2
-PORT=$2
+NET=$2
+PORT=$((${NET} + 51820))
+ENDPOINT=$1:${PORT}
 POOL=$3
-NET=$((${PORT} - 51810))
-WG0="wg$((${PORT} - 51820)).conf"
-TEMPLATE="wg$((${PORT} - 51820))-template.conf"
-CSV="wg$((${PORT} - 51820)).csv"
+
+WG0="wg${NET}.conf"
+TEMPLATE="wg${NET}-template.conf"
+CSV="wg${NET}.csv"
 INDEX="${POOL}.html"
 counter=11
 
