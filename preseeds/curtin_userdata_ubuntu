@@ -8,10 +8,15 @@ debconf_selections:
 late_commands:
   maas: [wget, '--no-proxy', {{node_disable_pxe_url|escape.json}}, '--post-data', {{node_disable_pxe_data|escape.json}}, '-O', '/dev/null']
   10_git: ["curtin", "in-target", "--", "sh", "-c", "apt-get -y install git curl wget jq markdown nmap traceroute"]
-  20_git: ["curtin", "in-target", "--", "sh", "-c", "git clone https://github.com/mc-b/lernmaas /opt/lernmaas"]
+{{if 'cloud-init' in (node.tag_names())}}
+  20_git: ["curtin", "in-target", "--", "sh", "-c", "git clone {{node.description}} /opt/lernmaas"]
   30_run: ["curtin", "in-target", "--", "sh", "-c", "cp /opt/lernmaas/cloud.cfg.d/* /etc/cloud/cloud.cfg.d/"]
-  40_rep: ["curtin", "in-target", "--", "sh", "-c", "/bin/echo {{node.pool.description}} >/opt/lernmaas/repositories"]
-  50_rep: ["curtin", "in-target", "--", "sh", "-c", "/bin/echo {{node.description}} >>/opt/lernmaas/repositories"]
-  60_vwg: ["curtin", "in-target", "--", "sh", "-c", "/bin/echo {{node.zone.description}} >/opt/lernmaas/wireguard"]
-  70_tag: ["curtin", "in-target", "--", "sh", "-c", "/bin/echo {{node.tag_names()}} >/opt/lernmaas/tags"]
+{{else}}  
+  40_git: ["curtin", "in-target", "--", "sh", "-c", "git clone https://github.com/mc-b/lernmaas /opt/lernmaas"]
+  50_run: ["curtin", "in-target", "--", "sh", "-c", "cp /opt/lernmaas/cloud.cfg.d/* /etc/cloud/cloud.cfg.d/"]
+  60_rep: ["curtin", "in-target", "--", "sh", "-c", "/bin/echo {{node.description}} >>/opt/lernmaas/repositories"]
+{{endif}}  
+  70_rep: ["curtin", "in-target", "--", "sh", "-c", "/bin/echo {{node.pool.description}} >/opt/lernmaas/repositories"]
+  80_vwg: ["curtin", "in-target", "--", "sh", "-c", "/bin/echo {{node.zone.description}} >/opt/lernmaas/wireguard"]
+  90_tag: ["curtin", "in-target", "--", "sh", "-c", "/bin/echo {{node.tag_names()}} >/opt/lernmaas/tags"]
    
