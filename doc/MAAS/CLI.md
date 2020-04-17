@@ -23,7 +23,7 @@ Von Vorteil ist es, die VMs in unterschiedliche Pools zu unterteilen. Dazu brauc
 
 Anschliessend können wir auf dem entsprechenden Pod (HW mit KVM) im gewünschten Pool unsere VMs erstellen:
 
-    for x in {01..08} ; do maas ubuntu pod compose 1 memory=2048 cores=2 storage=16 pool=0 hostname=m300-${x} ; done  
+    for x in {01..03} ; do maas ubuntu pod compose 3 memory=2048 cores=2 storage=16 pool=0 hostname=m300-${x} ; done  
     
 ### Links
 
