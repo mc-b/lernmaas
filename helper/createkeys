@@ -6,7 +6,7 @@
 [ $# -lt 3 ] && { echo createkeys endpoint subnet pool; exit 1; }
 
 ### Argumente
-NET=$2
+export NET=$2
 PORT=$((${NET} + 51820))
 ENDPOINT=$1:${PORT}
 POOL=$3
