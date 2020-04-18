@@ -15,7 +15,7 @@ WG0="wg${NET}.conf"
 TEMPLATE="wg${NET}-template.conf"
 CSV="wg${NET}.csv"
 INDEX="${POOL}.html"
-counter=11
+counter=2
 
 # Server Keys
 SERVER_KEY=$(wg genkey)
@@ -144,6 +144,12 @@ AllowedIPs = 192.168.${NET}.${counter}
     counter=$((${counter} + 1))
     
 done  
+
+# Globale Key Datei vorhanden?
+if  [ -f wg-global.conf ]
+then
+    envsubst <wg-global.conf >>${WG0}
+fi
 
 cat <<%EOF% >>${INDEX}
     </table>
