@@ -114,6 +114,24 @@ m141:
   scripts: m141.sh
   repositories: 
   
+# Modul 152: Multimedia-Inhalte in Webauftritt integrieren  
+m152:
+  vm:  
+    storage: 8
+    memory:  1024
+    cores: 2
+    count: 2
+  services:
+    nfs: true
+    docker: false
+    k8s: 
+    wireguard: use
+    ssh: generate
+    samba: true
+    firewall: false
+  scripts: 
+  repositories: https://github.com/tbz-it/M152
+    
 # Modul 183: Applikationssicherheit implementieren (Kubernetes und Webgoat)
 m183:
   vm:  
