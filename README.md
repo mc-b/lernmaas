@@ -28,6 +28,11 @@ Installation
 * [Einbinden der Clients und Portweiterleitung](doc/MAAS/GatewayClient.md).
 * [Hilfsscripts](helper/)
 
+Fragen und Antworten
+--------------------
+
+* [FAQ](doc/MAAS/FAQ.md) 
+
 Maschinen Life Cycle
 --------------------
 
