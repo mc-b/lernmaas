@@ -115,12 +115,12 @@ Die Services können pro VM in der Datei [config.yaml](https://github.com/mc-b/l
 
 Es stehen folgende Services zur Verfügung:
 * **nfs** - `true` = es werden $HOME/data, $HOME/template $HOME/config auf den MAAS Server weitergeleitet, bzw. gemountet.
-* **wireguard** - `use` = ist einen Datei $HOME/config/wireguard/$HOSTNAME vorhanden wird diese als Konfigurationsdatei für WireGuard verwendet. Bei Kubernetes wird zusätzlich als 1. IP nicht die interne IP sondern die von WireGuard verwendet.
-* **ssh** - `generate` = erstellt eine SSH-Key pro VM, fügt den Public Key `.ssh/authorized_keys` an und kopiert den Private Key nach data/.ssh/. für den Zugriff von aussen.
+* **wireguard** - `use` = ist einen Datei $HOME/config/wireguard/$HOSTNAME vorhanden wird diese als Konfigurationsdatei für WireGuard verwendet. Statt der Konfigurationsdatei genügt neu die Zuordnung zu einer AZ und der Tag `wireguard`. Bei Kubernetes wird zusätzlich als 1. IP nicht die interne IP sondern die von WireGuard verwendet.
+* **ssh** - `generate` = erstellt einen SSH-Key pro VM, fügt den Public Key `.ssh/authorized_keys` an und kopiert den Private Key nach data/.ssh/. für den Zugriff von aussen. Zusätzlich wird ein Key für [putty](https://www.putty.org/) und ein Password mit [pwgen](https://www.pwdgen.org/) erzeugt. Das Password steht in der Datei `.ssh/passwd` und `data/.ssh/passwd`.
 * **samba** - `true` = installiert die CIFS Freigabe Samba und gibt $HOME/data allgemein frei.
 * **firewall** - `true` = installiert `ufw` als Firewall mit Standardeinstellungen
 * **docker** - `true` = installiert Docker in der VM
-* **k8s** - `master` = installiert einen Kubernetes Master, `worker` = installiert einen Kubernetes Worker und joint diesen mit dem Kubernetes Master.
+* **k8s** - `master` = installiert einen Kubernetes Master, `worker` = installiert einen Kubernetes Worker und joint diesen mit dem Kubernetes Master. `minimal` installiert nur die absolut notwendigen K8s Services. `k3s` die [k3s](https://k3s.io/), `rancher` die [Rancher](https://rancher.com/) und `openshift` die [OpenShift](https://www.openshift.com/) Variante von Kubernetes. 
 
 Details und die Services selber findet man im Verzeichnis [services](services/).
 
