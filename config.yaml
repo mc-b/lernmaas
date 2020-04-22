@@ -257,6 +257,24 @@ m426:
     firewall: false
   scripts: 
   repositories:
+  
+# Modul 437 Arbeiten im Support (Minimale Kubernetes Umgebung, OSS Ticket, MySQL DB)  
+m437:
+  vm:  
+    storage: 12
+    memory:  2048
+    cores: 2
+    count: 20
+  services:
+    nfs: true
+    docker: false
+    k8s: k3s
+    wireguard: use
+    ssh: generate
+    samba: false
+    firewall: false
+  scripts: 
+  repositories: https://github.com/tbz-it/M437 
     
 ######### Digicomp Kurse siehe https://github.com/mc-b ######### 
 
