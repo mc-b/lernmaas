@@ -32,6 +32,39 @@ auf 192.168.161.21 ist die Startseite des nxinx Web Server ersichtlich.
 
 Wenn alles Funktioniert, URL des GitHub Repositories mit Angaben wie RAM, Storage und CPUs an Projekt [lernmaas](https://github.com/mc-b/lernmaas) senden, z.B. als [Issue](https://github.com/mc-b/lernmaas/issues).
 
+**Wie Installiere ich Software, für dies es kein Debian Packet gibt?**
+
+Mittels `wget`.
+
+Beispiel `ngrok`
+
+* Öffne die Website von [ngrok](https://ngrok.com/) gehe auf [Download](https://ngrok.com/download).
+* Kopiere den [Linux URL](https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip) in die Zwischenablage
+* Wechsel in die Machine (VM) oder auf das Installationsscripts und füge folgende Befehle ein:
+
+    sudo apt install unzip
+    wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -O ngrok.zip
+    unzip ngrok.zip
+    sudo mv ngrok /usr/local/bin
+    chmod 755 /usr/local/bin/ngrok
+    
+    
+
+Zugriff
+-------
+
+**Wie kann ich auf die Machine (VMs) zugreifen?**
+
+Das kommt auf Einträge in [config.yaml](https://github.com/mc-b/lernmaas#konfigurationsdatei-configyaml) an. Es sind SSH, SMB und mittels Password möglich.
+
+**Wie setze ich ein Default Password für den 'ubuntu' User und schalten den Zugriff mit dem Password via SSH frei?**
+
+    sudo bash -c 'chpasswd <<<ubuntu:changeme'
+    sudo sed -i -e 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+    sudo systemctl restart sshd
+
+
+
 Persistenz / Vorlagen
 ---------------------
 
