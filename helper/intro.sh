@@ -20,7 +20,7 @@ export ADDR=$(ifconfig wg0 | grep inet | cut '-d ' -f 10)
 [ "${ADDR}" == "" ] && { export ADDR=$(hostname -I | cut -d ' ' -f 1); }
 
 # Home Verzeichnis unter http://<host>/data/ verfuegbar machen, wenn Zugriff via Password erlaubt
-if [ -f /home/ubuntu/.ssh/passwd ]
+if [ -f /home/ubuntu/.ssh/passwd ] || [ -f ACCESSING.md ]
 then
     mkdir -p /home/ubuntu/data/
     sudo ln -s /home/ubuntu/data /var/www/html/data
@@ -154,3 +154,8 @@ cat <<%EOF% | sudo tee -a /var/www/html/index.html
 </body>
 </html>
 %EOF%
+
+if [ -f /home/ubuntu/.ssh/passwd ] || [ -f ACCESSING.md ]
+then
+    sudo chmod -R g=u,o=u /home/ubuntu/data/
+fi
