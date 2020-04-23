@@ -135,16 +135,16 @@ m152:
 # Modul 183: Applikationssicherheit implementieren (Kubernetes und Webgoat)
 m183:
   vm:  
-    storage: 8
+    storage: 12
     memory:  2048
     cores: 2
-    count: 6
+    count: 20
   services:
     nfs: true
-    docker: true
+    docker: false
     k8s: k3s
     wireguard: use
-    ssh: use
+    ssh: 
     samba: false
     firewall: false
   scripts: 
