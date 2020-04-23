@@ -270,7 +270,7 @@ m437:
     docker: false
     k8s: k3s
     wireguard: use
-    ssh: generate
+    ssh: 
     samba: false
     firewall: false
   scripts: 
