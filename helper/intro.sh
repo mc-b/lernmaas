@@ -56,16 +56,18 @@ cat <<%EOF% | sudo tee /var/www/html/index.html
                     <li class="active"><a data-toggle="tab" href="#Intro">Intro</a></li>
 %EOF%
 
-if [ -f /home/ubuntu/.ssh/passwd || -f ACCESSING.md ]
+if [ -f /home/ubuntu/.ssh/passwd ] || [ -f ACCESSING.md ]
+then
 cat <<%EOF% | sudo tee -a /var/www/html/index.html
-                    <li><a data-toggle="tab" href="#Accessing">Accessing</a></li>
+                    #<li><a data-toggle="tab" href="#Accessing">Accessing</a></li>
 %EOF%
-if
-  
+fi
+
 if [ -f SERVICES.md ]
+then
 cat <<%EOF% | sudo tee -a /var/www/html/index.html
                     <li><a data-toggle="tab" href="#Services">Services</a></li>
-%EOF% 
+%EOF%
 fi 
 
 cat <<%EOF% | sudo tee -a /var/www/html/index.html
@@ -84,52 +86,44 @@ cat <<%EOF% | sudo tee -a /var/www/html/index.html
                     <div id="Intro" class="tab-pane fade in active">
                         $(markdown README.md | envsubst)
                     </div> 
-%EOF%                    
+%EOF%
                     
 if [ -f ACCESSING.md ]      
+then
 cat <<%EOF% | sudo tee -a /var/www/html/index.html                                        
                     <!--  Access -->
                     <div id="Accessing" class="tab-pane fade">
                         $(markdown ACCESSING.md | envsubst)
                     </div>
-%EOF%                      
+%EOF%
 elif [ -f /home/ubuntu/.ssh/passwd ]
+then
 cat <<%EOF% | sudo tee -a /var/www/html/index.html                                        
                     <!--  Access -->
                     <div id="Accessing" class="tab-pane fade">
-                        <h3>Zugriff auf den Server</h3>
-                        
+                        <h2>Zugriff auf den Server</h2>
                         <p><strong>User / Password</strong></p>
-                        
                         <p>Der User ist <code>ubuntu</code>, dass Password steht in der Datei <a href="/data/.ssh/passwd">/data/.ssh/passwd</a>.</p>
-                        
                         <p>Einloggen mittels</p>
-                        
-                        <pre><code>ssh ubuntu@${ADDR}
-                        </code></pre>
-                        
+                        <pre><code>ssh ubuntu@${ADDR}</code></pre>
                         <p><strong>SSH</strong></p>
-                        
                         <p>Auf der Server kann mittels <a href="https://wiki.ubuntuusers.de/SSH/">ssh</a> zugegriffen werden.</p>
-                        
                         <p>Der private SSH Key ist auf dem Installierten Server unter <a href="/data/.ssh/id_rsa">/data/.ssh/id_rsa</a> zu finden. Downloaden und dann wie folgt auf den Server einloggen:</p>
-                        
-                        <pre><code>ssh -i id_rsa ubuntu@${ADDR}
-                        </code></pre>
-                        
+                        <pre><code>ssh -i id_rsa ubuntu@${ADDR}</code></pre>
                         <p><strong>Hinweis</strong>: Windows User verwenden <a href="https://www.putty.org/">Putty</a> und den <a href="/data/.ssh/id_rsa.ppk">Putty Key /data/.ssh/id_rsa.ppk</a>. </p>                    
                     </div>
-%EOF%                      
+%EOF%
 fi                     
 
 if [ -f SERVICES.md ]
+then
 cat <<%EOF% | sudo tee -a /var/www/html/index.html                                        
                     <!--  Services -->
                     <div id="Services" class="tab-pane fade">
                         $(markdown SERVICES.md | envsubst)
                     </div>
                 </div>  
-%EOF% 
+%EOF%
 fi                                 
 
 cat <<%EOF% | sudo tee -a /var/www/html/index.html                                        
@@ -160,4 +154,3 @@ cat <<%EOF% | sudo tee -a /var/www/html/index.html
 </body>
 </html>
 %EOF%
-                    
