@@ -42,7 +42,7 @@ m000worker:
   scripts: 
   repositories:   
 
-# Modul 100: Daten charakterisieren, aufbereiten und auswerten (Inhalte von Thomas)
+# Modul 100: Daten charakterisieren, aufbereiten und auswerten 
 m100:
   vm:  
     storage: 8
@@ -58,7 +58,7 @@ m100:
     samba: true
     firewall: false
   scripts: 
-  repositories: 
+  repositories: https://github.com/tbz-it/M100
   
 # Modul 104 Datenmodell implementieren  
 m104:
@@ -111,8 +111,8 @@ m141:
     ssh: use
     samba: true
     firewall: false
-  scripts: m141.sh
-  repositories: 
+  scripts: 
+  repositories: https://github.com/tbz-it/M141
   
 # Modul 152: Multimedia-Inhalte in Webauftritt integrieren  
 m152:
@@ -136,19 +136,19 @@ m152:
 m183:
   vm:  
     storage: 8
-    memory:  3584
+    memory:  2048
     cores: 2
     count: 6
   services:
     nfs: true
     docker: true
-    k8s: minimal
+    k8s: k3s
     wireguard: use
     ssh: use
     samba: false
     firewall: false
   scripts: 
-  repositories:
+  repositories: https://github.com/tbz-it/M183
   
 # Modul 226: Objektorientiert implementieren (Kubernetes mit 24 x BeakerX gestartet)
 m226:
