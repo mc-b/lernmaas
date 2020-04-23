@@ -110,6 +110,28 @@ Das führt zu einem massiven Zeitgewinn, weil die Container Images nicht mehr ü
 Der Aufruf von `ccopy` ist wie folgt:
 
     bash ccopy <Name Modul ohne -01> <IP-Adresse VM>
+     
+intro
+-----
+
+![](../doc/images/intro.png)
+
+Installiert den Apache Web Server und erstellt eine Anleitung für die Machine (VM).
+
+Das Helper Script ist in das Installationscript (`scripts/install.sh`) eines Repositories einzubinden:
+
+    # Introseite
+    bash -x /opt/lernmaas/helper/intro
+
+Vom Script welchen folgende Dateien im Repository ausgewertet bzw. nach HTML gewandelt:
+
+* `README.md` - als Intro Seite
+* `ACCESSING.md` - mit den Informationen wie auf die VM zugegriffen werden kann. Ist diese Datei nicht vorhanden, wird geschaut ob ein Datei `.ssh/passwd`, erstellt mittels `ssh: generate` vorhanden ist. Wenn ja, werden Standardinformationen angezeigt.
+* `SERVICES.md` - ist Reserviert für eine Auflistung von Services, welche in der VM zur Verfügung stehen.
+
+In alle Markdown (.md) Dateien können folgende Umgebungsvariablen eingefügt werden:
+
+* `${ADDR}` - IP-Adresse der VM. Ist WireGuard aktiv wird diese IP genommen.
        
 tocsv (deprecated - besser updateaz verwenden)
 -----
@@ -122,6 +144,7 @@ Der Aufruf von `tocsv` ist wie folgt:
 
     tocsv <Resource Pool MAAS>
 
-  
+
+
 
     
