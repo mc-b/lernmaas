@@ -33,9 +33,7 @@ cat <<%EOF% | sudo tee /var/www/html/intro.html
     integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
-        $(markdown $1 | envsubst)
-    </div>
+   $(markdown $1 | envsubst)
 </body>
 </html>
 %EOF%
@@ -76,7 +74,7 @@ then
 cat <<%EOF% | sudo tee -a /var/www/html/index.html
                     #<li><a data-toggle="tab" href="#Accessing">Accessing</a></li>
 %EOF%
-fi  
+fi
 
 cat <<%EOF% | sudo tee -a /var/www/html/index.html                  
                     <li><a data-toggle="tab" href="#Services">Services</a></li>
@@ -142,7 +140,7 @@ cat <<%EOF% | sudo tee -a /var/www/html/index.html
                         <p>Weiterleitung des Weave Scope Ports zum lokalen Notebook/PC</p>
                         <pre><code>kubectl --kubeconfig config port-forward -n weave deployment/weave-scope-app 4040                        </code></pre>
 %EOF%
-fi
+fi 
 
 cat <<%EOF% | sudo tee -a /var/www/html/index.html                                          
                         <h3>Service-Ports auf den lokalen Notebook weiterleiten</h3>
@@ -156,7 +154,7 @@ cat <<%EOF% | sudo tee -a /var/www/html/index.html
                         <pre><code>kubefwd --kubeconfig config services</code></pre>
                                                 
                     </div>   
-%EOF
+%EOF%
 fi
 
 cat <<%EOF% | sudo tee -a /var/www/html/index.html                  
