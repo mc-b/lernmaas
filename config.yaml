@@ -183,8 +183,8 @@ m239:
     ssh: generate
     samba: true
     firewall: false
-  scripts: apache.sh
-  repositories: 
+  scripts: 
+  repositories: https://github.com/tbz-it/M239
    
 # Modul 242: Mikroprozessoranwendung realisieren
 m242:
@@ -201,8 +201,8 @@ m242:
     ssh: generate
     samba: false
     firewall: false
-  scripts: apache.sh
-  repositories: 
+  scripts: 
+  repositories: https://github.com/tbz-it/M242
   
 # Modul 254 Geschäftsprozesse beschreiben (Kubernetes mit misegr/bpmn Umgebung)
 m254:
@@ -311,22 +311,6 @@ dukworker:
     firewall: false
   scripts: 
   repositories:  
-dukdocker:  
-  vm: 
-    storage: 8
-    memory:  3584
-    cores: 2
-    count: 5
-  services:
-    nfs: true
-    docker: true
-    k8s: 
-    wireguard: use
-    ssh: generate
-    samba: false
-    firewall: false
-  scripts: apache.sh
-  repositories:   
   
 # Internet der Dinge im Einsatz - https://github.com/mc-b/iotkitv3
 iotein:
