@@ -12,7 +12,35 @@ sudo cp /opt/lernmaas/cgi-bin/* /usr/lib/cgi-bin/
 sudo ln -s /home/ubuntu/data /var/www/html/data
 
 CLUSTER=$(kubectl --kubeconfig /home/vagrant/.kube/config config view -o=jsonpath='{ .clusters[0].cluster.server }' | sed -e 's/https:/http:/' -e "s/:6443//g")
+# wenn WireGuard installiert - Wireguard IP als ADDR Variable setzen
+export ADDR=$(ifconfig wg0 | grep inet | cut '-d ' -f 10)
+[ "${ADDR}" == "" ] && { export ADDR=$(hostname -I | cut -d ' ' -f 1); }
 
+
+# Intro.html - separate Datei, kann von Repositoryscripts ueberschrieben werden.
+cat <<%EOF% | sudo tee /var/www/html/intro.html
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" href="https://kubernetes.io/images/favicon.png">
+<meta charset="utf-8" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        $(markdown $1 | envsubst)
+    </div>
+</body>
+</html>
+%EOF%
+
+# index.html
 cat <<%EOF% | sudo tee /var/www/html/index.html
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -41,7 +69,16 @@ cat <<%EOF% | sudo tee /var/www/html/index.html
                 <!-- Tabs -->
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#Intro">Intro</a></li>
-                    <li><a data-toggle="tab" href="#Accessing">Accessing</a></li>
+%EOF%
+
+if [ -f /home/ubuntu/.ssh/passwd ] 
+then
+cat <<%EOF% | sudo tee -a /var/www/html/index.html
+                    #<li><a data-toggle="tab" href="#Accessing">Accessing</a></li>
+%EOF%
+fi  
+
+cat <<%EOF% | sudo tee -a /var/www/html/index.html                  
                     <li><a data-toggle="tab" href="#Services">Services</a></li>
                     <li><a data-toggle="tab" href="#Pods">Pods</a></li>
                     <li><a data-toggle="tab" href="#Cluster">Cluster-Info</a></li>
@@ -58,16 +95,40 @@ cat <<%EOF% | sudo tee /var/www/html/index.html
                 <div class="tab-content">
                     <!--  Intro -->
                     <div id="Intro" class="tab-pane fade in active">
-                        $(markdown $1)
-                    </div>    
+                        <br/>
+                         <iframe frameborder="0" scrolling="no" width="100%" height="3200px" onload="scroll(0,0);" src="intro.html">
+                         </iframe>
+                    </div>  
+%EOF%
+
+if [ -f /home/ubuntu/.ssh/passwd ] 
+then
+cat <<%EOF% | sudo tee -a /var/www/html/index.html                  
                     <!--  Access -->
                     <div id="Accessing" class="tab-pane fade">
+                        <h2>Zugriff auf den Server</h2>
+                        
+                        <h3>User / Password</h3>
+                        <p>Der User ist <code>ubuntu</code>, dass Password steht in der Datei <a href="/data/.ssh/passwd">/data/.ssh/passwd</a>.</p>
+                        <p>Einloggen mittels</p>
+                        <pre><code>ssh ubuntu@${ADDR}</code></pre>
+                        
+                        <h3>SSH</h3>
+                        <p>Auf der Server kann mittels <a href="https://wiki.ubuntuusers.de/SSH/">ssh</a> zugegriffen werden.</p>
+                        <p>Der private SSH Key ist auf dem Installierten Server unter <a href="/data/.ssh/id_rsa">/data/.ssh/id_rsa</a> zu finden. Downloaden und dann wie folgt auf den Server einloggen:</p>
+                        <pre><code>ssh -i id_rsa ubuntu@${ADDR}</code></pre>
+                        <p><strong>Hinweis</strong>: Windows User verwenden <a href="https://www.putty.org/">Putty</a> und den <a href="/data/.ssh/id_rsa.ppk">Putty Key /data/.ssh/id_rsa.ppk</a>. </p>                    
+                    
                         <h3>Kubernetes CLI</h3>
                         <p>Die Kubernetes Konfigurationsdatei von <a href="/data/.ssh/config">hier</a> downloaden.</p> 
                         <p>Anschliessend das <code>kubectl</code> CLI, von der <a href="https://kubernetes.io/de/docs/tasks/tools/install-kubectl/#installation-der-kubectl-anwendung-mit-curl">Kubernetes Site</a> downloaden.</p>
                         <p>Die Pods können dann wie folgt angezeigt werden:</p>
                         <pre><code>kubectl --kubeconfig config get pods --all-namespaces</code></pre>
-                        
+%EOF%
+
+if [ "$2" != "minimal" ]
+then
+cat <<%EOF% | sudo tee -a /var/www/html/index.html                  
                         <h3>Dashboard</h3>
                         <p>Für den Zugriff auf das Dashboard benötigen wir einen Zugriffstoken und müssen den Kubernetes API-Port zum lokalen Notebook/PC weiterleiten.</p>
                         <p>Weiterleitung des API Ports von Kubernetes zum lokalen Notebook/PC</p>
@@ -80,7 +141,10 @@ cat <<%EOF% | sudo tee /var/www/html/index.html
                         <p><a href="https://www.weave.works/oss/scope/">Weave Scope</a> ist Standardmässig installiert und kann nach dem weiterleiten des Ports über <a href="http://localhost:4040">localhost:4040</a> angesprochen werden.</p>
                         <p>Weiterleitung des Weave Scope Ports zum lokalen Notebook/PC</p>
                         <pre><code>kubectl --kubeconfig config port-forward -n weave deployment/weave-scope-app 4040                        </code></pre>
-                        
+%EOF%
+fi
+
+cat <<%EOF% | sudo tee -a /var/www/html/index.html                                          
                         <h3>Service-Ports auf den lokalen Notebook weiterleiten</h3>
                         <p>Mit <a href="https://kubefwd.com/">kubefwd</a> werden Kubernetes-Dienste, die in einem Remotecluster ausgeführt werden, an eine lokale Workstation weitergeleitet, wodurch die Entwicklung von Anwendungen erleichtert wird, die mit anderen Services kommunizieren.</p>
                         
@@ -89,9 +153,13 @@ cat <<%EOF% | sudo tee /var/www/html/index.html
                         <li>Consolen Fenster als Administrator starten, bzw. bei Linux <code>sudo</code> voranstellen</li>
                         <li>Alle Services der <code>default</code> Kubernetes Namespace zum Notebook weiterleiten und <code>hosts</code> Datei nachführen</li></ul>
                         
-                        <pre><code>kubefwd --kubeconfig config services                        </code></pre>
+                        <pre><code>kubefwd --kubeconfig config services</code></pre>
                                                 
-                    </div>                                
+                    </div>   
+%EOF
+fi
+
+cat <<%EOF% | sudo tee -a /var/www/html/index.html                  
                     <!--  Services -->
                     <div id="Services" class="tab-pane fade">
                         <br/>

@@ -63,7 +63,7 @@ if [ "${config_services_k8s}" == "minimal" ]
 then
     bash -x services/k8sbase.sh
     bash -x services/k8smaster.sh
-    [ -f doc/${HOST}.md ] && { bash -x services/k8swebui.sh doc/${HOST}.md; } || { bash -x services/k8swebui.sh doc/intro.md; } 
+    [ -f doc/${HOST}.md ] && { bash -x services/k8swebui.sh doc/${HOST}.md ${config_services_k8s}; } || { bash -x services/k8swebui.sh doc/intro.md ${config_services_k8s}; } 
 fi
 
 if [ "${config_services_k8s}" == "master" ] 
@@ -71,7 +71,7 @@ then
     bash -x services/k8sbase.sh
     bash -x services/k8smaster.sh
     bash -x services/k8saddons.sh
-    [ -f doc/${HOST}.md ] && { bash -x services/k8swebui.sh doc/${HOST}.md; } || { bash -x services/k8swebui.sh doc/intro.md; } 
+    [ -f doc/${HOST}.md ] && { bash -x services/k8swebui.sh doc/${HOST}.md ${config_services_k8s}; } || { bash -x services/k8swebui.sh doc/intro.md ${config_services_k8s}; } 
 fi
 
 if [ "${config_services_k8s}" == "worker" ] 
