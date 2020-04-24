@@ -204,23 +204,23 @@ m242:
   scripts: 
   repositories: https://github.com/tbz-it/M242
   
-# Modul 254 Geschäftsprozesse beschreiben (Kubernetes mit misegr/bpmn Umgebung)
+# Modul 254 Geschäftsprozesse beschreiben (Kubernetes mit Camunda BPMN Workflow)
 m254:
   vm:  
-    storage: 8
-    memory:  3584
+    storage: 12
+    memory:  2048
     cores: 2
-    count: 6
+    count: 20
   services:
     nfs: true
-    docker: true
-    k8s: minimal
+    docker: false
+    k8s: k3s
     wireguard: use
-    ssh: use
+    ssh: generate
     samba: false
     firewall: false
   scripts: 
-  repositories:
+  repositories: https://github.com/tbz-it/M254
   
 # Modul 300: Plattformuebergreifende Dienste in ein Netzwerk integrieren
 m300:
