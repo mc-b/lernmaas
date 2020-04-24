@@ -256,7 +256,7 @@ m426:
     samba: false
     firewall: false
   scripts: 
-  repositories:
+  repositories: https://github.com/tbz-it/M426
   
 # Modul 437 Arbeiten im Support (Minimale Kubernetes Umgebung, OSS Ticket, MySQL DB)  
 m437:
