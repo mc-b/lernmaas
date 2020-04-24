@@ -252,7 +252,7 @@ m426:
     docker: true
     k8s: minimal
     wireguard: use
-    ssh: use
+    ssh: generate
     samba: false
     firewall: false
   scripts: 
