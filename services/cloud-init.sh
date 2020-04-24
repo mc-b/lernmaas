@@ -43,6 +43,7 @@ then
     bash -x services/nfs.sh
 else
     mkdir -p config templates data
+    chmod 777 data
 fi
 
 # Sicherstellen, dass /data fuer Kubernetes existiert      
