@@ -16,28 +16,6 @@ CLUSTER=$(kubectl --kubeconfig /home/vagrant/.kube/config config view -o=jsonpat
 export ADDR=$(ifconfig wg0 | grep inet | cut '-d ' -f 10)
 [ "${ADDR}" == "" ] && { export ADDR=$(hostname -I | cut -d ' ' -f 1); }
 
-
-# Intro.html - separate Datei, kann von Repositoryscripts ueberschrieben werden.
-cat <<%EOF% | sudo tee /var/www/html/intro.html
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="shortcut icon" href="https://kubernetes.io/images/favicon.png">
-<meta charset="utf-8" content="">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-</head>
-<body>
-   $(markdown $1 | envsubst)
-</body>
-</html>
-%EOF%
-
 # index.html
 cat <<%EOF% | sudo tee /var/www/html/index.html
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -93,9 +71,7 @@ cat <<%EOF% | sudo tee -a /var/www/html/index.html
                 <div class="tab-content">
                     <!--  Intro -->
                     <div id="Intro" class="tab-pane fade in active">
-                        <br/>
-                         <iframe frameborder="0" scrolling="no" width="100%" height="3200px" onload="scroll(0,0);" src="intro.html">
-                         </iframe>
+                         $(markdown $1 | envsubst)
                     </div>  
 %EOF%
 
