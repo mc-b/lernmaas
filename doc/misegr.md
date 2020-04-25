@@ -1,6 +1,5 @@
 # [Microservices-Grundlagen («MISEGR»)](https://www.digicomp.ch/weiterbildung/web-und-softwareentwicklungs-trainings/software-engineering/softwarearchitektur/microservices-grundlagen)
 
-
 Es stehen folgende Microservice Beispiele zur Verfügung
 
 * [Microservices](https://github.com/mc-b/misegr/tree/master/ewolff) - Basierend auf dem Buch [Microservices-Praxisbuch](http://microservices-praxisbuch.de/rezepte.html).

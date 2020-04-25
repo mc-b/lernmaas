@@ -10,16 +10,6 @@ Software welche als Container gestartet wurde. Für die entsprechenden URLs sieh
 * [Node-Red](https://nodered.org/)
 * [BPMN Workflow Engine](https://github.com/mc-b/misegr/tree/master/bpmn) - `URL` auf [Services](#Services) erweitern um `URL`/camunda
 
-## Zugriff auf den Server
-
-Der Zugriff auf den Server erfolgt mittels [ssh](https://wiki.ubuntuusers.de/SSH/). 
-
-Der private SSH Key ist auf dem installierten Server als Datei [id_rsa](/data/.ssh/id_rsa) vorhanden. Downloaden und dann wie folgt auf den Server einloggen:
-
-    ssh -i id_rsa ubuntu@[IP Adresse]
-    
-**Hinweis**: Windows User verwenden [Putty](https://www.putty.org/) und den Putty Key [id_rsa.ppk](/data/.ssh/id_rsa.ppk).    
-
 ## Beispiele
 
 **Kurzeinführung**
