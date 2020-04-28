@@ -77,6 +77,24 @@ m104:
     firewall: false
   scripts: 
   repositories: https://github.com/tbz-it/M104 
+  
+# Modul 120: Benutzerschnittstellen implementieren 
+m120:
+  vm:  
+    storage: 8
+    memory:  1024
+    cores: 2
+    count: 2
+  services:
+    nfs: true
+    docker: false
+    k8s: 
+    wireguard: use
+    ssh: generate
+    samba: true
+    firewall: false
+  scripts: 
+  repositories: https://github.com/tbz-it/M120 
 
 # Modul 122: Automatisieren mit Skripten  
 m122:
