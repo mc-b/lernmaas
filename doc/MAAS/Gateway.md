@@ -41,36 +41,46 @@ Die VMs sind in MAAS Resource Pools angeordnet. Diese werden automatisch durch d
 Beispiel:
 
     cd lernmaas
+    git pull
     createvms config.yaml m242 20 st17a
     
 Erstellt 20 VMs für die Klasse st17a und Modul 242. Die 20 VMs stehen im Resource Pool `m242-st17a` zur Verfügung.
 
-Als nächsten Schritt erzeugen wir die VPN Konfiguration mittels des Helper Scripts [createkeys](https://github.com/mc-b/lernmaas/tree/master/helper#createkeys).
+Die Zuordnung VMs zu VPN erfolgt mittels [AZs](https://maas.io/docs/availability-zones) (Availability zones) im MAAS UI.
 
-    createkeys gateway.northeurope.cloudapp.azure.com 51821 m242-st17a     
+Darum müssen zuerst die [AZs](https://maas.io/docs/availability-zones) manuell (es gibt kein Befehle create für AZs im MAAS CLI) erstellt werden. 
 
-Das Script erzeugt folgende Ausgabe:
+Die Namensgebung ist dabei wie folgt:
+
+* 192-168-[Subnet]-0
+
+Anschliessend können die WireGuard Keys erstellt werden. Diese werden dann im Feld `Description`, als TAR Datei - Base64 codiert, der AZ abgestellt.
+
+Der Aufruf von `updateaz` ist wie folgt:
+
+    updateaz <EndPoint> <SubNet>
+    
+Beispiel:
+
+    updateaz gateway.northeurope.cloudapp.azure.com 111    
+    
+Nach dem Aufruf der Scripts wird eine Anleitung für die weiteren Schritte ausgegeben, z.B. 
 
     Key Generierung erfolgreich
     ---------------------------
     
-    wg1.conf            - WireGuard Konfigurationsdatei fuer Gateway
-    wg1-template.conf   - WireGuard Template fuer Clients. Vervollstandigen mit IP-Adresse und Private-Key. Ablegen zu den Unterlagen
-    wg1.csv             - Liste der Clients. Zum Bearbeiten mit Excel und Eintragen der Lernenden
-    m242-st17a.html     - HTML Seite mit Servern und Clients zum Ablegen auf dem Gateway
-    HOSTNAME.conf       - Konfigurationsdateien fuer die VMs. In Verzeichnis /data/config/wireguard kopieren.
+    wg111.conf           - WireGuard Konfigurationsdatei fuer Gateway
+    wg111-template.conf  - WireGuard Template fuer Clients. Vervollstandigen mit IP-Adresse und Private-Key. Ablegen zu den Unterlagen
+    wg111.csv            - Liste der Clients. Zum Bearbeiten mit Excel und Eintragen der Lernenden
+    wg111.tgz            - Konfigurationsdateien fuer die VMs und Clients.
     
     WireGuard Interface auf dem Gateway aktiveren:
-    systemctl enable wg-quick@wg1.service
-    systemctl start wg-quick@wg1.service
+    systemctl enable wg-quick@wg111.service
+    systemctl start wg-quick@wg111.service
 
-Die Ausgabe ist wie folgt zu interpretieren:
-* `wg1.conf` auf Gateway Server kopieren
-* `wg1-template.conf` und `wg1.csv` brauchen wir als Vorlage und Liste der VPN Teilnehmer mit Ihren Keys und IP-Adressen.
-* `HOSTNAME.conf` hier die Dateien `m242-[01 - 20]-st17a.conf` sind nach `/data/config/wireguard` zu kopieren.
-* `m242-st17a.html` ist sinnvoll wenn auf dem Gateway Server ein Web Server läuft, hier stehen die IP-Adressen der VMs und Keys.
+In der Datei `wg111.tgz` befinden sich die WireGuard Konfigurationsdateien nummeriert von `02.conf` - `99.conf`. `01` ist für den Gateway reserviert.
 
-Damit ist die Installation auf dem MAAS Server abgeschlossen, beim nächsten Deployen der VMs wird automatisch ein VPN Interface erzeugt und die VM damit ins VPN integriert.
+Für die Zuordnung muss der Name der [VM](https://maas.io/docs/machine-overview) in der zweiten Stelle eine Nummer 02 - 99 enthalten und die VM einer der [AZs](https://maas.io/docs/availability-zones) zugeordnet sein. Die Zuordnung der VMs zu einer AZ geht am einfachsten im [MAAS UI](http://localhost:5240).
 
 ### Gateway Server - VPN 
 
@@ -81,10 +91,10 @@ Auf dem Gateway Server ist WireGuard zu installieren:
     apt-get update
     apt-get install -y wireguard
     
-Und die, auf dem MAAS Server erzeugte, Konfigurationsdatei `wg1.conf` nach `/etc/wireguard` zu kopieren und WireGuard zu aktiveren 
+Und die, auf dem MAAS Server erzeugte, Konfigurationsdatei `wg111.conf` nach `/etc/wireguard` zu kopieren und WireGuard zu aktiveren 
 
-    systemctl enable wg-quick@wg1.service
-    systemctl start wg-quick@wg1.service
+    systemctl enable wg-quick@wg111.service
+    systemctl start wg-quick@wg111.service
     
 Anschliessend noch die IP Weiterleitung aktiveren. Dazu ist in der Datei `/etc/sysctl.conf` der folgende Eintrag zu aktivieren:
 

@@ -57,10 +57,9 @@ Zuerst müssen die [AZs](https://maas.io/docs/availability-zones) manuell (es gi
 
 Die Namensgebung ist dabei wie folgt:
 
-* 192-168-<Subnet>-0
+* 192-168-[Subnet]-0
 
 Anschliessend können die WireGuard Keys, wie bei `createkeys`, erstellt werden. Diese werden dann im Feld `Description`, als TAR Datei - Base64 codiert, der AZ abgestellt.
-
 
 Der Aufruf von `updateaz` ist wie folgt:
 
@@ -82,7 +81,7 @@ Nach dem Aufruf der Scripts wird eine Anleitung für die weiteren Schritte ausge
 
 In der Datei `wg11.tgz` befinden sich die WireGuard Konfigurationsdateien nummeriert von `01.conf` - `99.conf`. 
 
-Für die Zuordnung muss der Name der [VM](https://maas.io/docs/machine-overview) in der zweiten Stelle eine Nummer 01 - 99 enthalten und die VM einer der [AZs](https://maas.io/docs/availability-zones) zugeordnet sein. Die Zuordnung
+Für die Zuordnung muss der Name der [VM](https://maas.io/docs/machine-overview) in der zweiten Stelle eine Nummer 02 - 99 enthalten und die VM einer der [AZs](https://maas.io/docs/availability-zones) zugeordnet sein. Die Zuordnung
 der VMs zu einer AZ geht am einfachsten im [MAAS UI](http://localhost:5240).     
     
 createk8svms
