@@ -3,6 +3,8 @@
 #   Stellt die Scripts aus dem Projekt lernkube unter /usr/local/bin zur Verfuegung.
 #
 
+cd $HOME
+
 git clone https://github.com/mc-b/lernkube
 
 sudo cp lernkube/bin/* /usr/local/bin/
