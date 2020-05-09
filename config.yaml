@@ -462,8 +462,8 @@ cascpm:
 # Kurs: Big Data – Ueberblick
 bigdata:
   vm:  
-    storage: 18
-    memory:  5888
+    storage: 24
+    memory:  7936
     cores: 2
   services:
     nfs: true

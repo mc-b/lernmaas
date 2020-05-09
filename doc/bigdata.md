@@ -20,4 +20,6 @@ Einsatzmöglichkeiten von Machine Learning und Data Analytics
 * [Supervised Learning](:32088/notebooks/03-Immobilienpreise.ipynb)
 * [Clustering – Beispiel k-Means](:32088/notebooks/04-Clustering.ipynb)
 
+### Links
 
+* [Big Data Kurs (Version 2017)](https://github.com/mc-b/bigdata)
