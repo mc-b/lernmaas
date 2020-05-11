@@ -293,6 +293,24 @@ m437:
     firewall: false
   scripts: 
   repositories: https://github.com/tbz-it/M437 
+  
+# Modul 906 DevOps (duk/devops Umgebung - gogs, kanboard, jenkins, duk/compiler - make, maven, mbed-cli) 
+w906:
+  vm:  
+    storage: 18
+    memory:  5888
+    cores: 2
+    count: 10
+  services:
+    nfs: true
+    docker: true
+    k8s: master
+    wireguard: use
+    ssh: generate
+    samba: false
+    firewall: false
+  scripts: 
+  repositories: https://github.com/tbz-it/W906  
     
 ######### Digicomp Kurse siehe https://github.com/mc-b ######### 
 
