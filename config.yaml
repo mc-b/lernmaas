@@ -63,16 +63,16 @@ m100:
 # Modul 104 Datenmodell implementieren  
 m104:
   vm:  
-    storage: 8
-    memory:  1024
+    storage: 12
+    memory:  2048
     cores: 2
     count: 2
   services:
     nfs: true
     docker: false
-    k8s: 
+    k8s: k3s
     wireguard: use
-    ssh: generate
+    ssh: 
     samba: true
     firewall: false
   scripts: 
