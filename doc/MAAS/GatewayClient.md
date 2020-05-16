@@ -62,9 +62,9 @@ Der Port auf dem Gateway berechnet sich wie folgt:
     
 Das ergibt folgenden Befehl:
 
-    ssh -i ~/.ssh/ssh_tunnel -N -R 16211:localhost:80 gateway.northeurope.cloudapp.azure.com
+    ssh -i ~/.ssh/ssh_tunnel -N -R 16211:localhost:80 gateway.....com
     
-Damit wird der Web Server auf der VM mittels [http://gateway.northeurope.cloudapp.azure.com:16211]( http://gateway.northeurope.cloudapp.azure.com:16211) im Internet verfügbar.
+Damit wird der Web Server auf der VM mittels [http://gateway.....com:16211]( http://gateway.....com:16211) im Internet verfügbar.
 
 ### Quellen
 

@@ -23,7 +23,7 @@ bewährt.
 
 Die Standard Installation von Linux mit SSH Server ist ausreichend.
 
-Ein Web Server ist dann sinnvoll, wenn die Zugriffsinformation direkt auf dem Gateway angezeigt werden sollen. Siehe z.B. [http://gateway.northeurope.cloudapp.azure.com/](http://gateway.northeurope.cloudapp.azure.com/).
+Ein Web Server ist dann sinnvoll, wenn die Zugriffsinformation direkt auf dem Gateway angezeigt werden sollen.
 
 VPN 
 ---
@@ -62,7 +62,7 @@ Der Aufruf von `updateaz` ist wie folgt:
     
 Beispiel:
 
-    updateaz gateway.northeurope.cloudapp.azure.com 111    
+    updateaz gateway......com 111    
     
 Nach dem Aufruf der Scripts wird eine Anleitung für die weiteren Schritte ausgegeben, z.B. 
 
@@ -127,14 +127,14 @@ Dazu ist wie folgt vorzugehen:
 
 **Separaten SSH Key für TCP Forwarding erstellen, als User `ubuntu`, z.B. mit Namen `ssh_tunnel`**
 
-    ssh-keygen -C "ssh-tunnel@gateway.northeurope.cloudapp.azure.com" 
+    ssh-keygen -C "ssh-tunnel@gateway....com" 
     
     
 Den erstellen SSH **Public Key** unter `~/.ssh/authorized_keys`, unter Voranstellung von `command="/bin/false",no-pty,no-X11-forwarding,no-user-rc`, eintragen. Das Resultat sieht dann etwa so aus:
 
-    command="/bin/false",no-pty,no-X11-forwarding,no-user-rc ssh-rsa A....XZ ssh-tunnel@gateway.northeurope.cloudapp.azure.com
+    command="/bin/false",no-pty,no-X11-forwarding,no-user-rc ssh-rsa A....XZ ssh-tunnel@gateway.....com
 
-mittels diesem Eintrag können VMs zwar eine Portweiterleitung über gateway.northeurope.cloudapp.azure.com einrichten, aber nicht auf dem Gateway Server einlogen.
+mittels diesem Eintrag können VMs zwar eine Portweiterleitung über gateway.....com einrichten, aber nicht auf dem Gateway Server einlogen.
       
 **Private Key `.ssh/ssh_tunnel` auf MAAS Server in Verzeichnis `/data/config/ssh` kopieren**
 
