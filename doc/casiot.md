@@ -14,7 +14,7 @@ Technologien verstehen, Lösungen entwickeln
 * [Bus Systeme](https://github.com/mc-b/IoTKitV3#bus-systeme)
 * [WLAN](https://github.com/mc-b/IoTKitV3/tree/master/wlan)
 * [Cloud: Sunrise sunset](https://github.com/mc-b/IoTKitV3/tree/master/cloud#sunset-sunrise-json)
-* [MQTT](https://os.mbed.com/teams/IoTKitV3/code/MQTTPublish/)
+* [MQTT](https://github.com/mc-b/IoTKitV3/tree/master/mqtt)
 * [NFC/RFID](https://github.com/mc-b/IoTKitV3/tree/master/rfid)
 
 ### Architektur und Infrastruktur, Verschlüsselung und Security 
@@ -22,11 +22,15 @@ Technologien verstehen, Lösungen entwickeln
 * [Edge Computing](https://github.com/mc-b/IoTKitV3/tree/master/workflow#node-red-http-workflow)
 * [CNCF Landscape und Kubernetes zertifizierte Produkte](https://landscape.cncf.io/)
 * [kubectl und YAML Dateien](:32188/notebooks/work/09-2-YAML.ipynb)
-* Geschäftsprozesse implementiert mittels [BPMN](:32188/notebooks/work/demo/Microservices-BPMN.ipynb) kombiniert mit Microservices
+* [BPMN Workflow - Prozess veröffentlichen und starten](:32188/notebooks/work/demo/Microservices-BPMN.ipynb) 
 
 ### Big Data, Analytics, Visualization, Machine Learning und AI
 
-* [Quickstart ML](:32088/notebooks/02-QuickStart.ipynb)
+* [Node-RED (MQTT - Edge - Cloud Messaging)](https://github.com/mc-b/IoTKitV3/tree/master/edge#node-red-mqtt---edge---cloud-messaging)
+* [02-Quickstart ML](:32088/notebooks/02-1-QuickStart.ipynb)
+* [02-2-MLTempHumSensor IoT und ML](:32088/notebooks/02-2-MLTempHumSensor.ipynb)
+* [01-FaceDetection](:32088/notebooks/01-FaceDecection.ipynb)
+* [Neuronales Netzwerk Simulator](https://playground.tensorflow.org)
 
 ## Links
 
