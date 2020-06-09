@@ -37,7 +37,7 @@ Einfache VM, ohne Zusatzsoftware, erstellen
     vagrant up
     vagrant ssh
     
-Testen des Web Beispiels von Modul [M300]().
+Testen des Web Beispiels von Modul [M300](https://github.com/mc-b/M300).
 
     git clone https://github.com/mc-b/M300
     cd M300/vagrant/web
