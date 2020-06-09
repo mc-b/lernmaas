@@ -26,6 +26,7 @@ Installation
 * [MAAS Master und Worker Nodes](doc/MAAS/Install.md)
 * [Gateway Server](doc/MAAS/Gateway.md)
 * [Einbinden der Clients und Portweiterleitung](doc/MAAS/GatewayClient.md).
+* [Virtualisierte Machinen in Virtualisierten Machinen](doc/MAAS/VMinVM.md)
 * [Hilfsscripts](helper/)
 
 Fragen und Antworten
