@@ -35,5 +35,3 @@ then
         fi
     fi
 fi    
-
-apt-get install libmnl-dev libelf-dev linux-headers-$(uname -r) build-essential
