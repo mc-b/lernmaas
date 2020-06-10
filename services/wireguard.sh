@@ -3,10 +3,10 @@
 #   Installiert WireGuard
 #
 
-sudo apt-get install -y libmnl-dev libelf-dev linux-headers-$(uname -r) build-essential dkms
+#sudo apt-get install -y libmnl-dev libelf-dev linux-headers-$(uname -r) build-essential dkms
 sudo add-apt-repository -y ppa:wireguard/wireguard
 sudo apt-get update
-sudo apt-get install -y wireguard wireguard-dkms
+sudo apt-get install -y wireguard 
 sudo chmod 750 /etc/wireguard
 
 # Aktivierung nur wenn Konfigurationsdatei = hostname vorhanden ist

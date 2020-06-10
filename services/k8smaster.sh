@@ -3,6 +3,8 @@
 #   Kubernetes Master Installation
 #
 HOME=/home/ubuntu
+# Ubuntu 20.x fehlt ifconfig
+sudo apt-get install -y net-tools
 
 # obsolet durch Container Cache
 # sudo kubeadm config images pull
