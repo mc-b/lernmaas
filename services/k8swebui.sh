@@ -13,7 +13,7 @@ sudo ln -s /home/ubuntu/data /var/www/html/data
 
 CLUSTER=$(kubectl --kubeconfig /home/vagrant/.kube/config config view -o=jsonpath='{ .clusters[0].cluster.server }' | sed -e 's/https:/http:/' -e "s/:6443//g")
 # wenn WireGuard installiert - Wireguard IP als ADDR Variable setzen
-export ADDR=$(ifconfig wg0 | grep inet | cut '-d ' -f 10)
+export ADDR=$(ip -f inet addr show wg0 | grep -Po 'inet \K[\d.]+')
 [ "${ADDR}" == "" ] && { export ADDR=$(hostname -I | cut -d ' ' -f 1); }
 
 # index.html

@@ -3,14 +3,12 @@
 #   Kubernetes Master Installation
 #
 HOME=/home/ubuntu
-# Ubuntu 20.x fehlt ifconfig
-sudo apt-get install -y net-tools
 
 # obsolet durch Container Cache
 # sudo kubeadm config images pull
 
 # wenn WireGuard installiert - Wireguard IP als K8s IP verwenden
-ADDR=$(ifconfig wg0 | grep inet | cut '-d ' -f 10)
+ADDR=$(ip -f inet addr show wg0 | grep -Po 'inet \K[\d.]+')
 if [ "${ADDR}" != "" ]
 then
         sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address ${ADDR} --apiserver-cert-extra-sans $(hostname -I | cut -d ' ' -f 1)

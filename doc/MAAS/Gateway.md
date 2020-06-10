@@ -101,9 +101,9 @@ Anschliessend noch die IP Weiterleitung aktiveren. Dazu ist in der Datei `/etc/s
     # Uncomment the next line to enable packet forwarding for IPv4
     net.ipv4.ip_forward=1
 
-Gateway Server frisch starten es sollte neu ein Interface `wg1` vorhanden sein.
+Gateway Server frisch starten es sollte neu ein Interface `wg111` vorhanden sein.
 
-    sudo ifconfig
+    sudo ip addr 
     sudo wg    
 
 Weiter geht es mit [VPN Client Anbindung](GatewayClient.md).
