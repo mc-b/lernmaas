@@ -297,7 +297,7 @@ m437:
 # Modul 906 DevOps (duk/devops Umgebung - gogs, kanboard, jenkins, duk/compiler - make, maven, mbed-cli) 
 w906:
   vm:  
-    storage: 18
+    storage: 24
     memory:  5888
     cores: 2
     count: 10
