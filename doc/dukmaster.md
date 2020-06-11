@@ -23,6 +23,7 @@
 
 * [09-1 kubectl-CLI und Basis Ressourcen](:32188/notebooks/work/09-1-kubectl.ipynb)
 * [09-2 kubectl-CLI und Basis Ressourcen (YAML Variante)](:32188/notebooks/work/09-2-YAML.ipynb)
+* [09-2 Ingress](:32188/notebooks/work/09-2-Ingress.ipynb)
 * [09-3 Verteilung / ReplicaSet](:32188/notebooks/work/09-3-ReplicaSet.ipynb)
 * [09-4 Rolling Update](:32188/notebooks/work/09-4-Deployment.ipynb)
 * [09-4 Blue/Green Deployments](:32188/notebooks/work/09-4-Deployment-BlueGreen.ipynb)

@@ -22,6 +22,7 @@ Beispiele (Jupyter Notebooks)
 
 * [kubectl-CLI und Basis Ressourcen](:32188/notebooks/work/09-1-kubectl.ipynb)
 * [kubectl-CLI und Basis Ressourcen (YAML Variante)](:32188/notebooks/work/09-2-YAML.ipynb)
+* [Ingress](:32188/notebooks/work/09-2-Ingress.ipynb)
 * [Verteilung / ReplicaSet](:32188/notebooks/work/09-3-ReplicaSet.ipynb)
 * [Rolling Update](:32188/notebooks/work/9-4-Deployment.ipynb)
 * [Blue/Green Deployments](:32188/notebooks/work/09-4-Deployment-BlueGreen.ipynb)
