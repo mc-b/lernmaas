@@ -478,8 +478,8 @@ cascpm:
 # CAS Internet of Things (IoT) and Digital Ecosystem - https://www.hslu.ch/de-ch/informatik/weiterbildung/networking-and-innovative-technologies/cas-iot/
 casiot:
   vm:  
-    storage: 18
-    memory:  3840
+    storage: 32
+    memory:  6144
     cores: 2
   services:
     nfs: true
