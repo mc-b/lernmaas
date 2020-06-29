@@ -14,7 +14,7 @@ Beispiele (Jupyter Notebooks)
 * [Funktionaler Überblick](:32188/notebooks/work/03-1-Docker.ipynb)
 * [Einfaches Image-Management](:32188/notebooks/work/03-2-Docker.ipynb)
 * [Betrieb und Management von Docker-Containern](:32188/notebooks/work/03-3-Docker.ipynb)
-* [Dedizierte Docker Image-Stände bauen und verwalte](:32188/notebooks/work/03-4-Docker.ipynb)
+* [Dedizierte Docker Image-Stände bauen und verwalten](:32188/notebooks/work/03-4-Docker.ipynb)
 * [Container Security](:32188/notebooks/work/04-1-ContainerSecurity.ipynb)
 * [Insecure Registry](:32188/notebooks/work/05-1-Registry.ipynb)
 
