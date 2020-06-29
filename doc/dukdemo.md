@@ -15,6 +15,7 @@ Beispiele (Jupyter Notebooks)
 * [Einfaches Image-Management](:32188/notebooks/work/03-2-Docker.ipynb)
 * [Betrieb und Management von Docker-Containern](:32188/notebooks/work/03-3-Docker.ipynb)
 * [Dedizierte Docker Image-Stände bauen und verwalten](:32188/notebooks/work/03-4-Docker.ipynb)
+* [Container Life-Cycle](:32188/notebooks/work/03-5-Docker-Life-cycle.ipynb)
 * [Container Security](:32188/notebooks/work/04-1-ContainerSecurity.ipynb)
 * [Insecure Registry](:32188/notebooks/work/05-1-Registry.ipynb)
 
@@ -37,6 +38,7 @@ Beispiele (Jupyter Notebooks)
 ## Kubernetes im Einsatz
 
 * [DevOps](:32188/notebooks/work/demo/DevOps.ipynb)
+* [Operator](:32188/notebooks/work/demo/Operator-mariadb.ipynb)
 * [Helm](:32188/notebooks/work/demo/Helm.ipynb)
 * [Monitoring](:32188/notebooks/work/demo/Prometheus.ipynb)
 * [Logging](:32188/notebooks/work/demo/Logging.ipynb)
