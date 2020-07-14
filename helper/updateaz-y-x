@@ -1,0 +1,124 @@
+#!/bin/bash
+#
+#   Erstellt wg0.conf und die Keys fuer WireGuard Server und Clients
+#
+
+# bsp cloud.tbz.ch 41 1
+
+[ $# -lt 2 ] && { echo createaz endpoint net subnet; exit 1; }
+
+### Argumente
+export NET=$2
+export SUBNET=$3
+PORT=$(((${SUBNET} * 100) + ${NET} + 51820))
+ENDPOINT=$1:${PORT}
+
+WG0="wg${SUBNET}.${NET}.conf"
+TAR="wg${SUBNET}.${NET}.tgz"
+TEMPLATE="wg${SUBNET}.${NET}-template.conf"
+CSV="wg${SUBNET}.${NET}.csv"
+ZONE="10-${SUBNET}-${NET}-0"
+counter=2
+
+# Server Keys
+SERVER_KEY=$(wg genkey)
+SERVER_PUB=$(echo ${SERVER_KEY} | wg pubkey)
+
+cat <<%EOF% >${WG0}
+[Interface]
+Address = 10.${SUBNET}.${NET}.1
+ListenPort = ${PORT}
+# PostUp = sysctl -w net.ipv4.ip_forward=1
+# PreDown = sysctl -w net.ipv4.ip_forward=0
+PrivateKey = ${SERVER_KEY}
+%EOF%
+
+cat <<%EOF% >${TEMPLATE}
+[Interface]
+Address = <Replace IP>/24
+PrivateKey = <Replace Key>
+
+[Peer]
+PublicKey = ${SERVER_PUB}
+Endpoint = ${ENDPOINT}
+
+AllowedIPs = 10.${SUBNET}.${NET}.0/24
+
+# This is for if you're behind a NAT and
+# want the connection to be kept alive.
+# PersistentKeepalive = 25
+%EOF%
+
+
+# CSV Datei
+echo "No,IP-Adresse,Key" >${CSV}
+
+for no in {2..99}
+do
+    echo -n "."
+    HOST_KEY=$(wg genkey)
+    HOST_PUB=$(echo ${HOST_KEY} | wg pubkey)
+    
+cat <<%EOF% >$(printf "%02d" ${no}).conf
+[Interface]
+Address = 10.${SUBNET}.${NET}.${counter}/24
+PrivateKey = ${HOST_KEY}
+
+[Peer]
+PublicKey = ${SERVER_PUB}
+Endpoint = ${ENDPOINT}
+
+AllowedIPs = 10.${SUBNET}.${NET}.0/24
+
+# This is for if you're behind a NAT and
+# want the connection to be kept alive.
+PersistentKeepalive = 25
+%EOF%
+
+    cat <<%EOF% >>${WG0}
+
+### Client ${host} (${HOST_KEY})
+[Peer]
+PublicKey = ${HOST_PUB}
+AllowedIPs = 10.${SUBNET}.${NET}.${counter}
+%EOF%
+
+    echo "${no},10.${SUBNET}.${NET}.${counter},${HOST_KEY}" >>${CSV}    
+ 
+    counter=$((${counter} + 1))
+done
+
+# Globale Key Datei vorhanden?
+if  [ -f wg-global.conf ]
+then
+    envsubst <wg-global.conf >>${WG0}
+fi
+
+tar czf ${TAR} ??.conf && rm ??.conf
+
+### AZ mit Konfigurationsdateien abfuellen
+
+Z=$(maas $PROFILE zones read | jq ".[] | select (.name==\"${ZONE}\") | .id")
+
+if [ "${Z}" != "" ]
+then
+    maas $PROFILE zone update ${ZONE} description="$(base64 ${TAR})"
+fi
+
+cat <<%EOF% 
+
+    Key Generierung erfolgreich
+    ---------------------------
+    
+    ${WG0}          - WireGuard Konfigurationsdatei fuer Gateway
+    ${TEMPLATE}     - WireGuard Template fuer Clients. Vervollstandigen mit IP-Adresse und Private-Key. Ablegen zu den Unterlagen
+    ${CSV}          - Liste der Clients. Zum Bearbeiten mit Excel und Eintragen der Lernenden
+    ${TAR}          - Konfigurationsdateien fuer die VMs und Clients.
+    
+    
+    WireGuard Interface auf dem Gateway aktiveren:
+    systemctl enable wg-quick@wg${NET}.service
+    systemctl start wg-quick@wg${NET}.service
+
+%EOF%
+
