@@ -98,7 +98,7 @@ Zugriff für Subnetze (192.168.2.0 = eigenes Subnets, 10.244.0.0 = Kubernetes/fl
 
 #### Konfiguration
 
-**ACHTUNG** Preseed Datei erst nach der Installation der Worker Nodes nach `/etc/maas/preseeds/` kopieren. Ansonsten werden die Worker Nodes nicht sauber als KVM host installiert, bzw. die Installationsroutine läuft endlos.
+**ACHTUNG** Preseed Datei erst nach der Installation der Worker Nodes nach `/var/snap/maas/current/preseeds` kopieren. Ansonsten werden die Worker Nodes nicht sauber als KVM host installiert, bzw. die Installationsroutine läuft endlos.
 
 Für die automatische Installation von Software auf die VMs wird eine Kombination von [MAAS Preseed](Customising.md) und [Cloud Init](https://cloudinit.readthedocs.io/en/latest/) verwendet.
 
@@ -111,7 +111,7 @@ Für die automatische Installation von Software auf die VMs wird eine Kombinatio
 Preseed Datei und Hilfsscripts kopieren:
    
     git clone https://github.com/mc-b/lernmaas.git
-    sudo cp lernmaas/preseeds/* /etc/maas/preseeds/
+    sudo cp lernmaas/preseeds/* /var/snap/maas/current/preseeds/
     sudo chmod +x lernmaas/helper/*
     sudo cp lernmaas/helper /usr/local/bin/
 

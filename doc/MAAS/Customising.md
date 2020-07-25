@@ -16,7 +16,7 @@ Dazu sind im Verzeichnis `/etc/maas/preseeds/` nach folgendem Namensschema Datei
 
 Es soll bei jeder Ubuntu Installation zusätzlich Docker installiert werden.
 
-Datei `/etc/maas/preseeds/curtin_userdata_ubuntu` erstellen und folgendes eintragen:
+Datei `/var/snap/maas/current/preseeds/curtin_userdata_ubuntu` erstellen und folgendes eintragen:
 
     #cloud-config
     debconf_selections:
