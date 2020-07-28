@@ -10,7 +10,7 @@
 ### Argumente
 export NET=$2
 export SUBNET=$3
-PORT=$(((${SUBNET} * 100) + ${NET} + 51820))
+PORT=$(((${NET} * 10) + ${SUBNET} + 51520))
 ENDPOINT=$1:${PORT}
 
 WG0="wg${SUBNET}.${NET}.conf"
