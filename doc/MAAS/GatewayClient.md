@@ -49,6 +49,9 @@ Die VMs sind nun mittels IP-Adresse inkl. allen Ports im VPN sichtbar.
 
 *Eine Portweiterleitung (englisch port forwarding) ist die Weiterleitung einer Verbindung, die über ein Rechnernetz auf einem bestimmten Port eingeht, zu einem anderen Computer.*
 
+
+#### ngrok
+
 ![](https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_860/https://dashboard.snapcraft.io/site_media/appmedia/2018/08/overview_JqV9JC2.png)
 
 Quelle: https://snapcraft.io/install/ngrok/ubuntu
@@ -66,6 +69,29 @@ Mittels [ngrok](https://ngrok.com/) können wir die installierten Services in de
 
     sudo apt install apache2
     ngrok http 80
+    
+#### ssh Tunnel
+
+Auf jeder VM befindet sich eine Datei `~/.ssh/ssh_tunnel`. Mittels dieser Datei und ssh ist es möglich jeden Port auf der VMs über den [Gateway](Gateway.md) im Internet zur Verfügung zu stellen.
+
+Der Syntax ist wie folgt:
+
+    ssh -i ~/.ssh/ssh_tunnel -N -R <Port auf Gateway>:localhost:<lokaler Port> <Gateway Server>
+    
+Der Port auf dem Gateway berechnet sich wie folgt:
+
+    dritte und vierte Stelle der IP-Adresse der VM  + 10000,  
+    Bsp: 192.168.62.11 ergibt 16211, 192.168.63.29 = 16329, etc.  
+
+oder bis 10.x.y.0/24 Netzen die zweite bis vierte Stelle der VM 
+
+    Bsp: 10.1.41.11, ergibt 14111
+
+Das ergibt folgenden Befehl:
+
+    ssh -i ~/.ssh/ssh_tunnel -N -R 16211:localhost:80 gateway.....com
+    
+Damit wird der Web Server auf der VM mittels [http://gateway.....com:16211]( http://gateway.....com:16211) im Internet verfügbar.    
 
 ### Quellen
 
