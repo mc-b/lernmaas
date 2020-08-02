@@ -45,29 +45,31 @@ Und aktivieren Sie den Tunnel:
 
 Die VMs sind nun mittels IP-Adresse inkl. allen Ports im VPN sichtbar.
 
-### Portweiterleitung
+### Portweiterleitung (optional)
 
 *Eine Portweiterleitung (englisch port forwarding) ist die Weiterleitung einer Verbindung, die über ein Rechnernetz auf einem bestimmten Port eingeht, zu einem anderen Computer.*
 
-Auf jeder VM befindet sich eine Datei `~/.ssh/ssh_tunnel`. Mittels dieser Datei und ssh ist es möglich jeden Port auf der VMs über den [Gateway](Gateway.md) im Internet zur Verfügung zu stellen.
+![](https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_860/https://dashboard.snapcraft.io/site_media/appmedia/2018/08/overview_JqV9JC2.png)
 
-Der Syntax ist wie folgt:
+Quelle: https://snapcraft.io/install/ngrok/ubuntu
+- - -
 
-    ssh -i ~/.ssh/ssh_tunnel -N -R <Port auf Gateway>:localhost:<lokaler Port> <Gateway Server>
+[ngrok](https://ngrok.com/) ist ein Reverse-Proxy, der einen sicheren Tunnel von einem öffentlichen Endpunkt zu einem lokal (in der MAAS Cloud) ausgeführten Webdienst erstellt.
+
+Mittels [ngrok](https://ngrok.com/) können wir die installierten Services in der MAAS Cloud öffentlich verfügbar machen.
+
+**Installation**
+
+    sudo snap install ngrok
     
-Der Port auf dem Gateway berechnet sich wie folgt:
+**Beispiel Apache Server**
 
-    dritte und vierte Stelle der IP-Adresse der VM  + 10000,  
-    Bsp: 192.168.62.11 ergibt 16211, 192.168.63.29 = 16329, etc.     
-    
-Das ergibt folgenden Befehl:
-
-    ssh -i ~/.ssh/ssh_tunnel -N -R 16211:localhost:80 gateway.....com
-    
-Damit wird der Web Server auf der VM mittels [http://gateway.....com:16211]( http://gateway.....com:16211) im Internet verfügbar.
+    sudo apt install apache2
+    ngrok http 80
 
 ### Quellen
 
 * [VPN](https://de.wikipedia.org/wiki/Virtual_Private_Network)
 * [Portweiterleitung](https://de.wikipedia.org/wiki/Portweiterleitung) 
+* [How to install ngrok on Ubuntu](https://snapcraft.io/install/ngrok/ubuntu)
 
