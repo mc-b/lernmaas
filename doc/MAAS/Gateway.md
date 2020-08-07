@@ -87,9 +87,11 @@ Für die Zuordnung muss der Name der [VM](https://maas.io/docs/machine-overview)
 Auf dem Gateway Server ist WireGuard zu installieren:
 
     sudo -i
+    # folgende zwei Zeilen bei Ubuntu 20 weglassen
     add-apt-repository -y ppa:wireguard/wireguard
     apt-get update
-    apt-get install -y wireguard
+    # bei Ubuntu 20 wird der SSH Server standardmaessig nicht installiert
+    apt-get install -y wireguard openssh-server
     
 Und die, auf dem MAAS Server erzeugte, Konfigurationsdatei `wg111.conf` nach `/etc/wireguard` zu kopieren und WireGuard zu aktiveren 
 
@@ -103,7 +105,7 @@ Anschliessend noch die IP Weiterleitung aktiveren. Dazu ist in der Datei `/etc/s
 
 Gateway Server frisch starten es sollte neu ein Interface `wg111` vorhanden sein.
 
-    sudo ip addr 
+    sudo ip -s addr 
     sudo wg    
 
 Weiter geht es mit [VPN Client Anbindung](GatewayClient.md).
