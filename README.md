@@ -142,4 +142,11 @@ Diese werden in das Verzeichnis $HOME geklont und anschliessend, falls vorhanden
 Ein Beispiel ist z.B. das [Modul 122](https://github.com/tbz-it/M122/blob/master/scripts/install.sh) welche zusätzliche Software in die VM installiert.
 
 Das install.sh Script wird im geklonten Verzeichnis als User `ubuntu` ausgeführt.
+
+### Links
+
+* [MAAS](https://maas.io/how-it-works)
+* [Cloud-init](https://cloudinit.readthedocs.io/en/latest/)
+* [Curtin](https://curtin.readthedocs.io/en/latest/topics/overview.html)
+* [Bare Metal in a Cloud Native World](https://thenewstack.io/bare-metal-in-a-cloud-native-world/)
  
