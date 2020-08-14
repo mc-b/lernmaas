@@ -7,19 +7,15 @@
 
 for kvm in $(maas $PROFILE machines read | jq -r ".[] | select (.pool.name==\"system\") | [.ip_addresses] | flatten | @tsv ")
 do
-    for host in $(virsh -c qemu+ssh://ubuntu@${kvm}/system list | grep $1 | cut '-d ' -f 5)
+    for host in $(virsh -c qemu+ssh://ubuntu@${kvm}/system list --all | grep $1 | awk '{ print $2 }' )
     do
         echo $host
         virsh -c qemu+ssh://ubuntu@${kvm}/system dumpxml ${host} | head -n -2 >${host}.xml
         echo "<cpu mode='host-passthrough' check='none'/>" >>${host}.xml
         echo "</domain>" >>${host}.xml
         virsh -c qemu+ssh://ubuntu@${kvm}/system define ${host}.xml
-        virsh -c qemu+ssh://ubuntu@${kvm}/system shutdown ${host}
+        virsh -c qemu+ssh://ubuntu@${kvm}/system reboot ${host}
     done
-    
-    for host in $(virsh -c qemu+ssh://ubuntu@${kvm}/system list --inactive | grep $1 | cut '-d ' -f 6)
-    do
-        virsh -c qemu+ssh://ubuntu@${kvm}/system start ${host}        
-    done
-        
+
+
 done
