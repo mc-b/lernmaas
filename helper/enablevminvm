@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+#   Enable Virtualisierung in den VMs
+#
+
+[ $# -lt 1 ] && { echo enablevminvm host; exit 1; }
+
+for kvm in $(maas $PROFILE machines read | jq -r ".[] | select (.pool.name==\"system\") | [.ip_addresses] | flatten | @tsv ")
+do
+    for host in $(virsh -c qemu+ssh://ubuntu@${kvm}/system list | grep $1 | cut '-d ' -f 5)
+    do
+        echo $host
+        virsh -c qemu+ssh://ubuntu@${kvm}/system dumpxml ${host} | head -n -2 >${host}.xml
+        echo "<cpu mode='host-passthrough' check='none'/>" >>${host}.xml
+        echo "</domain>" >>${host}.xml
+        virsh -c qemu+ssh://ubuntu@${kvm}/system define ${host}.xml
+        virsh -c qemu+ssh://ubuntu@${kvm}/system shutdown ${host}
+    done
+    
+    for host in $(virsh -c qemu+ssh://ubuntu@${kvm}/system list --inactive | grep $1 | cut '-d ' -f 6)
+    do
+        virsh -c qemu+ssh://ubuntu@${kvm}/system start ${host}        
+    done
+        
+done

@@ -144,6 +144,14 @@ Der Aufruf von `tocsv` ist wie folgt:
     tocsv <Resource Pool MAAS>
 
 
+enablevminvm
+------------
 
+Hilfsscript um bei allen VMs welche ${host}, z.B. m300 im Namen haben Virtualisierung in der VM zu ermöglichen.
+
+**Dazu müssen zwingend alle KVM Machinen im Resource Pool `system` vorhanden sein.**
+
+enablevminvm <host>
+ 
 
     
