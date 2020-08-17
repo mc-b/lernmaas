@@ -20,7 +20,7 @@ spec:
  type: LoadBalancer
  ports:
  - port: 3000
-   targetPort: 3000
+   nodePort: 32400   
  selector:
    app: eclipse-theia
 ---
