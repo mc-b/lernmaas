@@ -243,8 +243,8 @@ m254:
 # Modul 300: Plattformuebergreifende Dienste in ein Netzwerk integrieren
 m300:
   vm:  
-    storage: 16
-    memory:  3584
+    storage: 24
+    memory:  4864
     cores: 2
     count: 20
   services:
@@ -255,7 +255,7 @@ m300:
     ssh: generate
     samba: false
     firewall: false
-  scripts: 
+  scripts: vagrant.sh,eclipse-theia.sh
   repositories: 
   
 # Modul 426 Software mit agilen Methoden entwickeln (duk/devops Umgebung - gogs, kanboard, jenkins, duk/compiler - make, maven, mbed-cli) 

@@ -14,7 +14,7 @@ do
         echo "<cpu mode='host-passthrough' check='none'/>" >>${host}.xml
         echo "</domain>" >>${host}.xml
         virsh -c qemu+ssh://ubuntu@${kvm}/system define ${host}.xml
-        virsh -c qemu+ssh://ubuntu@${kvm}/system reboot ${host}
+        # virsh -c qemu+ssh://ubuntu@${kvm}/system reboot ${host}
     done
 
 
