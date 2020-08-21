@@ -9,10 +9,9 @@ Für eine detailierte Installation, siehe [MAAS](MAAS/) oder [Bare Metal to Kube
 
 Fixe IP-Adresse vergeben, z.B. über Einstellungen, Software Update durchführen und MAAS Installieren
 
-    sudo add-apt-repository ppa:maas/stable -y  
     sudo apt update
     sudo apt upgrade -y
-    sudo apt install -y maas jq markdown nmap traceroute wsmancli git curl wget
+    sudo apt install -y maas jq markdown nmap traceroute wsmancli git curl wget openssh-server
 
 MAAS Admin User erstellen und Profilnamen `ubuntu` als Umgebungvariable setzen
 
@@ -29,6 +28,7 @@ IP4 Forward permanent einrichten:
 
     sysctl -w  net.ipv4.ip_forward=1
     sudo vi /etc/sysctl.conf
+    # Eintrag net.ipv4.ip_forward=1 auskommentieren, # löschen
 
 **Hinweis** auf den Installierten KVM Server kann IP4 Forward deaktiviert werden, bringt Geschwindigkeit.
 
@@ -36,13 +36,11 @@ Browser starten und UI von MAAS aufrufen [http://localhost:5240](http://localhos
 
 * SSH-Key, von vorher `cat ~/.ssh/id_rsa.pub`  eintragen
 * Den MAAS Master (braucht es für die interne Namensauflösung) und die bekannten DNS Server eintragen
-* Bei Subnets DHCP Server aktivieren auf z.B. 172.16.17.x, Gateway IP: 172.16.17.1 und DNS Server eintragen
+* Bei Subnets DHCP Server aktivieren auf z.B. 172.16.17.x, Gateway IP: 172.16.17.1 und DNS Server (z.B. OpenDNS 208.67.222.222, 208.67.220.22) eintragen
 
 **Server frisch starten, ansonsten werden die Änderungen nicht übernommen.**
 
-* Images syncen  
-
-**Tip**: vino auf dem Master installieren, damit ist der GUI via VNC erreichbar.
+* Images updaten und weitere Image wie Ubuntu 20.04 LTS anklicken.  
 
 **MAAS Login und Tests**
 
@@ -50,13 +48,15 @@ Einlogen für CLI Access
 
     maas login ${PROFILE} http://localhost:5240/MAAS/api/2.0
     
-Erstelle Maschinen anzeigen:
+Mögliche Befehle anzeigen
+
+    maas ${PROFILE} --help
+    
+Erstelle Maschinen im JSON Format ausgeben:
 
     maas $PROFILE machines read
-    
-Wenn eine Fehlermeldung kommt ist das MAAS CLI Einsatzbereit.        
 
-#### Gemeinsame Datenablage
+#### Gemeinsame Datenablage (optional)
 
 Auf dem MAAS Master sollte eine gemeinsame Datenablage eingerichtet werden. Dann sind die Dateien die auf den VMs im $HOME/data Verzeichnis gespeichert werden, nach dem Löschen der VM noch auf dem MAAS Master vorhanden.
 
@@ -125,25 +125,25 @@ Als Alternative kann [Juju](../Juju/) verwendet werden. Damit lassen sich Kubern
 
 Die Worker Nodes sind so zu Konfigurieren, dass sie via Netzwerk (PXE Boot) booten.
 
-Anschliessend sind die zwei Installationsroutingen durchzuführen. 
+Anschliessend sind die zwei Installationsroutinen durchzuführen. 
 
 - - -
 
 [![](https://img.youtube.com/vi/jj1M-YyCgD4/0.jpg)](https://www.youtube.com/watch?v=jj1M-YyCgD4)
 
-MAAS Enlistment 
+MAAS Enlistment (auf Bild klicken, damit YouTube Film startet)
 
 ---
 
 [![](https://img.youtube.com/vi/k-9VHZg_qoo/0.jpg)](https://www.youtube.com/watch?v=k-9VHZg_qoo)
 
-MAAS Commission 
+MAAS Commission (auf Bild klicken, damit YouTube Film startet)
 
 - - -
 
 Die neue Maschine anklicken und rechts oben mittels `Take action` -> Deploy die Software deployen (Ubuntu 18.04). Um auf der Maschine nachher virtuelle Maschinen erstellen zu können ist die Checkbox `Register as MAAS KVM host` zu aktivieren.
 
-Nach der Installation steht die Maschine unter Pods zur Verfügung und es lassen sich neue virtuelle Maschinen darauf erstellen (Compose).
+Nach der Installation steht die Maschine unter KVM zur Verfügung und es lassen sich neue virtuelle Maschinen darauf erstellen (Compose).
 
 **Tips** 
 * Normale PCs haben keine Unterstützung für [BMC](https://de.wikipedia.org/wiki/Baseboard_Management_Controller) deshalb muss der `Power type` auf `Manuel` eingestellt werden. Sollte das nicht funktionieren, zuerst bei `Configuration` unter `Power type`  IPMI und eine Pseudo IP und MAC Adresse eingeben und nachher auf `Manuel` wechseln.
