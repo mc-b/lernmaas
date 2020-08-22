@@ -16,7 +16,8 @@ cat <<%EOF% >>Templates/README.md
 # Titel 1
 ## Titel 2
 
-    code
+![Markdown Demo](https://markdown-it.github.io/)
+
 %EOF%
 
 cat <<%EOF% >>Templates/Vagrantfile
