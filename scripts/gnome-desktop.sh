@@ -10,6 +10,8 @@ sudo apt-get install -y --no-install-recommends ubuntu-desktop gnome-panel gnome
 xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
 gsettings set org.gnome.desktop.background show-desktop-icons false
 
+cd $HOME
+
 # nemo Templates
 mkdir Templates
 cat <<%EOF% >>Templates/README.md
@@ -48,7 +50,7 @@ FROM alpine:latest
 CMD "echo" "hello world"
 %EOF%
 
-cd $HOME
+# X11 Umgebung
 mkdir Desktop Downloads .vnc
 
 if [ -f .ssh/passwd ]
