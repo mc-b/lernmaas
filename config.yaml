@@ -255,7 +255,7 @@ m300:
     ssh: generate
     samba: false
     firewall: false
-  scripts: vagrant.sh,eclipse-theia.sh
+  scripts: vagrant.sh,eclipse-theia.sh,gnome-desktop.sh
   repositories: 
   
 # Modul 426 Software mit agilen Methoden entwickeln (duk/devops Umgebung - gogs, kanboard, jenkins, duk/compiler - make, maven, mbed-cli) 
