@@ -6,6 +6,47 @@
 
 sudo apt-get install -y --no-install-recommends ubuntu-desktop gnome-panel gnome-settings-daemon metacity gnome-terminal tightvncserver firefox gedit gitg nemo
 
+# nemo als Default File Explorer
+xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+gsettings set org.gnome.desktop.background show-desktop-icons false
+
+# nemo Templates
+mkdir Templates
+cat <<%EOF% >>Templates/README.md
+# Titel 1
+## Titel 2
+
+    code
+%EOF%
+
+cat <<%EOF% >>Templates/Vagrantfile
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  # Every Vagrant development environment requires a box. You can search for
+  # boxes at https://vagrantcloud.com/search.
+  config.vm.box = "ubuntu/xenial64"
+
+  # config.vm.network "forwarded_port", guest: 80, host: 8080
+
+  # config.vm.network "private_network", ip: "192.168.33.10"
+
+  # Enable provisioning with a shell script. 
+  # config.vm.provision "shell", inline: <<-SHELL
+  #   apt-get update
+  #   apt-get install -y apache2
+  # SHELL
+end
+
+%EOF%
+
+cat <<%EOF% >>Templates/Dockerfile
+FROM alpine:latest
+CMD "echo" "hello world"
+%EOF%
+
 cd $HOME
 mkdir Desktop Downloads .vnc
 
