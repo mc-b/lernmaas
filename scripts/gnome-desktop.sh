@@ -4,7 +4,10 @@
 
 sudo apt-get install -y --no-install-recommends ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal tightvncserver firefox
 
-mkdir Desktop Downloads .vnc
+mkdir Desktop Downloads .trash .vnc
+
+vncpasswd -f <<<$(cat .ssh/passwd) >.vnc/passwd
+chmod 600 .vnc/passwd
 
 # X11 Startup
 
