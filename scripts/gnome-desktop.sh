@@ -4,7 +4,7 @@
 #
 #   braucht ca. 1.2 GB HD 
 
-sudo apt-get install -y --no-install-recommends ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal tightvncserver firefox
+sudo apt-get install -y --no-install-recommends ubuntu-desktop gnome-panel gnome-settings-daemon metacity gnome-terminal tightvncserver firefox gedit gitg nemo
 
 cd $HOME
 mkdir Desktop Downloads .vnc
@@ -30,7 +30,8 @@ xsetroot -solid grey
 gnome-panel &
 gnome-settings-daemon &
 metacity &
-nautilus &     
+nemo &   
+gitg &  
 %EOF%
 
 chmod 755 .vnc/xstartup
