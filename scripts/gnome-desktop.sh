@@ -1,9 +1,12 @@
 #!/bin/bash
 #
 #   Installiert den Gnome Desktop und stellt diesen via VNC zur Verfuegung
+#
+#   braucht ca. 1.2 GB HD 
 
 sudo apt-get install -y --no-install-recommends ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal tightvncserver firefox
 
+cd $HOME
 mkdir Desktop Downloads .trash .vnc
 
 vncpasswd -f <<<$(cat .ssh/passwd) >.vnc/passwd
