@@ -4,7 +4,7 @@
 #
 #   braucht ca. 1.5 GB HD 
 
-sudo apt-get install -y --no-install-recommends ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal tightvncserver firefox gedit rabbitvcs-nautilus
+sudo apt-get install -y --no-install-recommends ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal tightvncserver firefox gedit rabbitvcs-nautilus nautilus-extension-gnome-terminal 
 
 cd $HOME
 
