@@ -2,24 +2,27 @@
 #
 #   Installiert den Gnome Desktop und stellt diesen via VNC zur Verfuegung
 #
-#   braucht ca. 1.2 GB HD 
+#   braucht ca. 1.5 GB HD 
 
-sudo apt-get install -y --no-install-recommends ubuntu-desktop gnome-panel gnome-settings-daemon metacity gnome-terminal tightvncserver firefox gedit gitg nemo
-
-# nemo als Default File Explorer
-xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
-gsettings set org.gnome.desktop.background show-desktop-icons false
+sudo apt-get install -y --no-install-recommends ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal tightvncserver firefox gedit rabbitvcs-nautilus
 
 cd $HOME
 
-# nemo Templates
+# Nautilus (File Explorer) Konfiguration
+mkdir .config
+cat <<%EOF% >.config/user-dirs.dirs
+XDG_TEMPLATES_DIR="$HOME/Templates"
+%EOF%
+
+# File Explorer Templates
 mkdir Templates
 cat <<%EOF% >>Templates/README.md
 # Titel 1
 ## Titel 2
 
-![Markdown Demo](https://markdown-it.github.io/)
+Ihre Dokumentation 
 
+![Markdown Demo](https://markdown-it.github.io/)
 %EOF%
 
 cat <<%EOF% >>Templates/Vagrantfile
@@ -32,15 +35,15 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "ubuntu/xenial64"
 
-  # config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 80, host: 8080
 
   # config.vm.network "private_network", ip: "192.168.33.10"
 
   # Enable provisioning with a shell script. 
-  # config.vm.provision "shell", inline: <<-SHELL
-  #   apt-get update
-  #   apt-get install -y apache2
-  # SHELL
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get update
+    apt-get install -y apache2
+  SHELL
 end
 
 %EOF%
