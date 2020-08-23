@@ -4,7 +4,7 @@
 #
 #   braucht ca. 1.5 GB HD 
 
-sudo apt-get install -y --no-install-recommends ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal tightvncserver firefox gedit rabbitvcs-nautilus nautilus-extension-gnome-terminal 
+sudo apt-get install -y --no-install-recommends ubuntu-desktop gnome-panel gnome-settings-daemon metacity gnome-terminal tightvncserver firefox gedit rabbitvcs-nautilus nautilus-extension-gnome-terminal 
 
 cd $HOME
 
@@ -77,8 +77,7 @@ xsetroot -solid grey
 gnome-panel &
 gnome-settings-daemon &
 metacity &
-nemo &   
-gitg &  
+natilus &   
 %EOF%
 
 chmod 755 .vnc/xstartup
