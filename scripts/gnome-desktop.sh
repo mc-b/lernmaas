@@ -77,7 +77,7 @@ xsetroot -solid grey
 gnome-panel &
 gnome-settings-daemon &
 metacity &
-natilus &   
+nautilus &   
 %EOF%
 
 chmod 755 .vnc/xstartup
