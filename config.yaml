@@ -219,7 +219,7 @@ m242:
     ssh: generate
     samba: false
     firewall: false
-  scripts: 
+  scripts: proxy-server.sh
   repositories: https://github.com/tbz-it/M242
   
 # Modul 254 Geschäftsprozesse beschreiben (Kubernetes mit Camunda BPMN Workflow)
