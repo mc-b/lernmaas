@@ -129,7 +129,7 @@ Details und die Services selber findet man im Verzeichnis [services](services/).
 
 Definiert welche Scripts, getrennt durch `,` nach den Services ausgeführt werden sollen.
 
-Ein Beispiel ist z.B. die Installation des Apache Web Servers [apache.sh](scripts/apache.sh).
+Ein Beispiel ist z.B. die Installation eines Proxy Servers [proxy-server.sh](scripts/proxy-server.sh). Weitere siehe Verzeichnis [scripts](scripts/).
 
 Die Scripts werden als User `ubuntu` in dessen HOME Verzeichnis ausgeführt. 
 

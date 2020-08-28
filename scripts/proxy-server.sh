@@ -2,9 +2,7 @@
 #
 #   Einrichten des Proxy Servers Privoxy - https://www.privoxy.org/ und ngrok Tunnels https://ngrok.com/
 #
-#   Windows PC einrichten
-#   - Proxyeinstellungen
-#   - IP-Adresse des Servers und Port 8118 angeben
+#   Client PC einrichten - https://www.heise.de/tipps-tricks/Einen-Proxy-Server-einrichten-so-klappt-s-4239868.html
 
 # Proxy Server
 sudo apt-get install -y privoxy
