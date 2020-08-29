@@ -1,6 +1,16 @@
 Juju
 ====
 
+[![](https://img.youtube.com/vi/KT1-ozwDMho/0.jpg)](https://www.youtube.com/watch?v=KT1-ozwDMho)
+
+- - -
+
+[Juju](https://jaas.ai/) ist ein Open Source-Tool zur Modellierung von Anwendungen, das von Canonical Ltd. Entwickelt wurde . 
+
+Juju konzentriert sich auf die Reduzierung des Betriebsaufwands heutiger Software durch die schnelle Bereitstellung, Konfiguration, Skalierung, Integration und Ausführung von Betriebsaufgaben für eine große Auswahl an öffentlichen und privaten Cloud-Diensten sowie für Bare-Metal-Server und lokale Container-basierte Bereitstellungen.
+
+Dazu gibt es bei Juju "Charms" und "Bundles" wo festlegen, was installiert werden soll. Vorgefertige "Charms" und "Bundles" finden wir im [Juju Store](https://jaas.ai/store).
+
 ### Installation
 
     sudo snap install juju --classic
@@ -16,75 +26,40 @@ Nach dem Aufsetzen kann der URL des Juju UIs und dessen Password angezeigt werde
     juju gui
     
 **Tip**: Name des Controllers als Umgebungsvariable `CONTROLLER` speichern.    
-    
+
+
 ### Juju und virtuelle Maschinen
 
-Wir wollen 8 VMs mit dem Apache Web Server aufsetzen. Dafür ist wie folgt vorzugehen:
+Nachdem der Juju Controller im MAAS installiert ist, können wir anhand der Vorlagen im [Juju Store](https://jaas.ai/store) neue VMs erstellen.
 
-Aufruf des [MAAS UI](http://localhost:5240/MAAS) und anlegen des Pools `web`.
+Juju sucht sich dabei automatisch einen freien KVM Server, erstellt einen neue VM und installiert die entsprechende Software.
 
-Anlegen der VMs, dazu brauchen wir zuerst die Ids der Pods (HW mit KVM) und die des Pools
-
-    POD=$(maas $PROFILE pods read | jq '.[] | select (.name=="<name>") | .id')
-    POOL=$(maas ${PROFILE} resource-pools read | jq '.[] | select (.name=="web") | .id')
-    for x in {01..08} ; do maas ${PROFILE} pod compose ${POD} memory=1024 cpu=1 pool=${POOL} hostname=web-${x} ; done       
- 
-Das Ergebnis sind 8 neue VMs im ausgeschalteten Zustand ohne Betriebssystem mit dem Status `Ready`. Diese sind mit dem Tag `web` zu versehen (weil juju keine constraints resource-pool kennt).
- 
-Die Installation übernimmt Juju. Dazu arbeitet Juju mit Models, ähnlich Workspaces.  
-
-Zuerst legen wir ein neues Model an, wechseln in dieses und führen dort unsere Arbeiten aus:
+**Beispiel Apache Web Server**
 
     juju add-model web
-    juju switch ${CONTROLLER}:web
-    juju list-models
+    juju deploy juju deploy cs:apache2-35
     
-    juju list-machines
-    juju deploy apache2 -n 8  --constraints tags=web    
-    
-Die so erstellen VMs können wir uns ansehen
+Wie der Apache Web Server zu installieren ist steht im [Charm](https://jaas.ai/apache2/35).
 
-    juju list-machines
-        
+Wenn wir den Web Server nicht mehr benötigen, können wir ihn wie folgt wieder löschen:
+
+    juju destroy-model web
   
 ### Juju und Kubernetes
 
-Zuerst brauchen wir eine Kubernetes Umgebung.
+**Kubernetes mit Juju aufsetzen**
 
-Diese lässt sich einfach über das Juju GUI einrichten, z.B. die [kubernetes-core](https://jaas.ai/kubernetes-core) Umgebung.
-
-**Tips**
-* Die Maschinen zuerst im [MAAS UI](http://localhost:5240/MAAS) einrichten und mit `juju` taggen. Beim Einrichten drauf achten, dass die Maschinen über mehrere (KVM-)Pods verteilt sind.
-* Mehr Worker Nodes können über das Juju GUI im Tab `machines` durch drücken von `+` und hinzufügen von `kubernetes-worker` units erstellt werden. Bei den Workern ist auf genügend CPUs (4), Memory (4096) und Storage (16G) zu achten.
-
-Nach der Installation benötigen wir die die Konfigurationsdatei von Kubernetes.
-
-Die Konfigurationsdatei mit Server Zertifikat steht im Verzeichnis `/home/ubuntu` des Kubernetes Masters. Diese muss auf den aktuellen Server kopiert werden:
-
+    juju add-model k8score
+    juju deploy https://jaas.ai/kubernetes-core
+    
+Um mit dem Kubernetes Cluster zu kommunizieren brauchen wir die Konfigurationsdatei .kube/config. Diese können wir uns mittels juju vom dem Kubernetes Master (VM) in die lokale Umgebung kopieren:
+     
     mkdir -p ~/.kube
     juju scp kubernetes-master/0:config ~/.kube/config
     snap install kubectl --classic
     kubectl cluster-info
 
-**Ab hier nicht getestet**
+### Links
 
-Anschliessend müssen wir das Juju GUI in Kubernetes bekanntmachen. Dazu muss zuerst ein StorageClass eingerichtet werden und anschliessend juju mit Kubernetes verbunden werden.
-
-    git clone https://github.com/mc-b/lernkube
-    kubectl apply -f lernkube/data
-    
-Die StorageClass ist vorhanden nun können wir juju mit Kubernetes verbinden:
-    
-    juju add-k8s --local juju-cluster --storage=local-storage --cloud=localhost
-    
-    juju add-model --local juju-model juju-cluster
-    
-    juju bootstrap --local juju-cluster
-    
-Der zweite Befehl erzeugt einen Pod und einen Service mit dem Juju Gui. Der Port ist aber leider nicht im LoadBalancer sichtbar, weshalb wir diesen weiterleiten müssen:
-
-    kubectl --kubeconfig .kube/config -n controller-juju-cluster port-forward service/controller-service 17070
-          
-Siehe auch 
 * [Example Adding a K8S Cloud and Model](https://discourse.jujucharms.com/t/tutorial-2-6-2-example-adding-a-k8s-cloud-and-model/1484) und [Installing Kubernetes with CDK and using auto-configured storage](https://jaas.ai/docs/k8s-cdk-autostorage-tutorial)
 * [kubernetes-core](https://jaas.ai/kubernetes-core)
