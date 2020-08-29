@@ -58,6 +58,10 @@ Um mit dem Kubernetes Cluster zu kommunizieren brauchen wir die Konfigurationsda
     juju scp kubernetes-master/0:config ~/.kube/config
     snap install kubectl --classic
     kubectl cluster-info
+    
+Für das Einrichten einer Persistenten Ablage (PersistentVolume) siehe [nfs](https://github.com/mc-b/lernkube/tree/master/nfs).    
+
+Um ausgesuchte Services auf dem Kubernetes Cluster auszurollen, siehe Projekt [duk](https://github.com/mc-b/duk#weitere-beispiele). Damit diese funktionieren sind ggf. die `hostPath` Einträge aus dem YAML Datei zu entfernen und weitere Software in den Container zu installieren, siehe z.B. [Jupyter](https://github.com/mc-b/duk/tree/master/jupyter).
 
 **Zugriff auf Kubernetes Master mittels WireGuard**
 
