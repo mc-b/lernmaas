@@ -59,6 +59,23 @@ Um mit dem Kubernetes Cluster zu kommunizieren brauchen wir die Konfigurationsda
     snap install kubectl --classic
     kubectl cluster-info
 
+**Zugriff auf Kubernetes Master mittels WireGuard**
+
+    juju ssh <ip k8s master>
+    sudo apt-get install -y wireguard
+    
+[Konfiguration Wireguard mittels /etc/wireguard/wg0.conf](https://github.com/mc-b/lernmaas/blob/master/doc/MAAS/GatewayClient.md#vpn)
+
+    sudo systemctl enable wg-quick@wg0.service
+    sudo systemctl start wg-quick@wg0.service
+    exit
+    
+Auf dem Rack Server
+
+    juju config kubernetes-master extra_sans=<WireGuard IP Adresse>
+    
+Datei `~/.kube/config` editieren und lokale IP-Adresse durch WireGuard IP Adresse ersetzen.        
+
 ### Links
 
 * [Example Adding a K8S Cloud and Model](https://discourse.jujucharms.com/t/tutorial-2-6-2-example-adding-a-k8s-cloud-and-model/1484) und [Installing Kubernetes with CDK and using auto-configured storage](https://jaas.ai/docs/k8s-cdk-autostorage-tutorial)
