@@ -89,7 +89,7 @@ Der TBZ-Deployer basiert auf einer Vertiefungsarbeit an der TBZ HF von Niklaus L
 Vagrant
 -------
 
-Das Script vagrant.sh installiert [Vagrant]() und [VirtualBox]() in der VM.
+Das Script vagrant.sh installiert [Vagrant](https://www.vagrantup.com/) und [VirtualBox](https://www.virtualbox.org/) in der VM.
 
 Diese muss vorher mittels dem Helper Script [enablevminvm](../helper/enablevminvm) für VM in VM freigeschaltet werden.
 
