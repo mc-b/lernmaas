@@ -149,7 +149,7 @@ enablevminvm
 
 Hilfsscript um bei allen VMs welche ${host}, z.B. m300 im Namen haben Virtualisierung in der VM zu ermöglichen.
 
-**Dazu müssen zwingend alle KVM Machinen im Resource Pool `system` vorhanden sein und die VMs deployt sein.**
+Das Script sucht die KVM Maschinen im Resource Pool `system`. Die VMs müssen im Zustand `Ready` sein.
 
     enablevminvm <host>
  
