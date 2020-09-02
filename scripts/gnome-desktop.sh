@@ -1,10 +1,16 @@
 #!/bin/bash
 #
-#   Installiert den Gnome Desktop und stellt diesen via VNC zur Verfuegung
+#   Installiert den Gnome Desktop und stellt diesen via VNC und RDP zur Verfuegung
+#
+#   RDP Einstellungen
+#   * Session: vcn-any
+#   * ip     : 127.0.0.1
+#   * port   : 5901
+#   * passwd : wie VNC Zugriff
 #
 #   braucht ca. 1.5 GB HD 
 
-sudo apt-get install -y --no-install-recommends ubuntu-desktop gnome-panel gnome-settings-daemon metacity gnome-terminal tightvncserver firefox gedit rabbitvcs-nautilus nautilus-extension-gnome-terminal 
+sudo apt-get install -y --no-install-recommends ubuntu-desktop gnome-panel gnome-settings-daemon metacity gnome-terminal tightvncserver firefox gedit rabbitvcs-nautilus nautilus-extension-gnome-terminal xrdp 
 
 cd $HOME
 
