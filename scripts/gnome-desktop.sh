@@ -109,6 +109,18 @@ ExecStop=/usr/bin/vncserver -kill :%i
 WantedBy=multi-user.target  
 %EOF%
 
+# XRDP Konfiguration
+
+cat <<%EOF% | sudo tee -a /etc/xrdp/xrdp.ini 
+[ubuntu]
+name=ubuntu
+lib=libvnc.so
+ip=127.0.0.1
+port=5901
+username=na
+password=ask
+%EOF%
+
 sudo systemctl daemon-reload
 sudo systemctl enable vncserver@1.service
 sudo systemctl start vncserver@1
