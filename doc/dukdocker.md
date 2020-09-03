@@ -22,4 +22,4 @@ Der private SSH Key ist auf dem Installierten Server unter [/data/.ssh/id_rsa](/
 
     ssh -i id_rsa ubuntu@[IP Adresse]
     
-**Hinweis**: Windows User verwenden [Putty](https://www.putty.org/) und den [Putty Key /data/.ssh/id_rsa.ppk](/data/.ssh/id_rsa.ppk). 
+**Hinweis**: Windows User verwenden [bitvise](https://www.bitvise.com/) und legen den privaten SSH Key im "Client key manager" ab. 

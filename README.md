@@ -117,7 +117,7 @@ Die Services können pro VM in der Datei [config.yaml](https://github.com/mc-b/l
 Es stehen folgende Services zur Verfügung:
 * **nfs** - `true` = es werden $HOME/data, $HOME/template $HOME/config auf den MAAS Server weitergeleitet, bzw. gemountet.
 * **wireguard** - `use` = ist einen Datei $HOME/config/wireguard/$HOSTNAME vorhanden wird diese als Konfigurationsdatei für WireGuard verwendet. Statt der Konfigurationsdatei genügt neu die Zuordnung zu einer AZ und der Tag `wireguard`. Bei Kubernetes wird zusätzlich als 1. IP nicht die interne IP sondern die von WireGuard verwendet.
-* **ssh** - `generate` = erstellt einen SSH-Key pro VM, fügt den Public Key `.ssh/authorized_keys` an und kopiert den Private Key nach data/.ssh/. für den Zugriff von aussen. Zusätzlich wird ein Key für [putty](https://www.putty.org/) und ein Password mit [pwgen](https://www.pwdgen.org/) erzeugt. Das Password steht in der Datei `.ssh/passwd` und `data/.ssh/passwd`.
+* **ssh** - `generate` = erstellt einen SSH-Key pro VM, fügt den Public Key `.ssh/authorized_keys` an und kopiert den Private Key nach data/.ssh/. für den Zugriff von aussen. Zusätzlich wird ein Password mit [pwgen](https://www.pwdgen.org/) erzeugt. Das Password steht in der Datei `.ssh/passwd` und `data/.ssh/passwd`.
 * **samba** - `true` = installiert die CIFS Freigabe Samba und gibt $HOME/data allgemein frei.
 * **firewall** - `true` = installiert `ufw` als Firewall mit Standardeinstellungen
 * **docker** - `true` = installiert Docker in der VM
