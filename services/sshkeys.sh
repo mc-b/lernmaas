@@ -3,9 +3,6 @@
 #   SSH Key hinterlegen bzw. generieren
 #
 
-# Putty Key Software
-sudo apt install -y putty-tools pwgen
-
 # eigenen SSH Key fuer VM generieren und Privaten Schluessel im Data Verzeichnis verfuegbar machen
 if  [ "$1" == "generate" ]
 then
@@ -15,7 +12,6 @@ then
     mkdir -p data/.ssh
     chmod 700 data/.ssh
     cp .ssh/id_rsa data/.ssh
-    puttygen .ssh/id_rsa -o .ssh/id_rsa.ppk
     
     # Password auch setzen um einloggen ohne Zertifikat zu ermoeglichen 
     pwgen 8 1 >.ssh/passwd
