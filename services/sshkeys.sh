@@ -2,6 +2,7 @@
 #
 #   SSH Key hinterlegen bzw. generieren
 #
+sudo apt install -y pwgen
 
 # eigenen SSH Key fuer VM generieren und Privaten Schluessel im Data Verzeichnis verfuegbar machen
 if  [ "$1" == "generate" ]
