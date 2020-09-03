@@ -111,6 +111,7 @@ WantedBy=multi-user.target
 
 # XRDP Konfiguration
 
+sudo sed -i -e '/\[Xorg\]/,+200d' /etc/xrdp/xrdp.ini
 cat <<%EOF% | sudo tee -a /etc/xrdp/xrdp.ini 
 [ubuntu]
 name=ubuntu
