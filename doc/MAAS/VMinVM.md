@@ -55,11 +55,11 @@ Benötigte Software installieren
 
 Standard Ubuntu 18.04 Image holen und Snapshot davon erstellen, inkl. Vergrösserung FS auf 30 GB, am besten in einem separaten Verzeichnis
 
-
+    cd 
     mkdir vminvm
     cd vminvm
     wget https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img
-    qemu-img create -b bionic-server-cloudimg-amd64.img -f qcow2 bionic-server-cloudimg.qcow2 30G
+    qemu-img create -F raw -b ~/vminvm/bionic-server-cloudimg-amd64.img -f qcow2 bionic-server-cloudimg.qcow2 30G
     qemu-img info bionic-server-cloudimg.qcow2
     
 SSH-Key zum ablegen in VM anlegen
