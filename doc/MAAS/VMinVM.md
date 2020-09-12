@@ -96,7 +96,7 @@ Cloud-init Konfigurationsdatei erzeugen
     final_message: "The system is finally up, after \$UPTIME seconds"
     %EOF%
     
-Netzwerk Konfiguration. Als Gateway wird das Netzwerk des KVM Server (immer 192.168.122.0/24) verwendet. Die IP-Adresse ist fix.
+Netzwerk Konfiguration wenn VM in VM. Als Gateway wird das Netzwerk des KVM Server (immer 192.168.122.0/24) verwendet. Die IP-Adresse ist fix.
 
     cat <<%EOF% >network-config.cfg
     version: 2
@@ -110,7 +110,15 @@ Netzwerk Konfiguration. Als Gateway wird das Netzwerk des KVM Server (immer 192.
            addresses: [ 192.168.122.1,208.67.222.222,208.67.220.220 ]
            search: [ maas.com ]
     %EOF%
- 
+    
+Netzwerk Konfiguration wenn VM auf KVM Host erstellt wird. Dabei wird die IP-Adresse vom DHCP Server geholt. Die Device `enp1s0` ist ggf. anzupassen.
+
+    cat <<%EOF% >network-config.cfg
+    version: 2
+    ethernets:
+        enp1s0:
+            dhcp4: true
+    %EOF%
 
 Generieren eines lokalen Disk mit den obigen Konfigurationen
 
@@ -125,22 +133,22 @@ Starten der VM
                  --os-type Linux --os-variant ubuntu18.04 \
                  --network network:default \
                  --console pty,target_type=serial &
+  
+Verbinden mit der erstellen VM via der virsh-Console. Beenden mittels `Ctrl+AltGR+]`
+
+    virsh console ubuntu
                 
-Verbinden mit der erstellen VM via SSH
+via SSH
 
     ssh -i id_rsa ubuntu@192.168.122.158    
-    
-mittels der virsh-Console, exit mittels `Ctrl+AltGR+]`
 
-    virsh ubuntu
-    
 via VNC
 
     <IP-Adresse VM bzw. KVM Host>:10
     
 Port, z.B. 80 weiterleiten an den Host und für alle sichtbar machen
 
-    ssh -i id_rsa -N -L '0.0.0.0:8080:localhost:80' 192.168.122.158 &                
+    ssh -i id_rsa -N -L '0.0.0.0:8080:localhost:80' 192.168.122.158 &       
 
 VM beenden und aufräumen
 
@@ -152,10 +160,10 @@ VM beenden und aufräumen
 
 Anschliessend können die Konfigurationsdateien verändert und bei `cloud-localds` neu angefangen werden.
 
-
-
 ### Links
 
-* [Blogeintrag](https://fabianlee.org/2020/02/23/kvm-testing-cloud-init-locally-using-kvm-for-an-ubuntu-cloud-image/)
-* [GitHub](https://github.com/fabianlee/local-kvm-cloudimage)
+* [Testing and debugging cloud-init](https://cloudinit.readthedocs.io/en/latest/topics/debugging.html)
+* [Network debugging](http://manpages.ubuntu.com/manpages/cosmic/man8/netplan-apply.8.html)
+* [Original Blogeintrag](https://fabianlee.org/2020/02/23/kvm-testing-cloud-init-locally-using-kvm-for-an-ubuntu-cloud-image/)
+* [GitHub Repository zum Blogeintrag](https://github.com/fabianlee/local-kvm-cloudimage)
 * [Cloud-init](https://cloudinit.readthedocs.io/)
