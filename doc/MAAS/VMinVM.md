@@ -96,33 +96,11 @@ Cloud-init Konfigurationsdatei erzeugen
     final_message: "The system is finally up, after \$UPTIME seconds"
     %EOF%
     
-Netzwerk Konfiguration wenn VM in VM. Als Gateway wird das Netzwerk des KVM Server (immer 192.168.122.0/24) verwendet. Die IP-Adresse ist fix.
-
-    cat <<%EOF% >network-config.cfg
-    version: 2
-    ethernets:
-      ens3:
-         dhcp4: false
-         # default libvirt network
-         addresses: [ 192.168.122.158/24 ]
-         gateway4: 192.168.122.1
-         nameservers:
-           addresses: [ 192.168.122.1,208.67.222.222,208.67.220.220 ]
-           search: [ maas.com ]
-    %EOF%
-    
-Netzwerk Konfiguration wenn VM auf KVM Host erstellt wird. Dabei wird die IP-Adresse vom DHCP Server geholt. Die Device `enp1s0` ist ggf. anzupassen.
-
-    cat <<%EOF% >network-config.cfg
-    version: 2
-    ethernets:
-        enp1s0:
-            dhcp4: true
-    %EOF%
+Das Netzwerk wird automatisch erkannt und richtig konfiguriert. Deshalb kann auf die Netzwerk Konfiguration verzichtet werden.
 
 Generieren eines lokalen Disk mit den obigen Konfigurationen
 
-    cloud-localds -v --network-config=network-config.cfg bionic-server-cloud.qcow2 cloud-init.cfg
+    cloud-localds -v bionic-server-cloud.qcow2 cloud-init.cfg
 
 Starten der VM
 
@@ -137,10 +115,10 @@ Starten der VM
 Verbinden mit der erstellen VM via der virsh-Console. Beenden mittels `Ctrl+AltGR+]`
 
     virsh console ubuntu
-                
+
 via SSH
 
-    ssh -i id_rsa ubuntu@192.168.122.158    
+    ssh -i id_rsa ubuntu@<ip vm> 
 
 via VNC
 
@@ -159,6 +137,27 @@ VM beenden und aufräumen
     qemu-img create -F qcow2 -b bionic-server-cloudimg-amd64.img -f qcow2 bionic-server-cloudimg.qcow2 30G
 
 Anschliessend können die Konfigurationsdateien verändert und bei `cloud-localds` neu angefangen werden.
+
+**Optional**
+
+Netzwerk Konfiguration wenn VM in VM. Als Gateway wird das Netzwerk des KVM Server (immer 192.168.122.0/24) verwendet. Die IP-Adresse ist fix.
+
+    cat <<%EOF% >network-config.cfg
+    version: 2
+    ethernets:
+      ens3:
+         dhcp4: false
+         # default libvirt network
+         addresses: [ 192.168.122.158/24 ]
+         gateway4: 192.168.122.1
+         nameservers:
+           addresses: [ 192.168.122.1,208.67.222.222,208.67.220.220 ]
+           search: [ maas.com ]
+    %EOF%
+
+Generieren eines lokalen Disk mit den obigen Konfigurationen
+
+    cloud-localds -v --network-config=network-config.cfg bionic-server-cloud.qcow2 cloud-init.cfg
 
 ### Links
 
