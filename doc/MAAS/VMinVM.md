@@ -59,7 +59,7 @@ Standard Ubuntu 18.04 Image holen und Snapshot davon erstellen, inkl. Vergrösse
     mkdir vminvm
     cd vminvm
     wget https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img
-    qemu-img create -F raw -b ~/vminvm/bionic-server-cloudimg-amd64.img -f qcow2 bionic-server-cloudimg.qcow2 30G
+    qemu-img create -F qcow2 -b ~/vminvm/bionic-server-cloudimg-amd64.img -f qcow2 bionic-server-cloudimg.qcow2 30G
     qemu-img info bionic-server-cloudimg.qcow2
     
 SSH-Key zum ablegen in VM anlegen
@@ -107,9 +107,10 @@ Netzwerk Konfiguration. Als Gateway wird das Netzwerk des KVM Server (immer 192.
          addresses: [ 192.168.122.158/24 ]
          gateway4: 192.168.122.1
          nameservers:
-           addresses: [ 192.168.122.1,8.8.8.8 ]
+           addresses: [ 192.168.122.1,208.67.222.222,208.67.220.220 ]
            search: [ maas.com ]
     %EOF%
+ 
 
 Generieren eines lokalen Disk mit den obigen Konfigurationen
 
@@ -125,9 +126,17 @@ Starten der VM
                  --network network:default \
                  --console pty,target_type=serial &
                 
-Verbinden mit der erstellen VM
+Verbinden mit der erstellen VM via SSH
 
-    ssh -i id_rsa ubuntu@192.168.122.158     
+    ssh -i id_rsa ubuntu@192.168.122.158    
+    
+mittels der virsh-Console, exit mittels `Ctrl+AltGR+]`
+
+    virsh ubuntu
+    
+via VNC
+
+    <IP-Adresse VM bzw. KVM Host>:10
     
 Port, z.B. 80 weiterleiten an den Host und für alle sichtbar machen
 
@@ -137,9 +146,9 @@ VM beenden und aufräumen
 
     virsh destroy ubuntu
     virsh undefine ubuntu
-    rm -f bionic-server-cloud.qcow2 
     rm -f bionic-server-cloudimg.qcow2
-    qemu-img create -b bionic-server-cloudimg-amd64.img -f qcow2 bionic-server-cloudimg.qcow2 30G
+    rm -f bionic-server-cloud.qcow2 
+    qemu-img create -F qcow2 -b bionic-server-cloudimg-amd64.img -f qcow2 bionic-server-cloudimg.qcow2 30G
 
 Anschliessend können die Konfigurationsdateien verändert und bei `cloud-localds` neu angefangen werden.
 
