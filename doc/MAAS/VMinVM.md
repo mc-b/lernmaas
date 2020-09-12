@@ -49,6 +49,8 @@ Es wird die Webseite des Apache Servers in der VM angezeigt.
 
 ### VM in VM - mit KVM und Cloud-init
 
+**ACHTUNG**: funktioniert nur wenn: `Virtualbox` nicht installiert wurde!
+
 Benötigte Software installieren
 
     sudo apt-get install -y cloud-image-utils virtinst qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils whois
@@ -102,7 +104,7 @@ Generieren eines lokalen Disk mit den obigen Konfigurationen
 
     cloud-localds -v bionic-server-cloud.qcow2 cloud-init.cfg
 
-Starten der VM
+Starten der VM auf Rack Server oder KVM Host
 
     virt-install --name ubuntu --virt-type kvm --memory 512 --vcpus 2 --boot hd,menu=on \
                  --disk path=bionic-server-cloud.qcow2,device=cdrom \
@@ -111,7 +113,16 @@ Starten der VM
                  --os-type Linux --os-variant ubuntu18.04 \
                  --network network:default \
                  --console pty,target_type=serial &
-  
+
+in VM (VM in VM)
+
+    virt-install --name ubuntu --memory 512 --vcpus 2 --boot hd,menu=on \
+                 --disk path=bionic-server-cloud.qcow2,device=cdrom \
+                 --disk path=bionic-server-cloudimg.qcow2,device=disk \
+                 --graphics vnc,port=5910,listen=0.0.0.0 \
+                 --os-type Linux --os-variant ubuntu18.04 \
+                 --console pty,target_type=serial &
+
 Verbinden mit der erstellen VM via der virsh-Console. Beenden mittels `Ctrl+AltGR+]`
 
     virsh console ubuntu
@@ -137,27 +148,6 @@ VM beenden und aufräumen
     qemu-img create -F qcow2 -b bionic-server-cloudimg-amd64.img -f qcow2 bionic-server-cloudimg.qcow2 30G
 
 Anschliessend können die Konfigurationsdateien verändert und bei `cloud-localds` neu angefangen werden.
-
-**Optional**
-
-Netzwerk Konfiguration wenn VM in VM. Als Gateway wird das Netzwerk des KVM Server (immer 192.168.122.0/24) verwendet. Die IP-Adresse ist fix.
-
-    cat <<%EOF% >network-config.cfg
-    version: 2
-    ethernets:
-      ens3:
-         dhcp4: false
-         # default libvirt network
-         addresses: [ 192.168.122.158/24 ]
-         gateway4: 192.168.122.1
-         nameservers:
-           addresses: [ 192.168.122.1,208.67.222.222,208.67.220.220 ]
-           search: [ maas.com ]
-    %EOF%
-
-Generieren eines lokalen Disk mit den obigen Konfigurationen
-
-    cloud-localds -v --network-config=network-config.cfg bionic-server-cloud.qcow2 cloud-init.cfg
 
 ### Links
 
