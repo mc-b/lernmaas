@@ -9,7 +9,8 @@
 echo "Content-type: text/html"
 echo ""
 
-export CLUSTER=$(kubectl --kubeconfig /home/vagrant/.kube/config config view -o=jsonpath='{ .clusters[0].cluster.server }' | sed -e 's/https:/http:/' -e "s/6443//g")
+export ADDR=$(ip -f inet addr show wg0 | grep -Po 'inet \K[\d.]+')
+[ "${ADDR}" == "" ] && { export ADDR=$(hostname -f); }
 
 cat <<%EOF% 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -40,7 +41,7 @@ cat <<%EOF%
     <table width="100%" border=1>
     $(kubectl --kubeconfig /home/vagrant/.kube/config get services --all-namespaces -o json | \
       jq -r '.items[] | [.metadata.name,([.spec.ports[].nodePort | tostring ] | join("|"))] | @tsv' | \
-      awk -v CLUSTER="${CLUSTER}" '{ if( substr($2, 1, 4) != "null" ) printf("<tr><td>%s</td><td><a href=%s%s target=_blank>%s%s</a></td></tr>\n", $1, CLUSTER, $2, CLUSTER, $2 ) }')
+      awk -v ADDR="${ADDR}" '{ if( substr($2, 1, 4) != "null" ) printf("<tr><td>%s</td><td><a href=%s/%s target=_blank>%s/%s</a></td></tr>\n", $1, ADDR, $2, ADDR, $2 ) }')
     </table>
 </body>
 </html>

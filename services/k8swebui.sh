@@ -11,7 +11,6 @@ sudo chmod +x /opt/lernmaas/cgi-bin/*
 sudo cp /opt/lernmaas/cgi-bin/* /usr/lib/cgi-bin/
 sudo ln -s /home/ubuntu/data /var/www/html/data
 
-CLUSTER=$(kubectl --kubeconfig /home/vagrant/.kube/config config view -o=jsonpath='{ .clusters[0].cluster.server }' | sed -e 's/https:/http:/' -e "s/:6443//g")
 # wenn WireGuard installiert - Wireguard IP als ADDR Variable setzen
 export ADDR=$(ip -f inet addr show wg0 | grep -Po 'inet \K[\d.]+')
 [ "${ADDR}" == "" ] && { export ADDR=$(hostname -f); }
@@ -137,19 +136,19 @@ cat <<%EOF% | sudo tee -a /var/www/html/index.html
                     <!--  Services -->
                     <div id="Services" class="tab-pane fade">
                         <br/>
-                         <iframe frameborder="0" scrolling="no" width="100%" height="3200px" onload="scroll(0,0);" src="${CLUSTER}/cgi-bin/services">
+                         <iframe frameborder="0" scrolling="no" width="100%" height="3200px" onload="scroll(0,0);" src="/cgi-bin/services">
                          </iframe>
                     </div>
                     <!--  Pods -->
                     <div id="Pods" class="tab-pane fade">
                         <br/>
-                         <iframe frameborder="0" scrolling="no" width="100%" height="3200px" onload="scroll(0,0);" src="${CLUSTER}/cgi-bin/pods">
+                         <iframe frameborder="0" scrolling="no" width="100%" height="3200px" onload="scroll(0,0);" src="/cgi-bin/pods">
                          </iframe>
                     </div>
                     <!--  Cluster Info -->
                     <div id="Cluster" class="tab-pane fade">
                         <br/>
-                         <iframe frameborder="0" scrolling="no" width="100%" height="3200px" onload="scroll(0,0);" src="${CLUSTER}/cgi-bin/cluster">
+                         <iframe frameborder="0" scrolling="no" width="100%" height="3200px" onload="scroll(0,0);" src="/cgi-bin/cluster">
                          </iframe>
                     </div>                    
                 </div>                    

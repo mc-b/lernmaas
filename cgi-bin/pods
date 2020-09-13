@@ -9,8 +9,6 @@
 echo "Content-type: text/html"
 echo ""
 
-export CLUSTER=$(kubectl --kubeconfig /home/vagrant/.kube/config config view -o=jsonpath='{ .clusters[0].cluster.server }' | sed -e 's/https:/http:/' -e "s/:6443//g")
-
 cat <<%EOF% 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
@@ -39,7 +37,7 @@ cat <<%EOF%
 <body>
     <table width="100%" border=1>
     $(kubectl --kubeconfig /home/vagrant/.kube/config get pods --all-namespaces -o wide | \
-      awk -v CLUSTER="${CLUSTER}" '{ printf("<tr><td>%s</td><td><a target=logs href=\"%s/cgi-bin/logs\?%s\&%s\">%s</a></td><td>%s</td><td>%s</td><td>%s</td></tr>\n", $1, CLUSTER, $1, $2, $2, $4, $5, $8 ) }')
+      awk '{ printf("<tr><td>%s</td><td><a target=logs href=\"/cgi-bin/logs\?%s\&%s\">%s</a></td><td>%s</td><td>%s</td><td>%s</td></tr>\n", $1, $1, $2, $2, $4, $5, $8 ) }')
     </table>
 </body>
 </html>
