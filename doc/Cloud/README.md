@@ -18,7 +18,7 @@ Dazu muss einmalig eine `cloud-init.cfg` Datei mit einem SSH-Key erstellt werden
     cat <<%EOF% >cloud-init.cfg
     #cloud-config
     hostname: ${VMNAME}
-    fqdn: ${VMNAME}.eastus.cloudapp.azure.com
+    fqdn: ${VMNAME}.northeurope.cloudapp.azure.com
     manage_etc_hosts: true
     users:
       - name: ubuntu
