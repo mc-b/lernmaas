@@ -27,6 +27,7 @@ Installation
 * [Gateway Server](doc/MAAS/Gateway.md)
 * [Einbinden der Clients und Portweiterleitung](doc/MAAS/GatewayClient.md).
 * [Virtualisierte Machinen in Virtualisierten Machinen](doc/MAAS/VMinVM.md)
+* [lernMAAS in der Public Cloud](doc/Cloud/)
 * [Hilfsscripts](helper/)
 
 Fragen und Antworten

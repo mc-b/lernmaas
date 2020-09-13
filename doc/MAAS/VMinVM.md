@@ -149,6 +149,57 @@ VM beenden und aufräumen
 
 Anschliessend können die Konfigurationsdateien verändert und bei `cloud-localds` neu angefangen werden.
 
+
+### lernMAAS - KVM und Cloud-init
+
+Steht keine [MAAS](http://maas.io) Umgebung zur Verfügung, kann [lernMAAS](github.com/mc-b/lernmaas) auch mit Infrastrukturen welche [Cloud-init](https://cloudinit.readthedocs.io/) unterstützen verwendet werden.
+
+Hier ein Beispiel mit dem Modul M122, das einzige wo ändert ist die `cloud-init.cfg` Datei.
+
+    export VMNAME=m122-20
+    cat <<%EOF% >cloud-init.cfg
+    #cloud-config
+    hostname: ${VMNAME}
+    fqdn: ${VMNAME}.maas.com
+    manage_etc_hosts: true
+    users:
+      - name: ubuntu
+        sudo: ALL=(ALL) NOPASSWD:ALL
+        groups: users, admin
+        home: /home/ubuntu
+        shell: /bin/bash
+        lock_passwd: false
+        ssh-authorized-keys:
+          - $(cat id_rsa.pub)
+    # login ssh and console with password ubuntu
+    ssh_pwauth: true
+    disable_root: false
+    chpasswd:
+      list: |
+         ubuntu:ubuntu
+      expire: False
+    packages:
+      - qemu-guest-agent
+      - git 
+      - curl 
+      - wget
+      - jq
+      - markdown
+      - nmap
+      - traceroute
+    runcmd:
+      - git clone https://github.com/mc-b/lernmaas /opt/lernmaas
+      - sudo su - ubuntu -c "cd /opt/lernmaas && bash -x services/cloud-init.sh"
+    %EOF%
+
+    virt-install --name ${VMNAME} --virt-type kvm --memory 512 --vcpus 2 --boot hd,menu=on \
+                 --disk path=bionic-server-cloud.qcow2,device=cdrom \
+                 --disk path=bionic-server-cloudimg.qcow2,device=disk \
+                 --nographics \
+                 --os-type Linux --os-variant ubuntu18.04 \
+                 --network network:default \
+                 --console pty,target_type=serial &
+
 ### Links
 
 * [Testing and debugging cloud-init](https://cloudinit.readthedocs.io/en/latest/topics/debugging.html)
