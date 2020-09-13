@@ -11,7 +11,7 @@ then
     ssh-keygen -t rsa -f .ssh/id_rsa -b 4096 -P ''
     cat .ssh/id_rsa.pub >>.ssh/authorized_keys
     mkdir -p data/.ssh
-    chmod 700 data/.ssh
+    chmod 755 data/.ssh
     cp .ssh/id_rsa data/.ssh
     
     # Password auch setzen um einloggen ohne Zertifikat zu ermoeglichen 
@@ -20,7 +20,9 @@ then
     sudo sed -i -e 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
     sudo systemctl restart sshd
 
+    # nach Zugriff data/.ssh wegloeschen
     cp .ssh/id_rsa .ssh/id_rsa.ppk .ssh/passwd data/.ssh/
+    chmod g+r,o+r data/.ssh/*
 fi   
 
 # Vorbereiteten Key fuer diese Umgebung verwenden, zuerst hostname dann HOST.pub pruefen
