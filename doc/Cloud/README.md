@@ -29,13 +29,9 @@ Dazu muss einmalig eine `cloud-init.cfg` Datei mit einem SSH-Key erstellt werden
         lock_passwd: false
         ssh-authorized-keys:
           - $(cat id_rsa.pub)
-    # login ssh and console with password ubuntu
+    # login ssh and console with password
     ssh_pwauth: true
     disable_root: false
-    chpasswd:
-      list: |
-         ubuntu:ubuntu
-      expire: False
     packages:
       - git 
       - curl 
