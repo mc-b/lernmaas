@@ -11,14 +11,14 @@ unterstützen.
 
 Dazu muss einmalig eine `cloud-init.cfg` Datei mit einem SSH-Key erstellt werden:
 
-    ssh-keygen -t rsa -b 4096 -f id_rsa -C cloud-init -N "" -q
-     
     export VMNAME=m122-20
+
+    ssh-keygen -t rsa -b 4096 -f id_rsa -C cloud-init -N "" -q
     
     cat <<%EOF% >cloud-init.cfg
     #cloud-config
     hostname: ${VMNAME}
-    fqdn: ${VMNAME}.maas.com
+    fqdn: ${VMNAME}.eastus.cloudapp.azure.com
     manage_etc_hosts: true
     users:
       - name: ubuntu

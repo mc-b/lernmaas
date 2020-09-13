@@ -17,7 +17,7 @@ sudo apt install -y apache2 jq markdown
 
 # wenn WireGuard installiert - Wireguard IP als ADDR Variable setzen
 export ADDR=$(ip -f inet addr show wg0 | grep -Po 'inet \K[\d.]+')
-[ "${ADDR}" == "" ] && { export ADDR=$(hostname -I | cut -d ' ' -f 1); }
+[ "${ADDR}" == "" ] && { export ADDR=$(hostname -f); }
 
 # Home Verzeichnis unter http://<host>/data/ verfuegbar machen, wenn Zugriff via Password erlaubt
 if [ -f /home/ubuntu/.ssh/passwd ] || [ -f ACCESSING.md ]
