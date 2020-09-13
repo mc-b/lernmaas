@@ -65,7 +65,7 @@ Diese Datei ist, beim Erstellen der VM, in der Cloud, mitzugeben.
 
 **Kubernetes - .kube/config**
 
-* In der Konfigurationsdatei für `kubectl` von Kubernetes steht, je nach dem, eine Cloud interne IP-Adresse.
+In der Konfigurationsdatei für `kubectl` von Kubernetes steht, je nach dem, eine Cloud interne IP-Adresse.
 
     apiVersion: v1
     clusters:
