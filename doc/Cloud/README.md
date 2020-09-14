@@ -93,6 +93,7 @@ Jetzt können wir einen eindeutigen DNS Namen und die Ports der VM freigeben.
 
     az network public-ip update --resource-group ${GROUP} --name ${VMNAME}PublicIP --dns-name ${VMNAME}
     az vm open-port --port 80 --resource-group ${GROUP} --name ${VMNAME}
+    az vm open-port --port 6443 --resource-group ${GROUP} --name ${VMNAME} # Kubernetes API
 
 Um die VM und alle Ressourcen wieder freizugeben, verwenden wir:
 
