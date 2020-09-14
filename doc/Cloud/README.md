@@ -101,6 +101,24 @@ Um die VM und alle Ressourcen wieder freizugeben, verwenden wir:
 * VMs mittels VPN, z.B. [WireGuard](https://www.wireguard.com/), absichern. Die Abhandlung ist in lernMAAS vorhanden, muss aber für die Cloud angepasst werden.
 * Die Abhandlung findet man im Script [wireguard.sh](https://github.com/mc-b/lernmaas/blob/master/services/wireguard.sh).
 
+WireGuard erwartet die Konfigurationsdatei als `/home/ubuntu/config/wireguard/$(hostname).conf`. 
+
+Diese Datei kann mittels Erweiterung der `cloud-init.cfg` Datei erzeugt werden.
+
+    # cloud-config
+    write_files:
+    - owner: ubuntu:ubuntu
+      path: /home/ubuntu/config/wireguard/${VNMAME}.conf
+      content: |
+      [Interface]
+        PrivateKey = .....
+        Address = 10.1.40./24
+        
+        [Peer]
+        PublicKey = ....
+        AllowedIPs = 10.1.40.0/24
+        Endpoint = wireguard.gateway.ch:51820
+
 **Persistenter Speicher**
 
 * In einer [MAAS](https://maas.io) wird das Verzeichnis `$HOME/data` auf dem Rack Server gespeichert und ist auch nach dem löschen der VM vorhanden.
