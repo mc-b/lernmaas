@@ -72,9 +72,9 @@ Anmelden an der Azure Cloud und erstellen einer Ressource Gruppe, wo unsere VMs 
     export GROUP=m122
     az group create --name ${GROUP} --location northeurope
     
-Erstellen der VM mit Size Standard_B2s([mit 4 GB RAM, 2 CPUs, 30 GB HD](https://azure.microsoft.com/de-de/pricing/details/virtual-machines/linux/))
+Erstellen der VM mit Size Standard_B2s([mit 8 GB RAM, 2 CPUs, 30 GB HD](https://azure.microsoft.com/de-de/pricing/details/virtual-machines/linux/))
     
-    az vm create --resource-group ${GROUP} --name ${VMNAME} --image UbuntuLTS --size Standard_B2s --location northeurope --custom-data cloud-init.cfg    
+    az vm create --resource-group ${GROUP} --name ${VMNAME} --image UbuntuLTS --size Standard_B2ms --location northeurope --custom-data cloud-init.cfg    
   
 Bei erfolgreicher Erstellung wird die IP-Adresse der VM ausgegeben. Ansonsten kann die IP wie folgt abgefragt werden:
 
