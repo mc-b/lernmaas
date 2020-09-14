@@ -72,26 +72,26 @@ Anmelden an der Azure Cloud und erstellen einer Ressource Gruppe, wo unsere VMs 
     export GROUP=m122
     az group create --name ${GROUP} --location northeurope
     
-Erstellen der VM mit Size Standard_B2s([mit 8 GB RAM, 2 CPUs, 30 GB HD](https://azure.microsoft.com/de-de/pricing/details/virtual-machines/linux/))
+Erstellen der VM mit Size Standard_F4s_v2 ([mit 8 GB RAM, 4 CPUs, 30 GB HD](https://azure.microsoft.com/de-de/pricing/details/virtual-machines/linux/))
     
-    az vm create --resource-group ${GROUP} --name ${VMNAME} --image UbuntuLTS --size Standard_B2ms --location northeurope --custom-data cloud-init.cfg    
-  
-Bei erfolgreicher Erstellung wird die IP-Adresse der VM ausgegeben. Ansonsten kann die IP wie folgt abgefragt werden:
+    az vm create --resource-group ${GROUP} --name ${VMNAME} --image UbuntuLTS --size Standard_F4s_v2 --location northeurope --custom-data cloud-init.cfg    
+    
+Und für den einfacheren Zugriff, DNS Namen eintragen
+    
+    az network public-ip update --resource-group ${GROUP} --name ${VMNAME}PublicIP --dns-name ${VMNAME}
+    
+Anschliessend erfolgt die Installation der Software auf der VM mittels Cloud-init. Der aktuelle Status und das Log kann wie folgt abgefragt werden.
 
-    az network public-ip list --resource-group ${GROUP} --output table
-
-Anschliessend erfolgt die Installation der Software auf der VM mittels Cloud-init. Der aktuelle Status kann wie folgt abgefragt werden.
-
-    ssh -i id_rsa ubuntu@<ip vm> sudo cloud-init status
+    ssh -i id_rsa ubuntu@${VMNAME}.northeurope.cloudapp.azure.com sudo cloud-init status
+    ssh -i id_rsa ubuntu@${VMNAME}.northeurope.cloudapp.azure.com sudo tail -f /var/log/cloud-init-output.log    
 
 Nach Beendigung von Cloud-init, kopiert man die Zugriffsinformationen auf die lokale Maschine. Aus Sicherheitsgründen, löschen wir diese Informationen auf der VM weg.
 
-    scp -i id_rsa -rp ubuntu@<ip vm>:data/.ssh .
-    ssh -i id_rsa ubuntu@<ip vm> rm -rf data/.ssh
+    scp -i id_rsa -rp ubuntu@${VMNAME}.northeurope.cloudapp.azure.com:data/.ssh .
+    ssh -i id_rsa ubuntu@${VMNAME}.northeurope.cloudapp.azure.com rm -rf data/.ssh
     
-Jetzt können wir einen eindeutigen DNS Namen und die Ports der VM freigeben.
+Am Schluss können wir die Ports der VM freigeben.
 
-    az network public-ip update --resource-group ${GROUP} --name ${VMNAME}PublicIP --dns-name ${VMNAME}
     az vm open-port --port 80 --resource-group ${GROUP} --name ${VMNAME}
     az vm open-port --port 6443 --resource-group ${GROUP} --name ${VMNAME} # Kubernetes API
 
