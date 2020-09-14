@@ -11,7 +11,7 @@ unterstützen.
 
 Dazu muss einmalig eine `cloud-init.cfg` Datei mit einem SSH-Key erstellt werden:
 
-    export VMNAME=m300-01
+    export VMNAME=m122-02
 
     ssh-keygen -t rsa -b 4096 -f id_rsa -C cloud-init -N "" -q
     
@@ -63,31 +63,40 @@ Nach der [Installation des Azure CLI](https://docs.microsoft.com/en-us/cli/azure
 
 Für das Modul [M122](https://github.com/tbz-it/M122) sieht das z.B. wie folgt aus.
 
-Erstelen der `cloud-init.cfg` Datei und SSH-Key mit `export VMNAME=m122-02`, wie oben beschrieben.
+Erstellen der `cloud-init.cfg` Datei und SSH-Key mit `export VMNAME=m122-02`, wie oben beschrieben.
 
 Anmelden an der Azure Cloud und erstellen einer Ressource Gruppe, wo unsere VMs abgelegt werden:
 
     az login
-    az group create --name m122 --location northeurope
     
-Erstellen der VM    
+    export GROUP=m122
+    az group create --name ${GROUP} --location northeurope
     
-    az vm create --resource-group m122 --name m122-02 --image UbuntuLTS --location northeurope --custom-data cloud-init.cfg    
+Erstellen der VM mit Size Standard_B2s([mit 4 GB RAM, 2 CPUs, 30 GB HD](https://azure.microsoft.com/de-de/pricing/details/virtual-machines/linux/))
+    
+    az vm create --resource-group ${GROUP} --name ${VMNAME} --image UbuntuLTS --size Standard_B2s --location northeurope --custom-data cloud-init.cfg    
   
-Bei erfolgreicher Installation wird die IP-Adresse der VM ausgegeben.
+Bei erfolgreicher Erstellung wird die IP-Adresse der VM ausgegeben. Ansonsten kann die IP wie folgt abgefragt werden:
 
-Kopieren der Zugriffsinformationen auf die lokale Maschine. Aus Sicherheitsgründen, löschen wir diese Informationen auf der VM weg.
+    az network public-ip list --resource-group ${GROUP} --output table
 
-    scp -i id_rsa -rp <ip vm>:data/.ssh .
-    ssh -i id_rsa <ip vm> rm -rf data/.ssh
+Anschliessend erfolgt die Installation der Software auf der VM mittels Cloud-init. Der aktuelle Status kann wie folgt abgefragt werden.
+
+    ssh -i id_rsa ubuntu@<ip vm> sudo cloud-init status
+
+Nach Beendigung von Cloud-init, kopiert man die Zugriffsinformationen auf die lokale Maschine. Aus Sicherheitsgründen, löschen wir diese Informationen auf der VM weg.
+
+    scp -i id_rsa -rp ubuntu@<ip vm>:data/.ssh .
+    ssh -i id_rsa ubuntu@<ip vm> rm -rf data/.ssh
     
-Jetzt können wir die Ports der VM freigeben.
+Jetzt können wir einen eindeutigen DNS Namen und die Ports der VM freigeben.
 
-    az vm open-port --port 80 --resource-group m122 --name m122-02
+    az network public-ip update --resource-group ${GROUP} --name ${VMNAME}PublicIP --dns-name ${VMNAME}
+    az vm open-port --port 80 --resource-group ${GROUP} --name ${VMNAME}
 
 Um die VM und alle Ressourcen wieder freizugeben, verwenden wir:
 
-    az group delete --name m122 -f
+    az group delete --name ${GROUP} --yes
 
 ### Links
 
