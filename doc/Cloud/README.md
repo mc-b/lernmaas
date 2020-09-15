@@ -18,7 +18,7 @@ Dazu muss einmalig eine `cloud-init.cfg` Datei mit einem SSH-Key erstellt werden
     cat <<%EOF% >cloud-init.cfg
     #cloud-config
     hostname: ${VMNAME}
-    fqdn: ${VMNAME}.northeurope.cloudapp.azure.com
+    fqdn: ${VMNAME}.southcentralus.cloudapp.azure.com
     manage_etc_hosts: true
     users:
       - name: ubuntu
@@ -71,11 +71,14 @@ Anmelden an der Azure Cloud und erstellen einer Ressource Gruppe, wo unsere VMs 
     az login
     
     export GROUP=m122
-    az group create --name ${GROUP} --location northeurope
+    az group create --name ${GROUP} --location southcentralus
     
-Erstellen der VM mit Size Standard_F4s_v2 ([mit 8 GB RAM, 4 CPUs, 30 GB HD](https://azure.microsoft.com/de-de/pricing/details/virtual-machines/linux/))
+Erstellen der VM mit Size Standard_D2_v4 ([mit 8 GB RAM, 2 CPUs, 30 GB HD](https://azure.microsoft.com/de-de/pricing/details/virtual-machines/linux/)).
     
-    az vm create --resource-group ${GROUP} --name ${VMNAME} --image UbuntuLTS --size Standard_F4s_v2 --location northeurope --custom-data cloud-init.cfg    
+    az vm create --resource-group ${GROUP} --name ${VMNAME} --image UbuntuLTS --size Standard_D2_v4 --location southcentralus --custom-data cloud-init.cfg    
+
+**Hinweis**: Kubernetes auf Azure braucht mindestens eine [Standard_D4_v4](https://azure.microsoft.com/de-de/pricing/details/virtual-machines/linux/) Instanz Type.
+
     
 Und für den einfacheren Zugriff, DNS Namen eintragen
     
@@ -83,13 +86,13 @@ Und für den einfacheren Zugriff, DNS Namen eintragen
     
 Anschliessend erfolgt die Installation der Software auf der VM mittels Cloud-init. Der aktuelle Status und das Log kann wie folgt abgefragt werden.
 
-    ssh -i id_rsa ubuntu@${VMNAME}.northeurope.cloudapp.azure.com sudo cloud-init status
-    ssh -i id_rsa ubuntu@${VMNAME}.northeurope.cloudapp.azure.com sudo tail -f /var/log/cloud-init-output.log    
+    ssh -i id_rsa ubuntu@${VMNAME}.southcentralus.cloudapp.azure.com sudo cloud-init status
+    ssh -i id_rsa ubuntu@${VMNAME}.southcentralus.cloudapp.azure.com sudo tail -f /var/log/cloud-init-output.log    
 
 Nach Beendigung von Cloud-init, kopiert man die Zugriffsinformationen auf die lokale Maschine. Aus Sicherheitsgründen, löschen wir diese Informationen auf der VM weg.
 
-    scp -i id_rsa -rp ubuntu@${VMNAME}.northeurope.cloudapp.azure.com:data/.ssh .
-    ssh -i id_rsa ubuntu@${VMNAME}.northeurope.cloudapp.azure.com rm -rf data/.ssh
+    scp -i id_rsa -rp ubuntu@${VMNAME}.southcentralus.cloudapp.azure.com:data/.ssh .
+    ssh -i id_rsa ubuntu@${VMNAME}.southcentralus.cloudapp.azure.com rm -rf data/.ssh
     
 Am Schluss können wir die Ports der VM freigeben.
 
@@ -168,5 +171,5 @@ Diese ist durch den vollen DNS Namen (`hostname -f`) zu ersetzen
     clusters:
     - cluster:
         certificate-authority-data: 
-        server: https://m300-01.northeurope.cloudapp.azure.com:6443
+        server: https://m300-01.southcentralus.cloudapp.azure.com:6443
   
