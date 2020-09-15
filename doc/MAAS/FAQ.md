@@ -1,6 +1,15 @@
 Fragen und Antworten
 ====================
 
+Allgemein
+---------
+
+**Ich habe keine MAAS Umgebung, wie kann ich lernMAAS trotzdem verwenden?**
+
+Siehe [lernMAAS in der Public Cloud](../Cloud/).
+
+Aus Kostengründen wird eine Private Cloud mit [MAAS](https://maas.io) empfohlen.
+
 Erstellen/Installieren von Machines (VMs)
 -----------------------------------------
 
