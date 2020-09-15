@@ -47,6 +47,7 @@ Dazu muss einmalig eine `cloud-init.cfg` Datei mit einem SSH-Key erstellt werden
     
 Diese Datei ist, beim Erstellen der VM, in der Cloud, mitzugeben.  
 
+***
 ### Installation VM via Azure UI
 
 ![](../images/azure-cloud.png)
@@ -99,10 +100,27 @@ Um die VM und alle Ressourcen wieder freizugeben, verwenden wir:
 
     az group delete --name ${GROUP} --yes
 
-### Links
+#### Links
 
 * [Create a Linux server VM by using the Azure CLI in Azure Stack Hub](https://docs.microsoft.com/en-us/azure-stack/user/azure-stack-quick-create-vm-linux-cli?view=azs-1908)
 * [How to use cloud-init to customize a Linux virtual machine in Azure on first boot](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/tutorial-automate-vm-deployment)
+
+***
+### Installation VM via AWS UI
+
+![](../images/aws-cloud.png)
+
+---
+
+Bei der AWS Cloud ist der obige Inhalt in [Step 3: Configure Instance Details](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html#configure_instance_details_step) im Feld `User Data` einzutragen.
+
+Der Inhalt muss mit `#cloud-config` beginnen.
+
+Ausserdem ist, je nach Anforderungen, auf die richtige Grösse vom RAM und HD zu achten.
+
+#### Links
+
+* [Running commands on your Linux instance at launch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html)
 
 ### Hinweise
 
