@@ -116,7 +116,7 @@ Bei der AWS Cloud ist der obige Inhalt in [Step 3: Configure Instance Details](h
 
 Der Inhalt muss mit `#cloud-config` beginnen.
 
-Ausserdem ist, je nach Anforderungen, auf die richtige Grösse vom RAM und HD zu achten.
+Ausserdem ist, je nach Anforderungen, auf die richtige Grösse vom RAM und HD zu achten. Am besten eignen sich die t2... Instanz Typen ab 1 GB RAM.
 
 #### Links
 
