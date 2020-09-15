@@ -97,22 +97,26 @@ VPN (WireGuard)
 
 * Dazu muss man den gleichen WG-Key für mehrere VPNs hinterlegen.
     * Mittels `createkeys ...` Konfigurationsdatei wgX.conf anlegen. 
-    * Anzahl gewünschte Eintrage z.B. Client 1 - Client 10 in Datei `wg-global.conf` speichern und dritte Stelle auf ${NET} und vierte Stelle der IP-Adressen auf > 120 ändern. Das Resultat sieht etwa so aus:
-
+    * Anzahl gewünschte Eintrage z.B. Client 1 - Client 10 in Datei `wg-global.conf` speichern und dritte Stelle auf ${NET} und vierte Stelle der IP-Adressen auf > 120 ändern. 
     
-    ### Client 1 (...Private.Key_1...)
+    
+Das Resultat sieht etwa so aus:
+
+     
+    # Client 1 (...Private.Key_1...)
     [Peer]
     PublicKey = ...Public.Key.1...
     AllowedIPs = 192.168.${NET}.120
     
-    ### Client 2 (...Private.Key.2...)
+    # Client 2 (...Private.Key.2...)
     [Peer]
     PublicKey = ...Public.Key.2...
     AllowedIPs = 192.168.${NET}.121
 
-* Der Inhalt der Datei `wg-global.conf` entweder auf dem Gateway hinten an die `wgX.conf` Dateien anhängen (${NET}) durch IP des VPN ersetzen) oder eine der Helper Scripts (createkeys, updateaz) verwenden. Die Datei `wg-global.conf` wird automatisch hinten angefügt.
+Der Inhalt der Datei `wg-global.conf` entweder auf dem Gateway hinten an die `wgX.conf` Dateien anhängen (${NET}) durch IP des VPN ersetzen) oder eine der Helper Scripts (createkeys, updateaz) verwenden. Die Datei `wg-global.conf` wird automatisch hinten angefügt.
 
-* Auf dem Client kommt der `...Private.Key_1...`, alle IP-Adressen und alle Endpoints (siehe jeweiliges WG-Template) in die Konfigurationsdatei. Das Resulat sieht in etwa so aus:
+
+Auf dem Client kommt der `...Private.Key_1...`, alle IP-Adressen und alle Endpoints (siehe jeweiliges WG-Template) in die Konfigurationsdatei. Das Resulat sieht in etwa so aus:
 
     [Interface]
     PrivateKey = ...Private.Key_1...
