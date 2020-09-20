@@ -48,7 +48,7 @@ Dazu muss einmalig eine `cloud-init.cfg` Datei mit einem SSH-Key erstellt werden
 Diese Datei ist, beim Erstellen der VM, in der Cloud, mitzugeben.  
 
 ***
-### VM in der Azure Cloud
+### Azure Cloud
 
 ![](../images/azure-cloud.png)
 
@@ -58,7 +58,7 @@ Beim Azure UI ist unter `Erweitert` der Inhalt der Datei `cloud-init.cfg` anzuge
 
 Ausserdem ist, je nach Anforderungen, auf die richtige Grösse vom RAM und HD zu achten.
 
-#### VM via Azure CLI erzeugen
+#### Azure CLI
 
 Nach der [Installation des Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) auf der lokalen Maschine, kann die VM mittels diesem angelegt werden. 
 
@@ -109,7 +109,7 @@ Um die VM und alle Ressourcen wieder freizugeben, verwenden wir:
 * [How to use cloud-init to customize a Linux virtual machine in Azure on first boot](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/tutorial-automate-vm-deployment)
 
 ***
-### VM in der AWS Cloud
+### AWS Cloud
 
 ![](../images/aws-cloud.png)
 
@@ -126,8 +126,7 @@ Ausserdem ist, je nach Anforderungen, auf die richtige Grösse vom RAM und HD zu
 * [Running commands on your Linux instance at launch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html)
 
 ***
-### VM in der Google Cloud
-
+### Google Cloud
 
 ![](../images/google-cloud.png)
 
@@ -138,6 +137,22 @@ Bei der Google Cloud ist der Inhalt der Datei `cloud-init.cfg` als Meta-Data im 
 Der Inhalt muss mit `#cloud-config` beginnen.
 
 Als Betriebssystem ist Ubuntu zu wählen und auf die richtige Grösse vom RAM und HD zu achten. 
+
+***
+### IBM Cloud
+
+
+![](../images/ibm-cloud.png)
+
+---
+
+In der IBM Cloud ist ein virtueller Server für VPC zu Erstellen. Der Inhalt der Datei `cloud-init.cfg` ist im Feld `Benutzerdaten` zu kopieren.
+
+#### Links
+
+* [Bereitstellung mit einem cloud-init-fähigen Image](https://cloud.ibm.com/docs/image-templates?topic=image-templates-provisioning-with-a-cloud-init-enabled-image)
+* [User data](https://cloud.ibm.com/docs/vpc-on-classic-vsi?topic=vpc-on-classic-vsi-user-data)
+
 
 ### Hinweise
 
