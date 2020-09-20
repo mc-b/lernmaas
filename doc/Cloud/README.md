@@ -48,17 +48,17 @@ Dazu muss einmalig eine `cloud-init.cfg` Datei mit einem SSH-Key erstellt werden
 Diese Datei ist, beim Erstellen der VM, in der Cloud, mitzugeben.  
 
 ***
-### Installation VM via Azure UI
+### VM in der Azure Cloud
 
 ![](../images/azure-cloud.png)
 
 ---
 
-Beim Azure UI ist unter `Erweitert` der Inhalt der obigen Datei anzugeben.
+Beim Azure UI ist unter `Erweitert` der Inhalt der Datei `cloud-init.cfg` anzugeben.
 
 Ausserdem ist, je nach Anforderungen, auf die richtige Grösse vom RAM und HD zu achten.
 
-### Installation via Azure CLI
+#### VM via Azure CLI erzeugen
 
 Nach der [Installation des Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) auf der lokalen Maschine, kann die VM mittels diesem angelegt werden. 
 
@@ -109,13 +109,13 @@ Um die VM und alle Ressourcen wieder freizugeben, verwenden wir:
 * [How to use cloud-init to customize a Linux virtual machine in Azure on first boot](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/tutorial-automate-vm-deployment)
 
 ***
-### Installation VM via AWS UI
+### VM in der AWS Cloud
 
 ![](../images/aws-cloud.png)
 
 ---
 
-Bei der AWS Cloud ist der obige Inhalt in [Step 3: Configure Instance Details](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html#configure_instance_details_step) im Feld `User Data` einzutragen.
+Bei der AWS Cloud ist Inhalt der Datei `cloud-init.cfg` bei [Step 3: Configure Instance Details](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html#configure_instance_details_step) im Feld `User Data` einzutragen.
 
 Der Inhalt muss mit `#cloud-config` beginnen.
 
@@ -124,6 +124,20 @@ Ausserdem ist, je nach Anforderungen, auf die richtige Grösse vom RAM und HD zu
 #### Links
 
 * [Running commands on your Linux instance at launch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html)
+
+***
+### VM in der Google Cloud
+
+
+![](../images/google-cloud.png)
+
+---
+
+Bei der Google Cloud ist der Inhalt der Datei `cloud-init.cfg` als Meta-Data im Feld `User Data` einzutragen.
+
+Der Inhalt muss mit `#cloud-config` beginnen.
+
+Als Betriebssystem ist Ubuntu zu wählen und auf die richtige Grösse vom RAM und HD zu achten. 
 
 ### Hinweise
 
