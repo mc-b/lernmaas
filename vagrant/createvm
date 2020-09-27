@@ -39,7 +39,7 @@ done
 export HOSTNAME=$1
 export HOSTIP=$(printf %u $(echo $1 | cut -d- -f2))
 
-mkdir -p $1/data
+mkdir -p $1/data $1/config $1/templates
 envsubst <Vagrantfile.template >$1/Vagrantfile
 cd $1
 vagrant up
