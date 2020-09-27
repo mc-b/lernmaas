@@ -38,7 +38,6 @@ done
 
 export HOSTNAME=$1
 export HOSTIP=$(printf %u $(echo $1 | cut -d- -f2))
-export MEMORY=${config_vm_memory}
 
 mkdir -p $1/data
 envsubst <Vagrantfile.template >$1/Vagrantfile
