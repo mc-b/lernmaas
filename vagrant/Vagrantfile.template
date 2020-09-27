@@ -1,0 +1,45 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  # Every Vagrant development environment requires a box. You can search for
+  # boxes at https://vagrantcloud.com/search.
+  config.vm.box = "ubuntu/xenial64"
+  # resize hd, need a plugin vagrant-disksize, see https://github.com/sprotheroe/vagrant-disksize
+  config.disksize.size = '40GB'
+
+  # Create a private network, which allows host-only access to the machine
+  # using a specific IP.
+  config.vm.network "private_network", ip: "192.168.137.$HOSTIP"
+
+  # Share an additional folder to the guest VM. The first argument is
+  # the path on the host to the actual folder. The second argument is
+  # the path on the guest to mount the folder. And the optional third
+  # argument is a set of non-required options.
+  config.vm.synced_folder "data", "/home/ubuntu/data"
+
+  # Provider-specific configuration so you can fine-tune various
+  # backing providers for Vagrant. These expose provider-specific options.
+  # Example for VirtualBox:
+  #
+  config.vm.provider "virtualbox" do |vb|
+     # Customize the amount of memory on the VM:
+     vb.memory = "$MEMORY"
+     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+  end
+  config.vm.hostname = "$HOSTNAME"  
+  
+  #
+  # Enable provisioning with a shell script. Additional provisioners such as
+  # Ansible, Chef, Docker, Puppet and Salt are also available. Please see the
+  # documentation for more information about their specific syntax and use.
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo apt-get install -y git curl wget jq markdown nmap traceroute
+    sudo groupadd ubuntu
+    sudo useradd ubuntu -g ubuntu -m -s /bin/bash 
+    sudo chown -R ubuntu:ubuntu /home/ubuntu/data
+    git clone https://github.com/mc-b/lernmaas /opt/lernmaas
+    sudo su - ubuntu -c "cd /opt/lernmaas && bash -x services/cloud-init.sh"
+  SHELL
+end

@@ -28,6 +28,7 @@ Installation
 * [Einbinden der Clients und Portweiterleitung](doc/MAAS/GatewayClient.md).
 * [Virtualisierte Machinen in Virtualisierten Machinen](doc/MAAS/VMinVM.md)
 * [lernMAAS in der Public Cloud](doc/Cloud/)
+* [lernMAAS auf dem lokalen PC mit Vagrant](vagrant/)
 * [Hilfsscripts](helper/)
 
 Fragen und Antworten
