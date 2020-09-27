@@ -23,19 +23,20 @@ sudo chown -R ubuntu:ubuntu $HOME/.kube
 # aus Kompatilitaet zur Vagrant Installation
 sudo mkdir -p /home/vagrant/.kube
 sudo cp -i /etc/kubernetes/admin.conf /home/vagrant/.kube/config
-sudo chown -R ubuntu:ubuntu /home/vagrant
-# oeffnen fuer Web UI
 sudo rm -f /home/ubuntu/data/.ssh/config
 sudo cp -i /etc/kubernetes/admin.conf /home/ubuntu/data/.ssh/config
-sudo chmod 644 /home/vagrant/.kube/config /home/ubuntu/data/.ssh/config
 
 # ohne WireGuard FQDN verwenden
 if [ "${ADDR}" == "" ]
 then
-    sed -i -e "s/$(hostname -I | cut '-d ' -f1)/$(hostname -f)/g" /home/vagrant/.kube/config
-    sed -i -e "s/$(hostname -I | cut '-d ' -f1)/$(hostname -f)/g" /home/ubuntu/data/.ssh/config
+    sudo sed -i -e "s/$(hostname -I | cut '-d ' -f1)/$(hostname -f)/g" /home/vagrant/.kube/config
+    sudo sed -i -e "s/$(hostname -I | cut '-d ' -f1)/$(hostname -f)/g" /home/ubuntu/data/.ssh/config
     
 fi    
+
+# HACK: oeffnen fuer Web UI 
+sudo chmod 755 /home/vagrant /home/vagrant/.kube
+sudo chmod 644 /home/vagrant/.kube/config /home/ubuntu/data/.ssh/config
 
 # this for loop waits until kubectl can access the api server that kubeadm has created
 for i in {1..150}; do # timeout for 5 minutes
