@@ -55,3 +55,16 @@ Der Inhalt dieses Verzeichnis entspricht `/data/config` auf dem Rack Server in d
 Im Verzeichnis `<hostname>/templates`. Das können vorbereitete Datenbanken, Exportierte Container Images (cr-cache) etc. abgelegt werden.
 
 Der Inhalt dieses Verzeichnis entspricht `/data/templates` auf dem Rack Server in der MAAS Umgebung.
+
+**Wie kann ich ein neues Modul Testen bzw. implementieren?**
+
+Forke [https://github.com/mc-b/lernmaas](https://github.com/mc-b/lernmaas) und Erweitere [config.yaml](../config.yaml) und ändere `git clone` auf Dein geforktes Repository in [Vagrantfile.template](Vagrantfile.template).
+
+Tip: das Neue Modul kann mittels [Pull Request](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests) in das Projekt lernMAAS zum Nachführen übergeben werden.
+
+**Bei der Verwendung des Host-only Netzwerk Adapters kommt eine Fehlermeldung**
+
+Wenn WireGuard gestartet ist und Virtualbox versucht ein neues Host-only Netzwerk ist das Resultat unbestimmt und es können undefinierte Fehlermeldungen bei `vagrant up` kommen.
+
+Abhilfe, Host-only Netzwerk im Vagrantfile deaktiveren oder WireGuard beenden, PC neu starten und neu Probieren.
+
