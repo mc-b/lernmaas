@@ -5,3 +5,6 @@
 /modtec*
 /iot*
 /cdi*
+/openshift*
+/k3s*
+/rancher*

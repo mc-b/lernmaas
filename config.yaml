@@ -567,7 +567,7 @@ rancher:
   scripts:
   repositories: 
   
-# OpenShift Kubernetes - https://openshift.com/
+# OpenShift Kubernetes - https://openshift.com/, UI auf https://ip:8443
 openshift:
   vm:  
     storage: 18
