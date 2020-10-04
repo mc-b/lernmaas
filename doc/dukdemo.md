@@ -17,6 +17,7 @@ Beispiele (Jupyter Notebooks)
 * [Dedizierte Docker Image-Stände bauen und verwalten](:32188/notebooks/work/03-4-Docker.ipynb)
 * [Container Life-Cycle](:32188/notebooks/work/03-5-Docker-Life-cycle.ipynb)
 * [Container Security](:32188/notebooks/work/04-1-ContainerSecurity.ipynb)
+* [Security Tutorial (WebGoat)](:32188/notebooks/work/04-2-Webgoat.ipynb)
 * [Insecure Registry](:32188/notebooks/work/05-1-Registry.ipynb)
 
 ### Kubernetes
@@ -35,7 +36,7 @@ Beispiele (Jupyter Notebooks)
 * [Health Probe Pattern](:32188/notebooks/work/09-9-Tests.ipynb)
 * [Init Container](:32188/notebooks/work/09-10-Init.ipynb)
 
-## Kubernetes im Einsatz
+### Kubernetes im Einsatz
 
 * [DevOps](:32188/notebooks/work/demo/DevOps.ipynb)
 * [Operator](:32188/notebooks/work/demo/Operator-mariadb.ipynb)
@@ -46,7 +47,7 @@ Beispiele (Jupyter Notebooks)
 * [Einfaches RBAC-Beispiel mit einem Kubernetes-»User«](:32188/notebooks/work/demo/RBAC-User.ipynb)
 * [Dashboard-Beispiel mit einem Dienstkonto](:32188/notebooks/work/demo/RBAC-Dashboard.ipynb)¨
 
-## Serverless (FaaS)
+### Serverless (FaaS)
 
 * [Serving](:32188/notebooks/work/demo/Serverless-Knative-Serving.ipynb)
 * [Autoscaling](:32188/notebooks/work/demo/Serverless-Knative-Autoscaling.ipynb)
