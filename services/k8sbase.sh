@@ -2,7 +2,7 @@
 #
 #	Kubernetes Basis Installation
 #
-VERSION=1.19.2-00
+VERSION=1.19.1-00
 
 # Deaktiviert permanent den SWAP Speicher - darf bei Kubernetes nicht aktiviert sein!
 
