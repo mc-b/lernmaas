@@ -6,3 +6,4 @@
 #
 
 sudo apt-get install -y vagrant virtualbox
+vagrant plugin install vagrant-disksize
