@@ -5,10 +5,10 @@
 
 ### Microservices
 
-* [Edge Side Include (ESI)](:32188/notebooks/work/demo/Microservices-ESI.ipynb)
-* [REST (Synchron)](:32188/notebooks/work/demo/Microservices-REST.ipynb)
-* [Messaging (Asynchrone)](:32188/notebooks/work/demo/Microservices-Messaging.ipynb)
-* [BPMN Workflow](:32188/notebooks/work/demo/Microservices-BPMN.ipynb)
+* [Synchrone Microservices (REST)](:32188/notebooks/work/demo/Microservices-REST.ipynb)
+* [Asynchrone Microservices (Messaging)](:32188/notebooks/work/demo/Microservices-Messaging.ipynb)
+* [Microservices (ESI)](:32188/notebooks/work/demo/Microservices-ESI.ipynb)
+* [Workflow (BPMN)](:32188/notebooks/work/demo/Microservices-BPMN.ipynb)
 
 ### Docker
 
@@ -18,6 +18,7 @@
 * [03-4 Dedizierte Docker Image-Stände bauen und verwalten](:32188/notebooks/work/03-4-Docker.ipynb)
 * [03-5 Container Life-Cycle](:32188/notebooks/work/03-5-Docker-Life-cycle.ipynb)
 * [04-1 Container Security](:32188/notebooks/work/04-1-ContainerSecurity.ipynb)
+* [04-2 Security Tutorial (WebGoat)](:32188/notebooks/work/04-2-Webgoat.ipynb)
 * [05-1 Insecure Registry](:32188/notebooks/work/05-1-Registry.ipynb)
 
 ### Kubernetes
@@ -33,6 +34,7 @@
 * [09-6 Volume Sharing von Containern](:32188/notebooks/work/09-6-Volume.ipynb)
 * [09-7 Secrets](:32188/notebooks/work/09-7-Secrets.ipynb)
 * [09-8 ConfigMaps](:32188/notebooks/work/09-8-ConfigMap.ipynb)
+* [09-8 Horizontal Pod Autoscaler](:32188/notebooks/work/09-8-HorizontalPodAutoscaler.ipynb)
 * [09-9 Liveness-, Readiness- und Startup-Tests](:32188/notebooks/work/09-9-Tests.ipynb)
 * [09-10 Init Container](:32188/notebooks/work/09-10-Init.ipynb)
 
