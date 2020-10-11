@@ -43,4 +43,4 @@ mkdir -p $1/data $1/config $1/templates
 envsubst <Vagrantfile.template >$1/Vagrantfile
 cd $1
 vagrant up
-start http://$1 /B
+# start http://$1 /B
