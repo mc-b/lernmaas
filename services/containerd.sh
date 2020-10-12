@@ -36,12 +36,6 @@ sudo apt-get update && sudo apt-get install -y containerd.io
 sudo mkdir -p /etc/containerd
 sudo containerd config default | sudo tee /etc/containerd/config.toml
 
-# use systemd as the cgroup driver stabilized the system
-cat <<EOF | sudo tee -a /etc/containerd/config.toml
-[plugins.cri]
-systemd_cgroup = true
-EOF
-
 # Restart containerd
 sudo systemctl restart containerd
 
