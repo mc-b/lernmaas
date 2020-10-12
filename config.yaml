@@ -376,7 +376,7 @@ dukcrio:
   services:
     nfs: true
     docker: cri-o
-    k8s: master
+    k8s: 
     wireguard: use
     ssh: generate
     samba: false
