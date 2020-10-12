@@ -348,6 +348,42 @@ dukworker:
   scripts: 
   repositories:  
   
+# Test Umgebung mit containerd Container Runtime  
+dukcontainerd:
+  vm:  
+    storage: 18
+    memory:  5888
+    cores: 4
+    count: 1
+  services:
+    nfs: true
+    docker: containerd
+    k8s: master
+    wireguard: use
+    ssh: generate
+    samba: false
+    firewall: false
+  scripts: 
+  repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk
+  
+# Test Umgebung mit cri-o Container Runtime 
+dukcrio:
+  vm:  
+    storage: 18
+    memory:  5888
+    cores: 4
+    count: 1
+  services:
+    nfs: true
+    docker: cri-o
+    k8s: master
+    wireguard: use
+    ssh: generate
+    samba: false
+    firewall: false
+  scripts: 
+  repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk      
+    
 # Internet der Dinge im Einsatz - https://github.com/mc-b/iotkitv3
 iotein:
   vm:  
