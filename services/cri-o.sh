@@ -4,8 +4,8 @@
 
 set -o xtrace
 
-export VERSION=$(echo $1 | cut -c1-4)
-export OS=$2
+export VERSION=1.19
+export OS=xUbuntu_20.04
 
 sudo modprobe overlay
 sudo modprobe br_netfilter
