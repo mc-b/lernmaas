@@ -31,3 +31,32 @@ sudo apt-get install -y cri-o cri-o-runc
 sudo systemctl daemon-reload
 sudo systemctl start crio
 
+## k8s configuration
+export ADDR=$(ip -f inet addr show wg0 | grep -Po 'inet \K[\d.]+')
+[ "${ADDR}" == "" ] && { export ADDR=$(hostname -I | cut -d ' ' -f 1); }
+
+cat <<%EOF% | envsubst | tee kubeadm.yaml
+apiVersion: kubeadm.k8s.io/v1beta2
+kind: InitConfiguration
+nodeRegistration:
+  criSocket: /var/run/crio/crio.sock
+  name: $(hostname -f)
+  kubeletExtraArgs:
+    cgroup-driver: "systemd"    
+  ignorePreflightErrors:
+  - IsPrivilegedUser      
+localAPIEndpoint:
+  advertiseAddress: ${ADDR}
+  bindPort: 6443
+---
+apiVersion: kubeadm.k8s.io/v1beta2
+kind: ClusterConfiguration
+networking:
+  serviceSubnet: "10.96.0.0/12"
+  podSubnet: "10.244.0.0/16"
+---
+apiVersion: kubelet.config.k8s.io/v1beta1
+kind: KubeletConfiguration
+cgroupDriver: systemd
+%EOF%
+
