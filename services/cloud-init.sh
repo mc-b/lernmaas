@@ -55,8 +55,10 @@ sudo ln -s $HOME/data /data
 # Zusaetzliche SSH Keys
 [ "${config_services_ssh}" != "" ] && { bash -x services/sshkeys.sh ${config_services_ssh} ${HOST}; }
 
-# Docker
+# Docker oder cri-o, container
 [ "${config_services_docker}" == "true" ] && { bash -x services/docker.sh; }
+[ "${config_services_docker}" == "cri-o" ] && { bash -x services/cri-o.sh; }
+[ "${config_services_docker}" == "containerd" ] && { bash -x services/containerd.sh; }
 
 # Kubernetes
 if [ "${config_services_k8s}" == "minimal" ] 
