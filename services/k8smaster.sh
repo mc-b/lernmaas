@@ -8,13 +8,19 @@ HOME=/home/ubuntu
 # sudo kubeadm config images pull
 
 # wenn WireGuard installiert - Wireguard IP als K8s IP verwenden
-ADDR=$(ip -f inet addr show wg0 | grep -Po 'inet \K[\d.]+')
-if [ "${ADDR}" != "" ]
+export ADDR=$(ip -f inet addr show wg0 | grep -Po 'inet \K[\d.]+')
+
+if [ -f kubeadm.yaml ]
 then
-        sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address ${ADDR} --apiserver-cert-extra-sans $(hostname -f)
-else
-        sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address $(hostname -I | cut -d ' ' -f 1) --apiserver-cert-extra-sans $(hostname -f)
-fi
+    sudo kubeadm init --config kubeadm.yaml 
+else 
+    if [ "${ADDR}" != "" ]
+    then
+            sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address ${ADDR} --apiserver-cert-extra-sans $(hostname -f)
+    else
+            sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address $(hostname -I | cut -d ' ' -f 1) --apiserver-cert-extra-sans $(hostname -f)
+    fi
+fi    
 
 sudo mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -52,7 +58,7 @@ kubectl taint nodes --all node-role.kubernetes.io/master-
 
 # Internes Pods Netzwerk (mit: --iface enp0s8, weil vagrant bei Hostonly Adapters gleiche IP vergibt)
 sudo sysctl net.bridge.bridge-nf-call-iptables=1
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
   
 # Standard Persistent Volume und Claim
 kubectl apply -f https://raw.githubusercontent.com/mc-b/lernkube/master/data/DataVolume.yaml
