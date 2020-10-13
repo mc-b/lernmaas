@@ -35,7 +35,7 @@ sudo systemctl start crio
 export ADDR=$(ip -f inet addr show wg0 | grep -Po 'inet \K[\d.]+')
 [ "${ADDR}" == "" ] && { export ADDR=$(hostname -I | cut -d ' ' -f 1); }
 
-cat <<%EOF% | envsubst | tee kubeadm.yaml
+cat <<%EOF% | envsubst | sudo tee kubeadm.yaml
 apiVersion: kubeadm.k8s.io/v1beta2
 kind: InitConfiguration
 nodeRegistration:
