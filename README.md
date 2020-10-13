@@ -122,7 +122,7 @@ Es stehen folgende Services zur Verfügung:
 * **ssh** - `generate` = erstellt einen SSH-Key pro VM, fügt den Public Key `.ssh/authorized_keys` an und kopiert den Private Key nach data/.ssh/. für den Zugriff von aussen. Zusätzlich wird ein Password mit [pwgen](https://www.pwdgen.org/) erzeugt. Das Password steht in der Datei `.ssh/passwd` und `data/.ssh/passwd`.
 * **samba** - `true` = installiert die CIFS Freigabe Samba und gibt $HOME/data allgemein frei.
 * **firewall** - `true` = installiert `ufw` als Firewall mit Standardeinstellungen
-* **docker** - `true` = installiert Docker in der VM
+* **docker** - `true` = installiert Docker in der VM. `containerd` installiert [containerD](https://containerd.io/) und `cri-o` installiert [cri-O](https://cri-o.io/) als Container Runtime anstelle von Docker. Bei `containerd` und `cri-o` können Tools (weave-scope) und Beispiele (docker in docker) evtl. nicht funktionieren. 
 * **k8s** - `master` = installiert einen Kubernetes Master, `worker` = installiert einen Kubernetes Worker und joint diesen mit dem Kubernetes Master. `minimal` installiert nur die absolut notwendigen K8s Services. `k3s` die [k3s](https://k3s.io/), `rancher` die [Rancher](https://rancher.com/) und `openshift` die [OpenShift](https://www.openshift.com/) Variante von Kubernetes. 
 
 Details und die Services selber findet man im Verzeichnis [services](services/).
