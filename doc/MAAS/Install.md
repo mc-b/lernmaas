@@ -13,9 +13,12 @@ Fixe IP-Adresse vergeben, z.B. über Einstellungen, Software Update durchführen
     sudo apt upgrade -y
     sudo apt install -y maas jq markdown nmap traceroute wsmancli git curl wget openssh-server
 
-MAAS Admin User erstellen und Profilnamen `ubuntu` als Umgebungvariable setzen
+MAAS Admin User erstellen 
 
     sudo maas init --admin-username ubuntu --admin-password password --admin-email xx.yy@zz.ch
+    
+Admin User Name `ubuntu` als Umgebungvariable setzen    
+
     cat <<%EOF% >>$HOME/.bashrc
     export PROFILE=ubuntu
     %EOF%
