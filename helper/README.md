@@ -79,7 +79,7 @@ Nach dem Aufruf der Scripts wird eine Anleitung für die weiteren Schritte ausge
     systemctl enable wg-quick@wg11.service
     systemctl start wg-quick@wg11.service
 
-In der Datei `wg11.tgz` befinden sich die WireGuard Konfigurationsdateien nummeriert von `01.conf` - `99.conf`. 
+In der Datei `wg11.tgz` befinden sich die WireGuard Konfigurationsdateien nummeriert von `01.conf` - `99.conf`. Die Datei `wg11.tgz` kann, z.B. bei Änderungen, auch manuell in der AZ hinterlegt werden. Dazu ist `base64 wg11.tgz` auszuführen und die Ausgabe im Feld `Description` abzulegen.
 
 Für die Zuordnung muss der Name der [VM](https://maas.io/docs/machine-overview) in der zweiten Stelle eine Nummer 02 - 99 enthalten und die VM einer der [AZs](https://maas.io/docs/availability-zones) zugeordnet sein. Die Zuordnung
 der VMs zu einer AZ geht am einfachsten im [MAAS UI](http://localhost:5240).     
