@@ -37,7 +37,7 @@ Juju sucht sich dabei automatisch einen freien KVM Server, erstellt einen neue V
 **Beispiel Apache Web Server**
 
     juju add-model web
-    juju deploy juju deploy cs:apache2-35
+    juju deploy cs:apache2-35
     
 Wie der Apache Web Server zu installieren ist steht im [Charm](https://jaas.ai/apache2/35).
 
