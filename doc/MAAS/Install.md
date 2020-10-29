@@ -116,7 +116,7 @@ Preseed Datei und Hilfsscripts kopieren:
     git clone https://github.com/mc-b/lernmaas.git
     sudo cp lernmaas/preseeds/* /var/snap/maas/current/preseeds/
     sudo chmod +x lernmaas/helper/*
-    sudo cp lernmaas/helper /usr/local/bin/
+    sudo cp lernmaas/helper/* /usr/local/bin/
 
 Ab der nächsten Installation einer VM mit Ubuntu wird jetzt [services/cloud-init.sh](https://github.com/mc-b/lernmaas/blob/master/services/cloud-init.sh) durchlaufen. 
 
