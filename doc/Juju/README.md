@@ -15,7 +15,7 @@ Dazu gibt es bei Juju "Charms" und "Bundles" wo festlegen, was installiert werde
 
     sudo snap install juju --classic
 
-MAAS Cloud hinzufügen, als API-Endpoint den URL des MAAS UI angeben, z.B. `http://172.16.17.13:5240/MAAS` angeben.
+MAAS Cloud hinzufügen, als API-Endpoint den URL des MAAS UI angeben, z.B. `http://10.0.48.8:5240/MAAS/` angeben.
     
     juju add-cloud
     
