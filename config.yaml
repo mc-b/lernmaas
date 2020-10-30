@@ -149,7 +149,25 @@ m152:
     firewall: false
   scripts: 
   repositories: https://github.com/tbz-it/M152
-    
+
+# Modul: 182 Systemsicherheit implementieren
+m182:
+  vm:  
+    storage: 12
+    memory:  2048
+    cores: 2
+    count: 20
+  services:
+    nfs: true
+    docker: false
+    k8s: 
+    wireguard: use
+    ssh: generate
+    samba: false
+    firewall: false
+  scripts: 
+  repositories: https://github.com/tbz-it/M182
+  
 # Modul 183: Applikationssicherheit implementieren (Kubernetes und Webgoat)
 m183:
   vm:  
@@ -166,7 +184,7 @@ m183:
     samba: false
     firewall: false
   scripts: 
-  repositories: https://github.com/tbz-it/M183
+  repositories: https://github.com/tbz-it/M183    
   
 # Modul 226: Objektorientiert implementieren (Kubernetes mit 24 x BeakerX gestartet)
 m226:
