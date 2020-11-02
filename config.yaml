@@ -335,8 +335,8 @@ w906:
 # Docker und Kubernetes – Uebersicht und Einsatz - https://github.com/mc-b/duk
 dukmaster:
   vm:  
-    storage: 18
-    memory:  5888
+    storage: 24
+    memory:  8192
     cores: 4
     count: 1
   services:
@@ -351,8 +351,8 @@ dukmaster:
   repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk  
 dukworker:  
   vm: 
-    storage: 18
-    memory:  5888
+    storage: 24
+    memory:  8192
     cores: 4
     count: 5
   services:
@@ -495,8 +495,8 @@ modtec:
 # Spezialumgebungen fuer Demos uns Referate
 dukdemo:
   vm:  
-    storage: 24
-    memory:  7680
+    storage: 32
+    memory:  10240
     cores: 4
     count: 1
   services:
