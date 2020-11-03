@@ -38,7 +38,7 @@ Beispiel:
 
 **Wieso werden die Anmeldeinformationen wie Passwörter und SSH Keys im Browser angezeigt?**
 
-Für das erstemalige Anmelden in der VM werden diese Informationen benötigt. Dannach sind die Lehrenden angehalten das Password zu ändern und die Dateien, mit den Anmeldeinformationen, im Verzeichnis `/home/ubuntu/data/.ssh` zu löschen.
+Für das erstemalige Anmelden in der VM werden diese Informationen benötigt. Dannach sind die Lernenden angehalten das Password zu ändern und die Dateien, mit den Anmeldeinformationen, im Verzeichnis `/home/ubuntu/data/.ssh` zu löschen.
 
 **Wo können Daten persistent abgelegt werden, damit sie nach dem Löschen der VM noch vorhanden sind?**
 
