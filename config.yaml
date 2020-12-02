@@ -360,7 +360,7 @@ dukworker:
     docker: true
     k8s: worker
     wireguard: use
-    ssh: use
+    ssh: generate
     samba: false
     firewall: false
   scripts: 

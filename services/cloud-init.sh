@@ -80,7 +80,6 @@ if [ "${config_services_k8s}" == "worker" ]
 then
     bash -x services/k8sbase.sh
     bash -x services/k8sjoin.sh
-    cp /home/ubuntu/data/.ssh/passwd /home/ubuntu/.ssh/
     sudo cp doc/intro.md README.md
     bash -x helper/intro
 fi
