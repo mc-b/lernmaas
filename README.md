@@ -72,7 +72,7 @@ Beispiele
 * m254-02       - Geschäftsprozesse beschreiben (Kubernetes mit misegr/bpmn Umgebung, Frontend, Camunda, Backend) zu Demonstrationzwecken
 * m300-02-vba   - Plattformuebergreifende Dienste in ein Netzwerk integrieren. Kubernetes Umgebung um ohne Installation mit dem Modul beginnen zu können
 * m426-02       - Software mit agilen Methoden entwickeln. Demonstration moderner DevOps Umgebung mit CI/CD, Kanboard, Git ...
-* dukmaster-02, dukworker-12, dukworker-12 - Kubernetes Master und zwei Worker Nodes (manueller Join, Master - Worker)
+* dukmaster-02, dukworker-12, dukworker-13 - Kubernetes Master und zwei Worker Nodes (manueller Join, Master - Worker)
 * m000master-02, m000worker-02-1, ..., m000worker-02-5 - Kubernetes Master und fünf Worker Nodes mit TBZ Deployer
 
 **Hinweis**: XXX-01 ist für den Gateway reserviert.
