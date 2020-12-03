@@ -61,19 +61,21 @@ Der Hostname ist wie folgt aufgebaut XXX-YY-Z
 * Z   = optionaler Suffix wird nicht ausgewertet. Kann z.B. die Klasse sein
 
 Beispiele
-* m100-01       - Daten charakterisieren, aufbereiten und auswerten (Inhalte von Thomas)
-* m122-01-st17d - Modul 122, Maschine 01, Klasse st17d
-* m122-01       - Modul 122, Maschine 01 nicht Klassengebunden
-* m141-01-ap17a - Datenbanksystem in Betrieb nehmen (Beispiel mit Jupypter Notebooks)
-* m183-01-wup18 - Applikationssicherheit implementieren (Kubernetes und Webgoat)
-* m226-01       - Objektorientiert implementieren (Kubernetes mit 24 x BeakerX, in K8s Namespace, Umgebung)
-* m239-01-st17a - Internet Server in Betrieb nehmen (VM mit Installiertem Apache Web Server und Samba Zugriff, Webseiten auf $HOME/data)
-* m242-01-bistX - Mikroprozessoranwendung realisieren (Gruppenserver mit NodeRED, MQTT Server etc.)
-* m254-01       - Geschäftsprozesse beschreiben (Kubernetes mit misegr/bpmn Umgebung, Frontend, Camunda, Backend) zu Demonstrationzwecken
-* m300-01-vba   - Plattformuebergreifende Dienste in ein Netzwerk integrieren. Kubernetes Umgebung um ohne Installation mit dem Modul beginnen zu können
-* m426-01       - Software mit agilen Methoden entwickeln. Demonstration moderner DevOps Umgebung mit CI/CD, Kanboard, Git ...
-* dukmaster-01, dukworker-01-1, dukworker-01-2 - Kubernetes Master und zwei Worker Nodes 
-* m000master-01, m000worker-01-1, ..., m000worker-01-5 - Kubernetes Master und fünf Worker Nodes mit TBZ Deployer
+* m100-02       - Daten charakterisieren, aufbereiten und auswerten (Inhalte von Thomas)
+* m122-02-st17d - Modul 122, Maschine 01, Klasse st17d
+* m122-02       - Modul 122, Maschine 01 nicht Klassengebunden
+* m141-02-ap17a - Datenbanksystem in Betrieb nehmen (Beispiel mit Jupypter Notebooks)
+* m183-02-wup18 - Applikationssicherheit implementieren (Kubernetes und Webgoat)
+* m226-02       - Objektorientiert implementieren (Kubernetes mit 24 x BeakerX, in K8s Namespace, Umgebung)
+* m239-02-st17a - Internet Server in Betrieb nehmen (VM mit Installiertem Apache Web Server und Samba Zugriff, Webseiten auf $HOME/data)
+* m242-02-bistX - Mikroprozessoranwendung realisieren (Gruppenserver mit NodeRED, MQTT Server etc.)
+* m254-02       - Geschäftsprozesse beschreiben (Kubernetes mit misegr/bpmn Umgebung, Frontend, Camunda, Backend) zu Demonstrationzwecken
+* m300-02-vba   - Plattformuebergreifende Dienste in ein Netzwerk integrieren. Kubernetes Umgebung um ohne Installation mit dem Modul beginnen zu können
+* m426-02       - Software mit agilen Methoden entwickeln. Demonstration moderner DevOps Umgebung mit CI/CD, Kanboard, Git ...
+* dukmaster-02, dukworker-12, dukworker-12 - Kubernetes Master und zwei Worker Nodes 
+* m000master-02, m000worker-02-1, ..., m000worker-02-5 - Kubernetes Master und fünf Worker Nodes mit TBZ Deployer
+
+**Hinweis**: XXX-01 ist für den Gateway reserviert.
 
 Konfigurationsdatei [config.yaml](https://github.com/mc-b/lernmaas/blob/master/config.yaml)
 -------------------
