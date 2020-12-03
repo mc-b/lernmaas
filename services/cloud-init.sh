@@ -79,8 +79,19 @@ fi
 if [ "${config_services_k8s}" == "worker" ] 
 then
     bash -x services/k8sbase.sh
-    bash -x services/k8sjoin.sh
-    sudo cp doc/intro.md README.md
+    # bash -x services/k8sjoin.sh
+    cat <<%EOF% | sudo tee README.md
+
+### Kubernetes Worker Node
+
+Um die Worker Node mit dem Master zu verbinden, ist auf dem Master folgender Befehl zu starten:
+    
+    sudo kubeadm token create --print-join-command
+    
+Dieser gibt den Befehl aus, der auf jedem Worker Node zu starten ist. 
+  
+%EOF%
+
     bash -x helper/intro
 fi
 
