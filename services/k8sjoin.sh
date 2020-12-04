@@ -22,9 +22,9 @@ then
     # loop bis Master bereit, Timeout zwei Minuten
     for i in {1..60}
     do
-        if  [ -f /home/ubuntu/data/${MASTER}/join-${MASTER}.sh ]
+        if  [ -f /home/ubuntu/data/join-${MASTER}.sh ]
         then
-            sudo bash -x /home/ubuntu/data/${MASTER}/join-${MASTER}.sh
+            sudo bash -x /home/ubuntu/data/join-${MASTER}.sh
             break
         fi
         sleep 2
