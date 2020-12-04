@@ -16,7 +16,7 @@ then
 else 
     if [ "${ADDR}" != "" ]
     then
-            sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address $(hostname -I | cut -d ' ' -f 1) --apiserver-cert-extra-sans ${ADDR}
+            sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address ${ADDR} --apiserver-cert-extra-sans $(hostname -f)
     else
             sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address $(hostname -I | cut -d ' ' -f 1) --apiserver-cert-extra-sans $(hostname -f)
     fi
@@ -37,8 +37,6 @@ if [ "${ADDR}" == "" ]
 then
     sudo sed -i -e "s/$(hostname -I | cut '-d ' -f1)/$(hostname -f)/g" /home/vagrant/.kube/config
     sudo sed -i -e "s/$(hostname -I | cut '-d ' -f1)/$(hostname -f)/g" /home/ubuntu/data/.ssh/config
-else
-    sudo sed -i -e "s/$(hostname -I | cut '-d ' -f1)/${ADDR}/g" /home/ubuntu/data/.ssh/config
     
 fi    
 
