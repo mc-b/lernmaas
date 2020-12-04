@@ -29,6 +29,7 @@ then
     Worker Node von Kubernetes ${HOSTNAME} Master
   
 %EOF%
+
 else
 
     cat <<%EOF% | sudo tee README.md
@@ -43,6 +44,6 @@ Dieser gibt den Befehl aus, der auf jedem Worker Node zu starten ist.
   
 %EOF%
 
-done
+fi
 
 bash -x helper/intro
