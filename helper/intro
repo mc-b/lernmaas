@@ -13,7 +13,7 @@
 #   Umgebungsvariablen
 #   ${ADDR} - IP-Adresse der VM. Wenn WireGuard installiert hat diese IP Vorrang
 
-sudo apt install -y apache2 jq markdown
+sudo apt-get install -y apache2 jq markdown
 
 # wenn WireGuard installiert - Wireguard IP als ADDR Variable setzen
 export ADDR=$(ip -f inet addr show wg0 | grep -Po 'inet \K[\d.]+')

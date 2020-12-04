@@ -6,10 +6,19 @@
 SERVER_IP=$(sudo cat /var/lib/cloud/instance/datasource | cut -d: -f3 | cut -d/ -f3)
 MASTER=$(hostname | cut -d- -f 3,4)
 
-if  [ "${SERVER_IP}" != "" ]
+# Master vorhanden?
+if  [ "${SERVER_IP}" != "" ] && [ "${MASTER}" != "" ]
 then
-    mkdir /home/ubuntu/data/${MASTER}
-    sudo mount -t nfs ${SERVER_IP}:/data/storage/${MASTER} /home/ubuntu/data/${MASTER}
+
+    # Master statt Worker Node mounten
+    sudo umount /home/ubuntu/data
+    sudo mount -t nfs ${SERVER_IP}:/data/storage/${MASTER} /home/ubuntu/data/
+    sudo sed -i -e "s/$(hostname)/${MASTER}/g" /etc/fstab
+    
+    # Password und ssh-key wie Master
+    sudo chpasswd <<<ubuntu:$(cat /home/ubuntu/data/.ssh/passwd)
+    cat /home/ubuntu/data/.ssh/id_rsa.pub >>/home/ubuntu/.ssh/authorized_keys
+    
     # loop bis Master bereit, Timeout zwei Minuten
     for i in {1..60}
     do
@@ -31,7 +40,7 @@ then
 
 ### Kubernetes Worker Node
 
-    Worker Node von Kubernetes ${HOSTNAME} Master
+    Worker Node von Kubernetes ${MASTER} Master
   
 %EOF%
 

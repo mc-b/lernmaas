@@ -21,7 +21,7 @@ then
     sudo systemctl restart sshd
 
     # nach Zugriff data/.ssh wegloeschen
-    cp .ssh/id_rsa .ssh/id_rsa.ppk .ssh/passwd data/.ssh/
+    cp .ssh/id_rsa .ssh/id_rsa.pub .ssh/passwd data/.ssh/
     chmod g+r,o+r data/.ssh/*
 fi   
 
