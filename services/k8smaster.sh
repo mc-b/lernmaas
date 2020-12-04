@@ -66,8 +66,8 @@ kubectl apply -f https://raw.githubusercontent.com/mc-b/lernkube/master/data/Dat
 # Join Command fuer Worker Nodes
 if [ "${ADDR}" != "" ]
 then
-    # Replace WireGuard IP mit interner IP, sonst wird auf dem VPN zuviel Traffic erzeugt.
-    sudo kubeadm token create --print-join-command | sed "s/${ADDR}/$(hostname -I | cut -d ' ' -f 1)/g" >/data/join-$(hostname).sh
+    # Replace WireGuard IP mit FQDN, sonst wird auf dem VPN zuviel Traffic erzeugt.
+    sudo kubeadm token create --print-join-command | sed "s/${ADDR}/$(hostname -f)/g" >/data/join-$(hostname).sh
     
 else
     sudo kubeadm token create --print-join-command >/data/join-$(hostname).sh
