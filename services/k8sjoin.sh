@@ -43,4 +43,6 @@ Dieser gibt den Befehl aus, der auf jedem Worker Node zu starten ist.
   
 %EOF%
 
+done
+
 bash -x helper/intro
