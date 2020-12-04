@@ -69,7 +69,7 @@ do
     do
         c=$((${c} - 1))
         HOSTNAME=$(printf "%s-%02d" ${MODUL} $((${counter} + ${OFFSET})))
-        echo maas $PROFILE pod compose ${pod} memory=${config_vm_memory} cores=${config_vm_cores} storage=${config_vm_storage} pool=${POOL} hostname=${HOSTNAME}
+        echo maas $PROFILE pod compose ${pod} memory=4096 cores=${config_vm_cores} storage=${config_vm_storage} pool=${POOL} hostname=${HOSTNAME}
         maas $PROFILE pod compose ${pod} memory=4096 cores=${config_vm_cores} storage=${config_vm_storage} pool=${POOL} hostname=${HOSTNAME}
         counter=$((${counter} + 1))
     done
@@ -94,7 +94,7 @@ do
     do
         c=$((${c} - 1))
         HOSTNAME=$(printf "%s-%02d-%s-%02d" ${MODUL} ${wcounter} ${MMODUL} $((${counter} + ${OFFSET})) )
-        echo maas $PROFILE pod compose ${pod} memory=${config_vm_memory} cores=${config_vm_cores} storage=${config_vm_storage} pool=${POOL} hostname=${HOSTNAME}
+        echo maas $PROFILE pod compose ${pod} memory=4096 cores=${config_vm_cores} storage=${config_vm_storage} pool=${POOL} hostname=${HOSTNAME}
         maas $PROFILE pod compose ${pod} memory=4096 cores=${config_vm_cores} storage=${config_vm_storage} pool=${POOL} hostname=${HOSTNAME}
         counter=$((${counter} + 1))
         wcounter=$((${wcounter} + 1))
