@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#   Erstellt ein oder mehrere Kubernetes Cluster. 
+#   Erstellt ein oder mehrere Kubernetes Cluster.
 #   Die Anzahl Worker Nodes richtet sich an den Anzahl KVM-Pods, Master auf 1. Pod und pro Pod ein Worker.
 #   Ein Suffix, wird im Gegensatz zu normalen VMs, nicht unterstuetzt.
 #
@@ -8,7 +8,7 @@
 [ $# -lt 2 ] || [ ! -f $1 ] && { echo createk8svms config modul anzahl; exit 1; }
 
 # einfacher YAML Parser von https://stackoverflow.com/questions/5014632/how-can-i-parse-a-yaml-file-from-a-linux-shell-script
-function parse_yaml 
+function parse_yaml
 {
    local prefix=$2
    local s='[[:space:]]*' w='[a-zA-Z0-9_]*' fs=$(echo @|tr @ '\034')
@@ -66,33 +66,37 @@ do
     counter=1
     c=${COUNT}
     while   [ ${c} -gt 0 ] && [ ${counter} -le ${COUNT} ]
-    do    
+    do
         c=$((${c} - 1))
         HOSTNAME=$(printf "%s-%02d" ${MODUL} $((${counter} + ${OFFSET})))
         echo maas $PROFILE pod compose ${pod} memory=${config_vm_memory} cores=${config_vm_cores} storage=${config_vm_storage} pool=${POOL} hostname=${HOSTNAME}
-        maas $PROFILE pod compose ${pod} memory=${config_vm_memory} cores=${config_vm_cores} storage=${config_vm_storage} pool=${POOL} hostname=${HOSTNAME}
+        maas $PROFILE pod compose ${pod} memory=4096 cores=${config_vm_cores} storage=${config_vm_storage} pool=${POOL} hostname=${HOSTNAME}
         counter=$((${counter} + 1))
     done
 done
 
 # Konfiguration fuer Worker laden
+MMODUL=${MODUL}
 MODUL=$(echo $2 | sed 's/master/worker/g')
 for e in $(eval parse_yaml $1 | grep "^${MODUL}" | sed "s/^${MODUL}/config/")
 do
     export $e
-done  
-   
-# Worker    
+done
+
+wcounter=$((${OFFSET} + ${counter}))
+
+# Worker
 for pod in $(maas $PROFILE pods read | jq '.[] | .id' | tail -n +2)
 do
     counter=1
     c=${COUNT}
     while   [ ${c} -gt 0 ] && [ ${counter} -le ${COUNT} ]
-    do    
+    do
         c=$((${c} - 1))
-        HOSTNAME=$(printf "%s-%02d-%d" ${MODUL} $((${counter} + ${OFFSET})) ${pod} )
+        HOSTNAME=$(printf "%s-%02d-%s-%02d" ${MODUL} ${wcounter} ${MMODUL} $((${counter} + ${OFFSET})) )
         echo maas $PROFILE pod compose ${pod} memory=${config_vm_memory} cores=${config_vm_cores} storage=${config_vm_storage} pool=${POOL} hostname=${HOSTNAME}
-        maas $PROFILE pod compose ${pod} memory=${config_vm_memory} cores=${config_vm_cores} storage=${config_vm_storage} pool=${POOL} hostname=${HOSTNAME}
+        maas $PROFILE pod compose ${pod} memory=4096 cores=${config_vm_cores} storage=${config_vm_storage} pool=${POOL} hostname=${HOSTNAME}
         counter=$((${counter} + 1))
+        wcounter=$((${wcounter} + 1))
     done
-done    
+done
