@@ -7,15 +7,6 @@ HOSTNAME=$(hostname)
 
 sudo apt-get install -y nfs-common
 
-# Worker Node - Hostname vom Master verwenden
-if  [[ "$(hostname)" =~ "worker" ]]
-then
-
-    HOST=$(hostname | cut -d- -f 1 | sed -e 's/worker/master/g')
-    NO=$(hostname | cut -d- -f 2)
-    HOSTNAME=${HOST}-${NO}
-fi
-
 sudo mkdir -p /home/ubuntu/data /home/ubuntu/templates /home/ubuntu/config
 sudo chown -R ubuntu:ubuntu /home/ubuntu/data /home/ubuntu/templates /home/ubuntu/config
 sudo chmod 777 /home/ubuntu/data

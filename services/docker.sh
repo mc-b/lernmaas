@@ -11,8 +11,8 @@ sudo usermod -aG docker ubuntu
 ####
 # Abhandlung Container Cache
 
-# Worker Node - Hostname vom Master verwenden
-HOST=$(hostname | cut -d- -f 1 | sed -e 's/worker/master/g')
+# Hostname ohne Nummer
+HOST=$(hostname | cut -d- -f 1)
 
 # Modul spezifische Images
 if  [ -d /home/ubuntu/templates/cr-cache/${HOST} ]

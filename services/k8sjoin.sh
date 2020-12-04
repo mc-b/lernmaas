@@ -2,20 +2,25 @@
 #
 #	Kubernetes Join Worker
 #
-HOST=$(hostname | cut -d- -f 1 | sed -e 's/worker/master/g')
-NO=$(hostname | cut -d- -f 2)
-HOSTNAME=${HOST}-${NO}
 
-# loop bis Master bereit, Timeout 1ne Minute
-for i in {1..30}
-do
-    if  [ -f /data/join-${HOSTNAME}.sh ]
-    then
-        sudo bash -x /data/join-${HOSTNAME}.sh
-        break
-    fi
-    sleep 2
-done
+SERVER_IP=$(sudo cat /var/lib/cloud/instance/datasource | cut -d: -f3 | cut -d/ -f3)
+MASTER=$(hostname | cut -d- -f 3,4)
+
+if  [ "${SERVER_IP}" != "" ]
+then
+    mkdir /home/ubuntu/data/${MASTER}
+    sudo mount -t nfs ${SERVER_IP}:/data/storage/${MASTER} /home/ubuntu/data/${MASTER}
+    # loop bis Master bereit, Timeout zwei Minuten
+    for i in {1..60}
+    do
+        if  [ -f /home/ubuntu/data/${MASTER}/join-${MASTER}.sh ]
+        then
+            sudo bash -x /home/ubuntu/data/${MASTER}/join-${MASTER}.sh
+            break
+        fi
+        sleep 2
+    done
+fi
 
 ## Hinweis wie joinen, falls nicht geklappt
 
