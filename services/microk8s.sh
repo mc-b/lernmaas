@@ -22,8 +22,7 @@ cat <<%EOF% | sudo tee README.md
 What is MicroK8s?
 - - -
 
-Weitere Informationen:
-* [https://microk8s.io/](https://microk8s.io/)
+Weitere Informationen: [https://microk8s.io/](https://microk8s.io/)
   
 %EOF%
 

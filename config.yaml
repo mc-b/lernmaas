@@ -401,24 +401,6 @@ dukcrio:
     firewall: false
   scripts: 
   repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk      
-  
-# Test Umgebung mit microk8s Kubernetes  
-dukmicrok8s:
-  vm:  
-    storage: 18
-    memory:  4096
-    cores: 2
-    count: 1
-  services:
-    nfs: true
-    docker: false
-    k8s: microk8s
-    wireguard: use
-    ssh: generate
-    samba: false
-    firewall: false
-  scripts: 
-  repositories:   
     
 # Internet der Dinge im Einsatz - https://github.com/mc-b/iotkitv3
 iotein:
@@ -602,6 +584,24 @@ docker:
     firewall: false
   scripts: 
   repositories: 
+  
+# microk8s Kubernetes - https://microk8s.io/ 
+microk8s:
+  vm:  
+    storage: 18
+    memory:  4096
+    cores: 2
+    count: 1
+  services:
+    nfs: true
+    docker: false
+    k8s: microk8s
+    wireguard: use
+    ssh: generate
+    samba: false
+    firewall: false
+  scripts: 
+  repositories:  
 
 # Lightweight Kubernetes - https://k3s.io/
 k3s:
