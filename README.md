@@ -73,7 +73,7 @@ Beispiele
 * m300-02-vba   - Plattformuebergreifende Dienste in ein Netzwerk integrieren. Kubernetes Umgebung um ohne Installation mit dem Modul beginnen zu können
 * m426-02       - Software mit agilen Methoden entwickeln. Demonstration moderner DevOps Umgebung mit CI/CD, Kanboard, Git ...
 * dukmaster-02, dukworker-12, dukworker-13 - Kubernetes Master und zwei Worker Nodes (manueller Join, Master - Worker)
-* m000master-02, m000worker-02-1, ..., m000worker-02-5 - Kubernetes Master und fünf Worker Nodes mit TBZ Deployer
+* m000master-02, m000worker-03-m00master-02, ..., m000worker-05-m000master-02 - Kubernetes Master und fünf Worker Nodes mit TBZ Deployer. Der Join der Worker Nodes erfolgt automatisch. Sie auch Helper Script [createk8svms](helper/README.md)
 
 **Hinweis**: XXX-01 ist für den Gateway reserviert.
 
@@ -125,7 +125,7 @@ Es stehen folgende Services zur Verfügung:
 * **samba** - `true` = installiert die CIFS Freigabe Samba und gibt $HOME/data allgemein frei.
 * **firewall** - `true` = installiert `ufw` als Firewall mit Standardeinstellungen
 * **docker** - `true` = installiert Docker in der VM. `containerd` installiert [containerD](https://containerd.io/) und `cri-o` installiert [cri-O](https://cri-o.io/) als Container Runtime anstelle von Docker. Bei `containerd` und `cri-o` können Tools (weave-scope) und Beispiele (docker in docker) evtl. nicht funktionieren. 
-* **k8s** - `master` = installiert einen Kubernetes Master, `worker` = installiert einen Kubernetes Worker und joint diesen mit dem Kubernetes Master. `minimal` installiert nur die absolut notwendigen K8s Services. `k3s` die [k3s](https://k3s.io/), `rancher` die [Rancher](https://rancher.com/) und `openshift` die [OpenShift](https://www.openshift.com/) Variante von Kubernetes. 
+* **k8s** - `master` = installiert einen Kubernetes Master, `worker` = installiert einen Kubernetes Worker und joint diesen mit dem Kubernetes Master. `minimal` installiert nur die absolut notwendigen K8s Services. `microk8s` [Kubernetes](https://microk8s.io/) basierend auf Ubuntu Linux, `k3s` die [k3s](https://k3s.io/), `rancher` die [Rancher](https://rancher.com/) und `openshift` die [OpenShift](https://www.openshift.com/) Variante von Kubernetes. 
 
 Details und die Services selber findet man im Verzeichnis [services](services/).
 
