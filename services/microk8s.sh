@@ -5,10 +5,15 @@
 
 # Basic Installation
 
-sudo snap install microk8s --classic --channel=1.19
+sudo snap install microk8s --classic
 sudo usermod -a -G microk8s ubuntu
 sudo chown -f -R ubuntu ~/.kube
-sudo echo 'alias kubectl="microk8s kubectl"' >>/home/ubuntu/.bashrc 
+cat <<%EOF% | sudo tee /usr/local/bin/kubectl
+#!/bin/bash
+microk8s kubectl \$*
+%EOF%
+sudo chmod 755 /usr/local/bin/kubectl
+# sudo echo 'alias kubectl="microk8s kubectl"' >>/home/ubuntu/.bashrc 
 sudo microk8s enable dns storage
 
 SERVER_IP=$(sudo cat /var/lib/cloud/instance/datasource | cut -d: -f3 | cut -d/ -f3)
