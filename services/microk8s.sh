@@ -23,17 +23,18 @@ then
     sudo mount -t nfs ${SERVER_IP}:/data/storage/${MASTER} /home/ubuntu/data/
     sudo sed -i -e "s/$(hostname)/${MASTER}/g" /etc/fstab
     
-    # Password und ssh-key wie Master
-    sudo chpasswd <<<ubuntu:$(cat /home/ubuntu/data/.ssh/passwd)
-    cat /home/ubuntu/data/.ssh/id_rsa.pub >>/home/ubuntu/.ssh/authorized_keys
-    
     # loop bis Master bereit, Timeout zwei Minuten
     for i in {1..60}
     do
         if  [ -f /home/ubuntu/data/.ssh/id_rsa ]
         then
+            # Password und ssh-key wie Master
+            sudo chpasswd <<<ubuntu:$(cat /home/ubuntu/data/.ssh/passwd)
+            cat /home/ubuntu/data/.ssh/id_rsa.pub >>/home/ubuntu/.ssh/authorized_keys
+            # Node joinen
             sudo chmod 600 /home/ubuntu/data/.ssh/id_rsa
-            sudo $(ssh -i /home/ubuntu/data/.ssh/id_rsa ${MASTER} microk8s add-node | awk 'NR==2 { print $0 }')
+            echo $(ssh -i /home/ubuntu/data/.ssh/id_rsa -o StrictHostKeyChecking=no ${MASTER} microk8s add-node | awk 'NR==2 { print $0 }') >/tmp/join-${MASTER}
+            sudo bash -x /tmp/join-${MASTER}
             sudo chmod 666 /home/ubuntu/data/.ssh/id_rsa
             break
         fi
