@@ -6,6 +6,7 @@ Beispiele (Jupyter Notebooks)
 ### Microservices
 
 * [Synchrone Microservices (REST)](:32188/notebooks/work/demo/Microservices-REST.ipynb)
+* [Synchrone Microservices (REST) inkl. Scaling und Rolling Update](:32188/notebooks/work/demo/Microservices-REST-Deployment.ipynb)
 * [Asynchrone Microservices (Messaging)](:32188/notebooks/work/demo/Microservices-Messaging.ipynb)
 * [Microservices (ESI)](:32188/notebooks/work/demo/Microservices-ESI.ipynb)
 * [Workflow (BPMN)](:32188/notebooks/work/demo/Microservices-BPMN.ipynb)
