@@ -14,6 +14,7 @@ sudo ln -s /home/ubuntu/data /var/www/html/data
 # wenn WireGuard installiert - Wireguard IP als ADDR Variable setzen
 export ADDR=$(ip -f inet addr show wg0 | grep -Po 'inet \K[\d.]+')
 [ "${ADDR}" == "" ] && { export ADDR=$(hostname -f); }
+[ "$(hostname -I | cut -d ' ' -f 1)" == "10.0.2.15" ] && { export ADDR=$(hostname -I | cut -d ' ' -f 2); }
 
 # index.html
 cat <<%EOF% | sudo tee /var/www/html/index.html

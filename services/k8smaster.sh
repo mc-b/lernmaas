@@ -18,7 +18,13 @@ else
     then
             sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address ${ADDR} --apiserver-cert-extra-sans $(hostname -f)
     else
-            sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address $(hostname -I | cut -d ' ' -f 1) --apiserver-cert-extra-sans $(hostname -f)
+            if [ "$(hostname -I | cut -d ' ' -f 1)" != "10.0.2.15" ]
+            then
+                sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address $(hostname -I | cut -d ' ' -f 1) --apiserver-cert-extra-sans $(hostname -f)
+            # vagrant
+            else
+                sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address $(hostname -I | cut -d ' ' -f 2) --apiserver-cert-extra-sans $(hostname -f)
+            fi
     fi
 fi    
 
