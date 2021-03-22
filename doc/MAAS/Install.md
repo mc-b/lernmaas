@@ -9,15 +9,16 @@ Für eine detailierte Installation, siehe [MAAS](MAAS/) oder [Bare Metal to Kube
 
 Fixe IP-Adresse vergeben, z.B. über Einstellungen, Software Update durchführen und MAAS Installieren
 
+    sudo add-apt-repository ppa:maas/2.9
     sudo apt update
     sudo apt upgrade -y
-    sudo apt install -y maas jq markdown nmap traceroute wsmancli git curl wget openssh-server
+    sudo apt install -y maas jq markdown nmap traceroute git curl wget openssh-server 
 
-MAAS Admin User erstellen 
+MAAS Admin User erstellen. Als Username `ubuntu` verwenden. 
 
-    sudo maas init --admin-username ubuntu --admin-password password --admin-email xx.yy@zz.ch
+    sudo maas createadmin 
     
-Admin User Name `ubuntu` als Umgebungvariable setzen    
+MAAS Admin User Name `ubuntu` als Umgebungvariable setzen    
 
     cat <<%EOF% >>$HOME/.bashrc
     export PROFILE=ubuntu
@@ -27,14 +28,6 @@ SSH-Key erstellen, den brauchen wir nachher
 
     ssh-keygen    
     
-IP4 Forward permanent einrichten:
-
-    sysctl -w  net.ipv4.ip_forward=1
-    sudo vi /etc/sysctl.conf
-    # Eintrag net.ipv4.ip_forward=1 auskommentieren, # löschen
-
-**Hinweis** auf den Installierten KVM Server kann IP4 Forward deaktiviert werden, bringt Geschwindigkeit.
-
 Browser starten und UI von MAAS aufrufen [http://localhost:5240](http://localhost:5240)
 
 * SSH-Key, von vorher `cat ~/.ssh/id_rsa.pub`  eintragen
@@ -42,8 +35,6 @@ Browser starten und UI von MAAS aufrufen [http://localhost:5240](http://localhos
 * Bei Subnets DHCP Server aktivieren auf z.B. 172.16.17.x, Gateway IP: 172.16.17.1 und DNS Server (z.B. OpenDNS 208.67.222.222, 208.67.220.22) eintragen
 
 **Server frisch starten, ansonsten werden die Änderungen nicht übernommen.**
-
-* Images updaten und weitere Image wie Ubuntu 20.04 LTS anklicken.  
 
 **MAAS Login und Tests**
 
@@ -114,7 +105,7 @@ Für die automatische Installation von Software auf die VMs wird eine Kombinatio
 Preseed Datei und Hilfsscripts kopieren:
    
     git clone https://github.com/mc-b/lernmaas.git
-    sudo cp lernmaas/preseeds/* /var/snap/maas/current/preseeds/
+    sudo cp lernmaas/preseeds/* /etc/maas/preseeds/
     sudo chmod +x lernmaas/helper/*
     sudo cp lernmaas/helper/* /usr/local/bin/
 
