@@ -1,6 +1,16 @@
 lernMAAS in der Public Cloud
 ============================
 
+## Inhaltsverzeichnis
+
+* [Azure Cloud](#azure-cloud)
+* [AWS Cloud](#aws-cloud)
+* [Google Cloud](#google-cloud)
+* [IBM Cloud](#ibm-cloud)
+
+***
+### Cloud-init Erstellen
+
 Weil [lernMAAS](github.com/mc-b/lernmaas) [Cloud-init](https://cloudinit.readthedocs.io/)  zur Initialiserung der VMs verwendet kann [lernMAAS](github.com/mc-b/lernmaas) auf jeder öffentlichen Cloud (Google, IBM, [AWS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html), [Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/using-cloud-init) etc.) eingesetzt werden.
 
 Die entsprechende Cloud Plattform muss 
@@ -49,6 +59,8 @@ Diese Datei ist, beim Erstellen der VM, in der Cloud, mitzugeben.
 
 ***
 ### Azure Cloud
+
+> [⇧ **Nach oben**](#inhaltsverzeichnis)
 
 ![](../images/azure-cloud.png)
 
@@ -110,6 +122,8 @@ Um die VM und alle Ressourcen wieder freizugeben, verwenden wir:
 
 ***
 ### AWS Cloud
+
+> [⇧ **Nach oben**](#inhaltsverzeichnis)
 
 ![](../images/aws-cloud.png)
 
@@ -201,6 +215,8 @@ Anschlissend können wir uns die laufenden VMs anzeigen
 ***
 ### Google Cloud
 
+> [⇧ **Nach oben**](#inhaltsverzeichnis)
+
 ![](../images/google-cloud.png)
 
 ---
@@ -214,6 +230,7 @@ Als Betriebssystem ist Ubuntu zu wählen und auf die richtige Grösse vom RAM un
 ***
 ### IBM Cloud
 
+> [⇧ **Nach oben**](#inhaltsverzeichnis)
 
 ![](../images/ibm-cloud.png)
 
