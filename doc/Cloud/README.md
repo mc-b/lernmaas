@@ -64,7 +64,7 @@ Nach der [Installation des Azure CLI](https://docs.microsoft.com/en-us/cli/azure
 
 Für das Modul [M122](https://github.com/tbz-it/M122) sieht das z.B. wie folgt aus.
 
-Erstellen der `cloud-init.cfg` Datei und SSH-Key mit `export VMNAME=m122-02`, wie oben beschrieben.
+Erstellen der `cloud-init.cfg` Datei und SSH-Key mit `export VMNAME=m122-02`, wie oben beschrieben. 
 
 Anmelden an der Azure Cloud und erstellen einer Ressource Gruppe, wo unsere VMs abgelegt werden:
 
@@ -120,6 +120,79 @@ Bei der AWS Cloud ist Inhalt der Datei `cloud-init.cfg` bei [Step 3: Configure I
 Der Inhalt muss mit `#cloud-config` beginnen.
 
 Ausserdem ist, je nach Anforderungen, auf die richtige Grösse vom RAM und HD zu achten. Am besten eignen sich die t2... Instanz Typen ab 1 GB RAM.
+
+#### AWS CLI
+
+Nach der [Installation des AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) auf der lokalen Maschine, kann die VM mittels diesem angelegt werden. 
+
+Für das Modul [M122](https://github.com/tbz-it/M122) sieht das z.B. wie folgt aus.
+
+Erstellen der `cloud-init.cfg` Datei und SSH-Key mit `export VMNAME=m122-02`, wie oben beschrieben. Auf den Eintrag `fqdn:` kann dabei verzichtet werden.
+
+Im AWS UI, neuen [User](https://console.aws.amazon.com/iam/home?region=eu-central-1#/users) erstellen und AmazonEC2FullAccess Rechte erteilen.
+
+.cvs Datei downloaden und an einem sichern Ort speichern.
+
+Einloggen in AWS
+
+    aws configure
+ 
+    AWS Access Key ID [****************WBM7]:
+    AWS Secret Access Key [****************eKJA]:
+    Default region name [eu-central-1]:
+    Default output format [None]:
+
+Anzeige der verfügbaren Images, für die angegebene Region:
+             
+     aws ec2 describe-images --owners self amazon --output table
+
+ID, z.B. von Ubuntu 20 LTS `ami-0767046d1677be5a0` notieren.
+
+Security Group erstellten und Ports öffnen
+
+    aws ec2 create-security-group --group-name lernmaas --description "Standard Ports"
+    aws ec2 authorize-security-group-ingress --group-name lernmaas --protocol tcp --port 22 --cidr 0.0.0.0/0
+    aws ec2 authorize-security-group-ingress --group-name lernmaas --protocol tcp --port 80 --cidr 0.0.0.0/0   
+    
+Block Device Grösse festlegen und als JSON speichern
+
+    cat <<%EOF% >device.json
+    [ {
+        "DeviceName": "/dev/sda1",
+        "Ebs":
+        {
+          "VolumeSize": 30,
+          "DeleteOnTermination": true
+        }
+    } ]
+    %EOF%
+    
+Anschliessend die Instance starten. Die Einträge `tag-specifications` sind optional. Diese sind aber hilfreich, zum Wiederfinden oder einfach zur Gruppierung von VMs, weil AWS keine Gruppen wie MAAS oder Azure kennt.
+
+    aws ec2 run-instances --image-id ami-0767046d1677be5a0 \
+        --security-group-ids lernmaas \
+        --instance-type t2.micro \
+        --count 1 \
+        --user-data file://cloud-init.cfg \
+        --block-device-mappings file://device.json \
+        --tag-specifications 'ResourceType=instance,Tags=[{Key=class,Value=st17a},{Key=modul,Value=m122}]' 
+       
+Für die meinsten Module sollte der Instanze Typ `t2.micro` (1 CPU, 1 GB RAM) ausreichend sein. Für Umgebungen, wie z.B. M300, sollte ein Instanze Typ nicht kleiner als `t3.large` (2 CPU, 8 GB RAM) verwendet werden. 
+
+    export VMNAME=m300-03
+    export GROUP=m300
+    # cloud-init Datei erzeugen wie oben
+    
+    aws ec2 run-instances --image-id ami-0767046d1677be5a0 \
+        --security-group-ids lernmaas \
+        --instance-type t3.xlarge \
+        --count 1 \
+        --block-device-mappings file://device.json \
+        --user-data file://cloud-init.cfg     
+     
+Anschlissend können wir uns die laufenden VMs anzeigen
+
+    aws ec2 describe-instances --output table
 
 #### Links
 
