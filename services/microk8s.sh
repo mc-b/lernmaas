@@ -14,7 +14,16 @@ microk8s kubectl \$*
 %EOF%
 sudo chmod 755 /usr/local/bin/kubectl
 # sudo echo 'alias kubectl="microk8s kubectl"' >>/home/ubuntu/.bashrc 
-sudo microk8s enable dns storage
+sudo microk8s enable dns 
+
+# buildah Installieren
+sh -c "echo 'deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_18.04/ /' | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list"
+wget -nv https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/xUbuntu_18.04/Release.key -O /tmp/Release.key
+sudo apt-key add - </tmp/Release.key
+sudo apt-get update -qq
+sudo apt-get -qq -y install buildah 
+sudo apt-get -qq -y install fuse-overlayfs
+
 
 SERVER_IP=$(sudo cat /var/lib/cloud/instance/datasource | cut -d: -f3 | cut -d/ -f3)
 MASTER=$(hostname | cut -d- -f 3,4)
