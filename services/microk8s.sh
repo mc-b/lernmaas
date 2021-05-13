@@ -7,15 +7,42 @@
 
 sudo snap install microk8s --classic
 sudo usermod -a -G microk8s ubuntu
-sudo chown -f -R ubuntu ~/.kube
-cat <<%EOF% | sudo tee /usr/local/bin/kubectl
-#!/bin/bash
-microk8s kubectl \$*
-%EOF%
-sudo chmod 755 /usr/local/bin/kubectl
-# sudo echo 'alias kubectl="microk8s kubectl"' >>/home/ubuntu/.bashrc 
-sudo microk8s enable dns 
+sudo mkdir -p /home/ubuntu/.kube
+sudo microk8s config >/home/ubuntu/.kube/config
+sudo chown -f -R ubuntu /home/ubuntu/.kube
+sudo snap install kubectl --classic
 
+####
+# Abhandlung Container Cache
+
+# Hostname ohne Nummer
+HOST=$(hostname | cut -d- -f 1)
+
+# Modul spezifische Images
+if  [ -d /home/ubuntu/templates/cr-cache/${HOST} ]
+then
+
+    # Kubernetes Images 
+    if  [ -d /home/ubuntu/templates/cr-cache/microk8s ]
+    then
+        for image in /home/ubuntu/templates/cr-cache/microk8s/*.tar
+        do
+            sudo microk8s ctr image import ${image}
+        done
+    fi
+
+    for image in /home/ubuntu/templates/cr-cache/${HOST}/*.tar
+    do
+        sudo microk8s ctr image import ${image}
+    done
+fi
+sudo microk8s ctr image list
+
+###
+# Add-ons  
+sudo microk8s enable dns ingress
+
+###
 # buildah Installieren
 sh -c "echo 'deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_18.04/ /' | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list"
 wget -nv https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/xUbuntu_18.04/Release.key -O /tmp/Release.key
@@ -24,11 +51,11 @@ sudo apt-get update -qq
 sudo apt-get -qq -y install buildah 
 sudo apt-get -qq -y install fuse-overlayfs
 
-
 SERVER_IP=$(sudo cat /var/lib/cloud/instance/datasource | cut -d: -f3 | cut -d/ -f3)
 MASTER=$(hostname | cut -d- -f 3,4)
 
-# Master vorhanden?
+###
+# Master vorhanden? - Join mit Master
 if  [ "${SERVER_IP}" != "" ] && [ "${MASTER}" != "" ]
 then
 
@@ -56,6 +83,7 @@ then
     done
 fi
 
+###
 # Intro
     
 cat <<%EOF% | sudo tee README.md
