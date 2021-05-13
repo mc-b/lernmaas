@@ -423,8 +423,8 @@ iotein:
 # DevOps Engineering Practices & Tools (CDI) - https://github.com/mc-b/cdi
 cdi:
   vm:  
-    storage: 12
-    memory:  3584
+    storage: 24
+    memory:  6144
     cores: 2
     count: 6
   services:
