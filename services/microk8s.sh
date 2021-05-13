@@ -6,10 +6,6 @@
 # Basic Installation
 
 sudo snap install microk8s --classic
-sudo usermod -a -G microk8s ubuntu
-sudo mkdir -p /home/ubuntu/.kube
-sudo microk8s config >/home/ubuntu/.kube/config
-sudo chown -f -R ubuntu /home/ubuntu/.kube
 sudo snap install kubectl --classic
 
 ####
@@ -41,6 +37,13 @@ sudo microk8s ctr image list
 ###
 # Add-ons  
 sudo microk8s enable dns ingress
+
+###
+# Zugriff fuer User ubuntu einrichten - funktioniert erst wenn microk8s laeuft
+sudo usermod -a -G microk8s ubuntu
+sudo mkdir -p /home/ubuntu/.kube
+sudo microk8s config >/home/ubuntu/.kube/config
+sudo chown -f -R ubuntu:ubuntu /home/ubuntu/.kube
 
 ###
 # buildah Installieren
