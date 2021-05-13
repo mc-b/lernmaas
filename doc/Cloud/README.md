@@ -162,7 +162,7 @@ Anzeige der verfügbaren Images, für die angegebene Region:
 
 ID, z.B. von Ubuntu 20 LTS `ami-0767046d1677be5a0` notieren.
 
-Security Group erstellten und Ports öffnen
+Security Group erstellen und Ports öffnen
 
     aws ec2 create-security-group --group-name lernmaas --description "Standard Ports"
     aws ec2 authorize-security-group-ingress --group-name lernmaas --protocol tcp --port 22 --cidr 0.0.0.0/0
@@ -204,7 +204,7 @@ Für die meinsten Module sollte der Instanze Typ `t2.micro` (1 CPU, 1 GB RAM) au
         --block-device-mappings file://device.json \
         --user-data file://cloud-init.cfg     
      
-Anschlissend können wir uns die laufenden VMs anzeigen
+Anschliessend können wir uns die laufenden VMs anzeigen
 
     aws ec2 describe-instances --output table
 
