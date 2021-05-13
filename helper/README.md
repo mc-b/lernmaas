@@ -97,7 +97,7 @@ Der Aufruf von `createvms` ist wie folgt:
 
     createk8svms <config.yaml> <Modul> <Anzahl Cluster> <Suffix>   
 
-ccopy
+ccopy + ccopy-microk8s
 -----
 
 `ccopy` exportiert die Container Images von einer laufenden Docker und/oder Kubernetes Umgebung nach `/data/templates/cr-cache/<Modul>` auf den MAAS Master.
@@ -109,6 +109,8 @@ Das führt zu einem massiven Zeitgewinn, weil die Container Images nicht mehr ü
 Der Aufruf von `ccopy` ist wie folgt:
 
     bash ccopy <Name Modul ohne -01> <IP-Adresse VM>
+    
+`ccopy-microk8s` ist, von der Funktionsweise, identisch mit `ccopy`. Es werden die microk8s (`microk8s ctr image export ...`)  Befehle statt docker verwendet.  
      
 intro
 -----

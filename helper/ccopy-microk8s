@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+#       Kopiert die Container Images von einer VM mit microk8s in den Container Cache
+#
+
+[ $# -lt 2 ] && { echo ccopy-microk8s dir ip-vm; exit 1; }
+
+cd $1
+
+for i in $(ssh $2 microk8s ctr image list | cut -d ' ' -f 1 | grep -v REF | grep -v sha256 )
+do
+        ssh $2 microk8s ctr image export - $i | cat - >$(echo $i | tr / _).tar
+done
