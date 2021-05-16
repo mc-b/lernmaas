@@ -36,7 +36,7 @@ sudo microk8s ctr image list
 
 ###
 # Add-ons  
-sudo microk8s enable dns ingress
+sudo microk8s enable dns 
 
 ###
 # Zugriff fuer User ubuntu einrichten - funktioniert erst wenn microk8s laeuft
