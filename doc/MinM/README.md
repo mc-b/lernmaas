@@ -66,3 +66,4 @@ Weitere Möglichkeiten wäre die Verwendung des [MAAS CLIs](https://maas.io/docs
 **Links**
 
 * [Running virtual machines with LXD 4.0](https://discuss.linuxcontainers.org/t/running-virtual-machines-with-lxd-4-0/7519)
+* [Cloud-init Beispiele](https://github.com/mc-b/iac/blob/main/cloud-iac.md)
