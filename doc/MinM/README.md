@@ -63,7 +63,26 @@ Soll zusätzlich die [lernMAAS](https://github.com/mc-b/lernmaas) Funktionalitä
 
 Weitere Möglichkeiten wäre die Verwendung des [MAAS CLIs](https://maas.io/docs/snap/2.9/cli/maas-cli) oder das Einrichten einer gemeinsamen Datenablage. Die Details sind in der [lernMAAS Installation](https://github.com/mc-b/lernmaas/blob/master/doc/MAAS/Install.md) zu finden.
 
-**Links**
+***
+### Nützliche lxc Befehle
+
+[lxc](https://linuxcontainers.org/lxc/introduction/) ist das CLI wo mit dem [lxd](https://linuxcontainers.org/lxd/introduction/) Daemon kommuniziert.
+
+**Nützliche Befehle sind:**
+
+Auflisten der aktiven VMs/Container
+
+    sudo lxc list
+    
+Anzeige der Consolenausgabe einer VM
+
+    sudo lxc console <vm>
+    
+Wechsel in die VM (ohne Password) 
+
+    sudo lxc exec <vm> bash
+
+### Links
 
 * [Running virtual machines with LXD 4.0](https://discuss.linuxcontainers.org/t/running-virtual-machines-with-lxd-4-0/7519)
 * [Cloud-init Beispiele](https://github.com/mc-b/iac/blob/main/cloud-iac.md)
