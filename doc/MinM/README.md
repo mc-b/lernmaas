@@ -62,3 +62,7 @@ Soll zusätzlich die [lernMAAS](https://github.com/mc-b/lernmaas) Funktionalitä
     sudo cp lernmaas/preseeds/* /etc/maas/preseeds/
 
 Weitere Möglichkeiten wäre die Verwendung des [MAAS CLIs](https://maas.io/docs/snap/2.9/cli/maas-cli) oder das Einrichten einer gemeinsamen Datenablage. Die Details sind in der [lernMAAS Installation](https://github.com/mc-b/lernmaas/blob/master/doc/MAAS/Install.md) zu finden.
+
+**Links**
+
+* [Running virtual machines with LXD 4.0](https://discuss.linuxcontainers.org/t/running-virtual-machines-with-lxd-4-0/7519)
