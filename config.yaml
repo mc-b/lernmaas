@@ -492,6 +492,24 @@ modtec:
   scripts: modtec.sh
   repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk,https://github.com/mc-b/mlg  
   
+# Von der Virtualisierung über Cloud und Container bis Serverless - https://github.com/mc-b/virtar
+virtar:
+  vm:  
+    storage: 32
+    memory:  10240
+    cores: 4
+    count: 1
+  services:
+    nfs: true
+    docker: false
+    k8s: 
+    wireguard: use
+    ssh: generate
+    samba: false
+    firewall: false
+  scripts: minm.sh
+  repositories:  
+    
 # Spezialumgebungen fuer Demos uns Referate
 dukdemo:
   vm:  
