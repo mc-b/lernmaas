@@ -495,7 +495,7 @@ modtec:
 # Von der Virtualisierung über Cloud und Container bis Serverless - https://github.com/mc-b/virtar
 virtar:
   vm:  
-    storage: 32
+    storage: 72
     memory:  10240
     cores: 4
     count: 1
