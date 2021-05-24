@@ -52,6 +52,8 @@ Damit MAAS via [Linux Containern (lxd)](https://linuxcontainers.org/lxd/introduc
 
 ![](images/config-kvm-lxd.png)
 
+**ACHTUNG**: für CPU und Memory sollte kein overcommit eingerichtet werden. lxc könnte nicht mehr sauber funktionieren.
+
 **Preseed**
 
 Ab Version 2.9 steht [Cloud-init](https://cloudinit.readthedocs.io/en/latest/) zur Verfügung. 
