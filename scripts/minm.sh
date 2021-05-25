@@ -55,6 +55,7 @@ sudo lxc network set lxdbr0 ipv6.dhcp=false
 sudo apt-get update
 sudo apt-get install -y nfs-kernel-server
 
+sudo rm -f /data
 sudo mkdir -p /data /data/storage /data/config /data/templates /data/config/wireguard /data/config/ssh /data/templates/cr-cache
 sudo chown -R ubuntu:ubuntu /data
 sudo chmod 777 /data/storage
@@ -77,7 +78,7 @@ sudo exportfs -a
 sudo systemctl restart nfs-kernel-server
 
 # lernMAAS
-cd /opt
+cd /home/ubuntu
 sudo git clone https://github.com/mc-b/lernmaas.git
 sudo cp lernmaas/preseeds/* /etc/maas/preseeds/
 sudo chmod +x lernmaas/helper/*
