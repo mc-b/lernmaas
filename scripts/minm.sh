@@ -50,3 +50,35 @@ cluster: null
 sudo lxc network set lxdbr0 dns.mode=none
 sudo lxc network set lxdbr0 ipv4.dhcp=false
 sudo lxc network set lxdbr0 ipv6.dhcp=false
+
+# NFS
+sudo apt-get update
+sudo apt-get install -y nfs-kernel-server
+
+sudo mkdir -p /data /data/storage /data/config /data/templates /data/config/wireguard /data/config/ssh /data/templates/cr-cache
+sudo chown -R ubuntu:ubuntu /data
+sudo chmod 777 /data/storage
+
+cat <<%EOF% | sudo tee /etc/exports
+# /etc/exports: the access control list for filesystems which may be exported
+#               to NFS clients.  See exports(5).
+# Storage RW
+/data/storage 192.168.122.0/24(rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=1000)
+/data/storage 10.244.0.0/16(rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=1000)
+# Templates RO
+/data/templates 192.168.122.0/24(ro,sync,no_subtree_check)
+/data/templates 10.244.0.0/16(ro,sync,no_subtree_check)
+# Config RO
+/data/config 192.168.122.0/24(ro,sync,no_subtree_check)
+/data/config 10.244.0.0/16(ro,sync,no_subtree_check)
+%EOF%
+ 
+sudo exportfs -a
+sudo systemctl restart nfs-kernel-server
+
+# lernMAAS
+cd /opt
+sudo git clone https://github.com/mc-b/lernmaas.git
+sudo cp lernmaas/preseeds/* /etc/maas/preseeds/
+sudo chmod +x lernmaas/helper/*
+sudo cp lernmaas/helper/* /usr/local/bin/
