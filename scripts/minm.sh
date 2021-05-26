@@ -83,3 +83,4 @@ sudo git clone https://github.com/mc-b/lernmaas.git
 sudo cp lernmaas/preseeds/* /etc/maas/preseeds/
 sudo chmod +x lernmaas/helper/*
 sudo cp lernmaas/helper/* /usr/local/bin/
+sudo chown -R ubuntu:ubuntu /home/ubuntu/lernmaas
