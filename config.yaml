@@ -82,7 +82,7 @@ m104:
 m120:
   vm:  
     storage: 8
-    memory:  1024
+    memory:  2048
     cores: 2
     count: 2
   services:
@@ -100,8 +100,8 @@ m120:
 m122:
   vm:  
     storage: 8
-    memory:  1024
-    cores: 2
+    memory:  2048
+    cores: 1
     count: 2
   services:
     nfs: true
@@ -136,7 +136,7 @@ m141:
 m152:
   vm:  
     storage: 8
-    memory:  1024
+    memory:  2048
     cores: 2
     count: 2
   services:
