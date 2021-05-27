@@ -109,7 +109,7 @@ maas $PROFILE vlan update "fabric-1" "untagged" dhcp_on=True
 maas $PROFILE vlan update "fabric-2" "untagged" dhcp_on=True 
 
 # localhost als lxd (KVM) Host hinzufuegen
-maas  $PROFILE pods create -k type=lxd power_address=localhost password=password project=default
+maas  $PROFILE pods create -k type=lxd power_address=localhost password=password project=default primary_rack=$(hostname)
 
 # AZ (VPN) einrichten
 if  [ -d $HOME/config/az ]
