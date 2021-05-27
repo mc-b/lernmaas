@@ -105,11 +105,11 @@ maas $PROFILE subnet update $SUBNET_CIDR dns_servers="$MY_NAMESERVER"
 
 # Enable DHCP
 maas $PROFILE ipranges create type=dynamic start_ip="192.168.122.191" end_ip="192.168.122.254" 
-maas $PROFILE vlan update "fabric-1" "untagged" dhcp_on=True 
-maas $PROFILE vlan update "fabric-2" "untagged" dhcp_on=True 
+maas $PROFILE vlan update "fabric-1" "untagged" dhcp_on=True primary_rack=$(hostname)
+maas $PROFILE vlan update "fabric-2" "untagged" dhcp_on=True primary_rack=$(hostname)
 
 # localhost als lxd (KVM) Host hinzufuegen
-maas  $PROFILE pods create -k type=lxd power_address=localhost password=password project=default primary_rack=$(hostname)
+maas  $PROFILE pods create -k type=lxd power_address=localhost password=password project=default
 
 # AZ (VPN) einrichten
 if  [ -d $HOME/config/az ]
