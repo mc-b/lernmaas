@@ -78,9 +78,45 @@ sudo exportfs -a
 sudo systemctl restart nfs-kernel-server
 
 # lernMAAS
-cd /home/ubuntu
-sudo git clone https://github.com/mc-b/lernmaas.git
+cd $HOME
+git clone https://github.com/mc-b/lernmaas.git
 sudo cp lernmaas/preseeds/* /etc/maas/preseeds/
-sudo chmod +x lernmaas/helper/*
+chmod +x lernmaas/helper/*
 sudo cp lernmaas/helper/* /usr/local/bin/
-sudo chown -R ubuntu:ubuntu /home/ubuntu/lernmaas
+
+# MAAS CLI Login durchfuehren 
+cat <<%EOF% >>$HOME/.bashrc
+export PROFILE=ubuntu
+%EOF%
+
+export PROFILE=ubuntu
+sudo maas apikey --username=$PROFILE | head -1 >/tmp/$$
+maas login $PROFILE http://localhost:5240/MAAS/api/2.0 - < /tmp/$$
+rm /tmp/$$
+
+# MAAS DNS forwarder setzen
+export MY_NAMESERVER="208.67.222.222 208.67.220.22"
+maas $PROFILE maas set-config name=upstream_dns value="$MY_NAMESERVER"
+
+# Subnets aendern
+export SUBNET_CIDR="192.168.122.0/24"
+maas $PROFILE subnet update $SUBNET_CIDR gateway_ip="192.168.122.1"
+maas $PROFILE subnet update $SUBNET_CIDR dns_servers="$MY_NAMESERVER"
+
+# Enable DHCP
+maas $PROFILE ipranges create type=dynamic start_ip="192.168.122.191" end_ip="192.168.122.254" 
+maas $PROFILE vlan update "fabric-1" "untagged" dhcp_on=True primary_rack=$(hostname)
+
+# localhost als lxd (KVM) Host hinzufuegen
+maas  $PROFILE pods create -k type=lxd power_address=localhost password=password project=default
+
+# AZ (VPN) einrichten
+if  [ -d $HOME/data/config/az ]
+then
+    for net in $HOME/data/config/az/*.base64
+    do
+        zone=$(basename $net .base64)
+        maas $PROFILE zones create name=$(echo ${zone} | tr '.' '-') description="$(base64 ${net})"
+    done
+fi  
+
