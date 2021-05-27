@@ -117,7 +117,7 @@ then
     for net in $HOME/config/az/*.base64
     do
         zone=$(basename $net .base64)
-        maas $PROFILE zones create name=$(echo ${zone} | tr '.' '-') description="$(base64 ${net})"
+        maas $PROFILE zones create name=$(echo ${zone} | tr '.' '-') description="$(cat ${net})"
     done
 fi  
 
