@@ -19,6 +19,4 @@ late_commands:
   50_rep: ["curtin", "in-target", "--", "sh", "-c", "/bin/echo {{node.pool.description}} >>/opt/lernmaas/repositories"]
   55_vwg: ["curtin", "in-target", "--", "sh", "-c", "/bin/echo {{node.zone.description}} >/opt/lernmaas/wireguard"]
   60_tag: ["curtin", "in-target", "--", "sh", "-c", "/bin/echo {{node.tag_names()}} >/opt/lernmaas/tags"]
-{{if 'wireguard' in (node.tag_names())}}
   70_wig: ["curtin", "in-target", "--", "sh", "-c", "cd /opt/lernmaas && wget https://raw.githubusercontent.com/mc-b/lernmaas/master/services/wireguard.sh && bash -x ./wireguard.sh" ]
-{{endif}}
