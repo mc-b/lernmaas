@@ -17,7 +17,7 @@ ENDPOINT=$1:${PORT}
 
 WG0="wg${NET}.conf"
 TAR="wg${NET}.tgz"
-CLIENTS="wg${NET}-Clients.tgz"
+CLIENTS="wg${NET}-clients.zip"
 ZONE="192-168-${NET}-0"
 counter=2
 
@@ -111,7 +111,7 @@ then
 fi
 
 tar czf ${TAR} [0-4]?.conf 
-tar czf ${CLIENTS} [5-9]?.conf 
+zip -4 -y -r -q ${CLIENTS} [5-9]?.conf
 rm ??.conf
 
 ### AZ mit Konfigurationsdateien abfuellen
