@@ -126,7 +126,8 @@ then
         maas $PROFILE zones create name=$(echo ${zone} | tr '.' '-') description="$(cat ${net})"
     done
 
-else  [ -d $HOME/config/az ]
+elif [ -d $HOME/config/az ]
+then
 
     for net in $HOME/config/az/*.base64
     do
