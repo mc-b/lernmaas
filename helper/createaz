@@ -86,7 +86,12 @@ PrivateKey = ${HOST_KEY}
 [Peer]
 PublicKey = ${SERVER_PUB}
 Endpoint = ${ALIAS}
+
 AllowedIPs = 192.168.${NET}.0/24
+
+# This is for if you're behind a NAT and
+# want the connection to be kept alive.
+# PersistentKeepalive = 25
 %EOF%
 
     cat <<%EOF% >>${WG0}
@@ -95,9 +100,6 @@ AllowedIPs = 192.168.${NET}.0/24
 [Peer]
 PublicKey = ${HOST_PUB}
 AllowedIPs = 192.168.${NET}.${counter}
-# This is for if you're behind a NAT and
-# want the connection to be kept alive.
-# PersistentKeepalive = 25
 %EOF%
     counter=$((${counter} + 1))
 done
@@ -138,6 +140,7 @@ cat <<%EOF%
     base64 ${TAR} >/data/config/${ZONE}.base64
 
     sudo cp ${WG0} /etc/wireguard/
+    sudo chmod 600 /etc/wireguard/${WG0}
     sudo systemctl enable wg-quick@wg${NET}.service
     sudo systemctl stop wg-quick@wg${NET}.service
     sudo systemctl start wg-quick@wg${NET}.service
