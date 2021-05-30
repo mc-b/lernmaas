@@ -1,7 +1,9 @@
 #!/bin/bash
 #
-#   Erstellt wg0.conf und die Keys fuer WireGuard Server und Clients
+#   Erstellt wg0.conf und die Keys fuer WireGuard Server und Clients und aktivert diese!
 #
+#    2 - 49: interne VMs mit endpoint
+#   50 - 99: Clients (extern) mit alias
 
 [ $# -lt 2 ] && { echo createaz endpoint subnet alias; exit 1; }
 
@@ -11,12 +13,11 @@ PORT=$((${NET} + 51820))
 ENDPOINT=$1:${PORT}
 
 # Alias fuer Template
-[ $# -eq 3 ] && { export ALIAS=$3; } || { export ALIAS=$1; }
+[ $# -eq 3 ] && { ALIAS=$3:${PORT}; } || { ALIAS=${ENDPOINT}; }
 
 WG0="wg${NET}.conf"
 TAR="wg${NET}.tgz"
-TEMPLATE="wg${NET}-template.conf"
-CSV="wg${NET}.csv"
+CLIENTS="wg${NET}-Clients.tgz"
 ZONE="192-168-${NET}-0"
 counter=2
 
@@ -33,27 +34,10 @@ ListenPort = ${PORT}
 PrivateKey = ${SERVER_KEY}
 %EOF%
 
-cat <<%EOF% >${TEMPLATE}
-[Interface]
-Address = <Replace IP>/24
-PrivateKey = <Replace Key>
+###################
+# interne VMs
 
-[Peer]
-PublicKey = ${SERVER_PUB}
-Endpoint = ${ALIAS}
-
-AllowedIPs = 192.168.${NET}.0/24
-
-# This is for if you're behind a NAT and
-# want the connection to be kept alive.
-# PersistentKeepalive = 25
-%EOF%
-
-
-# CSV Datei
-echo "No,IP-Adresse,Key" >${CSV}
-
-for no in {2..99}
+for no in {2..49}
 do
     echo -n "."
     HOST_KEY=$(wg genkey)
@@ -82,9 +66,39 @@ PersistentKeepalive = 25
 PublicKey = ${HOST_PUB}
 AllowedIPs = 192.168.${NET}.${counter}
 %EOF%
+    counter=$((${counter} + 1))
+done
 
-    echo "${no},192.168.${NET}.${counter},${HOST_KEY}" >>${CSV}    
- 
+############
+# Clients (Extern)
+
+for no in {50..99}
+do
+    echo -n "."
+    HOST_KEY=$(wg genkey)
+    HOST_PUB=$(echo ${HOST_KEY} | wg pubkey)
+    
+cat <<%EOF% >$(printf "%02d" ${no}).conf
+[Interface]
+Address = 192.168.${NET}.${counter}/24
+PrivateKey = ${HOST_KEY}
+
+[Peer]
+PublicKey = ${SERVER_PUB}
+Endpoint = ${ALIAS}
+AllowedIPs = 192.168.${NET}.0/24
+%EOF%
+
+    cat <<%EOF% >>${WG0}
+
+### Client ${host} (${HOST_KEY})
+[Peer]
+PublicKey = ${HOST_PUB}
+AllowedIPs = 192.168.${NET}.${counter}
+# This is for if you're behind a NAT and
+# want the connection to be kept alive.
+# PersistentKeepalive = 25
+%EOF%
     counter=$((${counter} + 1))
 done
 
@@ -94,7 +108,9 @@ then
     envsubst <wg-global.conf >>${WG0}
 fi
 
-tar czf ${TAR} ??.conf && rm ??.conf
+tar czf ${TAR} [0-4]?.conf 
+tar czf ${CLIENTS} [5-9]?.conf 
+rm ??.conf
 
 ### AZ mit Konfigurationsdateien abfuellen
 
@@ -113,14 +129,16 @@ cat <<%EOF%
     ---------------------------
     
     ${WG0}          - WireGuard Konfigurationsdatei fuer Gateway
-    ${TEMPLATE}     - WireGuard Template fuer Clients. Vervollstandigen mit IP-Adresse und Private-Key. Ablegen zu den Unterlagen
-    ${CSV}          - Liste der Clients. Zum Bearbeiten mit Excel und Eintragen der Lernenden
-    ${TAR}          - Konfigurationsdateien fuer die VMs und Clients.
-    
-    
-    WireGuard Interface auf dem Gateway aktiveren:
-    systemctl enable wg-quick@wg${NET}.service
-    systemctl start wg-quick@wg${NET}.service
+    ${TAR}          - Konfigurationsdateien fuer die VMs (2 - 49)
+    ${CLIENTS}      - Konfigurationsdateien fuer die Clients (50 - 99)
 
 %EOF%
+
+    mkdir -p /data/config/az
+    base64 ${TAR} >/data/config/${ZONE}.base64
+
+    sudo cp ${WG0} /etc/wireguard/
+    sudo systemctl enable wg-quick@wg${NET}.service
+    sudo systemctl stop wg-quick@wg${NET}.service
+    sudo systemctl start wg-quick@wg${NET}.service
 
