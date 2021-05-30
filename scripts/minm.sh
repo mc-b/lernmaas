@@ -117,12 +117,22 @@ maas $PROFILE vlan update "fabric-2" "untagged" dhcp_on=True primary_rack=$(host
 maas  $PROFILE pods create -k type=lxd power_address=localhost password=password project=default
 
 # AZ (VPN) einrichten
-if  [ -d $HOME/config/az ]
+if [ -d $HOME/config/$(hostname)
 then
+
+    for net in $HOME/config/$(hostname)/*.base64
+    do
+        zone=$(basename $net .base64)
+        maas $PROFILE zones create name=$(echo ${zone} | tr '.' '-') description="$(cat ${net})"
+    done
+
+else  [ -d $HOME/config/az ]
+
     for net in $HOME/config/az/*.base64
     do
         zone=$(basename $net .base64)
         maas $PROFILE zones create name=$(echo ${zone} | tr '.' '-') description="$(cat ${net})"
     done
+    
 fi  
 
