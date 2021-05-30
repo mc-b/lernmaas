@@ -137,7 +137,7 @@ cat <<%EOF%
 %EOF%
 
     mkdir -p /data/config/az
-    base64 ${TAR} >/data/config/${ZONE}.base64
+    base64 ${TAR} >/data/config/az/${ZONE}.base64
 
     sudo cp ${WG0} /etc/wireguard/
     sudo chmod 600 /etc/wireguard/${WG0}
