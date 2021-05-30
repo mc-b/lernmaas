@@ -3,12 +3,15 @@
 #   Erstellt wg0.conf und die Keys fuer WireGuard Server und Clients
 #
 
-[ $# -lt 2 ] && { echo updatezaz endpoint subnet; exit 1; }
+[ $# -lt 2 ] && { echo createaz endpoint subnet alias; exit 1; }
 
 ### Argumente
 export NET=$2
 PORT=$((${NET} + 51820))
 ENDPOINT=$1:${PORT}
+
+# Alias fuer Template
+[ $# -eq 3 ] && { export ALIAS=$3; } || { export ALIAS=$1; }
 
 WG0="wg${NET}.conf"
 TAR="wg${NET}.tgz"
@@ -37,7 +40,7 @@ PrivateKey = <Replace Key>
 
 [Peer]
 PublicKey = ${SERVER_PUB}
-Endpoint = ${ENDPOINT}
+Endpoint = ${ALIAS}
 
 AllowedIPs = 192.168.${NET}.0/24
 
@@ -100,6 +103,8 @@ Z=$(maas $PROFILE zones read | jq ".[] | select (.name==\"${ZONE}\") | .id")
 if [ "${Z}" != "" ]
 then
     maas $PROFILE zone update ${ZONE} description="$(base64 ${TAR})"
+else
+    maas $PROFILE zones create name=${ZONE} description="$(base64 ${TAR})"  
 fi
 
 cat <<%EOF% 
