@@ -98,6 +98,11 @@ rm /tmp/$$
 export MY_NAMESERVER="208.67.222.222 208.67.220.22"
 maas $PROFILE maas set-config name=upstream_dns value="$MY_NAMESERVER"
 
+# Netzwerk Discovery ausschalten, mag AWS nicht
+maas $PROFILE maas set-config name=network_discovery value=disabled
+maas $PROFILE maas set-config name=active_discovery_interval value=0
+maas $PROFILE maas set-config name=enable_analytics value=false
+
 # Subnets aendern
 export SUBNET_CIDR="192.168.122.0/24"
 maas $PROFILE subnet update $SUBNET_CIDR gateway_ip="192.168.122.1"
