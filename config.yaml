@@ -496,9 +496,9 @@ modtec:
 virtar:
   vm:  
     storage: 72
-    memory:  10240
-    cores: 4
-    count: 1
+    memory:  14336
+    cores: 8
+    count: 6
   services:
     nfs: true
     docker: false
