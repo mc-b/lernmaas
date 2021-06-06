@@ -11,10 +11,6 @@ Um die MAAS VMs anzulegen, ist in das MAAS einzuloggen und folgende Befehle ausz
     git pull
     createvms config.yaml virtar 5 
     
-Nachdem die VMs den Status `Ready` erreicht haben, ist VM in VM zu aktivieren:
-
-    enablevminvm virtar
-    
 Anschliessend AZ (mit WireGuard Keys) zuordnen und VMs deployen.
 
 ***
