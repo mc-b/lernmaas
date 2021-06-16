@@ -58,8 +58,8 @@ SERVER_IP=$(sudo cat /var/lib/cloud/instance/datasource | cut -d: -f3 | cut -d/ 
 MASTER=$(hostname | cut -d- -f 3,4)
 
 ###
-# Master vorhanden? - Join mit Master
-if  [ "${SERVER_IP}" != "" ] && [ "${MASTER}" != "" ]
+# Master vorhanden? - Join mit Master (nur wenn microk8s in Namen!)
+if  [ "${SERVER_IP}" != "" ] && [ "${MASTER}" != "" ] && [[ "${MASTER}" == *"microk8s"* ]]
 then
 
     # Master statt Worker Node mounten
