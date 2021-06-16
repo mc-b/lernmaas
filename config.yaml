@@ -332,6 +332,7 @@ w906:
   
 ######### TBZ HF siehe https://github.com/tbz-hf ######### 
 
+# IT-Grundlagen Hardwaretechnik
 ig1:
   vm:  
     storage: 12
@@ -349,6 +350,7 @@ ig1:
   scripts: 
   repositories: https://github.com/tbz-hf/IG1
   
+# IT-Grundlagen Software und Projekte  
 ig2:
   vm:  
     storage: 12
@@ -365,6 +367,24 @@ ig2:
     firewall: false
   scripts: 
   repositories: https://github.com/tbz-hf/IG2
+  
+# Cloud Native Technologien 
+cnt:
+  vm:  
+    storage: 64
+    memory:  10240
+    cores: 4
+    count: 6
+  services:
+    nfs: true
+    docker: false
+    k8s: 
+    wireguard: use
+    ssh: generate
+    samba: false
+    firewall: false
+  scripts: minm.sh
+  repositories:   
   
 ######### Digicomp Kurse siehe https://github.com/mc-b ######### 
 
