@@ -11,10 +11,6 @@ Um die MAAS VMs anzulegen, ist in das MAAS einzuloggen und folgende Befehle ausz
     git pull
     createvms config.yaml virtar 5 
     
-Nachdem die VMs den Status `Ready` erreicht haben, ist VM in VM zu aktivieren:
-
-    enablevminvm virtar
-    
 Anschliessend AZ (mit WireGuard Keys) zuordnen und VMs deployen.
 
 ***
@@ -38,7 +34,7 @@ Als SSH-Key sollte der generierte Key unter `~/.ssh/id_rsa.pub` angegeben werden
 
 Die Installation richtet ein Host-only Netzwerk `192.168.122.0/24` ein.
 
-Für dieses Netzwerk ist der Gateway, die DNS Server und DHCP (mit Standardwerten) einzurichten:
+Für dieses Netzwerk wird automatisch Gateway, die DNS Server und DHCP (mit Standardwerten) eingerichtet.
 
 ![](images/config-network.png)
 
@@ -48,7 +44,7 @@ Um auf die VMs im MAAS in MAAS zuzugreifen zu können, sollte ein VPN (WireGuard
 
 Bei der Installation wurde [Linux Containern (lxd)](https://linuxcontainers.org/lxd/introduction/) mit Unterstützung von VMs installiert. D.h. mittels dem CLI [lxc](https://linuxcontainers.org/lxc/introduction/) können Container oder VMs erzeugt werden.
 
-Damit MAAS via [Linux Containern (lxd)](https://linuxcontainers.org/lxd/introduction/) VMs erzeugen kann, ist die eigene VM als KMV Host einzutragen (LXD password: password)
+Damit MAAS via [Linux Containern (lxd)](https://linuxcontainers.org/lxd/introduction/) VMs erzeugen kann, wird die eigene VM als KMV Host eingetragen (LXD password: password)
 
 ![](images/config-kvm-lxd.png)
 
@@ -58,12 +54,16 @@ Damit MAAS via [Linux Containern (lxd)](https://linuxcontainers.org/lxd/introduc
 
 Ab Version 2.9 steht [Cloud-init](https://cloudinit.readthedocs.io/en/latest/) zur Verfügung. 
 
-Soll zusätzlich die [lernMAAS](https://github.com/mc-b/lernmaas) Funktionalität verwendet werden, ist das [Pressed Script](https://maas.io/docs/snap/3.0/ui/custom-machine-setup) in der MAAS VM zu installieren:
+Die [lernMAAS](https://github.com/mc-b/lernmaas) Funktionalität wird automatisch mit installiert.
+
+Dabei wir lernmmas geclont und das [Pressed Script](https://maas.io/docs/snap/3.0/ui/custom-machine-setup) eingerichtet.
 
     git clone https://github.com/mc-b/lernmaas.git
     sudo cp lernmaas/preseeds/* /etc/maas/preseeds/
 
-Weitere Möglichkeiten wäre die Verwendung des [MAAS CLIs](https://maas.io/docs/snap/2.9/cli/maas-cli) oder das Einrichten einer gemeinsamen Datenablage. Die Details sind in der [lernMAAS Installation](https://github.com/mc-b/lernmaas/blob/master/doc/MAAS/Install.md) zu finden.
+Weitere Funktionen, wie das [MAAS CLIs](https://maas.io/docs/snap/2.9/cli/maas-cli) und eine gemeinsamen Datenablage wird ebenfalls automatisch eingerichtet.
+
+Die Details sind in der [lernMAAS Installation](https://github.com/mc-b/lernmaas/blob/master/doc/MAAS/Install.md) zu finden.
 
 ***
 ### Nützliche lxc Befehle
