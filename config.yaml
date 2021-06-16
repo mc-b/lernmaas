@@ -335,7 +335,7 @@ w906:
 ig1:
   vm:  
     storage: 12
-    memory:  4096
+    memory:  2048
     cores: 2
     count: 20
   services:
@@ -344,7 +344,7 @@ ig1:
     k8s: microk8s
     wireguard: use
     ssh: generate
-    samba: true
+    samba: false
     firewall: false
   scripts: 
   repositories: https://github.com/tbz-hf/IG1
