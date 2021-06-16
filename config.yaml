@@ -329,7 +329,26 @@ w906:
     firewall: false
   scripts: 
   repositories: https://github.com/tbz-it/W906  
-    
+  
+######### TBZ HF siehe https://github.com/tbz-hf ######### 
+
+ig1:
+  vm:  
+    storage: 12
+    memory:  4096
+    cores: 2
+    count: 20
+  services:
+    nfs: true
+    docker: false
+    k8s: microk8s
+    wireguard: use
+    ssh: generate
+    samba: true
+    firewall: false
+  scripts: 
+  repositories: https://github.com/tbz-hf/IG1
+  
 ######### Digicomp Kurse siehe https://github.com/mc-b ######### 
 
 # Docker und Kubernetes – Uebersicht und Einsatz - https://github.com/mc-b/duk
