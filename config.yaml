@@ -349,6 +349,23 @@ ig1:
   scripts: 
   repositories: https://github.com/tbz-hf/IG1
   
+ig2:
+  vm:  
+    storage: 12
+    memory:  2048
+    cores: 2
+    count: 20
+  services:
+    nfs: true
+    docker: false
+    k8s: 
+    wireguard: use
+    ssh: generate
+    samba: false
+    firewall: false
+  scripts: 
+  repositories: https://github.com/tbz-hf/IG2
+  
 ######### Digicomp Kurse siehe https://github.com/mc-b ######### 
 
 # Docker und Kubernetes – Uebersicht und Einsatz - https://github.com/mc-b/duk
