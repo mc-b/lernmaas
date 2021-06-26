@@ -2,11 +2,6 @@
 #   
 #   Installiert die Microk8s Umgebung
 #
-#   Wenn calico nicht startet, wegen hub.docker.com:
-#   microk8s kubectl delete -f /var/snap/microk8s/current/args/cni-network/cni.yaml
-#   sed -i 's|image: calico|image: quay.io/calico|g' /var/snap/microk8s/current/args/cni-network/cni.yaml
-#   microk8s kubectl apply -f /var/snap/microk8s/current/args/cni-network/cni.yaml
-#
 
 # Basic Installation
 
@@ -42,6 +37,10 @@ sudo microk8s ctr image list
 ###
 # Add-ons  
 sudo microk8s enable dns 
+
+# hub.docker.com entfernen fuer Overlay Network calico
+sudo sed -i -e 's|image: calico|image: quay.io/calico|g' /var/snap/microk8s/current/args/cni-network/cni.yaml
+sudo microk8s kubectl apply -f /var/snap/microk8s/current/args/cni-network/cni.yaml
 
 ###
 # Zugriff fuer User ubuntu einrichten - funktioniert erst wenn microk8s laeuft
