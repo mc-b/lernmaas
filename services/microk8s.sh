@@ -2,6 +2,11 @@
 #   
 #   Installiert die Microk8s Umgebung
 #
+#   Wenn calico nicht startet, wegen hub.docker.com:
+#   microk8s kubectl delete -f /var/snap/microk8s/current/args/cni-network/cni.yaml
+#   sed -i 's|image: calico|image: quay.io/calico|g' /var/snap/microk8s/current/args/cni-network/cni.yaml
+#   microk8s kubectl apply -f /var/snap/microk8s/current/args/cni-network/cni.yaml
+#
 
 # Basic Installation
 
