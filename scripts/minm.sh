@@ -12,8 +12,8 @@ sudo maas createadmin --username ubuntu --password password --email marcel.berne
 sudo snap refresh
 
 # Password ist 'password'
-echo "password" >.ssh/passwd
-sudo chpasswd <<<ubuntu:$(cat .ssh/passwd)
+echo "password" >/home/ubuntu/.ssh/passwd
+sudo chpasswd <<<ubuntu:$(cat /home/ubuntu/.ssh/passwd)
 
 # LXD initialisieren ohne DNS, DHCP, Host: localhost, PW: password
 cat <<%EOF% | sudo lxd init --preseed
