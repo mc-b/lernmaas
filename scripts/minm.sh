@@ -11,6 +11,10 @@ sudo apt install -y maas jq markdown nmap traceroute git curl wget zfsutils-linu
 sudo maas createadmin --username ubuntu --password password --email marcel.bernet@tbz.ch --ssh-import gh:mc-b
 sudo snap refresh
 
+# Password ist 'password'
+echo "password" >.ssh/passwd
+sudo chpasswd <<<ubuntu:$(cat .ssh/passwd)
+
 # LXD initialisieren ohne DNS, DHCP, Host: localhost, PW: password
 cat <<%EOF% | sudo lxd init --preseed
 config:
