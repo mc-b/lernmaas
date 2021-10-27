@@ -147,8 +147,8 @@ m145:
     ssh: generate
     samba: false
     firewall: false
-  scripts: gnome-desktop.sh,gns3.sh
-  repositories:   
+  scripts: gnome-desktop.sh
+  repositories: https://github.com/tbz-it/M145
   
 # Modul 152: Multimedia-Inhalte in Webauftritt integrieren  
 m152:
