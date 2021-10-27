@@ -132,6 +132,24 @@ m141:
   scripts: 
   repositories: https://github.com/tbz-it/M141
   
+# Modul 145: Netzwerk betreiben und erweitern (nach Erstellung 'enablevminvm m145' laufen lassen). Verbinden mittels Remote Desktop oder VNC
+m145:
+  vm:  
+    storage: 24
+    memory:  10240
+    cores: 4
+    count: 20
+  services:
+    nfs: true
+    docker: false
+    k8s: 
+    wireguard: use
+    ssh: generate
+    samba: false
+    firewall: false
+  scripts: gnome-desktop.sh,gns3.sh
+  repositories:   
+  
 # Modul 152: Multimedia-Inhalte in Webauftritt integrieren  
 m152:
   vm:  
