@@ -117,6 +117,9 @@ maas $PROFILE ipranges create type=dynamic start_ip="192.168.122.191" end_ip="19
 maas $PROFILE vlan update "fabric-1" "untagged" dhcp_on=True primary_rack=$(hostname)
 maas $PROFILE vlan update "fabric-2" "untagged" dhcp_on=True primary_rack=$(hostname)
 
+# Allgemeiner SSH Key einfuegen
+maas $PROFILE sshkeys create "key=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDPvLEdsh/Vpu22zN3M/lmLE8zEO1alk/aWzIbZVwXJYa1RbNHocyZlvE8XDcv1WqeuVqoQ2DPflkQxdrbp2G08AWYgPNiQrMDkZBHG4GlU2Jhe9kCRiWVx/oVDeK8v3+w2nhFt8Jk/eeQ1+E19JlFak1iYveCpHqa68W3NIWj5b10I9VVPmMJVJ4KbpEpuWNuKH0p0YsUKfTQdvrn42fz5jYS1aV7qCCOOzB3WC833QRy04iHZObxDWIi/IFeIp1Gw2FkzPhoZyx4Fk9bsXfm301IePp9cwzArI2LdcOhwEZ3RW2F7ie2WJlVy5tzJjMGCaE1tZTjiCahLNEeTiTQp public-key@cloud.tbz.ch"
+
 # localhost als lxd (KVM) Host hinzufuegen
 maas  $PROFILE pods create -k type=lxd power_address=localhost password=password project=default
 
