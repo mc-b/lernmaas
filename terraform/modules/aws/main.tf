@@ -59,5 +59,9 @@ resource "aws_instance" "vm" {
   tags = {
     Name = var.module
   }
+  
+  root_block_device {
+    volume_size = 32
+  }
 }
 
