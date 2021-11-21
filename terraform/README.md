@@ -24,3 +24,32 @@ Für die nachfolgenden Beispiele sind die CLI für Azure, AWS und das Terraform 
 * [AWS CLI](https://aws.amazon.com/de/cli/)
 * [Terraform Installation](https://learn.hashicorp.com/tutorials/terraform/install-cli?in=terraform/aws-get-started)
 
+Um eine VM in einer der Cloud Umgebungen (AWS, Azure, MAAS) zu erstellen, genügt es dieses Repository zu clonen, Terraform zu initialiseren und sich dem dem jeweilige CLI in der Cloud einzuloggen.
+
+    git clone https://github.com/mc-b/lernmaas
+    cd lernmaas/terraform
+    terraform init
+    
+**Optional**: Anmelden in der Azure Cloud
+
+    az login
+    
+**Optional**: Anmelden in der AWS Cloud
+
+    aws configure
+    AWS Access Key ID [****************....]:
+    AWS Secret Access Key [****************....]:
+    Default region name [us-west-2]: us-east-1
+    Default output format [None]:    
+    
+VM für ein definiertes Modul siehe [config.yaml](../config.yaml), anlegen. `aws` = AWS, `azure` = Azure, `maas` = MAAS.io.
+   
+    terraform apply -auto-approve <cloud>=true -var module=<modul>
+    
+z.B. in der Azure Cloud, die Umgebung für das Modul M122 anlegen:     
+
+    terraform apply -auto-approve -var azure=true -var module=m122-11
+
+Wird die VM nicht mehr benötigt, kann sie wieder gelöscht werden:
+
+    terraform destroy -auto-approve -var azure=true -var module=m122-11
