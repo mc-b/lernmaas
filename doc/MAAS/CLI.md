@@ -24,7 +24,11 @@ Anschliessend können wir auf dem entsprechenden Pod (KVM Host) unsere VMs erste
 Von Vorteil ist es, die VMs in unterschiedliche Pools zu unterteilen. Dazu brauchen wir wieder die Ids:
 
     maas ${PROFILE} resource-pools read | jq '.[] | .id, .name, .description'    
+    
+Für das deploymen der VM mit einem Cloud-init Script braucht man die System-ID der VM und ein Cloud-init Script im Base64 Format.
 
+    SYSTEM_ID=...
+    maas ${PROFILE} machine deploy ${SYSTEM_ID} user_data=$(base64 cloud-init.cfg)
 
 Ein vollständiges Beispiel mit 6 virtuellen Maschinen findet man im Kurs [virtar](https://github.com/mc-b/virtar).
 
@@ -61,7 +65,7 @@ Die dort beschriebene Umgebung kann wie folgt erstellt werden:
     maas ${PROFILE} pod compose ${KVM} memory=2048 cores=1 storage=8 pool=${POOL} zone=${ZONE} hostname=XYZ-14-Rechnungsstellung
     
     POOL=$(maas $PROFILE resource-pools read | jq ".[] | select (.name==\"Versand\") | .id")
-    maas ${PROFILE} pod compose ${KVM} memory=4096 cores=2 storage=8 pool=${POOL} zone=${ZONE} hostname=XYZ-15-Versand
+    maas ${PROFILE} pod compose ${KVM} memory=4096 cores=2 storage=20 pool=${POOL} zone=${ZONE} hostname=XYZ-15-Versand
 
         
 ### Links
