@@ -95,7 +95,7 @@ resource "azurerm_linux_virtual_machine" "lernmaas" {
   name                              = var.module
   resource_group_name               = azurerm_resource_group.lernmaas[0].name
   location                          = azurerm_resource_group.lernmaas[0].location
-  size                              = "Standard_B1ls"
+  size                              = "Standard_B2s"
   admin_username                    = "ubuntu"
   admin_password                    = "P@ssw0rd1234!"
   disable_password_authentication   = false  
