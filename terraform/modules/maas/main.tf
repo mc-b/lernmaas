@@ -10,8 +10,8 @@ terraform {
 provider "maas" {
     # Configuration options
     api_version = "2.0"
-    api_key = "4vqP2YgYppyWMhye9t:WBgJkHwMWV6M2ZNaeR:mWhEhyZNn6vM225H8ch7rMtjbWAT2gLU"
-    api_url = "http://10.8.38.8:5240/MAAS"
+    api_key = "nC83nVyLDWKF8zxvPq:VnYukvR9Yh3w9jRDUe:FdU7sFWJu8DHjAeRumRNmZfasNBDqgXa"
+    api_url = "http://10.6.38.8:5240/MAAS"
 }
 
 resource "maas_instance" "vm" {
