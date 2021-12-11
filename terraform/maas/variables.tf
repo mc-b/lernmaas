@@ -15,18 +15,8 @@ variable "ports" {
   default = [22, 80]
 }
 
-variable "azure" {
-  type    = bool
-  default = false
-}
-
-variable "aws" {
-  type    = bool
-  default = false
-}
-
 variable "maas" {
   type    = bool
-  default = false
+  default = true
 }
 

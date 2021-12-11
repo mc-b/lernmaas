@@ -10,7 +10,7 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>terraform/credentials</name>
+			<name>terraform/aws/credentials</name>
 			<type>1</type>
 			<location>C:/Users/mbern/.aws/credentials</location>
 		</link>

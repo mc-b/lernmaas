@@ -9,7 +9,7 @@ variable "location" {
 # Scripts
 
 data "template_file" "lernmaas" {
-  template = templatefile("${path.module}/../scripts/lernmaas.tpl", { module = var.module, public_key = var.public_key } )
+  template = templatefile("${path.module}/../../../scripts/lernmaas.tpl", { module = var.module, public_key = var.public_key } )
 }
 
 # Public Variablen

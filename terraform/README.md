@@ -27,29 +27,54 @@ Für die nachfolgenden Beispiele sind die CLI für Azure, AWS und das Terraform 
 Um eine VM in einer der Cloud Umgebungen (AWS, Azure, MAAS) zu erstellen, genügt es dieses Repository zu clonen, Terraform zu initialiseren und sich dem dem jeweilige CLI in der Cloud einzuloggen.
 
     git clone https://github.com/mc-b/lernmaas
-    cd lernmaas/terraform
+    # In der Cloud Anmelden
+    cd lernmaas/terraform/<Cloud>
     terraform init
+    terraform apply -var module=<Module>
     
-**Optional**: Anmelden in der Azure Cloud
-
-    az login
-    
-**Optional**: Anmelden in der AWS Cloud
-
-    aws configure
-    AWS Access Key ID [****************....]:
-    AWS Secret Access Key [****************....]:
-    Default region name [us-west-2]: us-east-1
-    Default output format [None]:    
-    
-VM für ein definiertes Modul siehe [config.yaml](../config.yaml), anlegen. `aws` = AWS, `azure` = Azure, `maas` = MAAS.io.
-   
-    terraform apply -auto-approve <cloud>=true -var module=<modul>
-    
-z.B. in der Azure Cloud, die Umgebung für das Modul M122 anlegen:     
-
-    terraform apply -auto-approve -var azure=true -var module=m122-11
-
 Wird die VM nicht mehr benötigt, kann sie wieder gelöscht werden:
 
-    terraform destroy -auto-approve -var azure=true -var module=m122-11
+    terraform destroy -var module=<Module>    
+    
+Für eine Liste der Module siehe [config.yaml](../config.yaml) oder [TBZ IT Module](https://github.com/tbz-it).
+
+### Azure Cloud
+
+In der Azure Cloud eine VM für das Modul M122 erstellen: 
+
+    git clone https://github.com/mc-b/lernmaas
+    az login
+    cd lernmaas/terraform/azure
+    terraform init
+    terraform apply -var module=m122
+    
+### AWS Cloud
+
+In der AWS Cloud eine VM für das Modul M122 erstellen:
+
+    git clone https://github.com/mc-b/lernmaas
+    
+    aws configure
+        AWS Access Key ID [****************....]:
+        AWS Secret Access Key [****************....]:
+        Default region name [us-west-2]: us-east-1
+        Default output format [None]:    
+    
+    cd lernmaas/terraform/aws
+    terraform init
+    terraform apply -var module=m122
+
+### MAAS.io
+
+    git clone https://github.com/mc-b/lernmaas
+
+Anpassen der Zugriffsinformationen auf die MAAS Umgebung in `maas/modules/maas/main.tf`, Variablen `api_key` und `api_url`.
+
+    cd lernmaas/terraform/maas
+    terraform init
+    terraform apply -var module=m122-11
+    
+Die Nummer hinter dem Modulnamen, ergibt den Hostanteil für das VPN, siehe [Einbinden der Clients und Portweiterleitung](../doc/MAAS/GatewayClient.md).
+
+**Hinweis**: der Terraform Provider von MAAS unterstützt leider, einige Parameter wie RAM Grösse, AZ nicht und sollte nur verwendet werden, wenn man sich mit MAAS.io auskennt.
+   
