@@ -66,8 +66,8 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_instance" "vm" {
   count                         = var.enabled ? 1 : 0
-  ami                           = var.image
-  # ami                           = data.aws_ami.ubuntu.id  
+  # ami                           = var.image
+  ami                           = data.aws_ami.ubuntu.id  
   instance_type                 = "t2.micro"
   associate_public_ip_address   = true
   user_data                     = data.template_file.lernmaas.rendered
