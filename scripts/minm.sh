@@ -5,7 +5,7 @@
 #   MAAS in MAAS mit LXD als KVM Host
 
 # MAAS installieren, User: ubuntu, PW: password
-sudo apt-add-repository ppa:maas/3.0
+sudo apt-add-repository ppa:maas/3.1
 sudo apt update
 sudo apt install -y maas jq markdown nmap traceroute git curl wget zfsutils-linux cloud-image-utils virtinst qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils whois
 sudo maas createadmin --username ubuntu --password password --email marcel.bernet@tbz.ch --ssh-import gh:mc-b
