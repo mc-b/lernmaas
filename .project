@@ -8,11 +8,4 @@
 	</buildSpec>
 	<natures>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>terraform/aws/credentials</name>
-			<type>1</type>
-			<location>C:/Users/mbern/.aws/credentials</location>
-		</link>
-	</linkedResources>
 </projectDescription>
