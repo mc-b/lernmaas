@@ -186,6 +186,24 @@ m153:
   scripts: 
   repositories: https://github.com/tbz-it/M153
 
+# Modul 158: Software-Migration planen und durchführen
+m158:
+  vm:  
+    storage: 8
+    memory:  2048
+    cores: 2
+    count: 24
+  services:
+    nfs: true
+    docker: false
+    k8s: 
+    wireguard: use
+    ssh: generate
+    samba: true
+    firewall: false
+  scripts: 
+  repositories: https://github.com/tbz-it/M158
+   
 # Modul: 182 Systemsicherheit implementieren
 m182:
   vm:  
