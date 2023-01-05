@@ -331,7 +331,7 @@ m300:
   repositories: 
   
 # Modul 169: Services mit Containern bereitstellen
-m347:
+m169:
   vm:  
     storage: 24
     memory:  3584
