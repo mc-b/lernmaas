@@ -339,7 +339,7 @@ m169:
     count: 1
   services:
     nfs: true
-    docker: false
+    docker: true
     k8s: microk8s
     wireguard: use
     ssh: generate
