@@ -7,6 +7,7 @@
 
 sudo snap install microk8s --classic
 sudo snap install kubectl --classic
+sudo snap install helm --classic
 
 ####
 # Abhandlung Container Cache
