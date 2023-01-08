@@ -346,7 +346,7 @@ m169:
     samba: false
     firewall: false
   scripts: dind.sh
-  repositories:  
+  repositories: https://github.com/tbz-it/M169
   
 # Modul 347: Dienst mit Container anwenden
 m347:
@@ -364,7 +364,7 @@ m347:
     samba: false
     firewall: false
   scripts: dind.sh
-  repositories:    
+  repositories: https://github.com/tbz-it/M347 
   
 # Modul 426 Software mit agilen Methoden entwickeln (duk/devops Umgebung - gogs, kanboard, jenkins, duk/compiler - make, maven, mbed-cli) 
 m426:
