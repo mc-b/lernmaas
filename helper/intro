@@ -113,7 +113,7 @@ cat <<%EOF% | sudo tee -a /var/www/html/index.html
                         <p><strong>Hinweis</strong>: Windows User verwenden <a href="https://www.bitvise.com/">bitvise</a> und legen den privaten SSH Key im "Client key manager" ab.</p>
                         <p><strong>Shell in a Box (web based terminal emulator)</strong></p>
                         <p>Mittels Shell in a Box kann via Browser auf die VM zugegriffen werden. Die Installation eines Terminal Emulators (wie bitvise) entfällt.</p>
-                        <p>Der URL ist <href="https://${ADDR}:4200">https://${ADDR}:4200</a>.</p>
+                        <p>Der URL ist <a href="https://${ADDR}:4200">https://${ADDR}:4200</a>.</p>
                         <p>User und Password siehe oben.</p>                    
                     </div>
 %EOF%
