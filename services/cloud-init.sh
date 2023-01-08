@@ -37,6 +37,9 @@ done
 
 ################### Services ###################
 
+# Standard Services, werden immer Installiert. 
+sudo apt-get install -y shellinabox jq
+
 # NFS Abhandlung - wenn ohne NFS gearbeitet wird data etc. Verzeichnis anlegen
 if [ "${config_services_nfs}" == "true" ] 
 then

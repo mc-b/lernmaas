@@ -110,7 +110,11 @@ cat <<%EOF% | sudo tee -a /var/www/html/index.html
                         <p>Auf der Server kann mittels <a href="https://wiki.ubuntuusers.de/SSH/">ssh</a> zugegriffen werden.</p>
                         <p>Der private SSH Key ist auf dem Installierten Server unter <a href="/data/.ssh/id_rsa">/data/.ssh/id_rsa</a> zu finden. Downloaden und dann wie folgt auf den Server einloggen:</p>
                         <pre><code>ssh -i id_rsa ubuntu@${ADDR}</code></pre>
-                        <p><strong>Hinweis</strong>: Windows User verwenden <a href="https://www.bitvise.com/">bitvise</a> und legen den privaten SSH Key im "Client key manager" ab.</p>                    
+                        <p><strong>Hinweis</strong>: Windows User verwenden <a href="https://www.bitvise.com/">bitvise</a> und legen den privaten SSH Key im "Client key manager" ab.</p>
+                        <p><strong>Shell in a Box (web based terminal emulator)</strong></p>
+                        <p>Mittels Shell in a Box kann via Browser auf die VM zugegriffen werden. Die Installation eines Terminal Emulators (wie bitvise) entfällt.</p>
+                        <p>Der URL ist http://${ADDR}:4200.</p>
+                        <p>User und Password siehe oben.</p>                    
                     </div>
 %EOF%
 fi                     
