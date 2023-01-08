@@ -345,7 +345,7 @@ m169:
     ssh: generate
     samba: false
     firewall: false
-  scripts: 
+  scripts: dind.sh
   repositories:  
   
 # Modul 347: Dienst mit Container anwenden
@@ -363,7 +363,7 @@ m347:
     ssh: generate
     samba: false
     firewall: false
-  scripts: 
+  scripts: dind.sh
   repositories:    
   
 # Modul 426 Software mit agilen Methoden entwickeln (duk/devops Umgebung - gogs, kanboard, jenkins, duk/compiler - make, maven, mbed-cli) 
