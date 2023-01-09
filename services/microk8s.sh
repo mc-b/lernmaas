@@ -63,6 +63,7 @@ sudo apt-get -qq -y install fuse-overlayfs
 systemctl --user enable podman.socket
 sudo loginctl enable-linger $USER
 sudo systemctl restart podman
+sudo systemctl reload podman
 
 SERVER_IP=$(sudo cat /var/lib/cloud/instance/datasource | cut -d: -f3 | cut -d/ -f3)
 MASTER=$(hostname | cut -d- -f 3,4)
