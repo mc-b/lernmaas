@@ -59,6 +59,10 @@ sudo apt-key add - </tmp/Release.key
 sudo apt-get update -qq
 sudo apt-get -qq -y install podman buildah skopeo  
 sudo apt-get -qq -y install fuse-overlayfs
+# Enable remote access @see https://www.redhat.com/sysadmin/podman-clients-macos-windows
+systemctl --user enable podman.socket
+sudo loginctl enable-linger $USER
+sudo systemctl restart podman
 
 SERVER_IP=$(sudo cat /var/lib/cloud/instance/datasource | cut -d: -f3 | cut -d/ -f3)
 MASTER=$(hostname | cut -d- -f 3,4)
