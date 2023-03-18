@@ -10,6 +10,8 @@ sudo apt-get install -y nfs-common
 sudo mkdir -p /home/ubuntu/data /home/ubuntu/templates /home/ubuntu/config
 sudo chown -R ubuntu:ubuntu /home/ubuntu/data /home/ubuntu/templates /home/ubuntu/config
 sudo chmod 777 /home/ubuntu/data
+# HACK: damit Apache Zugriff hat
+sudo chmod 755 /home/ubuntu
 
 if  [ "${SERVER_IP}" != "" ]
 then
