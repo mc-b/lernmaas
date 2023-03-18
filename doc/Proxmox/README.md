@@ -7,6 +7,10 @@ Nach der [Installation](https://www.proxmox.com/de/proxmox-ve/erste-schritte) vo
 
 Dazu auf der Proxmox Maschine einloggen und mit folgenden Befehlen ein VM Template erzeugen
 
+    export TEMPLATE=12000
+    
+    rm /etc/apt/sources.list.d/pve-enterprise.list
+    apt update -y
     apt update -y && apt install libguestfs-tools -y
     
     mkdir -p /var/lib/vz/cloudimg 
@@ -31,34 +35,38 @@ Dazu auf der Proxmox Maschine einloggen und mit folgenden Befehlen ein VM Templa
      - sudo su - ubuntu -c "cd /opt/lernmaas && bash -x services/cloud-init.sh"  
     EOF
     virt-customize -a /var/lib/vz/cloudimg/jammy-server-lernmaas-amd64.img --copy-in 99_lernmaas.cfg:/etc/cloud/cloud.cfg.d/  
+    [ -f wireguard ] && { virt-customize -a /var/lib/vz/cloudimg/jammy-server-lernmaas-amd64.img --copy-in wireguard:/opt/lernmaas/; }    
     
-    qm create 12000 --memory 2048 --cores 2 --name "ubuntu-2204-lernmaas-template" --net0 virtio,bridge=vmbr0 --scsihw virtio-scsi-pci
-    qm set 12000 --scsi0 local-lvm:0,import-from=/var/lib/vz/cloudimg/jammy-server-lernmaas-amd64.img
+    qm create ${TEMPLATE} --memory 2048 --cores 2 --name "ubuntu-2204-lernmaas-template" --net0 virtio,bridge=vmbr0 --scsihw virtio-scsi-pci
+    qm set ${TEMPLATE} --scsi0 local-lvm:0,import-from=/var/lib/vz/cloudimg/jammy-server-lernmaas-amd64.img
     
-    qm set 12000 --ide2 local-lvm:cloudinit
-    qm set 12000 --boot order=scsi0
-    qm set 12000 --serial0 socket --vga serial0
-    qm resize 12000 scsi0 +16G
+    qm set ${TEMPLATE} --ide2 local-lvm:cloudinit
+    qm set ${TEMPLATE} --boot order=scsi0
+    qm set ${TEMPLATE} --serial0 socket --vga serial0
+    qm resize ${TEMPLATE} scsi0 +16G
     
-    qm set 12000 --ciuser ubuntu
-    qm set 12000 --cipass insecure    
-    qm set 12000 --ipconfig0 ip=dhcp    
-    qm set 12000 --sshkeys /etc/pve/priv/authorized_keys
+    qm set ${TEMPLATE} --ciuser ubuntu
+    qm set ${TEMPLATE} --cipass insecure    
+    qm set ${TEMPLATE} --ipconfig0 ip=dhcp    
+    qm set ${TEMPLATE} --sshkeys /etc/pve/priv/authorized_keys
     # QEmu Agent enablen, ansonsten wird keine IP-Adresse angezeigt
-    qm set 12000 --agent 1
+    qm set ${TEMPLATE} --agent 1
     
-    qm template 12000
+    qm template ${TEMPLATE}
 
-**Testen**   
+**Testen** 
 
-Entweder über die Proxmox Weboberfläche das Template 12000 Clonen und als Hostname eine Modul-Nr. laut [https://github.com/tbz-it/](https://github.com/tbz-it/) ein '-' und eine Nummer zwischen 10 - 90 eingeben. Die zweite Nummer wird zum bestimmen der VPN IP-Adresse benutzt.
+![](../images/proxmoxvm.png)
+  
+
+Entweder über die Proxmox Weboberfläche das Template ${TEMPLATE} Clonen und als Hostname eine Modul-Nr. laut [https://github.com/tbz-it/](https://github.com/tbz-it/) ein '-' und eine Nummer zwischen 10 - 90 eingeben. Die zweite Nummer wird zum bestimmen der VPN IP-Adresse benutzt.
 
 Alternativ können VMs auch via CLI erstellt werden. 
 
-    qm clone 12000 1010 --name m158-60
+    qm clone ${TEMPLATE} 1010 --name m158-10
     qm start 1010
-    qm clone 12000 1011 --name m169-61
-    qm start 1011  
+    qm clone ${TEMPLATE} 1011 --name m169-11
+    qm start 1011 
     
 Promox Oberfläche im Browser öffnen und die IP-Adresse, pro erstellter VM, im Tab Summary auslesen. Diese im Browser eingeben und den Anweisungen folgen.
 
