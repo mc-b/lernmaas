@@ -32,11 +32,12 @@ Dazu auf der Proxmox Maschine einloggen und mit folgenden Befehlen ein VM Templa
      - sudo systemd-machine-id-setup
      - sudo sudo ip address flush scope global
      - sudo sudo dhclient -v    
-     - sudo su - ubuntu -c "cd /opt/lernmaas && bash -x services/cloud-init.sh"  
+     - sudo su - ubuntu -c "(cd /opt/lernmaas ; git pull ; bash -x services/cloud-init.sh)"  
     EOF
     virt-customize -a /var/lib/vz/cloudimg/jammy-server-lernmaas-amd64.img --copy-in 99_lernmaas.cfg:/etc/cloud/cloud.cfg.d/  
     [ -f wireguard ] && { virt-customize -a /var/lib/vz/cloudimg/jammy-server-lernmaas-amd64.img --copy-in wireguard:/opt/lernmaas/; }    
     
+    qm destroy ${TEMPLATE}
     qm create ${TEMPLATE} --memory 2048 --cores 2 --name "ubuntu-2204-lernmaas-template" --net0 virtio,bridge=vmbr0 --scsihw virtio-scsi-pci
     qm set ${TEMPLATE} --scsi0 local-lvm:0,import-from=/var/lib/vz/cloudimg/jammy-server-lernmaas-amd64.img
     
@@ -63,19 +64,19 @@ Entweder über die Proxmox Weboberfläche das Template ${TEMPLATE} Clonen und al
 
 Alternativ können VMs auch via CLI erstellt werden. 
 
-    qm clone ${TEMPLATE} 1010 --name m158-10
-    qm start 1010
-    qm clone ${TEMPLATE} 1011 --name m169-11
-    qm start 1011 
+    qm clone ${TEMPLATE} 158 --name m158-58
+    qm start 158
+    qm clone ${TEMPLATE} 169 --name m169-69
+    qm start 169 
     
 Promox Oberfläche im Browser öffnen und die IP-Adresse, pro erstellter VM, im Tab Summary auslesen. Diese im Browser eingeben und den Anweisungen folgen.
 
 **Aufräumen**
 
-    qm stop 1010
-    qm destroy 1010
-    qm stop 1011
-    qm destroy 1011   
+    qm stop 158
+    qm destroy 158
+    qm stop 169
+    qm destroy 169   
     
 ### WireGuard
 
@@ -84,6 +85,10 @@ Soll das VPN WireGuard auch eingerichtet werden, ist die WireGuard Konfiguration
     virt-customize -a /var/lib/vz/cloudimg/jammy-server-lernmaas-amd64.img --copy-in wireguard:/opt/lernmaas/
     
 Um eine WireGuarg Konfiguration zu erstellen, siehe [createkeys](../../helper#createvms) .  
+
+### Terraform
+
+Es existiert auch ein Terraform Provider für Proxmox, siehe [hier](https://github.com/mc-b/terraform-lerncloud-proxmox).
 
 ### Links
 
