@@ -141,7 +141,7 @@ m145:
     count: 20
   services:
     nfs: true
-    docker: true
+    docker: false
     k8s: 
     wireguard: use
     ssh: generate
