@@ -30,6 +30,7 @@ Installation
 * [Virtualisierte Machinen in Virtualisierten Machinen](doc/MAAS/VMinVM.md)
 * [Public Cloud und lernMAAS](doc/Cloud/)
 * [Proxmox und lernMAAS](doc/Proxmox/)
+* [GNS3 und lernMAAS](doc/GNS3/)
 * [Terraform und lernMAAS](terraform/) (1. Version!)
 * [Lokaler PC mit Vagrant und lernMAAS](vagrant/)
 * [Hilfsscripts](helper/)
