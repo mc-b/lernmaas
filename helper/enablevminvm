@@ -10,12 +10,14 @@ do
     for host in $(virsh -c qemu+ssh://ubuntu@${kvm}/system list --all | grep $1 | awk '{ print $2 }' )
     do
         echo $host
-        virsh -c qemu+ssh://ubuntu@${kvm}/system dumpxml ${host} | head -n -2 >${host}.xml
+        virsh -c qemu+ssh://ubuntu@${kvm}/system dumpxml ${host} >${host}.xml
+        which xmlstarlet >/dev/null
+        [ $? -eq 0 ] && { xmlstarlet ed -d domain/cpu ${host}.xml >$$; mv $$ ${host}.xml; }
+        cat ${host}.xml | head -n -2 >$$ ; mv $$ ${host}.xml
         echo "<cpu mode='host-passthrough' check='none'/>" >>${host}.xml
         echo "</domain>" >>${host}.xml
         virsh -c qemu+ssh://ubuntu@${kvm}/system define ${host}.xml
         # virsh -c qemu+ssh://ubuntu@${kvm}/system reboot ${host}
     done
-
 
 done
