@@ -194,3 +194,4 @@ Anschliessend ist eine QEMU VM Template mit 2GB RAM und dem ISO-Image als Disk e
 * [Network very slow](https://github.com/GNS3/gns3-gui/issues/1921#issuecomment-288530478)
 * [Settings profiles](https://docs.gns3.com/docs/using-gns3/advanced/settings-profiles/)
 * [OS Boxes - aufbereite Linux VMs](https://www.osboxes.org/)
+* [QEMU / KVM CPU model configuration](https://qemu-project.gitlab.io/qemu/system/qemu-cpu-models.html)
