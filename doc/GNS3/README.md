@@ -171,17 +171,13 @@ Das Netzwerk via der Ethernet Schnittstelle ist sehr, sehr langsam. Deshalb soll
     sudo netplan generate
     sudo netplan --debug apply  ; sudo shutdown -r now    
     
-### Desktop
+### Desktop Umgebung mit Browser
 
 Für Tests innerhalb der GNS3 Umgebung ist eine Desktop Umgebung mit Browser von Vorteil.
 
-Dazu eignet sich am besten [LXDE](http://www.lxde.org/).
+Dazu zuerst ein neues Docker Template mit Image `gns3/webterm` erstellen.
 
-Dazu ist zuerst das [ISO-Image](https://lubuntu.me/downloads/) downzuloaden und ins Verzeichnis `/opt/gns3/images/QEMU` abzustellen.
-
-    sudo wget -O /opt/gns3/images/QEMU/lubuntu-22.04.2-desktop-amd64.iso  https://cdimage.ubuntu.com/lubuntu/releases/22.04.2/release/lubuntu-22.04.2-desktop-amd64.iso
-
-Anschliessend ist eine QEMU VM Template mit 2GB RAM und dem ISO-Image als Disk einzutragen.
+Und das Netzwerk wie [hier](https://docs.gns3.com/docs/using-gns3/advanced/the-nat-node/) beschrieben Konfigurieren.
     
 ### Links
 
