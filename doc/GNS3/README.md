@@ -57,6 +57,8 @@ Um innerhalb von GNS3 VMs mittels Cloud-init zu erzeugen, braucht es ein Ubuntu 
     
 Anschliessend ist das Cloud-Image, in der GNS3 Oberfläche -> Edit -> Preferences -> als Qemu VMs mit obigen Werten einzutragen.
 
+Nachdem Cloud-init durchgelaufen ist, kann mittels User: `ubuntu`, Password: `insecure` in die VM eingeloggt werden.
+
 End-Devices
 -----------
 
