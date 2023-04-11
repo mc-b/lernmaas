@@ -155,5 +155,5 @@ Das Script sucht die KVM Maschinen im Resource Pool `system`. Die VMs müssen im
 
     enablevminvm <host>
  
-
+**ACHTUNG**: es muss `xmlstarlet` installiert sein, z.B. mit `snap install xmlstarlet`.
     
