@@ -33,6 +33,8 @@ Dazu auf der Proxmox Maschine einloggen und mit folgenden Befehlen ein VM Templa
      - sudo sudo ip address flush scope global
      - sudo sudo dhclient -v    
      - sudo su - ubuntu -c "(cd /opt/lernmaas ; git pull ; bash -x services/cloud-init.sh)"  
+     - sudo su - ubuntu -c "echo insecure | tee ~/data/.ssh/passwd"
+     - echo "ubuntu:insecure" | chpasswd     
     EOF
     virt-customize -a /var/lib/vz/cloudimg/jammy-server-lernmaas-amd64.img --copy-in 99_lernmaas.cfg:/etc/cloud/cloud.cfg.d/  
     [ -f wireguard ] && { virt-customize -a /var/lib/vz/cloudimg/jammy-server-lernmaas-amd64.img --copy-in wireguard:/opt/lernmaas/; }    
