@@ -53,7 +53,7 @@ Um innerhalb von GNS3 VMs mittels Cloud-init zu erzeugen, braucht es ein Ubuntu 
 
     sudo apt-get install -y genisoimage
     sudo wget -O /opt/gns3/images/QEMU/jammy-server-cloudimg-amd64.img https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
-    sudo qemu-img resize /opt/gns3/images/QEMU/jammy-server-cloudimg-amd64.img +6G
+    sudo qemu-img resize /opt/gns3/images/QEMU/jammy-server-cloudimg-amd64.img +30G
     
 Anschliessend ist das Cloud-Image, in der GNS3 Oberfläche -> Edit -> Preferences -> als Qemu VMs mit obigen Werten einzutragen.
 
@@ -107,38 +107,11 @@ Cloud-init "CD-ROMs", anhand `config.yaml` erstellen
     
     for MODUL in $(parse_yaml config.yaml | cut -d_ -f1 | sort | uniq | grep '^m[1-9]')
     do
-    echo -e "instance-id: ${MODUL}\nlocal-hostname: ${MODUL}" > meta-data
+        echo -e "instance-id: ${MODUL}\nlocal-hostname: ${MODUL}" > meta-data
     
-    cat <<%EOF% >user-data
-    #cloud-config
-    users:
-      - name: ubuntu
-        sudo: ALL=(ALL) NOPASSWD:ALL
-        groups: users, admin
-        shell: /bin/bash
-        lock_passwd: false
-        plain_text_passwd: 'insecure'          
-        ssh_authorized_keys:
-          - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDUHol1mBvP5Nwe3Bzbpq4GsHTSw96phXLZ27aPiRdrzhnQ2jMu4kSgv9xFsnpZgBsQa84EhdJQMZz8EOeuhvYuJtmhAVzAvNjjRak+bpxLPdWlox1pLJTuhcIqfTTSfBYJYB68VRAXJ29ocQB7qn7aDj6Cuw3s9IyXoaKhyb4n7I8yI3r0U30NAcMjyvV3LYOXx/JQbX+PjVsJMzp2NlrC7snz8gcSKxUtL/eF0g+WnC75iuhBbKbNPr7QP/ItHaAh9Tv5a3myBLNZQ56SgnSCgmS0EUVeMNsO8XaaKr2H2x5592IIoz7YRyL4wlOmj35bQocwdahdOCFI7nT9fr6f insecure@lerncloud
-    # login ssh and console with password
-    ssh_pwauth: true
-    disable_root: false 
-    packages:
-      - git 
-      - curl 
-      - wget
-      - jq
-      - markdown
-      - nmap
-      - traceroute
-    runcmd:
-      - git clone https://github.com/mc-b/lernmaas /opt/lernmaas
-      - sudo su - ubuntu -c "cd /opt/lernmaas && bash -x services/cloud-init.sh"
-      - sudo su - ubuntu -c "echo insecure | tee ~/data/.ssh/passwd"
-      - echo "ubuntu:insecure" | chpasswd
-    %EOF%
+        curl curl https://raw.githubusercontent.com/mc-b/lernmaas/master/gns3/cloud-init.yaml >user-data
     
-    mkisofs -output "lernmaas-cloud-init-${MODUL}.iso" -volid cidata -joliet -rock {user-data,meta-data}
+        mkisofs -output "lernmaas-cloud-init-${MODUL}.iso" -volid cidata -joliet -rock {user-data,meta-data}
     done
 
 Die `*.iso` auf den PC/Notebook kopieren, z.B. mittels `scp` und beim Erstellen der VM als CD/DVD angeben.
