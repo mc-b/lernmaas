@@ -78,6 +78,55 @@ Es wird automatisch die richtige Software für das Modul installiert.
 
 Tips & Tricks
 -------------
+    
+### Desktop Umgebung mit Browser
+
+Für Tests innerhalb der GNS3 Umgebung ist eine Desktop Umgebung mit Browser von Vorteil.
+
+Dazu zuerst ein neues Docker Template mit Image `gns3/webterm` und Console `vnc` erstellen.
+
+Und das Netzwerk wie [hier](https://docs.gns3.com/docs/using-gns3/advanced/the-nat-node/) beschrieben Konfigurieren.
+
+Soll statt dem Firefox Browser - Chrome verwendet werden, Image durch `jess/chromium` ersetzen.
+
+### Router
+
+OpenWrt ist eine Linux-Distribution für eingebettete Systeme wie CPE-Router, Smartphones oder Pocket-Computer. OpenWrt bietet ein voll beschreibbares Dateisystem und beinhaltet den Paketmanager opkg. Das ist insbesondere für den Einsatz in CPE- und WLAN-Routern einzigartig.
+
+Damit ist OpenWrt ideal für die GNS3 Umgebung.
+
+Um eine OpenWrt Template zu erstellen nutzt man die [OpenWrt](https://gns3.com/marketplace/appliances/openwrt-2) Appliance.
+
+**Netzwerk auf 192.168.122.0/24 setzen, wie Standard NAT in GNS3.**
+
+    uci show network.lan
+    
+    uci set network.lan.ipaddr=192.168.122.1
+    uci commit
+    /etc/init.d/log restart; /etc/init.d/network restart;  
+    
+**Weboberfläche und SSH via WAN erreichbar machen.**
+
+    rule_name=$(uci add firewall rule) 
+    uci batch <<EOI
+    set firewall.$rule_name.target='ACCEPT'
+    set firewall.$rule_name.src='wan'
+    set firewall.$rule_name.proto='tcp'
+    set firewall.$rule_name.dest_port='22'
+    set firewall.$rule_name.name='router-ssh'
+    EOI
+    
+    rule_name=$(uci add firewall rule) 
+    uci batch << EOI
+    set firewall.$rule_name.target='ACCEPT'
+    set firewall.$rule_name.src='wan'
+    set firewall.$rule_name.proto='tcp'
+    set firewall.$rule_name.dest_port='80'
+    set firewall.$rule_name.name='router-web'
+    EOI
+    
+    uci commit
+    /etc/init.d/log restart; /etc/init.d/firewall restart;    
 
 ### Erstellen eigener ISO-Dateien 
         
@@ -143,16 +192,6 @@ Das Netzwerk via der Ethernet Schnittstelle ist sehr, sehr langsam. Deshalb soll
     
     sudo netplan generate
     sudo netplan --debug apply  ; sudo shutdown -r now    
-    
-### Desktop Umgebung mit Browser
-
-Für Tests innerhalb der GNS3 Umgebung ist eine Desktop Umgebung mit Browser von Vorteil.
-
-Dazu zuerst ein neues Docker Template mit Image `gns3/webterm` und Console `vnc` erstellen.
-
-Und das Netzwerk wie [hier](https://docs.gns3.com/docs/using-gns3/advanced/the-nat-node/) beschrieben Konfigurieren.
-
-Soll statt dem Firefox Browser - Chrome verwendet werden, Image durch `jess/chromium` ersetzen.
     
 ### Links
 
