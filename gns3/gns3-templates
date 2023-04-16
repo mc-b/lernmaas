@@ -32,6 +32,7 @@ then
     sudo apt-get install -y genisoimage
     sudo wget -O /opt/gns3/images/QEMU/jammy-server-cloudimg-amd64.img https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
     sudo qemu-img resize /opt/gns3/images/QEMU/jammy-server-cloudimg-amd64.img +30G
+    sudo rm -f "/opt/gns3/images/QEMU/jammy-server-cloudimg-amd64.img.md5sum"
 fi
 
 ###
@@ -44,6 +45,7 @@ do
     echo -e "instance-id: ${MODUL}\nlocal-hostname: ${MODUL}" > meta-data
     curl curl https://raw.githubusercontent.com/mc-b/lernmaas/master/gns3/cloud-init.yaml >user-data
     sudo mkisofs -output "/opt/gns3/images/QEMU/lernmaas-cloud-init-${MODUL}.iso" -volid cidata -joliet -rock {user-data,meta-data}
+    rm -f "/opt/gns3/images/QEMU/lernmaas-cloud-init-${MODUL}.iso.md5sum"
 done
 
 ###
