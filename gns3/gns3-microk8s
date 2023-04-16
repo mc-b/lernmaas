@@ -50,7 +50,7 @@ for MODUL in 01 02 03 04 05
 do
     echo -e "instance-id: microk8s-${MODUL}-worker\nlocal-hostname: microk8s-${MODUL}-worker" > meta-data
     curl https://raw.githubusercontent.com/mc-b/lernmaas/master/gns3/cloud-init.yaml >user-data
-    sudo mkisofs -output "lernmaas-cloud-init-microk8s-${MODUL}-worker.iso" -volid cidata -joliet -rock {user-data,meta-data}
+    sudo mkisofs -output "/opt/gns3/images/QEMU/lernmaas-cloud-init-microk8s-${MODUL}-worker.iso" -volid cidata -joliet -rock {user-data,meta-data}
     sudo rm -f "/opt/gns3/images/QEMU/lernmaas-cloud-init-microk8s-${MODUL}-worker.iso.md5sum"
     
 cat <<EOF >template
