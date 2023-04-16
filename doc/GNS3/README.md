@@ -148,9 +148,11 @@ Das Netzwerk via der Ethernet Schnittstelle ist sehr, sehr langsam. Deshalb soll
 
 Für Tests innerhalb der GNS3 Umgebung ist eine Desktop Umgebung mit Browser von Vorteil.
 
-Dazu zuerst ein neues Docker Template mit Image `gns3/webterm` erstellen.
+Dazu zuerst ein neues Docker Template mit Image `gns3/webterm` und Console `vnc` erstellen.
 
 Und das Netzwerk wie [hier](https://docs.gns3.com/docs/using-gns3/advanced/the-nat-node/) beschrieben Konfigurieren.
+
+Soll statt dem Firefox Browser - Chrome verwendet werden, Image durch `jess/chromium` ersetzen.
     
 ### Links
 
