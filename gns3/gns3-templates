@@ -26,7 +26,7 @@ function parse_yaml
 ###
 #   Image holen
 
-if  [ ! -f /opt/gns3/images/QEMU/jammy-server-cloudimg-amd64.img ]
+if  sudo [ ! -f /opt/gns3/images/QEMU/jammy-server-cloudimg-amd64.img ]
 then
     echo "get Ubuntu Cloud-init Image"
     sudo apt-get install -y genisoimage
