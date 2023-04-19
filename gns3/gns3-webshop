@@ -60,7 +60,7 @@ EOF
     "default_name_format": "{name}",
     "console_type": "telnet",
     "cpus": 1,
-    "ram": 256,
+    "ram": 512,
     "hda_disk_image": "jammy-server-cloudimg-amd64.img",
     "name": "webshop-${MODUL}-${INSTANCE}",
     "qemu_path": "/bin/qemu-system-x86_64",
