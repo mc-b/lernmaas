@@ -191,7 +191,11 @@ Das Netzwerk via der Ethernet Schnittstelle ist sehr, sehr langsam. Deshalb soll
     sed -i -e 's/MACAddressPolicy=persistent/MACAddressPolicy=none/g' /usr/lib/systemd/network/99-default.link
     
     sudo netplan generate
-    sudo netplan --debug apply  ; sudo shutdown -r now    
+    sudo netplan --debug apply  ; sudo shutdown -r now 
+    
+### Reset Mac addresses
+
+Um doppelte IP-Adressen zu verhindern, sollte bei Duplizieren (File -> open project -> Project library -> Duplicate) und beim Exportieren eines Projektes (File -> Export portable project) immer die Checkbox "Reset Mac adresses" aktiviert sein.
     
 ### Links
 
