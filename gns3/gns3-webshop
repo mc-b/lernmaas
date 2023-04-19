@@ -42,7 +42,8 @@ write_files:
  - content: |
     <html>
      <head>
-        <h1>${MODUL}</h1>
+        <title>${MODUL}</title>
+     </head>        
      <body>
       <h1>${MODUL} ${INSTANCE}</h1>
      </body>
