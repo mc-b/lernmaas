@@ -5,21 +5,21 @@
 #   MAAS in MAAS mit LXD als KVM Host
 
 # MAAS installieren, User: ubuntu, PW: password
-sudo apt-add-repository ppa:maas/3.1
-sudo apt update
+sudo apt-add-repository -y ppa:maas/3.3-next
+sudo apt -y update
 sudo apt install -y maas jq markdown nmap traceroute git curl wget zfsutils-linux cloud-image-utils virtinst qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils whois
-sudo maas createadmin --username ubuntu --password password --email marcel.bernet@tbz.ch --ssh-import gh:mc-b
+sudo maas createadmin --username ubuntu --password insecure --email marcel.bernet@tbz.ch --ssh-import gh:mc-b
 sudo snap refresh
 
-# Password ist 'password'
-echo "password" >/home/ubuntu/.ssh/passwd
+# Password ist 'insecure'
+echo "insecure" >/home/ubuntu/.ssh/passwd
 sudo chpasswd <<<ubuntu:$(cat /home/ubuntu/.ssh/passwd)
 
-# LXD initialisieren ohne DNS, DHCP, Host: localhost, PW: password
+# LXD initialisieren ohne DNS, DHCP, Host: localhost, PW: insecure
 cat <<%EOF% | sudo lxd init --preseed
 config:
   core.https_address: '[::]:8443'
-  core.trust_password: password
+  core.trust_password: insecure
 networks:
 - config:
     ipv4.address: auto
@@ -33,7 +33,7 @@ storage_pools:
     size: 64GB
   description: ""
   name: default
-  driver: zfs
+  driver: dir
 profiles:
 - config: {}
   description: ""
