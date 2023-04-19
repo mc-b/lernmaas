@@ -21,7 +21,7 @@ fi
 # Drei Nodes pro Type
 for INSTANCE in 01 02 03 
 do
-    for MODUL in Catalog Customer Order
+    for MODUL in catalog customer order
     do
         echo -e "instance-id: ${MODUL}-${INSTANCE}\nlocal-hostname: ${MODUL}-${INSTANCE}" > meta-data
         cat <<EOF >user-data
