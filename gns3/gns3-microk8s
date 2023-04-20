@@ -66,6 +66,7 @@ cat <<EOF >template
     "qemu_path": "/bin/qemu-system-x86_64",
     "ram": 2048,
     "template_type": "qemu",
+    "symbol": ":/symbols/affinity/circle/red/vm.svg",    
     "usage": "Kubernetes Worker ${MODUL}"
 }
 EOF
