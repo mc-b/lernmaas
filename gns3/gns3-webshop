@@ -68,6 +68,7 @@ EOF
     "console_type": "telnet",
     "cpus": 1,
     "ram": 512,
+    "symbol": ":/symbols/affinity/circle/blue/vm.svg",    
     "hda_disk_image": "jammy-server-cloudimg-amd64.img",
     "name": "webshop-${MODUL}-${INSTANCE}",
     "qemu_path": "/bin/qemu-system-x86_64",

@@ -70,6 +70,7 @@ cat <<EOF >template
     "qemu_path": "/bin/qemu-system-x86_64",
     "ram": ${config_vm_memory}  ,
     "template_type": "qemu",
+    "symbol": ":/symbols/affinity/circle/gray/vm.svg",    
     "usage": "Modul ${MODUL}"
 }
 EOF
