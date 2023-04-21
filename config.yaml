@@ -711,6 +711,24 @@ casiot:
   repositories: https://github.com/mc-b/misegr,https://github.com/mc-b/duk,https://github.com/mc-b/mlg     
   
 ######### Diverse Kurse ######### 
+
+# Modul GNS3: Netzwerk betreiben und erweitern (nach Erstellung 'enablevminvm gns3' laufen lassen). Verbinden mittels GNS3 Desktop <IP>:3080
+gns3:
+  vm:  
+    storage: 64
+    memory: 10240
+    cores: 4
+    count: 20
+  services:
+    nfs: true
+    docker: false
+    k8s: 
+    wireguard: use
+    ssh: generate
+    samba: false
+    firewall: false
+  scripts: 
+  repositories: https://github.com/mc-b/gns3
    
 # Kurs: Big Data – Ueberblick
 bigdata:
