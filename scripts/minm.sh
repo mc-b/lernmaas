@@ -30,7 +30,7 @@ networks:
   project: default
 storage_pools:
 - config:
-    size: 64GB
+    size: 16GB
   description: ""
   name: default
   driver: dir
