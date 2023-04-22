@@ -97,13 +97,15 @@ Damit ist OpenWrt ideal für die GNS3 Umgebung.
 
 Um eine OpenWrt Template zu erstellen nutzt man die [OpenWrt](https://gns3.com/marketplace/appliances/openwrt-2) Appliance.
 
-**Netzwerk auf 192.168.122.0/24 setzen, wie Standard NAT in GNS3.**
+**Netzwerk auf 192.168.123.0/24 setzen um keine Konflikte mit GNS3 NAT auf 192.168.122.0/24 zu haben.**
 
     uci show network.lan
     
-    uci set network.lan.ipaddr=192.168.122.1
+    uci set network.lan.ipaddr=192.168.123.1
     uci commit
     /etc/init.d/log restart; /etc/init.d/network restart;  
+    
+**Tip**: wenn überall die gleiche MAC Adresse "0c:96:5c:0f:00:00" verwendet wird, bekommt der Router immer die gleiche IP Adresse. Vereinfacht das Routing.    
     
 **Weboberfläche und SSH via WAN erreichbar machen.**
 
