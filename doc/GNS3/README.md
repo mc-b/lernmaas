@@ -40,6 +40,8 @@ Wenn der erste Eintrag `FAIL` anzeigt ist die KVM Unterstützung zu deaktivieren
     [Qemu]
     enable_kvm = false
     
+Weitere Informationen und vorbereitete Projekte siehe Projekt [lerngns3](https://github.com/mc-b/lerngns3/).    
+    
 
 Cloud-Image aufbereiten
 -----------------------
