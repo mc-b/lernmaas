@@ -728,7 +728,7 @@ gns3:
     samba: false
     firewall: false
   scripts: 
-  repositories: https://github.com/mc-b/gns3
+  repositories: https://github.com/mc-b/lerngns3
    
 # Kurs: Big Data – Ueberblick
 bigdata:
