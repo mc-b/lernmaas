@@ -4,6 +4,9 @@
 #   Die config.yaml Datei wird direkt vom github geholt.
 #
 
+# Default: localhost
+[ "${GNS3_SERVER}" == "" ] && { export GNS3_SERVER=localhost; }
+
 function parse_yaml 
 {
    local prefix=$2
@@ -76,7 +79,7 @@ cat <<EOF >template
 EOF
     
     echo ${MODUL}
-    curl -X POST "http://localhost:3080/v2/templates" -d "@template" 
+    curl -X POST "http://${GNS3_SERVER}:3080/v2/templates" -d "@template" 
     
 done    
 
