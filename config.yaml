@@ -113,6 +113,24 @@ m122:
     firewall: false
   scripts: 
   repositories: https://github.com/tbz-it/M122
+  
+# Modul 129: LAN-Komponenten in Betrieb nehmen (nach Erstellung 'enablevminvm m129' laufen lassen). Verbinden mittels GNS3 Desktop <IP>:3080
+m129:
+  vm:  
+    storage: 64
+    memory: 7680
+    cores: 4
+    count: 20
+  services:
+    nfs: true
+    docker: false
+    k8s: 
+    wireguard: use
+    ssh: generate
+    samba: false
+    firewall: false
+  scripts: 
+  repositories: https://github.com/tbz-it/M129
 
 # Modul 141: Datenbanksystem in Betrieb nehmen
 m141:
