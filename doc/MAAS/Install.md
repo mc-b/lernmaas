@@ -9,7 +9,7 @@ Für eine detailierte Installation, siehe [MAAS](MAAS/) oder [Bare Metal to Kube
 
 Fixe IP-Adresse vergeben, z.B. über Einstellungen, Software Update durchführen und MAAS Installieren
 
-    sudo add-apt-repository ppa:maas/2.9
+    sudo apt-add-repository ppa:maas/3.3-next
     sudo apt update
     sudo apt upgrade -y
     sudo apt install -y maas jq markdown nmap traceroute git curl wget openssh-server 
