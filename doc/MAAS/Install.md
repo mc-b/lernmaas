@@ -143,8 +143,38 @@ Nach der Installation steht die Maschine unter KVM zur Verfügung und es lassen 
 * Normale PCs haben keine Unterstützung für [BMC](https://de.wikipedia.org/wiki/Baseboard_Management_Controller) deshalb muss der `Power type` auf `Manuel` eingestellt werden. Sollte das nicht funktionieren, zuerst bei `Configuration` unter `Power type`  IPMI und eine Pseudo IP und MAC Adresse eingeben und nachher auf `Manuel` wechseln.
 * TBZ PCs haben integriertes Intel AMT. Power On, `Ctrl-P`, Default Password `admin` durch internes Ersetzen, IP Einstellungen vornehmen (ich verwende fixe IP ist mehr Aufwand aber nachher einfacher und **TCP Aktivieren**. Probieren mit `http://IP-Adresse:16992`. Vorsicht das AMT UI verwendet fix den US Tastaturlayout.
 * PCs mittels `Lock` vor unbeabsichtigtem Ändern schützen.
+
+**Alternative Wake on LAN**
+
+Praktisch alle PCs unterstützen Wake on LAN. Wake on LAN ist ein veröffentlichter Standard, um einen ausgeschalteten Computer über die eingebaute Netzwerkkarte zu starten.
+
+Auf Rackserver und allen KVM Maschinen, entsprechende Tools installieren
+
+    sudo apt-get -y update
+    sudo apt-get install -y ethtool etherwake 
+    
+Nur auf den KVM Maschinen, Systemd Service installieren, welcher Wake on LAN einschaltet:
+
+    cat <<EOF | sudo tee /etc/systemd/system/wol.service
+    [Unit]
+    Description=Configure Wake-up on LAN
+    After=network-online.target
+    
+    
+    [Service]
+    Type=oneshot
+    ExecStart=/sbin/ethtool -s eno1 wol g
+    
+    [Install]
+    WantedBy=basic.target 
+    EOF
+    
+    sudo systemctl enable wol.service 
+    sudo systemctl daemon-reload 
+    sudo systemctl start wol.service     
   
 ## Links
 
 * [Bare Metal to Kubernetes-as-a-Service - Part 1](https://www.2stacks.net/blog/bare-metal-to-kubernetes-part-1/)
 * [MAAS Blog Übersicht](https://ubuntu.com/blog/tag/maas)
+* [IPMI Tool](https://phoenixnap.com/kb/install-ipmitool-ubuntu-centos)
