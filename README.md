@@ -29,8 +29,8 @@ Installation
 * [Virtualisierte Machinen in Virtualisierten Machinen](doc/MAAS/VMinVM.md)
 * [Public Cloud und lernMAAS](doc/Cloud/)
 * [Proxmox und lernMAAS](doc/Proxmox/)
-* [GNS3 und lernMAAS](doc/GNS3/)
-* [Terraform und lernMAAS](https://github.com/mc-b/lerncloud) siehe [Migration](https://github.com/mc-b/lerncloud/tree/main/migration).
+* [GNS3 und lernMAAS](doc/GNS3/), siehe auch Projekt [lerngns3](https://github.com/mc-b/lerngns3).
+* [Terraform und lernMAAS](https://github.com/mc-b/lerncloud), siehe [Migration](https://github.com/mc-b/lerncloud/tree/main/migration).
 * [Lokaler PC mit Vagrant und lernMAAS](vagrant/)
 * [Hilfsscripts](helper/)
 
