@@ -26,7 +26,6 @@ Installation
 * [MAAS Master und Worker Nodes](doc/MAAS/Install.md)
 * [Gateway Server](doc/MAAS/Gateway.md)
 * [Einbinden der Clients und Portweiterleitung](doc/MAAS/GatewayClient.md).
-* [MAAS in MAAS](doc/MinM/)
 * [Virtualisierte Machinen in Virtualisierten Machinen](doc/MAAS/VMinVM.md)
 * [Public Cloud und lernMAAS](doc/Cloud/)
 * [Proxmox und lernMAAS](doc/Proxmox/)
