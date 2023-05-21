@@ -30,7 +30,7 @@ Installation
 * [Public Cloud und lernMAAS](doc/Cloud/)
 * [Proxmox und lernMAAS](doc/Proxmox/)
 * [GNS3 und lernMAAS](doc/GNS3/)
-* [Terraform und lernMAAS](terraform/) (1. Version!)
+* [Terraform und lernMAAS](https://github.com/mc-b/lerncloud) siehe [Migration](https://github.com/mc-b/lerncloud/tree/main/migration).
 * [Lokaler PC mit Vagrant und lernMAAS](vagrant/)
 * [Hilfsscripts](helper/)
 
