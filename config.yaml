@@ -385,6 +385,26 @@ m437:
   scripts: 
   repositories: https://github.com/tbz-it/M437 
   
+######### GNS3 Umgebungen #########
+
+# microk8s Kubernetes - https://microk8s.io/ 
+microk8s:
+  vm:  
+    storage: 18
+    memory:  4096
+    cores: 2
+    count: 1
+  services:
+    nfs: true
+    docker: false
+    k8s: microk8s
+    wireguard: use
+    ssh: generate
+    samba: false
+    firewall: false
+  scripts: 
+  repositories:   
+  
 ######### Diverse Kurse ######### 
 
 # Modul GNS3: Netzwerk betreiben und erweitern (nach Erstellung 'enablevminvm gns3' laufen lassen). Verbinden mittels GNS3 Desktop <IP>:3080
