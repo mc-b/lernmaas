@@ -331,6 +331,24 @@ m169:
   scripts: dind.sh
   repositories: https://github.com/tbz-it/M169
   
+# Modul 321: Verteilte Systeme analysieren, verstehen, planen, erweitern und anwenden, sowie bestehende Applikationen in ein verteiltes System überfuehren.
+m321:
+  vm:  
+    storage: 24
+    memory:  3584
+    cores: 2
+    count: 1
+  services:
+    nfs: true
+    docker: true
+    k8s: microk8s
+    wireguard: use
+    ssh: generate
+    samba: false
+    firewall: false
+  scripts: dind.sh
+  repositories: https://github.com/tbz-it/M347  
+  
 # Modul 347: Dienst mit Container anwenden
 m347:
   vm:  
