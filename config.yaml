@@ -347,7 +347,7 @@ m321:
     samba: false
     firewall: false
   scripts: dind.sh
-  repositories: https://github.com/tbz-it/M347  
+  repositories: https://github.com/stefan-kemper/M321
   
 # Modul 347: Dienst mit Container anwenden
 m347:
