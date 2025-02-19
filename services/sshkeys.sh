@@ -18,6 +18,7 @@ then
     pwgen 8 1 >.ssh/passwd
     sudo chpasswd <<<ubuntu:$(cat .ssh/passwd)
     sudo sed -i -e 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+    sudo sed -i -s 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config.d/60-cloudimg-settings.conf
     sudo systemctl restart sshd
 
     # nach Zugriff data/.ssh wegloeschen
