@@ -41,7 +41,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -63,7 +63,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -85,7 +85,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -107,7 +107,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -129,7 +129,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -153,7 +153,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -175,7 +175,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -197,7 +197,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -219,7 +219,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -241,7 +241,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -262,7 +262,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -283,7 +283,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -307,7 +307,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -329,7 +329,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -351,7 +351,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -373,7 +373,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -395,7 +395,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -418,7 +418,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -442,7 +442,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -465,7 +465,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -488,7 +488,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -509,7 +509,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -530,7 +530,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
 
 ---
@@ -551,5 +551,5 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  dependsOn:
+  partOf:
   - component:mc-b/lernmaas
