@@ -1,4 +1,13 @@
 site_name: lernmaas
-docs_dir: .
-nav:
-- README: README.md
+site_description: 'MAAS / IAAS Umgebung um Cluster von VMs oder Kubernetes auszusetzen'
+repo_url: https://github.com/mc-b/lernmaas
+edit_uri: edit/master/docs
+
+docs_dir: doc
+
+plugins:
+  - techdocs-core
+  - redirects:
+      redirect_maps:
+        'index.md': 'README.md'
+

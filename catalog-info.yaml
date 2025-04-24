@@ -17,8 +17,539 @@ metadata:
   annotations:
     github.com/project-slug: mc-b/lernmaas
     backstage.io/source-location: url:https://github.com/mc-b/lernmaas
-    # backstage.io/techdocs-ref: url:https://github.com/mc-b/lernmaas
+    backstage.io/techdocs-ref: url:https://github.com/mc-b/lernmaas
 spec:
   type: infrastructure
   lifecycle: production
   owner: group:mc-b/mc-b
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: m100
+  description: 'Modul 100: Daten charakterisieren, aufbereiten und auswerten'
+  tags:
+  - nfs
+  - wireguard
+  - ssh
+  - samba
+  links:
+  - url: https://github.com/tbz-it/M100
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: m104
+  description: ''
+  tags:
+  - nfs
+  - k8s
+  - wireguard
+  - samba
+  links:
+  - url: https://github.com/tbz-it/M104
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: m120
+  description: 'Modul 120: Benutzerschnittstellen implementieren'
+  tags:
+  - nfs
+  - wireguard
+  - ssh
+  - samba
+  links:
+  - url: https://github.com/tbz-it/M120
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: m122
+  description: 'Modul 122: Automatisieren mit Skripten'
+  tags:
+  - nfs
+  - wireguard
+  - ssh
+  - samba
+  links:
+  - url: https://github.com/tbz-it/M122
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: m129
+  description: 'Modul 129: LAN-Komponenten in Betrieb nehmen (nach Erstellung ''enablevminvm
+    m129'' laufen lassen). Verbinden mittels GNS3 Desktop <IP>:3080'
+  tags:
+  - nfs
+  - wireguard
+  - ssh
+  links:
+  - url: https://github.com/tbz-it/M129
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: m141
+  description: 'Modul 141: Datenbanksystem in Betrieb nehmen'
+  tags:
+  - nfs
+  - docker
+  - k8s
+  - wireguard
+  - ssh
+  - samba
+  links:
+  - url: https://github.com/tbz-it/M141
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: m145
+  description: 'Modul 145: Netzwerk betreiben und erweitern (nach Erstellung ''enablevminvm
+    m145'' laufen lassen). Verbinden mittels GNS3 Desktop <IP>:3080'
+  tags:
+  - nfs
+  - wireguard
+  - ssh
+  links:
+  - url: https://github.com/tbz-it/M145
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: m152
+  description: 'Modul 152: Multimedia-Inhalte in Webauftritt integrieren'
+  tags:
+  - nfs
+  - wireguard
+  - ssh
+  - samba
+  links:
+  - url: https://github.com/tbz-it/M152
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: m153
+  description: ''
+  tags:
+  - nfs
+  - k8s
+  - wireguard
+  - samba
+  links:
+  - url: https://github.com/tbz-it/M153
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: m158
+  description: "Modul 158: Software-Migration planen und durchf\xFChren"
+  tags:
+  - nfs
+  - wireguard
+  - ssh
+  - samba
+  links:
+  - url: https://github.com/tbz-it/M158
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: m182
+  description: ''
+  tags:
+  - nfs
+  - wireguard
+  - ssh
+  links:
+  - url: https://github.com/tbz-it/M182
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: m183
+  description: 'Modul 183: Applikationssicherheit implementieren (Kubernetes und Webgoat)'
+  tags:
+  - nfs
+  - k8s
+  - wireguard
+  links:
+  - url: https://github.com/tbz-it/M183
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: m226
+  description: 'Modul 226: Objektorientiert implementieren (Kubernetes mit 24 x BeakerX
+    gestartet)'
+  tags:
+  - nfs
+  - docker
+  - k8s
+  - wireguard
+  - ssh
+  - samba
+  links: []
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: m239
+  description: 'Modul 239: Internet Server in Betrieb nehmen'
+  tags:
+  - nfs
+  - wireguard
+  - ssh
+  - samba
+  links:
+  - url: https://github.com/tbz-it/M239
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: m242
+  description: 'Modul 242: Mikroprozessoranwendung realisieren'
+  tags:
+  - nfs
+  - docker
+  - wireguard
+  - ssh
+  links:
+  - url: https://github.com/tbz-it/M242
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: m254
+  description: ''
+  tags:
+  - nfs
+  - k8s
+  - wireguard
+  - ssh
+  links:
+  - url: https://github.com/tbz-it/M254
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: m300
+  description: 'Modul 300: Plattformuebergreifende Dienste in ein Netzwerk integrieren'
+  tags:
+  - nfs
+  - docker
+  - k8s
+  - wireguard
+  - ssh
+  links: []
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: m169
+  description: 'Modul 169: Services mit Containern bereitstellen'
+  tags:
+  - nfs
+  - docker
+  - k8s
+  - wireguard
+  - ssh
+  links:
+  - url: https://github.com/tbz-it/M169
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: m321
+  description: "Modul 321: Verteilte Systeme analysieren, verstehen, planen, erweitern\
+    \ und anwenden, sowie bestehende Applikationen in ein verteiltes System \xFCberfuehren."
+  tags:
+  - nfs
+  - docker
+  - k8s
+  - wireguard
+  - ssh
+  links:
+  - url: https://github.com/stefan-kemper/M321
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: m347
+  description: 'Modul 347: Dienst mit Container anwenden'
+  tags:
+  - nfs
+  - docker
+  - k8s
+  - wireguard
+  - ssh
+  links:
+  - url: https://github.com/tbz-it/M347
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: m426
+  description: ''
+  tags:
+  - nfs
+  - docker
+  - k8s
+  - wireguard
+  - ssh
+  links:
+  - url: https://github.com/tbz-it/M426
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: m437
+  description: ''
+  tags:
+  - nfs
+  - k8s
+  - wireguard
+  links:
+  - url: https://github.com/tbz-it/M437
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: microk8s
+  description: microk8s Kubernetes Umgebung
+  tags:
+  - nfs
+  - k8s
+  - wireguard
+  - ssh
+  links: []
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: gns3
+  description: 'Modul GNS3: Netzwerk betreiben und erweitern'
+  tags:
+  - nfs
+  - wireguard
+  - ssh
+  links:
+  - url: https://github.com/mc-b/lerngns3
+  namespace: mc-b
+spec:
+  type: module
+  lifecycle: production
+  owner: team-it
+  providesApis: []
+  dependsOn:
+  - component:mc-b/lernmaas
