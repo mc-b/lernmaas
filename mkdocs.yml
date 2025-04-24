@@ -12,7 +12,7 @@ plugins:
         'index.md': 'README.md'
         
 nav:
-  - Einleitung: README.md
+  - Einleitung: index.md
   - Installation:
       - MAAS Master und Worker Nodes: MAAS/Install.md
       - Gateway Server: MAAS/Gateway.md
