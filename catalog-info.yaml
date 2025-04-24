@@ -34,12 +34,12 @@ metadata:
   - ssh
   - samba
   links:
-  - url: https://github.com/tbz-it/M100
-  namespace: mc-b
+  - url: https://github.com/tbz/M100
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -56,12 +56,12 @@ metadata:
   - wireguard
   - samba
   links:
-  - url: https://github.com/tbz-it/M104
-  namespace: mc-b
+  - url: https://github.com/tbz/M104
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -78,12 +78,12 @@ metadata:
   - ssh
   - samba
   links:
-  - url: https://github.com/tbz-it/M120
-  namespace: mc-b
+  - url: https://github.com/tbz/M120
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -100,12 +100,12 @@ metadata:
   - ssh
   - samba
   links:
-  - url: https://github.com/tbz-it/M122
-  namespace: mc-b
+  - url: https://github.com/tbz/M122
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -122,12 +122,12 @@ metadata:
   - wireguard
   - ssh
   links:
-  - url: https://github.com/tbz-it/M129
-  namespace: mc-b
+  - url: https://github.com/tbz/M129
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -146,12 +146,12 @@ metadata:
   - ssh
   - samba
   links:
-  - url: https://github.com/tbz-it/M141
-  namespace: mc-b
+  - url: https://github.com/tbz/M141
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -168,12 +168,12 @@ metadata:
   - wireguard
   - ssh
   links:
-  - url: https://github.com/tbz-it/M145
-  namespace: mc-b
+  - url: https://github.com/tbz/M145
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -190,12 +190,12 @@ metadata:
   - ssh
   - samba
   links:
-  - url: https://github.com/tbz-it/M152
-  namespace: mc-b
+  - url: https://github.com/tbz/M152
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -212,12 +212,12 @@ metadata:
   - wireguard
   - samba
   links:
-  - url: https://github.com/tbz-it/M153
-  namespace: mc-b
+  - url: https://github.com/tbz/M153
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -234,12 +234,12 @@ metadata:
   - ssh
   - samba
   links:
-  - url: https://github.com/tbz-it/M158
-  namespace: mc-b
+  - url: https://github.com/tbz/M158
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -255,12 +255,12 @@ metadata:
   - wireguard
   - ssh
   links:
-  - url: https://github.com/tbz-it/M182
-  namespace: mc-b
+  - url: https://github.com/tbz/M182
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -276,12 +276,12 @@ metadata:
   - k8s
   - wireguard
   links:
-  - url: https://github.com/tbz-it/M183
-  namespace: mc-b
+  - url: https://github.com/tbz/M183
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -301,11 +301,11 @@ metadata:
   - ssh
   - samba
   links: []
-  namespace: mc-b
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -322,12 +322,12 @@ metadata:
   - ssh
   - samba
   links:
-  - url: https://github.com/tbz-it/M239
-  namespace: mc-b
+  - url: https://github.com/tbz/M239
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -344,12 +344,12 @@ metadata:
   - wireguard
   - ssh
   links:
-  - url: https://github.com/tbz-it/M242
-  namespace: mc-b
+  - url: https://github.com/tbz/M242
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -366,12 +366,12 @@ metadata:
   - wireguard
   - ssh
   links:
-  - url: https://github.com/tbz-it/M254
-  namespace: mc-b
+  - url: https://github.com/tbz/M254
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -389,11 +389,11 @@ metadata:
   - wireguard
   - ssh
   links: []
-  namespace: mc-b
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -411,12 +411,12 @@ metadata:
   - wireguard
   - ssh
   links:
-  - url: https://github.com/tbz-it/M169
-  namespace: mc-b
+  - url: https://github.com/tbz/M169
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -436,11 +436,11 @@ metadata:
   - ssh
   links:
   - url: https://github.com/stefan-kemper/M321
-  namespace: mc-b
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -458,12 +458,12 @@ metadata:
   - wireguard
   - ssh
   links:
-  - url: https://github.com/tbz-it/M347
-  namespace: mc-b
+  - url: https://github.com/tbz/M347
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -481,12 +481,12 @@ metadata:
   - wireguard
   - ssh
   links:
-  - url: https://github.com/tbz-it/M426
-  namespace: mc-b
+  - url: https://github.com/tbz/M426
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -502,12 +502,12 @@ metadata:
   - k8s
   - wireguard
   links:
-  - url: https://github.com/tbz-it/M437
-  namespace: mc-b
+  - url: https://github.com/tbz/M437
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -524,11 +524,11 @@ metadata:
   - wireguard
   - ssh
   links: []
-  namespace: mc-b
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas
@@ -545,11 +545,11 @@ metadata:
   - ssh
   links:
   - url: https://github.com/mc-b/lerngns3
-  namespace: mc-b
+  namespace: tbz
 spec:
   type: module
   lifecycle: production
-  owner: team-it
+  owner: tbz:team-it
   providesApis: []
   dependsOn:
   - component:mc-b/lernmaas

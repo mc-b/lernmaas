@@ -10,4 +10,18 @@ plugins:
   - redirects:
       redirect_maps:
         'index.md': 'README.md'
-
+        
+nav:
+  - Einleitung: README.md
+  - Installation:
+      - MAAS Master und Worker Nodes: MAAS/Install.md
+      - Gateway Server: MAAS/Gateway.md
+      - Einbinden der Clients und Portweiterleitung: MAAS/GatewayClient.md
+      - Virtualisierte Machinen in Virtualisierten Machinen: MAAS/VMinVM.md
+      - Public Cloud und lernMAAS: Cloud/README.md
+      - Proxmox und lernMAAS: Proxmox/README.md
+      - GNS3 und lernMAAS: GNS3/README.md
+      - Lokaler PC mit Vagrant und lernMAAS: vagrant/README.md
+      - Hilfsscripts: helper/README.md        
+  - Fragen und Antworten:
+    - FAQ: MAAS/FAQ.md
