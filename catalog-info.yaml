@@ -41,8 +41,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  partOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -63,8 +62,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  partOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -85,8 +83,7 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  partOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
