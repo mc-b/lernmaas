@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: lernmaas
+  namespace: mc-b
+  description: MAAS / IAAS Umgebung um Cluster von VMs oder Kubernetes auszusetzen
+  tags:
+  - maas
+  - tbz
+  - lernkube
+  - kubernetes
+  - lernmaas
+  links:
+  - url: https://github.com/mc-b/lernmaas
+    title: Repository
+    icon: github
+  annotations:
+    github.com/project-slug: mc-b/lernmaas
+    backstage.io/source-location: url:https://github.com/mc-b/lernmaas
+    # backstage.io/techdocs-ref: url:https://github.com/mc-b/lernmaas
+spec:
+  type: infrastructure
+  lifecycle: production
+  owner: group:mc-b/mc-b
