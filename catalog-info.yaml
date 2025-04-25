@@ -26,7 +26,7 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: m100
+  name: lernmaas-m100
   description: 'Modul 100: Daten charakterisieren, aufbereiten und auswerten'
   tags:
   - nfs
@@ -41,13 +41,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf: component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: m104
+  name: lernmaas-m104
   description: ''
   tags:
   - nfs
@@ -62,13 +62,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf: component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: m120
+  name: lernmaas-m120
   description: 'Modul 120: Benutzerschnittstellen implementieren'
   tags:
   - nfs
@@ -83,13 +83,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf: component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: m122
+  name: lernmaas-m122
   description: 'Modul 122: Automatisieren mit Skripten'
   tags:
   - nfs
@@ -104,14 +104,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: m129
+  name: lernmaas-m129
   description: 'Modul 129: LAN-Komponenten in Betrieb nehmen (nach Erstellung ''enablevminvm
     m129'' laufen lassen). Verbinden mittels GNS3 Desktop <IP>:3080'
   tags:
@@ -126,14 +125,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: m141
+  name: lernmaas-m141
   description: 'Modul 141: Datenbanksystem in Betrieb nehmen'
   tags:
   - nfs
@@ -150,14 +148,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: m145
+  name: lernmaas-m145
   description: 'Modul 145: Netzwerk betreiben und erweitern (nach Erstellung ''enablevminvm
     m145'' laufen lassen). Verbinden mittels GNS3 Desktop <IP>:3080'
   tags:
@@ -172,14 +169,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: m152
+  name: lernmaas-m152
   description: 'Modul 152: Multimedia-Inhalte in Webauftritt integrieren'
   tags:
   - nfs
@@ -194,14 +190,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: m153
+  name: lernmaas-m153
   description: ''
   tags:
   - nfs
@@ -216,14 +211,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: m158
+  name: lernmaas-m158
   description: "Modul 158: Software-Migration planen und durchf\xFChren"
   tags:
   - nfs
@@ -238,14 +232,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: m182
+  name: lernmaas-m182
   description: ''
   tags:
   - nfs
@@ -259,14 +252,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: m183
+  name: lernmaas-m183
   description: 'Modul 183: Applikationssicherheit implementieren (Kubernetes und Webgoat)'
   tags:
   - nfs
@@ -280,14 +272,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: m226
+  name: lernmaas-m226
   description: 'Modul 226: Objektorientiert implementieren (Kubernetes mit 24 x BeakerX
     gestartet)'
   tags:
@@ -304,14 +295,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: m239
+  name: lernmaas-m239
   description: 'Modul 239: Internet Server in Betrieb nehmen'
   tags:
   - nfs
@@ -326,14 +316,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: m242
+  name: lernmaas-m242
   description: 'Modul 242: Mikroprozessoranwendung realisieren'
   tags:
   - nfs
@@ -348,14 +337,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: m254
+  name: lernmaas-m254
   description: ''
   tags:
   - nfs
@@ -370,14 +358,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: m300
+  name: lernmaas-m300
   description: 'Modul 300: Plattformuebergreifende Dienste in ein Netzwerk integrieren'
   tags:
   - nfs
@@ -392,14 +379,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: m169
+  name: lernmaas-m169
   description: 'Modul 169: Services mit Containern bereitstellen'
   tags:
   - nfs
@@ -415,14 +401,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: m321
+  name: lernmaas-m321
   description: "Modul 321: Verteilte Systeme analysieren, verstehen, planen, erweitern\
     \ und anwenden, sowie bestehende Applikationen in ein verteiltes System \xFCberfuehren."
   tags:
@@ -439,14 +424,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: m347
+  name: lernmaas-m347
   description: 'Modul 347: Dienst mit Container anwenden'
   tags:
   - nfs
@@ -462,14 +446,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: m426
+  name: lernmaas-m426
   description: ''
   tags:
   - nfs
@@ -485,14 +468,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: m437
+  name: lernmaas-m437
   description: ''
   tags:
   - nfs
@@ -506,14 +488,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: microk8s
+  name: lernmaas-microk8s
   description: microk8s Kubernetes Umgebung
   tags:
   - nfs
@@ -527,14 +508,13 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: gns3
+  name: lernmaas-gns3
   description: 'Modul GNS3: Netzwerk betreiben und erweitern'
   tags:
   - nfs
@@ -548,5 +528,4 @@ spec:
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
-  partOf:
-  - component:mc-b/lernmaas
+  subcomponentOf: component:mc-b/lernmaas
