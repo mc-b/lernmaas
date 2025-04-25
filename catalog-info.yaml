@@ -37,7 +37,7 @@ metadata:
   - url: https://github.com/tbz-it/M100
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -58,7 +58,7 @@ metadata:
   - url: https://github.com/tbz-it/M104
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -79,7 +79,7 @@ metadata:
   - url: https://github.com/tbz-it/M120
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -100,7 +100,7 @@ metadata:
   - url: https://github.com/tbz-it/M122
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -121,7 +121,7 @@ metadata:
   - url: https://github.com/tbz-it/M129
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -144,7 +144,7 @@ metadata:
   - url: https://github.com/tbz-it/M141
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -165,7 +165,7 @@ metadata:
   - url: https://github.com/tbz-it/M145
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -186,7 +186,7 @@ metadata:
   - url: https://github.com/tbz-it/M152
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -207,7 +207,7 @@ metadata:
   - url: https://github.com/tbz-it/M153
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -228,7 +228,7 @@ metadata:
   - url: https://github.com/tbz-it/M158
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -248,7 +248,7 @@ metadata:
   - url: https://github.com/tbz-it/M182
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -268,7 +268,7 @@ metadata:
   - url: https://github.com/tbz-it/M183
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -291,7 +291,7 @@ metadata:
   links: []
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -312,7 +312,7 @@ metadata:
   - url: https://github.com/tbz-it/M239
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -333,7 +333,7 @@ metadata:
   - url: https://github.com/tbz-it/M242
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -354,7 +354,7 @@ metadata:
   - url: https://github.com/tbz-it/M254
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -375,7 +375,7 @@ metadata:
   links: []
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -397,7 +397,7 @@ metadata:
   - url: https://github.com/tbz-it/M169
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -420,7 +420,7 @@ metadata:
   - url: https://github.com/stefan-kemper/M321
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -442,7 +442,7 @@ metadata:
   - url: https://github.com/tbz-it/M347
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -464,7 +464,7 @@ metadata:
   - url: https://github.com/tbz-it/M426
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -484,7 +484,7 @@ metadata:
   - url: https://github.com/tbz-it/M437
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -504,7 +504,7 @@ metadata:
   links: []
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
@@ -524,7 +524,7 @@ metadata:
   - url: https://github.com/mc-b/lerngns3
   namespace: tbz
 spec:
-  type: module
+  type: script
   lifecycle: production
   owner: tbz:team-it
   providesApis: []
