@@ -19,12 +19,12 @@ metadata:
     backstage.io/source-location: url:https://github.com/mc-b/lernmaas
     backstage.io/techdocs-ref: url:https://github.com/mc-b/lernmaas
 spec:
-  type: infrastructure
+  type: website
   lifecycle: production
   owner: group:mc-b/mc-b
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-m100
   description: 'Modul 100: Daten charakterisieren, aufbereiten und auswerten'
@@ -39,13 +39,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-m104
   description: ''
@@ -60,13 +60,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-m120
   description: 'Modul 120: Benutzerschnittstellen implementieren'
@@ -81,13 +81,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-m122
   description: 'Modul 122: Automatisieren mit Skripten'
@@ -102,13 +102,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-m129
   description: 'Modul 129: LAN-Komponenten in Betrieb nehmen (nach Erstellung ''enablevminvm
@@ -123,13 +123,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-m141
   description: 'Modul 141: Datenbanksystem in Betrieb nehmen'
@@ -146,13 +146,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-m145
   description: 'Modul 145: Netzwerk betreiben und erweitern (nach Erstellung ''enablevminvm
@@ -167,13 +167,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-m152
   description: 'Modul 152: Multimedia-Inhalte in Webauftritt integrieren'
@@ -188,13 +188,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-m153
   description: ''
@@ -209,13 +209,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-m158
   description: "Modul 158: Software-Migration planen und durchf\xFChren"
@@ -230,13 +230,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-m182
   description: ''
@@ -250,13 +250,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-m183
   description: 'Modul 183: Applikationssicherheit implementieren (Kubernetes und Webgoat)'
@@ -270,13 +270,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-m226
   description: 'Modul 226: Objektorientiert implementieren (Kubernetes mit 24 x BeakerX
@@ -293,13 +293,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-m239
   description: 'Modul 239: Internet Server in Betrieb nehmen'
@@ -314,13 +314,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-m242
   description: 'Modul 242: Mikroprozessoranwendung realisieren'
@@ -335,13 +335,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-m254
   description: ''
@@ -356,13 +356,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-m300
   description: 'Modul 300: Plattformuebergreifende Dienste in ein Netzwerk integrieren'
@@ -377,13 +377,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-m169
   description: 'Modul 169: Services mit Containern bereitstellen'
@@ -399,13 +399,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-m321
   description: "Modul 321: Verteilte Systeme analysieren, verstehen, planen, erweitern\
@@ -422,13 +422,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-m347
   description: 'Modul 347: Dienst mit Container anwenden'
@@ -444,13 +444,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-m426
   description: ''
@@ -466,13 +466,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-m437
   description: ''
@@ -486,13 +486,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-microk8s
   description: microk8s Kubernetes Umgebung
@@ -506,13 +506,13 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: lernmaas-gns3
   description: 'Modul GNS3: Netzwerk betreiben und erweitern'
@@ -526,6 +526,6 @@ metadata:
 spec:
   type: script
   lifecycle: production
-  owner: tbz:team-it
+  owner: tbz:it-grundbildung
   providesApis: []
-  subcomponentOf: component:mc-b/lernmaas
+  dependencyOf: component:mc-b/lernmaas
