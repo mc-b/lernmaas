@@ -69,6 +69,7 @@ cat <<EOF >template
     "console_type": "telnet",
     "cpus": ${config_vm_cores},
     "hda_disk_image": "jammy-server-cloudimg-amd64.img",
+    "hda_disk_interface": "scsi",    
     "name": "${MODUL}",
     "qemu_path": "/bin/qemu-system-x86_64",
     "ram": ${config_vm_memory}  ,
