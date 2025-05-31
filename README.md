@@ -32,6 +32,7 @@ Installation
 * [GNS3 und lernMAAS](doc/GNS3/), siehe auch Projekt [lerngns3](https://github.com/mc-b/lerngns3).
 * [Terraform und lernMAAS](https://github.com/mc-b/lerncloud), siehe [Migration](https://github.com/mc-b/lerncloud/tree/main/migration).
 * [Lokaler PC mit Vagrant und lernMAAS](vagrant/)
+* [All-in-one MAAS](doc/All-in-one/README.md)
 * [Hilfsscripts](helper/)
 
 Fragen und Antworten
