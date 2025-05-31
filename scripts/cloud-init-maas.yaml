@@ -1,0 +1,12 @@
+#cloud-config
+password: insecure
+chpasswd: { expire: False }
+ssh_pwauth: true
+disable_root: false   
+runcmd:
+  - curl -sfL https://raw.githubusercontent.com/mc-b/lerncloud/main/services/nfsshare.sh | bash -  
+  - curl -sfL https://raw.githubusercontent.com/mc-b/lerncloud/main/services/vpn.sh | bash -
+  - sudo su - ubuntu -c "curl -sfL https://raw.githubusercontent.com/mc-b/lernmaas/master/scripts/maas.sh | bash -"
+  - sudo su - ubuntu -c "curl -sfL https://raw.githubusercontent.com/mc-b/lernmaas/master/scripts/maas-network.sh | bash -"  
+power_state:
+  mode: reboot  
