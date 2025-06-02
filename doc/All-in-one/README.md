@@ -100,5 +100,55 @@ KVM-Host hinzufügen
     power_address=qemu+ssh://virsh@192.168.122.1/system \
     name=localhost
     
-Bestätigen inkl. Password im MAAS.io      
+Bestätigen inkl. Password im MAAS.io     
+
+Lasttests
+---------
+
+Diese wurden auf einer HP DL380 Gen9 mit zwei Intel Xeon/28 Cores und 512 GB RAM durchgeführt. 
+
+### 45 VMs mit 4 Cores, 8 GB RAM, 64 GB SSD
+
+* Installierte Software **GNS3**
+
+Bereich Status  Einschätzung
+* CPU: Sehr wenig ausgelastet (viel Headroom, Load << 56).
+* RAM: Genug verfügbar, aber Swap wird bereits genutzt → bei Dauerlast evtl. RAM erweitern oder VM-RAM-Zuteilung überprüfen.
+* Systemzustand: Gesund, aber Swap-Nutzung beobachten.
+* Optimierung: Falls Performance-Probleme auftreten → Swappiness verringern, RAM optimieren, I/O prüfen.
+
+Ausgeführte Optimierung
+* SWAPfile mit 80 GB hinzugefügt, Standard waren 8 GB.
+
+### 96 VMs mit 2 Cores, 4 GB RAM, 64 GB SSD
+
+* Installierte Software **GNS3**
+
+Bereich Status  Einschätzung
+* CPU: Überlast 
+* RAM: Hoch ausgelastet, aber kontrolliert  → Swap im Auge behalten
+* Swap: Leichte Nutzung (~13 GB) → Beobachten
+* SSD:  ausgelastet ✅ Keine Engpässe
+
+### 45 VMs mit 4 Cores, 8 GB RAM, 64 GB SSD
+
+* Installierte Software **Kind mit 3 Nodes**
+
+Bereich Status  Einschätzung
+* CPU: Überlast oder an der Grenze (Load > Cores, 43% Systemzeit)   → Engpass, Skalierung prüfen
+* RAM: Hoch ausgelastet, aber kontrolliert  → Swap im Auge behalten
+* Swap: Leichte Nutzung (~13 GB) → Beobachten
+* SSD:  ausgelastet ✅ Keine Engpässe
+* VMs + Kubernetes: Laufen stabil, aber hoher Overhead   → ggf. Kubernetes nativ aufsetzen oder VMs reduzieren
+
+### 45 VMs mit 2 Cores, 8 GB RAM, 64 GB SSD
+
+* Installierte Software **Kind mit 3 Nodes**
+
+Bereich Status  Einschätzung
+* CPU: Gesund  ✅ Load < 56, hohe Idle-Quote
+* RAM: Hoch, aber stabil   🟡 Swap im Auge behalten
+* Swap: 21 GB – tolerierbar 🟡 Kein Alarm
+* SSD: Niedrig: ausgelastet ✅ Keine Engpässe
+* VM-Kerne:    Entlastet   ✅ Erfolgreiches Downsizing
       
