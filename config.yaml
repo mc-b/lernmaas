@@ -82,9 +82,9 @@ m122:
 # Modul 129: LAN-Komponenten in Betrieb nehmen (nach Erstellung 'enablevminvm m129' laufen lassen). Verbinden mittels GNS3 Desktop <IP>:3080
 m129:
   vm:  
-    storage: 64
-    memory: 7680
-    cores: 4
+    storage: 32
+    memory: 3584
+    cores: 2
     count: 20
   services:
     nfs: true
@@ -118,9 +118,9 @@ m141:
 # Modul 145: Netzwerk betreiben und erweitern (nach Erstellung 'enablevminvm m145' laufen lassen). Verbinden mittels GNS3 Desktop <IP>:3080
 m145:
   vm:  
-    storage: 64
+    storage: 32
     memory: 7680
-    cores: 4
+    cores: 2
     count: 20
   services:
     nfs: true
@@ -428,9 +428,9 @@ microk8s:
 # Modul GNS3: Netzwerk betreiben und erweitern (nach Erstellung 'enablevminvm gns3' laufen lassen). Verbinden mittels GNS3 Desktop <IP>:3080
 gns3:
   vm:  
-    storage: 64
-    memory: 10240
-    cores: 4
+    storage: 32
+    memory: 3584
+    cores: 2
     count: 20
   services:
     nfs: true
