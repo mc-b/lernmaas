@@ -388,7 +388,7 @@ m426:
 # Modul 437 Arbeiten im Support (Minimale Kubernetes Umgebung, OSS Ticket, MySQL DB)  
 m437:
   vm:  
-    storage: 12
+    storage: 30
     memory:  2048
     cores: 2
     count: 20
