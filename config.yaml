@@ -384,6 +384,24 @@ m426:
     firewall: false
   scripts: 
   repositories: https://github.com/tbz-it/M426
+
+# Modul 431: Auftraege selbststaendig ausfuehren
+m431:
+  vm:  
+    storage: 8
+    memory:  2048
+    cores: 1
+    count: 2
+  services:
+    nfs: true
+    docker: false
+    k8s: 
+    wireguard: use
+    ssh: generate
+    samba: true
+    firewall: false
+  scripts: 
+  repositories: https://github.com/tbz-it/M431
   
 # Modul 437 Arbeiten im Support (Minimale Kubernetes Umgebung, OSS Ticket, MySQL DB)  
 m437:
