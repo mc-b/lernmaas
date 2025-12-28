@@ -17,6 +17,16 @@ then
     sudo chmod 600 /etc/wireguard/wg0.conf
     sudo systemctl enable wg-quick@wg0.service
     sudo systemctl start wg-quick@wg0.service
+
+# Aktivierung nur wenn Konfigurationsdatei = hostname vorhanden ist
+elif [ -f "/etc/wireguard/$(hostname).conf" ]
+then
+
+    sudo mv /etc/wireguard/$(hostname).conf /etc/wireguard/wg0.conf
+    sudo chown root:root  /etc/wireguard/wg0.conf
+    sudo chmod 600 /etc/wireguard/wg0.conf
+    sudo systemctl enable wg-quick@wg0.service
+    sudo systemctl start wg-quick@wg0.service
  
 # Aktivierung durch MAAS AZ    
 elif [ -f wireguard ]
