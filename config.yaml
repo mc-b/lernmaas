@@ -331,6 +331,23 @@ m169:
   scripts: dind.sh
   repositories: https://github.com/tbz-it/M169
   
+m169k3s:
+  vm:  
+    storage: 24
+    memory:  3584
+    cores: 2
+    count: 1
+  services:
+    nfs: true
+    docker: true
+    k8s: k3scontrol
+    wireguard: use
+    ssh: generate
+    samba: false
+    firewall: false
+  scripts: dind.sh
+  repositories: https://github.com/tbz-it/M169  
+  
 # Modul 321: Verteilte Systeme analysieren, verstehen, planen, erweitern und anwenden, sowie bestehende Applikationen in ein verteiltes System überfuehren.
 m321:
   vm:  
@@ -349,6 +366,23 @@ m321:
   scripts: dind.sh
   repositories: https://github.com/stefan-kemper/M321
   
+m321k3s:
+  vm:  
+    storage: 24
+    memory:  3584
+    cores: 2
+    count: 1
+  services:
+    nfs: true
+    docker: true
+    k8s: k3scontrol
+    wireguard: use
+    ssh: generate
+    samba: false
+    firewall: false
+  scripts: dind.sh
+  repositories: https://github.com/stefan-kemper/M321  
+  
 # Modul 347: Dienst mit Container anwenden
 m347:
   vm:  
@@ -366,6 +400,24 @@ m347:
     firewall: false
   scripts: dind.sh
   repositories: https://github.com/tbz-it/M347 
+  
+# Modul 347: Dienst mit Container anwenden
+m347k3s:
+  vm:  
+    storage: 24
+    memory:  3584
+    cores: 2
+    count: 1
+  services:
+    nfs: true
+    docker: true
+    k8s: k3scontrol
+    wireguard: use
+    ssh: generate
+    samba: false
+    firewall: false
+  scripts: dind.sh
+  repositories: https://github.com/tbz-it/M347   
   
 # Modul 426 Software mit agilen Methoden entwickeln (duk/devops Umgebung - gogs, kanboard, jenkins, duk/compiler - make, maven, mbed-cli) 
 m426:

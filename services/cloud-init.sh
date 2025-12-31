@@ -95,6 +95,11 @@ then
     bash -x services/microk8s.sh ${config_services_k8s}
 fi
 
+if [ "${config_services_k8s}" == "k3scontrol" ]
+then
+    bash -x services/k3scontrol.sh 
+fi
+
 if [ "${config_services_k8s}" == "rancher" ] 
 then
     bash -x services/rancher.sh
