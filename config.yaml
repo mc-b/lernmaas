@@ -328,7 +328,7 @@ m169:
     ssh: generate
     samba: false
     firewall: false
-  scripts: dind.sh
+  scripts: 
   repositories: https://github.com/tbz-it/M169
   
 m169k3s:
@@ -345,7 +345,7 @@ m169k3s:
     ssh: generate
     samba: false
     firewall: false
-  scripts: dind.sh
+  scripts: 
   repositories: https://github.com/tbz-it/M169  
   
 # Modul 321: Verteilte Systeme analysieren, verstehen, planen, erweitern und anwenden, sowie bestehende Applikationen in ein verteiltes System überfuehren.
@@ -363,7 +363,7 @@ m321:
     ssh: generate
     samba: false
     firewall: false
-  scripts: dind.sh
+  scripts: 
   repositories: https://github.com/stefan-kemper/M321
   
 m321k3s:
@@ -380,7 +380,7 @@ m321k3s:
     ssh: generate
     samba: false
     firewall: false
-  scripts: dind.sh
+  scripts: 
   repositories: https://github.com/stefan-kemper/M321  
   
 # Modul 347: Dienst mit Container anwenden
@@ -398,7 +398,7 @@ m347:
     ssh: generate
     samba: false
     firewall: false
-  scripts: dind.sh
+  scripts: 
   repositories: https://github.com/tbz-it/M347 
   
 # Modul 347: Dienst mit Container anwenden
@@ -416,7 +416,7 @@ m347k3s:
     ssh: generate
     samba: false
     firewall: false
-  scripts: dind.sh
+  scripts: 
   repositories: https://github.com/tbz-it/M347   
   
 # Modul 426 Software mit agilen Methoden entwickeln (duk/devops Umgebung - gogs, kanboard, jenkins, duk/compiler - make, maven, mbed-cli) 
